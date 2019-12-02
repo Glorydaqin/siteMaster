@@ -55,6 +55,9 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     $response = $Ahrefs->get($real_url, $_POST);
     $html = $response['body'];
     if($url_is_cdn){
+        if(stripos($real_url,'.css')){
+            header('Content-Type: text/css');
+        }
         echo $html;die;
     }
 
