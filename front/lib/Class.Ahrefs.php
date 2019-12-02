@@ -3,8 +3,8 @@
 class Ahrefs
 {
     public static $cdn_domain = "https://cdn.ahrefs.com/";
-    public static $domain = "https://www.ahrefs.com/";
-    private $login_url = '';
+    public static $domain = "https://ahrefs.com/";
+    public static $login_url = 'https://ahrefs.com/user/login';
 
     private $user_name = '';
     private $password = '';
@@ -25,7 +25,7 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_REFERER, $this->domain);//这里写一个来源地址，可以写要抓的页面的首页
+        curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
         curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -65,13 +65,13 @@ class Ahrefs
         return $r;
     }
 
-    public function get($url,$data)
+    public function get($url, $data = [])
     {
         if (!$this->check_is_login()) {
-            $this->login($this->user_name, $this->password);
+            $this->login();
         }
 
-        $result = $this->curl($url,$data);
+        $result = $this->curl($url, $data);
         return $result;
     }
 
@@ -88,7 +88,63 @@ class Ahrefs
 
     public function login()
     {
+        //Request URL: https://ahrefs.com/user/login
+        //Request Method: POST
+        //Status Code: 200
+        //Remote Address: 127.0.0.1:1086
+        //Referrer Policy: no-referrer-when-downgrade
+        //cache-control: private, must-revalidate
+        //content-encoding: gzip
+        //content-length: 139
+        //content-type: application/json
+        //date: Mon, 02 Dec 2019 08:49:55 GMT
+        //expires: -1
+        //pragma: no-cache
+        //server: nginx
+        //set-cookie: XSRF-TOKEN=tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M; expires=Mon, 02-Dec-2019 12:49:55 GMT; Max-Age=14400; path=/; domain=.ahrefs.com; secure
+        //set-cookie: BSSESSID=%2BaBI6ixHk6BKoCEV8Aw%2FoP5A%2BsVjIH5GoB2alK5p; path=/; domain=.ahrefs.com; secure; HttpOnly
+        //status: 200
+        //strict-transport-security: max-age=31536000
+        //vary: Accept-Encoding
+        //:authority: ahrefs.com
+        //:method: POST
+        //:path: /user/login
+        //:scheme: https
+        //accept: application/json, text/javascript, */*; q=0.01
+        //accept-encoding: gzip, deflate, br
+        //accept-language: zh-CN,zh;q=0.9,en;q=0.8
+        //cache-control: no-cache
+        //content-length: 132
+        //content-type: application/x-www-form-urlencoded; charset=UTF-8
+        //cookie: intercom-id-dic5omcp=cb13bbae-f105-4460-b83b-6d4fd2b89b80; _iub_cs-794932=%7B%22consent%22%3Atrue%2C%22timestamp%22%3A%222019-11-30T14%3A41%3A47.035Z%22%2C%22version%22%3A%221.2.4%22%2C%22id%22%3A794932%7D; XSRF-TOKEN=tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M; BSSESSID=GVzfGE0TwEpnXcuvQjD8TG5g6krX5rUTpUxd09az
+        //origin: https://ahrefs.com
+        //pragma: no-cache
+        //referer: https://ahrefs.com/user/login
+        //sec-fetch-mode: cors
+        //sec-fetch-site: same-origin
+        //user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+        //x-requested-with: XMLHttpRequest
 
+        //_token: tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M
+        //email: 1912037638@qq.com
+        //password: Ranqinghua1
+        //return_to: https://ahrefs.com/
+
+        $index_result = $this->curl(self::$domain);
+        preg_match_all("/value=\"(.*?)\" name=\"_token\"/", $index_result['body'], $match_result);
+
+        $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
+        $data = [
+            '_token' => $token,
+            'email' => $this->user_name,
+            'password' => $this->password,
+            'return_to' => self::$domain
+        ];
+        $result = $this->curl(self::$login_url, $data);
+        if ($result['code'] == 200) {
+            return true;
+        }
+        return false;
     }
 
 }

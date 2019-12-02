@@ -5,9 +5,10 @@
  * User: daqin
  * Date: 2018/3/14
  * Time: 18:46
-*/
+ */
 session_start();
 
 //检测登陆状态
-
-
+if (!isset($_SESSION['user_id'])) {
+    temporarily_header_302('/');
+}

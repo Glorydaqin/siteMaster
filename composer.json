@@ -1,6 +1,7 @@
 {
     "require": {
         "filp/whoops": "^2.5",
-        "larapack/dd": "^1.1"
+        "larapack/dd": "^1.1",
+        "ext-curl": "*"
     }
 }
