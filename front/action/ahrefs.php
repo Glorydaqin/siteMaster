@@ -49,7 +49,6 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     if (stripos($url, 'cdn_ahrefs_com') !== false) {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     }
-//    dd($real_url);
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
     $response = $Ahrefs->get($real_url, $_POST);

@@ -11,3 +11,6 @@ define('DEBUG_MODE', true);
 define('HTTP_HOST', $_SERVER['HTTP_HOST']);
 define('SITE_URL', 'https://' . HTTP_HOST);
 define('FRONT_DIR', INCLUDE_ROOT . 'action/');
+
+define('SITE_FOLDER_PRE','_in_ds_');
+define('DOMAIN', 'http://sitemaster.test.com/');

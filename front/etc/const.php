@@ -4,8 +4,6 @@ if (!defined('IN_DS')) {
 }
 //config
 define('VER', 'v201801');
-define('SITE_FOLDER_PRE','_in_ds_');
-define('DOMAIN', 'http://sitemaster.test.com/');
 define("CACHE_FUNC_DEBUG_MODE", false);
 define('CACHE_PATH', INCLUDE_ROOT.'data/cache_html/');
 define('CLEAR_CACHE_KEY', "del_cache_key");
