@@ -15,7 +15,6 @@ include_once 'common.php';
 
 //$url = $_GET['url'] ?? '';
 $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-
 if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE . 'account_id'])) {
     //选择页面
     $account_list = Account::get_site_list('ahrefs');
@@ -48,8 +47,9 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
 
     $real_url = Ahrefs::$domain . $url;
     if (stripos($url, 'cdn_ahrefs_com') !== false) {
-        $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com'));
+        $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     }
+//    dd($real_url);
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
     $response = $Ahrefs->get($real_url, $_POST);
