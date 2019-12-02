@@ -1,5 +1,6 @@
 {
     "require": {
-        "filp/whoops": "^2.5"
+        "filp/whoops": "^2.5",
+        "larapack/dd": "^1.1"
     }
 }

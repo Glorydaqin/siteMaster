@@ -2,8 +2,8 @@
 
 class Ahrefs
 {
-    private $cdn_domain = "https://cdn.ahrefs.com/";
-    private $domain = "https://www.ahrefs.com/";
+    public static $cdn_domain = "https://cdn.ahrefs.com/";
+    public static $domain = "https://www.ahrefs.com/";
     private $login_url = '';
 
     private $user_name = '';
@@ -78,7 +78,7 @@ class Ahrefs
 
     public function check_is_login()
     {
-        $result = $this->curl($this->domain . 'dashboard');
+        $result = $this->curl(self::$domain . 'dashboard');
         if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
             return false;
         }
