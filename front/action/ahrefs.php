@@ -57,6 +57,8 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     if($url_is_cdn){
         if(stripos($real_url,'.css')){
             header('Content-Type: text/css');
+        }elseif(stripos($real_url,'.js')){
+            header('Content-Type: application/x-javascript');
         }
         echo $html;die;
     }
