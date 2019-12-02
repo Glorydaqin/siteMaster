@@ -103,9 +103,9 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
 
 
 //添加一个top bar
-    $html = preg_replace_callback("/<body[^>]+?>/", function ($matches) {
+    $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
         $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . '/' . SITE_FOLDER_PRE . "/ahrefs/" . "'>HOME-选账号</a></div>";
-        return "<body>" . $inner_html;
+        return $matches[0] . $inner_html;
     }, $html);
 
     echo $html;
