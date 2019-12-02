@@ -44,15 +44,19 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     ])) {
         die('folder limit');
     }
+    $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false)?true:false;
 
     $real_url = Ahrefs::$domain . $url;
-    if (stripos($url, 'cdn_ahrefs_com') !== false) {
+    if ($url_is_cdn) {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     }
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
     $response = $Ahrefs->get($real_url, $_POST);
     $html = $response['body'];
+    if($url_is_cdn){
+        echo $html;die;
+    }
 
 // 替换内容
     //链接
