@@ -6,6 +6,8 @@ class Ahrefs
     public static $domain = "https://ahrefs.com/";
     public static $login_url = 'https://ahrefs.com/user/login';
 
+    public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+
     private $user_name = '';
     private $password = '';
     private $cookie_key = '';
@@ -17,16 +19,41 @@ class Ahrefs
         $this->cookie_key = "siteMaster_Ahrefs_" . $user_name;
     }
 
+    /**
+     * 获取过滤后的header
+     */
+    public function get_clean_header()
+    {
+        $headers = getallheaders();
+        if (isset($headers['Referer'])) {
+            unset($headers['Referer']);
+        }
+        if (isset($headers['Host'])) {
+            unset($headers['Host']);
+        }
+        if (isset($headers['Origin'])) {
+            unset($headers['Origin']);
+        }
+        if (isset($headers['Cookie'])) {
+            unset($headers['Cookie']);
+        }
+        $headers['User-Agent'] = self::$user_agent;
+        $tmp = [];
+        foreach ($headers as $header => $val) {
+            $tmp[] = $header . ': ' . $val;
+        }
+        return $tmp;
+    }
+
     public function curl($url, $data = [])
     {
         $ch = curl_init();
 
-        $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
-        curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+        curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -46,10 +73,7 @@ class Ahrefs
             // post的变量
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
-//        if (!empty($headers)) {
-//            // headers
-//            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-//        }
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->get_clean_header());
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
         $content = curl_exec($ch);
@@ -65,9 +89,9 @@ class Ahrefs
         return $r;
     }
 
-    public function get($url, $data = [],$is_cdn = false)
+    public function get($url, $data = [], $is_cdn = false)
     {
-        if(!$is_cdn){
+        if (!$is_cdn) {
             if (!$this->check_is_login()) {
                 $this->login();
             }
