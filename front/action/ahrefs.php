@@ -52,10 +52,11 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     }
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
-    d($_POST);
-    if(isset($_POST['null'])){
+
+    if($first_sub == 'v3' && (empty($_POST) || $_POST['null'] == '')){
         $_POST = 'null';
-    }dd($_POST);
+    }
+    dd($_POST);
     $response = $Ahrefs->get($real_url, $_POST);
     $html = $response['body'];
     if($url_is_cdn){
