@@ -12,28 +12,19 @@ if (!defined('IN_DS')) {
 
 include_once 'common.php';
 
+try{
 
 //$url = $_GET['url'] ?? '';
-$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE . 'account_id'])) {
-    //选择页面
-    $account_list = Account::get_site_list('ahrefs');
-    $tpl->assign('account_list', $account_list);
-    echo $tpl->render('ahrefs.php');
-    exit();
-} elseif (isset($_POST[SITE_FOLDER_PRE . 'account_id'])) {
-    $_SESSION['account_id'] = $_POST[SITE_FOLDER_PRE . 'account_id'];
-    temporarily_header_302('/dashboard');
-} else {
+    $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     if (!isset($_SESSION['account_id'])) {
         die('choose account');
     }
     $account_id = $_SESSION['account_id'];
-    //转发页面
+//转发页面
     $url = trim($url, '/');
     $first_sub = explode('/', $url)[0];
 
-    //检查账号存在
+//检查账号存在
     $account = Account::get_account($account_id, 'ahrefs');
     if (empty($account)) {
         die('account error');
@@ -72,7 +63,7 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     }
 
 // 替换内容
-    //链接
+//链接
     $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
         // 明确的当前域名 开头
         if (substr($matches[1], 0, 1) != '/') {
@@ -110,8 +101,8 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
     }, $html);
 
     echo $html;
-    exit();
-
+}catch (\Exception $exception){
+    dd($exception);
 }
 exit();
 

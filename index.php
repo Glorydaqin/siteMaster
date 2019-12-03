@@ -13,6 +13,8 @@ $script_uri = empty($script_uri_tmp_arr) ? $script_uri : $script_uri_tmp_arr[0];
 if (empty($script_uri) || $script_uri == "/") {
     //首页
     include_once FRONT_DIR . 'index.php';
+} elseif (substr(ltrim($script_uri, '/'), 0, strlen(SITE_FOLDER_PRE)) == SITE_FOLDER_PRE) {
+    include_once FRONT_DIR . 'choose.php';
 } else {
     include_once FRONT_DIR . 'ahrefs.php';  //ahrefs
 }
