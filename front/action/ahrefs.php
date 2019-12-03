@@ -53,6 +53,7 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
 
+    dd($_POST);
     if($first_sub == 'v3' && (empty($_POST) || $_POST['null'] == '')){
         $_POST = 'null';
     }
