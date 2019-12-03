@@ -109,18 +109,18 @@ class Ahrefs
         if (!file_exists($cookie_file)) {
             return false;
         }
-        preg_match_all("/TRUE	(\d+?)	BSSESSID/", file_get_contents($cookie_file), $match_time);
-        $cookie_time = isset($match_time[1]) ? $match_time[1][0] : 0;
-        if ($cookie_time < time()) {
-            return false;
-        }
-        return true;
-
-//        $result = $this->curl(self::$domain . 'dashboard');
-//        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
+//        preg_match_all("/TRUE	(\d+?)	BSSESSID/", file_get_contents($cookie_file), $match_time);
+//        $cookie_time = isset($match_time[1][0]) ? $match_time[1][0] : 0;
+//        if ($cookie_time < time()) {
 //            return false;
 //        }
 //        return true;
+
+        $result = $this->curl(self::$domain . 'dashboard');
+        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
+            return false;
+        }
+        return true;
     }
 
 
