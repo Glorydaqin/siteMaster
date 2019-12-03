@@ -78,13 +78,7 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
         if (substr($matches[1], 0, 1) != '/') {
             // 不明确的域名开头
             if (stripos($matches[1], 'cdn.ahrefs.com')) {
-
-//                if (stripos($matches[1], '.css')) {
-//                    return $matches[0];
-//                } else {
                 return 'href="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
-//                }
-
             } elseif (stripos($matches[1], 'ahrefs.com')) {
                 return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
             } else {
@@ -99,13 +93,7 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
         if (substr($matches[1], 0, 1) != '/') {
             // 不明确的域名开头
             if (stripos($matches[1], 'cdn.ahrefs.com')) {
-
-//                if (stripos($matches[1], '.css')) {
-//                    return $matches[0];
-//                } else {
                 return 'src="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
-//                }
-
             } elseif (stripos($matches[1], 'ahrefs.com')) {
                 return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
             } else {

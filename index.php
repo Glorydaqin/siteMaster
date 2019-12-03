@@ -1,5 +1,4 @@
 <?php
-
 ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
 define('INCLUDE_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);

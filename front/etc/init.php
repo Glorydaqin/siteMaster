@@ -9,6 +9,7 @@ include_once(INCLUDE_ROOT.'etc/const.php');
 
 //注册异常提示组件 whoops
 if(DEBUG_MODE){
+    error_reporting(E_ALL);
     $whoops = new \Whoops\Run;
     $whoops->appendHandler(new \Whoops\Handler\PrettyPageHandler);
     $whoops->register();
