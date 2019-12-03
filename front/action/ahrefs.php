@@ -53,12 +53,14 @@ if ($url == '/' . SITE_FOLDER_PRE . "/ahrefs/" && !isset($_POST[SITE_FOLDER_PRE 
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
 
-    dd($_POST);
-    if($first_sub == 'v3' && (empty($_POST) || $_POST['null'] == '')){
-        $_POST = 'null';
+    $raw_data = file_get_contents('php://input');
+    if(!empty($raw_data)){
+        $post_data = $raw_data;
+    }else{
+        $post_data = $_POST;
     }
 
-    $response = $Ahrefs->get($real_url, $_POST);
+    $response = $Ahrefs->get($real_url, $post_data);
     $html = $response['body'];
     if($url_is_cdn){
         if(stripos($real_url,'.css')){
