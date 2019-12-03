@@ -66,6 +66,7 @@ try {
 // 替换内容
 //链接
     $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
+        dd($matches);
         // 明确的当前域名 开头
         if (substr($matches[1], 0, 1) != '/') {
             // 不明确的域名开头

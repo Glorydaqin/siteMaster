@@ -62,7 +62,7 @@ class Ahrefs
             curl_setopt($ch, CURLOPT_PROXY, $ip_info);
         }
 
-        $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . $this->user_name . ".txt";
+        $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
         if (!file_exists($cookie_file)) {
             file_put_contents($cookie_file, "");
         }
@@ -104,11 +104,23 @@ class Ahrefs
 
     public function check_is_login()
     {
-        $result = $this->curl(self::$domain . 'dashboard');
-        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
+        //用cookie 中有效时间判断 可能不太准确，但是效率高
+        $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
+        if (!file_exists($cookie_file)) {
+            return false;
+        }
+        preg_match_all("/TRUE	(\d+?)	BSSESSID/", file_get_contents($cookie_file), $match_time);
+        $cookie_time = isset($match_time[1]) ? $match_time[1][0] : 0;
+        if ($cookie_time < time()) {
             return false;
         }
         return true;
+
+//        $result = $this->curl(self::$domain . 'dashboard');
+//        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
+//            return false;
+//        }
+//        return true;
     }
 
 
