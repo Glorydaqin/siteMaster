@@ -12,7 +12,7 @@ if (!defined('IN_DS')) {
 
 include_once 'common.php';
 
-try{
+try {
 
 //$url = $_GET['url'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
@@ -35,7 +35,7 @@ try{
     ])) {
         die('folder limit');
     }
-    $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false)?true:false;
+    $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
 
     $real_url = Ahrefs::$domain . $url;
     if ($url_is_cdn) {
@@ -45,21 +45,22 @@ try{
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
 
     $raw_data = file_get_contents('php://input');
-    if(!empty($raw_data)){
+    if (!empty($raw_data)) {
         $post_data = $raw_data;
-    }else{
+    } else {
         $post_data = $_POST;
     }
 
-    $response = $Ahrefs->get($real_url, $post_data);
+    $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
     $html = $response['body'];
-    if($url_is_cdn){
-        if(stripos($real_url,'.css')){
+    if ($url_is_cdn) {
+        if (stripos($real_url, '.css')) {
             header('Content-Type: text/css');
-        }elseif(stripos($real_url,'.js')){
+        } elseif (stripos($real_url, '.js')) {
             header('Content-Type: application/x-javascript');
         }
-        echo $html;die;
+        echo $html;
+        die;
     }
 
 // 替换内容
@@ -101,7 +102,7 @@ try{
     }, $html);
 
     echo $html;
-}catch (\Exception $exception){
+} catch (\Exception $exception) {
     dd($exception);
 }
 exit();

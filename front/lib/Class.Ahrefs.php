@@ -65,10 +65,12 @@ class Ahrefs
         return $r;
     }
 
-    public function get($url, $data = [])
+    public function get($url, $data = [],$is_cdn = false)
     {
-        if (!$this->check_is_login()) {
-            $this->login();
+        if(!$is_cdn){
+            if (!$this->check_is_login()) {
+                $this->login();
+            }
         }
 
         $result = $this->curl($url, $data);
