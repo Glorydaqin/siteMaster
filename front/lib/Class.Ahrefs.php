@@ -27,15 +27,24 @@ class Ahrefs
         $headers = getallheaders();
         if (isset($headers['Referer'])) {
             unset($headers['Referer']);
+//            $headers['Referer'] = str_replace(DOMAIN, self::$domain, $headers['Referer']);
         }
         if (isset($headers['Host'])) {
             unset($headers['Host']);
+//            $headers['Host'] = str_replace(DOMAIN, self::$domain, $headers['Host']);
         }
         if (isset($headers['Origin'])) {
             unset($headers['Origin']);
+//            $headers['Origin'] = str_replace(DOMAIN, self::$domain, $headers['Origin']);
         }
         if (isset($headers['Cookie'])) {
             unset($headers['Cookie']);
+        }
+        if (isset($headers['Accept-Encoding'])) {
+            unset($headers['Accept-Encoding']);
+        }
+        if (isset($headers['Accept'])) {
+            unset($headers['Accept']);
         }
         $headers['User-Agent'] = self::$user_agent;
         $tmp = [];
@@ -58,9 +67,6 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        if (!empty($ip_info)) {
-            curl_setopt($ch, CURLOPT_PROXY, $ip_info);
-        }
 
         $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
         if (!file_exists($cookie_file)) {
@@ -73,7 +79,8 @@ class Ahrefs
             // post的变量
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->get_clean_header());
+        $clean_header = $this->get_clean_header();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
         $content = curl_exec($ch);
@@ -86,18 +93,36 @@ class Ahrefs
         $r['url'] = $res['url'];
         $r['body'] = $content;
 
+        //写详细请求记录
+        $log_r = $r;
+        $log_r['body'] = utf8_encode($log_r['body']);
+        $log_content = [
+            'cookie_file' => $cookie_file,
+            'cookie_content' => file_get_contents($cookie_file),
+            'request' => [
+                'url' => $url,
+                'header' => $clean_header,
+                'data' => $data
+            ],
+            'response' => $log_r
+        ];
+        Log::info($log_content);
+
         return $r;
     }
 
     public function get($url, $data = [], $is_cdn = false)
     {
-        if (!$is_cdn) {
-            if (!$this->check_is_login()) {
-                $this->login();
-            }
+        if (!$this->check_is_login()) {
+            $this->login();
         }
 
         $result = $this->curl($url, $data);
+        if (stripos($result['url'], '/user/login')) {
+            //跳转到登陆的说明未登陆
+            $this->login();
+            $result = $this->curl($url, $data);
+        }
         return $result;
     }
 
@@ -107,6 +132,9 @@ class Ahrefs
         //用cookie 中有效时间判断 可能不太准确，但是效率高
         $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
         if (!file_exists($cookie_file)) {
+            file_put_contents($cookie_file, '');
+        }
+        if (empty(file_get_contents($cookie_file))) {
             return false;
         }
 //        preg_match_all("/TRUE	(\d+?)	BSSESSID/", file_get_contents($cookie_file), $match_time);
@@ -116,10 +144,10 @@ class Ahrefs
 //        }
 //        return true;
 
-        $result = $this->curl(self::$domain . 'dashboard');
-        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
-            return false;
-        }
+//        $result = $this->curl(self::$domain . 'dashboard');
+//        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
+//            return false;
+//        }
         return true;
     }
 
@@ -169,7 +197,7 @@ class Ahrefs
         //return_to: https://ahrefs.com/
 
         $index_result = $this->curl(self::$domain);
-        preg_match_all("/value=\"(.*?)\" name=\"_token\"/", $index_result['body'], $match_result);
+        preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
 
         $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
         $data = [

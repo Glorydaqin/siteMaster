@@ -54,6 +54,11 @@ try {
     $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
     $html = $response['body'];
     if ($url_is_cdn) {
+        header("Cache-Control: public");
+        header("Pragma: cache");
+        $offset = 60*60*24; // cache 1 day
+        $ExpStr = "Expires: ".gmdate("D, d M Y H:i:s", time() + $offset)." GMT";
+        header($ExpStr);
         if (stripos($real_url, '.css')) {
             header('Content-Type: text/css');
         } elseif (stripos($real_url, '.js')) {

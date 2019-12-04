@@ -15,6 +15,8 @@ if (empty($script_uri) || $script_uri == "/") {
     include_once FRONT_DIR . 'index.php';
 } elseif (substr(ltrim($script_uri, '/'), 0, strlen(SITE_FOLDER_PRE)) == SITE_FOLDER_PRE) {
     include_once FRONT_DIR . 'choose.php';
+}  elseif (substr(ltrim($script_uri, '/'), 0, strlen(SITE_FOLDER_PRE.'/log')) == SITE_FOLDER_PRE.'/log') {
+    include_once FRONT_DIR . 'log.php';
 } else {
     include_once FRONT_DIR . 'ahrefs.php';  //ahrefs
 }

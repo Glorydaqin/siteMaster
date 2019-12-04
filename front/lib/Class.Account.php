@@ -26,4 +26,12 @@ class Account
         $result = $GLOBALS['db']->getRows($sql);
         return $result;
     }
+
+    /**
+     * 记录记录
+     */
+    public static function record_use()
+    {
+
+    }
 }
