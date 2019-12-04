@@ -105,7 +105,6 @@ try {
 
     echo $html;
 } catch (\Exception $exception) {
-    dd($exception);
+    Log::info($exception);
 }
 exit();
-

@@ -113,6 +113,11 @@ class Ahrefs
 
     public function get($url, $data = [], $is_cdn = false)
     {
+        //检查是否有缓存，有则调用缓存
+//        $cache = new
+//        if($is_cdn && )
+//
+        
         if (!$this->check_is_login()) {
             $this->login();
         }
