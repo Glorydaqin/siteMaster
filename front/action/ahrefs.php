@@ -56,8 +56,8 @@ try {
     if ($url_is_cdn) {
         header("Cache-Control: public");
         header("Pragma: cache");
-        $offset = 60*60*24; // cache 1 day
-        $ExpStr = "Expires: ".gmdate("D, d M Y H:i:s", time() + $offset)." GMT";
+        $offset = 60 * 60 * 24; // cache 1 day
+        $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
         header($ExpStr);
         if (stripos($real_url, '.css')) {
             header('Content-Type: text/css');
@@ -97,11 +97,13 @@ try {
     }, $html);
 
 
-//添加一个top bar
+    //添加一个top bar
     $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
         $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . '/' . SITE_FOLDER_PRE . "/ahrefs/" . "'>HOME-选账号</a></div>";
         return $matches[0] . $inner_html;
     }, $html);
+    //替换用户信息
+    $html = str_replace($account['username'], 'account_' . $account_id, $html);
 
     echo $html;
 } catch (\Exception $exception) {
