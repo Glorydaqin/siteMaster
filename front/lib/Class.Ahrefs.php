@@ -114,10 +114,16 @@ class Ahrefs
     public function get($url, $data = [], $is_cdn = false)
     {
         //检查是否有缓存，有则调用缓存
-//        $cache = new
-//        if($is_cdn && )
-//
-        
+        $cache = new Cache();
+        if ($is_cdn) {
+            $cache_file = $cache->get_cache($url);
+            if ($cache_file) {
+                $cache_file = json_decode($cache_file, true);
+                return $cache_file;
+            }
+        }
+
+
         if (!$this->check_is_login()) {
             $this->login();
         }
@@ -127,6 +133,9 @@ class Ahrefs
             //跳转到登陆的说明未登陆
             $this->login();
             $result = $this->curl($url, $data);
+        }
+        if ($is_cdn) {
+            $cache->set_cache($url, json_encode($result));
         }
         return $result;
     }

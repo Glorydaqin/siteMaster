@@ -12,4 +12,3 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     temporarily_header_302('/');
 }
-

@@ -27,19 +27,25 @@ try {
 //检查账号存在
     $account = Account::get_account($account_id, 'ahrefs');
     if (empty($account)) {
-        die('account error');
+        die('account error | 账号错误');
     }
 
     if (in_array($first_sub, [
         'account'
     ])) {
-        die('folder limit');
+        die('folder limit ｜ 目录访问限制');
     }
     $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
 
     $real_url = Ahrefs::$domain . $url;
     if ($url_is_cdn) {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
+    }else{
+        //查询记录数
+        $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'],'keywords');
+        if($keywordLimit >= UserRecord::keywordsLimit){
+            die('Reach the keywords limit | 达到关键词限制');
+        }
     }
 
     $Ahrefs = new Ahrefs($account['username'], $account['password']);
@@ -67,6 +73,8 @@ try {
         echo $html;
         die;
     }
+    //记录操作
+    UserRecord::record($_SESSION['user_id'], $account_id, $url);
 
 // 替换内容
 //链接

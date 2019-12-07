@@ -2,18 +2,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        .form-item{
+        .form-item {
             margin-bottom: 24px;
             vertical-align: top;
         }
-        .login-form{
+
+        .login-form {
             width: 300px;
             margin: 200px auto 0;
             transform: translateY(-50%);
             border: 1px solid #dcdee2;
             padding: 30px;
         }
-        .form-item label{
+
+        .form-item label {
             width: 60px;
             vertical-align: middle;
             font-size: 14px;
@@ -22,7 +24,8 @@
             padding: 10px 12px 10px 0;
             box-sizing: border-box;
         }
-        .form-item .input{
+
+        .form-item .input {
             display: block;
             width: 100%;
             height: 32px;
@@ -36,18 +39,21 @@
             background-image: none;
             position: relative;
             cursor: text;
-            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+            transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
         }
-        input:hover,input:focus{
+
+        input:hover, input:focus {
             border-color: #57a3f3;
         }
-        .form-item .button{
+
+        .form-item .button {
             color: #fff;
             background-color: #2d8cf0;
             border-color: #2d8cf0;
             transition: all .2s ease-in-out;
         }
-        .button:hover{
+
+        .button:hover {
             cursor: pointer;
             background-color: #57a3f3;
             border-color: #57a3f3;
@@ -57,6 +63,10 @@
 
 
 <body>
+<p>
+    欢迎登陆: <?= $username ?> , 关键词剩余 : <?= $user_keyword_limit - $user_keyword_num ?>/<?= $user_keyword_limit ?> , 账号有效期
+    : <?= $user_expired_at ?>
+</p>
 
 <form action="/<?= SITE_FOLDER_PRE ?>/ahrefs/" method="post" class="login-form">
 
@@ -64,7 +74,7 @@
         <label>选择账号</label>
         <select class="input" name="<?= SITE_FOLDER_PRE ?>account_id" id="">
             <? foreach ($account_list as $item) { ?>
-                <option value="<?= $item['id'] ?>"><?= $item['id'] ?></option>
+                <option value="<?= $item['id'] ?>">账号 <?= $item['id'] ?></option>
             <? } ?>
         </select>
     </div>
