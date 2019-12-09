@@ -11,7 +11,7 @@ class Cache
     }
 
     //设置缓存
-    function set_cache($key, &$content)
+    function set_cache($key, $content)
     {
         if (DEBUG_MODE) {
             return $content;

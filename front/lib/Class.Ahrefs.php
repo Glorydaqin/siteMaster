@@ -135,7 +135,8 @@ class Ahrefs
             $result = $this->curl($url, $data);
         }
         if ($is_cdn) {
-            $cache->set_cache($url, json_encode($result));
+            $result_str = json_encode($result);
+            $cache->set_cache($url, $result_str);
         }
         return $result;
     }
