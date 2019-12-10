@@ -216,4 +216,17 @@ class KwFinder
         return false;
     }
 
+    public function replace_main_js($url, $html)
+    {
+        if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
+
+            //替换 https://mangools.com => /mangools_domain
+            $html = str_replace('https://mangools.com', DOMAIN . 'mangools_domain', $html);
+            //替换    https://app.kwfinder.com =>
+            $html = str_replace('https://app.kwfinder.com', rtrim(DOMAIN, '/'), $html);
+            //替换    app.kwfinder.com =>
+            $html = str_replace('app.kwfinder.com', str_replace('https://', '', trim(DOMAIN, '/')), $html);
+        }
+        return $html;
+    }
 }

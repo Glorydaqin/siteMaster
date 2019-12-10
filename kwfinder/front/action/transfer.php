@@ -66,7 +66,7 @@ try {
     $response = $transfer->get($real_url, $post_data, $url_is_cdn);
     $html = $response['body'];
 
-    if ($url_is_cdn) {
+    if (stripos($real_url, '.js') || stripos($real_url, '.css')) {
         header("Cache-Control: public");
         header("Pragma: cache");
         $offset = 60 * 60 * 24; // cache 1 day
@@ -77,7 +77,7 @@ try {
         } elseif (stripos($real_url, '.js')) {
             header('Content-Type: application/x-javascript');
         }
-        echo $html;
+        echo $transfer->replace_main_js($real_url, $html);
         die;
     }
     //记录操作
