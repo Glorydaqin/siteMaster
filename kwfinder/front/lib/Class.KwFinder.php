@@ -5,6 +5,7 @@ class KwFinder
     public static $cdn_domain = "https://cdn.ahrefs.com";
     public static $domain = "https://app.kwfinder.com/";
     public static $mangools_domain = "https://mangools.com/";
+    public static $mangools_api_domain = "https://api2.mangools.com/";
     public static $login_url = 'https://mangools.com/users/sign_in';
 
     public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
@@ -216,10 +217,35 @@ class KwFinder
         return false;
     }
 
+    /**
+     * 域名替换
+     */
+    public function replace_url()
+    {
+
+    }
+
+    /**
+     * 域名恢复
+     */
+    public function revoke_url($url)
+    {
+        $real_url = $url;
+        if ($url == 'dashboard') {
+            $real_url = KwFinder::$domain;
+        } elseif (stripos($url, 'mangools_domain/')) {
+            $real_url = str_replace("/mangools_domain/", KwFinder::$mangools_domain, $url);
+        }elseif(stripos($url, 'mangools_api_domain/')){
+            $real_url = str_replace("/mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
+        }
+        return $real_url;
+    }
+
     public function replace_main_js($url, $html)
     {
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
-
+            //替换    https://api2.mangools.com => /mangools_api_domain
+            $html = str_replace('https://api2.mangools.com', DOMAIN . 'mangools_api_domain', $html);
             //替换 https://mangools.com => /mangools_domain
             $html = str_replace('https://mangools.com', DOMAIN . 'mangools_domain', $html);
             //替换    https://app.kwfinder.com =>

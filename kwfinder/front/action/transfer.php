@@ -35,26 +35,16 @@ try {
     ])) {
         die('folder limit ｜ 目录访问限制');
     }
-    $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
+    $url_is_cdn = false;
 
-    $real_url = KwFinder::$domain . $url;
-    if ($url == 'dashboard') {
-        $real_url = KwFinder::$domain;
-    } elseif (stripos($url, 'mangools_domain/')) {
-        $real_url = str_replace("/mangools_domain/", KwFinder::$mangools_domain, $url);
+    //查询记录数
+    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
+    if ($keywordLimit >= UserRecord::keywordsLimit) {
+        die('Reach the keywords limit | 达到关键词限制');
     }
-
-    if ($url_is_cdn) {
-        $real_url = KwFinder::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
-    } else {
-        //查询记录数
-        $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
-        if ($keywordLimit >= UserRecord::keywordsLimit) {
-            die('Reach the keywords limit | 达到关键词限制');
-        }
-    }
-
     $transfer = new KwFinder($account['username'], $account['password']);
+    $real_url = KwFinder::$domain . $url;
+    $real_url = $transfer->revoke_url($real_url);
 
     $raw_data = file_get_contents('php://input');
     if (!empty($raw_data)) {
@@ -116,7 +106,6 @@ try {
         }
         return $matches[0];
     }, $html);
-
 
     //添加一个top bar
     $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
