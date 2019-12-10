@@ -2,7 +2,7 @@
 
 class KwFinder
 {
-    public static $cdn_domain = "https://cdn.ahrefs.com";
+//    public static $cdn_domain = "https://cdn.ahrefs.com";
     public static $domain = "https://app.kwfinder.com/";
     public static $mangools_domain = "https://mangools.com/";
     public static $mangools_api_domain = "https://api2.mangools.com/";
@@ -207,7 +207,7 @@ class KwFinder
             'authenticity_token' => $token,
             'user[email]' => $this->user_name,
             'user[password]' => $this->password,
-            'ref' => '',
+            'ref' => 'msg-app-kw',
             'button' => '',
         ];
         $result = $this->curl(self::$login_url, $data);
@@ -231,9 +231,7 @@ class KwFinder
     public function revoke_url($url)
     {
         $real_url = $url;
-        if ($url == 'dashboard') {
-            $real_url = KwFinder::$domain;
-        } elseif (stripos($url, 'mangools_domain/')) {
+        if (stripos($url, 'mangools_domain/')) {
             $real_url = str_replace("/mangools_domain/", KwFinder::$mangools_domain, $url);
         }elseif(stripos($url, 'mangools_api_domain/')){
             $real_url = str_replace("/mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
