@@ -108,7 +108,7 @@ try {
 
         //添加一个top bar
         $html = preg_replace_callback("/(<body>)/", function ($matches) {
-            $inner_html = "<div style='position:absolute;z-index:99;top:5;background-color:#ddd;'><a href='" . '/' . SITE_FOLDER_PRE . "/choose/" . "'>HOME-选账号</a></div>";
+            $inner_html = "<div style='position:fixed;z-index:99999;background-color:#ddd;'><a href='" . '/' . SITE_FOLDER_PRE . "/choose/" . "'>HOME-选账号</a></div>";
             return $matches[0] . $inner_html;
         }, $html);
 
