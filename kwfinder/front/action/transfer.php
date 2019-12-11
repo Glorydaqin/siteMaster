@@ -22,7 +22,6 @@ try {
     $account_id = $_SESSION['account_id'];
 //转发页面
     $url = trim($url, '/');
-    $first_sub = explode('/', $url)[0];
 
 //检查账号存在
     $account = Account::get_account($account_id, 'mangools');
@@ -30,9 +29,10 @@ try {
         die('account error | 账号错误');
     }
 
-    if (in_array($first_sub, [
-        'account'
-    ])) {
+    if (
+        stripos($url,'/account') !== false ||
+        stripos($url,'/billing') !== false
+    ) {
         die('folder limit ｜ 目录访问限制');
     }
     $url_is_cdn = false;
@@ -71,46 +71,50 @@ try {
     UserRecord::record($_SESSION['user_id'], $account_id, $url);
 
 // 替换内容
+    if(isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html'){
+
 //链接
-    $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
-        // 明确的当前域名 开头
-        if (substr($matches[1], 0, 1) != '/') {
-            // 非主站域名
-            if (stripos($matches[1], 'app.kwfinder.com') === false) {
-                if (stripos($matches[1], 'mangools.com')) {
-                    return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
-                }
+        $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 非主站域名
+                if (stripos($matches[1], 'app.kwfinder.com') === false) {
+                    if (stripos($matches[1], 'mangools.com')) {
+                        return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+                    }
 
-            } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
+                } elseif (stripos($matches[1], 'app.kwfinder.com')) {
+                    return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
+                }
             }
-        }
-        return $matches[0];
-    }, $html);
+            return $matches[0];
+        }, $html);
 //    //资源
-    $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
-        // 明确的当前域名 开头
-        if (substr($matches[1], 0, 1) != '/') {
-            // 非主站域名
-            if (stripos($matches[1], 'app.kwfinder.com') === false) {
-                if (stripos($matches[1], 'mangools.com')) {
-                    return 'src="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+        $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 非主站域名
+                if (stripos($matches[1], 'app.kwfinder.com') === false) {
+                    if (stripos($matches[1], 'mangools.com')) {
+                        return 'src="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+                    }
+
+                } elseif (stripos($matches[1], 'app.kwfinder.com')) {
+                    return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
                 }
-
-            } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
             }
-        }
-        return $matches[0];
-    }, $html);
+            return $matches[0];
+        }, $html);
 
-    //添加一个top bar
-    $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
-        $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . '/' . SITE_FOLDER_PRE . "/ahrefs/" . "'>HOME-选账号</a></div>";
-        return $matches[0] . $inner_html;
-    }, $html);
-    //替换用户信息
-    $html = str_replace($account['username'], 'account_' . $account_id, $html);
+        //添加一个top bar
+        $html = preg_replace_callback("/(<body>)/", function ($matches) {
+            $inner_html = "<div style='position:absolute;z-index:99;top:5;background-color:#ddd;'><a href='" . '/' . SITE_FOLDER_PRE . "/choose/" . "'>HOME-选账号</a></div>";
+            return $matches[0] . $inner_html;
+        }, $html);
+
+        //替换用户信息
+        $html = str_replace($account['username'], 'account_' . $account_id, $html);
+    }
 
     echo $html;
 } catch (\Exception $exception) {
