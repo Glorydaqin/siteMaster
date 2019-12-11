@@ -265,4 +265,9 @@ class KwFinder
         }
         return $html;
     }
+
+    public function replace_html($url,$html)
+    {
+
+    }
 }

@@ -56,17 +56,14 @@ try {
     $response = $transfer->get($real_url, $post_data, $url_is_cdn);
     $html = $response['body'];
 
-    if (stripos($real_url, '.js') || stripos($real_url, '.css')) {
+    if (stripos($real_url, '.js') || stripos($real_url, '.css') || stripos($real_url,'.svg')) {
         header("Cache-Control: public");
         header("Pragma: cache");
         $offset = 60 * 60 * 24; // cache 1 day
         $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
         header($ExpStr);
-        if (stripos($real_url, '.css')) {
-            header('Content-Type: text/css');
-        } elseif (stripos($real_url, '.js')) {
-            header('Content-Type: application/x-javascript');
-        }
+        header('Content-Type: '.$response['info']['content_type']);
+
         echo $transfer->replace_main_js($real_url, $html);
         die;
     }
