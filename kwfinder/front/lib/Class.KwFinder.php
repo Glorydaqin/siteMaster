@@ -240,12 +240,12 @@ class KwFinder
     public function revoke_url($url)
     {
         $real_url = self::$domain . $url;
-        if (stripos($url, 'mangools_domain/')) {
+        if (stripos($url, 'mangools_domain/') !== false) {
             $real_url = str_replace("mangools_domain/", KwFinder::$mangools_domain, $url);
-        } elseif (stripos($url, 'mangools_api_domain/')) {
+        } elseif (stripos($url, 'mangools_api_domain/') !== false) {
             $real_url = str_replace("mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
         }
-        if (stripos($real_url, 'users/current_user')) {
+        if (stripos($real_url, 'users/current_user') !== false) {
             $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
         }
         return $real_url;

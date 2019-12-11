@@ -17,7 +17,10 @@ try {
     //登陆
     $transfer = new KwFinder($account['username'], $account['password']);
 
-    $response = $transfer->get(KwFinder::$domain);
+    $url = 'mangools_domain/users/current_user?r=1576054069238&sso_ticket';
+    $url = $transfer->revoke_url($url);
+    d($url);
+    $response = $transfer->get($url);
     dd($response);
 
 

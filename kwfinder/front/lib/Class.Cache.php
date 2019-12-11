@@ -13,9 +13,10 @@ class Cache
     //设置缓存
     function set_cache($key, $content)
     {
-        if (DEBUG_MODE) {
-            return $content;
-        }
+        // kwfinder 必须存 sso ticket
+//        if (DEBUG_MODE) {
+//            return $content;
+//        }
 
         $this->set($key, $content);
         return $content;
