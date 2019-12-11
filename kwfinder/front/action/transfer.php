@@ -43,8 +43,8 @@ try {
         die('Reach the keywords limit | 达到关键词限制');
     }
     $transfer = new KwFinder($account['username'], $account['password']);
-    $real_url = KwFinder::$domain . $url;
-    $real_url = $transfer->revoke_url($real_url);
+//    $real_url = KwFinder::$domain . $url;
+    $real_url = $transfer->revoke_url($url);
 
     $raw_data = file_get_contents('php://input');
     if (!empty($raw_data)) {

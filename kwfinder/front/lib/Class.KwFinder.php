@@ -12,7 +12,9 @@ class KwFinder
 
     private $user_name = '';
     private $password = '';
-    private $cookie_key = '';
+    public $cookie_key = '';
+
+//    public $ticket_key = '';
 
     public function __construct($user_name, $password)
     {
@@ -214,9 +216,11 @@ class KwFinder
         $result = $this->curl(self::$login_url, $data);
 //        d($result);
         if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
-            //继续跟进
-            $follow_result = $this->curl($result['url']);
-//            dd($follow_result);
+            //记录当前这个sso ticket
+            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
+            $ticket = $match_ticket[1][0] ?? '';
+            (new Cache())->set_cache($this->cookie_key, $ticket);
+
             return true;
         }
         return false;
@@ -235,11 +239,14 @@ class KwFinder
      */
     public function revoke_url($url)
     {
-        $real_url = $url;
+        $real_url = self::$domain . $url;
         if (stripos($url, 'mangools_domain/')) {
-            $real_url = str_replace("/mangools_domain/", KwFinder::$mangools_domain, $url);
+            $real_url = str_replace("mangools_domain/", KwFinder::$mangools_domain, $url);
         } elseif (stripos($url, 'mangools_api_domain/')) {
-            $real_url = str_replace("/mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
+            $real_url = str_replace("mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
+        }
+        if (stripos($real_url, 'users/current_user')) {
+            $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
         }
         return $real_url;
     }
