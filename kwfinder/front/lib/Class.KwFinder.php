@@ -87,13 +87,14 @@ class KwFinder
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
         $content = curl_exec($ch);
 
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $res = curl_getinfo($ch);
+
         curl_close($ch);
         $r = array();
-        $r['code'] = $httpCode;
+        $r['code'] = $res['http_code'];
         $r['url'] = $res['url'];
         $r['body'] = $content;
+        $r['info'] = $res;
 
         //写详细请求记录
         $log_r = $r;
@@ -211,7 +212,11 @@ class KwFinder
             'button' => '',
         ];
         $result = $this->curl(self::$login_url, $data);
-        if ($result['code'] == 200) {
+//        d($result);
+        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
+            //继续跟进
+            $follow_result = $this->curl($result['url']);
+//            dd($follow_result);
             return true;
         }
         return false;
@@ -233,7 +238,7 @@ class KwFinder
         $real_url = $url;
         if (stripos($url, 'mangools_domain/')) {
             $real_url = str_replace("/mangools_domain/", KwFinder::$mangools_domain, $url);
-        }elseif(stripos($url, 'mangools_api_domain/')){
+        } elseif (stripos($url, 'mangools_api_domain/')) {
             $real_url = str_replace("/mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
         }
         return $real_url;
