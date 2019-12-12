@@ -15,7 +15,7 @@ class Log
      * 文件log
      * Log constructor.
      */
-    public static function log()
+    public static function file()
     {
 
     }
