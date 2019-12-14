@@ -15,7 +15,7 @@ include_once 'common.php';
 
 if (!isset($_GET['site_id'])) {
 
-    $site_list = Site::get_list();
+    $site_list = Site::get_list_with_access($_SESSION['user_id']);
     $welcome = "欢迎登陆: {$_SESSION['username']}";
 
     $tpl->assign('username', $_SESSION['username']);

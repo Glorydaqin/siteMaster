@@ -13,6 +13,8 @@ class Template
 
     /**
      * 注入单个变量
+     * @param $key
+     * @param $value
      */
     public function assign($key, $value)
     {
@@ -21,7 +23,7 @@ class Template
 
     /**
      * 获取模板的位置
-     * @return [type] [description]
+     * @return string
      */
     public function path()
     {
@@ -30,6 +32,8 @@ class Template
 
     /**
      * 展示模板
+     * @param $file
+     * @return false|string
      */
     public function render($file)
     {

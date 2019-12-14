@@ -92,6 +92,7 @@ class Ahrefs
         $r['code'] = $httpCode;
         $r['url'] = $res['url'];
         $r['body'] = $content;
+        $r['info'] = $res;
 
         //写详细请求记录
         $log_r = $r;

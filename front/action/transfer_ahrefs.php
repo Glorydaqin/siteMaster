@@ -63,16 +63,13 @@ try {
         $offset = 60 * 60 * 24; // cache 1 day
         $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
         header($ExpStr);
-        if (stripos($real_url, '.css')) {
-            header('Content-Type: text/css');
-        } elseif (stripos($real_url, '.js')) {
-            header('Content-Type: application/x-javascript');
-        }
+        header('Content-Type: ' . $response['info']['content_type']);
+
         echo $html;
         die;
     }
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
 
 // 替换内容
 //链接
@@ -111,6 +108,7 @@ try {
     //替换用户信息
     $html = str_replace($account['username'], 'account_' . $account_id, $html);
 
+    header('Content-Type: ' . $response['info']['content_type']);
     echo $html;
 } catch (\Exception $exception) {
     Log::info($exception);

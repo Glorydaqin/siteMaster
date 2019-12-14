@@ -17,12 +17,12 @@ if (isset($_POST['username'])) {
     $username = addslashes($username);
     $password = addslashes($password);
 
-    $check_sql = "select * from user where username = '{$username}' and password = '{$password}'";
-    $row = $GLOBALS['db']->getFirstRow($check_sql);
+    $row = User::check_user($username, $password);
     if ($row && strtotime($row['expired_at']) >= time()) {
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['user_expired_at'] = $row['expired_at'];
+        $_SESSION['site_expired_at'] = User::get_access($row['id']);
 
         temporarily_header_302('/choose_site/');
     } elseif ($row && strtotime($row['expired_at']) < time()) {

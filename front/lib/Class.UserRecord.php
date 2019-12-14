@@ -8,13 +8,14 @@ class UserRecord
     /**
      * 记录操作的链接
      * @param $user_id
+     * @param $site_id
      * @param $account_id
      * @param $url
      */
-    public static function record($user_id, $account_id, $url)
+    public static function record($user_id, $site_id, $account_id, $url)
     {
         $date = date("Y-m-d");
-        $sql = "insert into user_record (`user_id`,`account_id`,`url`,`date`) values ('{$user_id}','{$account_id}','{$url}','{$date}');";
+        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`,`date`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}','{$date}');";
         $GLOBALS['db']->query($sql);
     }
 

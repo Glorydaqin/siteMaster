@@ -20,7 +20,7 @@ try {
     $url = trim($url, '/');
 
 //检查账号存在
-    $account = Account::get_account($account_id, 'mangools');
+    $account = Account::get_account($account_id, $_SESSION['site_id']);
     if (empty($account)) {
         die('account error | 账号错误');
     }
@@ -39,7 +39,6 @@ try {
         die('Reach the keywords limit | 达到关键词限制');
     }
     $transfer = new KwFinder($account['username'], $account['password']);
-//    $real_url = KwFinder::$domain . $url;
     $real_url = $transfer->revoke_url($url);
 
     $raw_data = file_get_contents('php://input');
@@ -65,7 +64,7 @@ try {
     }
     //http://kwfinder.vipfor.me/mangools_api_domain/v3/kwfinder/serps?kw=ss&location_id=0&page=0 实际搜索的链接
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
 
 // 替换内容
     if (isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html') {
@@ -113,6 +112,7 @@ try {
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }
 
+    header('Content-Type: ' . $response['info']['content_type']);
     echo $html;
 } catch (\Exception $exception) {
     Log::info($exception);

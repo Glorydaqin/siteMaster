@@ -23,12 +23,17 @@ if (!isset($_POST['account_id'])) {
     $tpl->assign('account_list', $account_list);
 
     //剩余账号信息
-    $user_keyword_limit = UserRecord::keywordsLimit;
-    $user_keyword_num = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
+//    $user_keyword_limit = UserRecord::keywordsLimit;
+//    $user_keyword_num = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
 
     //welcome
-    $limit = $user_keyword_limit - $user_keyword_num;
-    $welcome = "欢迎登陆: {$_SESSION['username']} , 关键词剩余 : {$limit}/{$user_keyword_limit} , 账号有效期: {$_SESSION['user_expired_at']}";
+//    $limit = $user_keyword_limit - $user_keyword_num;
+//    $welcome = "欢迎登陆: {$_SESSION['username']} , 关键词剩余 : {$limit}/{$user_keyword_limit} , 账号有效期: {$_SESSION['user_expired_at']}";
+    $site_info = Site::get_info($_SESSION['site_id']);
+//    $expired_at = $_SESSION['site_expired_at'];
+    $keyval = array_combine(array_column($_SESSION['site_expired_at'], 'site_id'), array_column($_SESSION['site_expired_at'], 'expired_at'));
+    $expired_at = $keyval[$_SESSION['site_id']];
+    $welcome = "欢迎登陆: {$_SESSION['username']} ; {$site_info['name']} - 账号有效期: {$expired_at}";
     $tpl->assign('welcome', $welcome);
 
     echo $tpl->render('choose_account.php');

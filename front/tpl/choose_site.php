@@ -72,7 +72,7 @@
             height: 200px;
             margin: 10px 25px;
             line-height: 180px;
-            font-size: 30px;
+            font-size: 20px;
             text-align: center;
             color: dimgray;
             background-color: beige;
@@ -84,17 +84,23 @@
 <body>
 <p>
     <?= $welcome ?>
-    <a href="<?=PROTOCOL.DOMAIN?>/">退出</a>
+    <a href="<?= PROTOCOL . DOMAIN ?>/">退出</a>
 </p>
 
 <p>
 <div class="box-side">
     <? foreach ($site_list as $site) { ?>
-        <a href="/choose_site/?site_id=<?= $site['id'] ?>">
+        <? if ($site['is_available']) { ?>
+            <a href="/choose_site/?site_id=<?= $site['id'] ?>">
+                <div class="box">
+                    <?= strtoupper($site['name']) ?>
+                </div>
+            </a>
+        <? } else { ?>
             <div class="box">
-                <?= strtoupper($site['name']) ?>
+                <?= strtoupper($site['name']) ?>(待开通)
             </div>
-        </a>
+        <? } ?>
     <? } ?>
 </div>
 
