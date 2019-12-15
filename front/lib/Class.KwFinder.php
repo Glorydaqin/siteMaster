@@ -255,18 +255,18 @@ class KwFinder
     {
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
             //替换    https://api2.mangools.com => /mangools_api_domain
-            $html = str_replace('https://api2.mangools.com', DOMAIN . 'mangools_api_domain', $html);
+            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
             //替换 https://mangools.com => /mangools_domain
-            $html = str_replace('https://mangools.com', DOMAIN . 'mangools_domain', $html);
+            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
             //替换    https://app.kwfinder.com =>
-            $html = str_replace('https://app.kwfinder.com', rtrim(DOMAIN, '/'), $html);
+            $html = str_replace('https://app.kwfinder.com', PROTOCOL . DOMAIN_KWFINDER, $html);
             //替换    app.kwfinder.com =>
-            $html = str_replace('app.kwfinder.com', str_replace('https://', '', trim(DOMAIN, '/')), $html);
+            $html = str_replace('app.kwfinder.com', DOMAIN_KWFINDER, $html);
         }
         return $html;
     }
 
-    public function replace_html($url,$html)
+    public function replace_html($url, $html)
     {
 
     }
