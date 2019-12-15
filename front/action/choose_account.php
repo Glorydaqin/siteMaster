@@ -53,7 +53,7 @@ if (!isset($_POST['account_id'])) {
     if ($account_info['site_name'] == 'ahrefs') {
         $url = PROTOCOL . DOMAIN_AHREFS . '/dashboard';
     } elseif ($account_info['site_name'] == 'kwfinder') {
-        $url = PROTOCOL . DOMAIN_AHREFS . '/dashboard';
+        $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
     } else {
         //回去重新选site
         $url = PROTOCOL . DOMAIN . '/choose_site/';
