@@ -34,10 +34,10 @@ try {
     $url_is_cdn = false;
 
     //查询记录数
-    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
-    if ($keywordLimit >= UserRecord::keywordsLimit) {
-        die('Reach the keywords limit | 达到关键词限制');
-    }
+//    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
+//    if ($keywordLimit >= UserRecord::keywordsLimit) {
+//        die('Reach the keywords limit | 达到关键词限制');
+//    }
     $transfer = new KwFinder($account['username'], $account['password']);
     $real_url = $transfer->revoke_url($url);
 
