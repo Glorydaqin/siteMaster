@@ -80,7 +80,7 @@ try {
                     }
 
                 } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                    return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
+                    return 'href="' . PROTOCOL . DOMAIN_KWFINDER . '/' . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
                 }
             }
             return $matches[0];
@@ -96,7 +96,7 @@ try {
                     }
 
                 } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                    return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
+                    return 'src="' . PROTOCOL . DOMAIN_KWFINDER . '/' . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
                 }
             }
             return $matches[0];
