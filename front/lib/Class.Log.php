@@ -2,13 +2,17 @@
 
 class Log
 {
+    //一定只在debug下记录日志。
 
     public static function info($content)
     {
-        $content = is_array($content) ? json_encode($content) : $content;
-        $content = addslashes($content);
-        $sql = "insert into log (`user`,`type`,`content`) values ('','info','{$content}');";
-        $GLOBALS['db']->query($sql);
+        if(DEBUG_MODE){
+
+            $content = is_array($content) ? json_encode($content) : $content;
+            $content = addslashes($content);
+            $sql = "insert into log (`user`,`type`,`content`) values ('','info','{$content}');";
+            $GLOBALS['db']->query($sql);
+        }
     }
 
     /**

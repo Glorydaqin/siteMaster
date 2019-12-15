@@ -2,7 +2,6 @@
 
 class UserRecord
 {
-    const keywordsUrl = '';
     const keywordsLimit = 10;
 
     /**
@@ -19,15 +18,11 @@ class UserRecord
         $GLOBALS['db']->query($sql);
     }
 
-    public static function check_user_limit($user_id, $limit = 'keywords')
+    public static function check_user_limit($user_id, $site_id, $url_pre = 'site-explorer/overview/v2/subdomains/live')
     {
         $date = date("Y-m-d");
-        $url = '';
-        if ($limit == 'keywords') {
-            $url = self::keywordsUrl;
-        }
 
-        $sql = "select count(*) as num from user_record where user_id = '{$user_id}' and url = '{$url}' and date = '{$date}' group by id";
+        $sql = "select count(*) as num from user_record where user_id = {$user_id} and site_id={$site_id} and url like '{$url_pre}%' and date = '{$date}' group by id";
         $count = $GLOBALS['db']->getFirstRowColumn($sql, 'num');
         return empty($count) ? 0 : $count;
     }

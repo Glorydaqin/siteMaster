@@ -34,7 +34,7 @@ try {
     $url_is_cdn = false;
 
     //查询记录数
-    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
+    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
     if ($keywordLimit >= UserRecord::keywordsLimit) {
         die('Reach the keywords limit | 达到关键词限制');
     }

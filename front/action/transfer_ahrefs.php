@@ -40,7 +40,7 @@ try {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     } else {
         //查询记录数
-        $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], 'keywords');
+        $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
         if ($keywordLimit >= UserRecord::keywordsLimit) {
             die('Reach the keywords limit | 达到关键词限制');
         }
@@ -71,42 +71,46 @@ try {
     //记录操作
     UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
 
+
+    if (strtolower($response['info']['content_type']) == 'text/html') {
+
 // 替换内容
 //链接
-    $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
-        // 明确的当前域名 开头
-        if (substr($matches[1], 0, 1) != '/') {
-            // 不明确的域名开头
-            if (stripos($matches[1], 'cdn.ahrefs.com')) {
-                return 'href="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
-            } elseif (stripos($matches[1], 'ahrefs.com')) {
-                return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+        $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 不明确的域名开头
+                if (stripos($matches[1], 'cdn.ahrefs.com')) {
+                    return 'href="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                } elseif (stripos($matches[1], 'ahrefs.com')) {
+                    return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                }
             }
-        }
-        return $matches[0];
-    }, $html);
+            return $matches[0];
+        }, $html);
 //    //资源
-    $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
-        // 明确的当前域名 开头
-        if (substr($matches[1], 0, 1) != '/') {
-            // 不明确的域名开头
-            if (stripos($matches[1], 'cdn.ahrefs.com')) {
-                return 'src="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
-            } elseif (stripos($matches[1], 'ahrefs.com')) {
-                return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+        $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 不明确的域名开头
+                if (stripos($matches[1], 'cdn.ahrefs.com')) {
+                    return 'src="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                } elseif (stripos($matches[1], 'ahrefs.com')) {
+                    return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                }
             }
-        }
-        return $matches[0];
-    }, $html);
+            return $matches[0];
+        }, $html);
 
 
-    //添加一个top bar
-    $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
-        $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='/choose_account/'>HOME-选账号</a></div>";
-        return $matches[0] . $inner_html;
-    }, $html);
-    //替换用户信息
-    $html = str_replace($account['username'], 'account_' . $account_id, $html);
+        //添加一个top bar
+        $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
+            $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . PROTOCOL . DOMAIN . "/choose_account/'>HOME-选账号</a></div>";
+            return $matches[0] . $inner_html;
+        }, $html);
+        //替换用户信息
+        $html = str_replace($account['username'], 'account_' . $account_id, $html);
+    }
 
     header('Content-Type: ' . $response['info']['content_type']);
     echo $html;

@@ -79,6 +79,9 @@ class Ahrefs
             // post的变量
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            curl_setopt($ch, CURLOPT_POST, 1);
+        }
         $clean_header = $this->get_clean_header();
         curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
