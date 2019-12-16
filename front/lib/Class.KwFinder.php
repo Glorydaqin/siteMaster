@@ -134,10 +134,13 @@ class KwFinder
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/user/login')) {
-            //跳转到登陆的说明未登陆
-            $this->login();
-            $result = $this->curl($url, $data);
+        if (stripos($result['url'], '/users/current_user') && !empty($result['body'])) {
+            $response = json_decode($result['body'], true);
+            if (empty($response['user'])) {
+                // 返回用户是空说明需要登陆了
+                $this->login();
+                $result = $this->curl($url, $data);
+            }
         }
 //        if ($is_cdn) {
 //            $result_str = json_encode($result);
