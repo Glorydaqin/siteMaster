@@ -10,22 +10,20 @@ if (!defined('IN_DS')) {
     die('Hacking attempt');
 }
 
-//include_once 'common.php';
+if (!DEBUG_MODE) {
+    die('error access');
+}
 
+dd(1);
 try {
-    $account = Account::get_account(2, 'mangools');
+    $account = Account::get_account(2, 'semrush');
     //登陆
-    $transfer = new KwFinder($account['username'], $account['password']);
+    $transfer = new SEMRush($account['username'], $account['password']);
 
-    $url = 'mangools_domain/users/current_user?r=1576054069238&sso_ticket';
-    $url = $transfer->revoke_url($url);
-    d($url);
-    $response = $transfer->get($url);
+
+    $response = $transfer->get(SEMRush::$domain . 'dashboard');
     dd($response);
 
-
-
-    echo $html;
 } catch (\Exception $exception) {
     dd($exception);
 }

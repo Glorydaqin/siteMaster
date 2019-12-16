@@ -36,14 +36,13 @@ try {
     $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
 
     $real_url = Ahrefs::$domain . $url;
-    $keywordLimit = 0;
     if ($url_is_cdn) {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     } else {
         //查询记录数
         $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
-        if ($keywordLimit >= 10) {
-            die('Reach the keywords limit | 达到查询限制');
+        if ($keywordLimit >= UserRecord::keywordsLimit) {
+            die('Reach the keywords limit | 达到关键词限制');
         }
     }
 
@@ -82,9 +81,9 @@ try {
             if (substr($matches[1], 0, 1) != '/') {
                 // 不明确的域名开头
                 if (stripos($matches[1], 'cdn.ahrefs.com')) {
-                    return 'href="' . PROTOCOL . DOMAIN_AHREFS . '/cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                    return 'href="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
                 } elseif (stripos($matches[1], 'ahrefs.com')) {
-                    return 'href="' . PROTOCOL . DOMAIN_AHREFS . '/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                    return 'href="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
                 }
             }
             return $matches[0];
@@ -95,20 +94,22 @@ try {
             if (substr($matches[1], 0, 1) != '/') {
                 // 不明确的域名开头
                 if (stripos($matches[1], 'cdn.ahrefs.com')) {
-                    return 'src="' . PROTOCOL . DOMAIN_AHREFS . '/cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                    return 'src="' . DOMAIN . 'cdn_ahrefs_com/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
                 } elseif (stripos($matches[1], 'ahrefs.com')) {
-                    return 'src="' . PROTOCOL . DOMAIN_AHREFS . '/' . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
+                    return 'src="' . DOMAIN . substr($matches[1], stripos($matches[1], 'ahrefs.com') + strlen('ahrefs.com') + 1) . '"';
                 }
             }
             return $matches[0];
         }, $html);
 
+
         //添加一个top bar
-        $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) use ($keywordLimit) {
-            $limit = 10 - $keywordLimit;
-            $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . PROTOCOL . DOMAIN . "/choose_account/'>HOME-选账号({$limit}/10)</a></div>";
+        $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) {
+            $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . PROTOCOL . DOMAIN . "/choose_account/'>HOME-选账号</a></div>";
             return $matches[0] . $inner_html;
         }, $html);
+        //替换用户信息
+        $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }
 
     header('Content-Type: ' . $response['info']['content_type']);

@@ -12,7 +12,7 @@ $script_uri_tmp_arr = explode('?', $script_uri);
 $script_uri = empty($script_uri_tmp_arr) ? $script_uri : $script_uri_tmp_arr[0];
 
 if ($server_domain == DOMAIN) {
-    // 自主dl
+    // 自主page
     if (empty($script_uri) || $script_uri == "/") {
         //首页
         include_once FRONT_DIR . 'index.php';
@@ -20,11 +20,15 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'choose_site.php';
     } elseif ($script_uri == '/choose_account/') {
         include_once FRONT_DIR . 'choose_account.php';
+    } elseif ($script_uri == '/test/') {
+        include_once FRONT_DIR . 'test.php';
     }
 } elseif (in_array($server_domain, [DOMAIN_AHREFS, DOMAIN_KWFINDER])) {
     if ($server_domain == DOMAIN_AHREFS) {
         include_once FRONT_DIR . 'transfer_ahrefs.php';
     } elseif ($server_domain == DOMAIN_KWFINDER) {
+        include_once FRONT_DIR . 'transfer_kwfinder.php';
+    } elseif ($server_domain == DOMAIN_SEMRUSH) {
         include_once FRONT_DIR . 'transfer_kwfinder.php';
     }
 }

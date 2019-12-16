@@ -1,10 +1,10 @@
 <?php
 
-class Ahrefs
+class SEMRush
 {
     public static $cdn_domain = "https://cdn.ahrefs.com/";
-    public static $domain = "https://ahrefs.com/";
-    public static $login_url = 'https://ahrefs.com/user/login';
+    public static $domain = "https://semrush.com/";
+    public static $login_url = 'https://semrush.com/user/login';
 
     public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
 
@@ -16,7 +16,7 @@ class Ahrefs
     {
         $this->user_name = $user_name;
         $this->password = $password;
-        $this->cookie_key = "siteMaster_Ahrefs_" . $user_name;
+        $this->cookie_key = "siteMaster_SEMRush_" . $user_name;
     }
 
     /**
@@ -27,15 +27,12 @@ class Ahrefs
         $headers = getallheaders();
         if (isset($headers['Referer'])) {
             unset($headers['Referer']);
-//            $headers['Referer'] = str_replace(DOMAIN, self::$domain, $headers['Referer']);
         }
         if (isset($headers['Host'])) {
             unset($headers['Host']);
-//            $headers['Host'] = str_replace(DOMAIN, self::$domain, $headers['Host']);
         }
         if (isset($headers['Origin'])) {
             unset($headers['Origin']);
-//            $headers['Origin'] = str_replace(DOMAIN, self::$domain, $headers['Origin']);
         }
         if (isset($headers['Cookie'])) {
             unset($headers['Cookie']);
@@ -49,6 +46,10 @@ class Ahrefs
         $headers['User-Agent'] = self::$user_agent;
         $tmp = [];
         foreach ($headers as $header => $val) {
+            if (strtolower(substr($header, 0, 2)) == 'cf-' || strtolower(substr($header, 0, 2)) == 'cdn') {
+                continue;
+            }
+
             $tmp[] = $header . ': ' . $val;
         }
         return $tmp;
@@ -82,7 +83,6 @@ class Ahrefs
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             curl_setopt($ch, CURLOPT_POST, 1);
         }
-
         $clean_header = $this->get_clean_header();
         curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
@@ -174,58 +174,45 @@ class Ahrefs
 
     public function login()
     {
-        //Request URL: https://ahrefs.com/user/login
-        //Request Method: POST
-        //Status Code: 200
-        //Remote Address: 127.0.0.1:1086
-        //Referrer Policy: no-referrer-when-downgrade
-        //cache-control: private, must-revalidate
-        //content-encoding: gzip
-        //content-length: 139
-        //content-type: application/json
-        //date: Mon, 02 Dec 2019 08:49:55 GMT
-        //expires: -1
-        //pragma: no-cache
-        //server: nginx
-        //set-cookie: XSRF-TOKEN=tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M; expires=Mon, 02-Dec-2019 12:49:55 GMT; Max-Age=14400; path=/; domain=.ahrefs.com; secure
-        //set-cookie: BSSESSID=%2BaBI6ixHk6BKoCEV8Aw%2FoP5A%2BsVjIH5GoB2alK5p; path=/; domain=.ahrefs.com; secure; HttpOnly
-        //status: 200
-        //strict-transport-security: max-age=31536000
-        //vary: Accept-Encoding
-        //:authority: ahrefs.com
+        //:authority: www.semrush.com
         //:method: POST
-        //:path: /user/login
+        //:path: /sso/authorize
         //:scheme: https
-        //accept: application/json, text/javascript, */*; q=0.01
+        //accept: application/json, text/plain, */*
         //accept-encoding: gzip, deflate, br
         //accept-language: zh-CN,zh;q=0.9,en;q=0.8
         //cache-control: no-cache
-        //content-length: 132
-        //content-type: application/x-www-form-urlencoded; charset=UTF-8
-        //cookie: intercom-id-dic5omcp=cb13bbae-f105-4460-b83b-6d4fd2b89b80; _iub_cs-794932=%7B%22consent%22%3Atrue%2C%22timestamp%22%3A%222019-11-30T14%3A41%3A47.035Z%22%2C%22version%22%3A%221.2.4%22%2C%22id%22%3A794932%7D; XSRF-TOKEN=tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M; BSSESSID=GVzfGE0TwEpnXcuvQjD8TG5g6krX5rUTpUxd09az
-        //origin: https://ahrefs.com
+        //content-length: 160
+        //content-type: application/json;charset=UTF-8
+        //cookie: __cfduid=df92aaaf16a7f0e88642741ec0b656f8f1572497476; ref_code=__default__; n_userid=rBtUbl26aEQWyQAPBWNSAg==; _ga=GA1.2.1655811541.1572497481; _gcl_au=1.1.936760122.1572497481; visit_first=1572497483031; tracker_ai_user=5gQ1L|2019-10-31T04:51:24.555Z; community_layout=k91rnvfimdv7kbs94c2agt2avs; mindboxDeviceUUID=1edd1e4f-fdf3-4fa8-a6aa-171469a0ed44; directCrm-session=%7B%22deviceGuid%22%3A%221edd1e4f-fdf3-4fa8-a6aa-171469a0ed44%22%7D; marketing=%7B%22user_cmp%22%3A%22%22%2C%22user_label%22%3A%22%22%7D; db=us; userdata=%7B%22tz%22%3A%22GMT+8%22%2C%22ol%22%3A%22zh%22%7D; utz=Asia%2FShanghai; __zlcmid=vfikNzRRRBpfvi; site_csrftoken=V08H2xOu7ajaUiBEsCfmbXMD2fBbDnIzumvC4KD4DAFmQKYW9eLj8Y5Yq4IlRVS2; __cflb=1796434593; _gid=GA1.2.1138566631.1576480861; ga_exp_7xHEszwjQFucPwMnhXHIzQ=0; _gac_UA-6197637-22=1.1576480909.Cj0KCQiA0NfvBRCVARIsAO4930kzW5lHXZTnHMBxgMU8TYJTdyl3WeE7t1bNceHrPWQ991BfuvYE2DkaAr9XEALw_wcB; _gcl_aw=GCL.1576480909.Cj0KCQiA0NfvBRCVARIsAO4930kzW5lHXZTnHMBxgMU8TYJTdyl3WeE7t1bNceHrPWQ991BfuvYE2DkaAr9XEALw_wcB; uvts=06ee9aaf-dff5-4d2f-5f57-9c26e8e10af6; __insp_uid=2685121539; billing_csrf_cookie=billing_csrf_cookie; webinars_session=UOOG7XXDKGl5LStsgLdm6SfeOmfD5xFyv3DSqJfn; community-semrush=rTiKExCgneJOcBVKiECTkV61iOyboiZOWOgBdCTI; blog_split=C; lux_uid=157648811925430662; __insp_wid=826279527; __insp_nv=false; __insp_targlpu=aHR0cHM6Ly93d3cuc2VtcnVzaC5jb20vdXNlcnMvbG9naW4uaHRtbA%3D%3D; __insp_targlpt=TG9naW4gdG8gU0VNcnVzaA%3D%3D; __insp_norec_sess=true; PHPSESSID=6f7d5ccddd59f2eeace20c9af2a362f0; SSO-JWT=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZjdkNWNjZGRkNTlmMmVlYWNlMjBjOWFmMmEzNjJmMCIsImlhdCI6MTU3NjQ4ODMwNiwiaXNzIjoic3NvIn0.tZMQuWR1HCLwHf9r1Ixv8SqVgmYl6a4OgOy6qCujyYec2jmmSz0UNI-J1AVN0GKKK6ypMZZIfa6e32n5LNt4WQ; XSRF-TOKEN=qABx1UKUy7KGiViJeqEDHsO3oaCC03f6Pnj903jA; usertype=Unlogged-User; __insp_slim=1576488349925; _gat=1
+        //origin: https://www.semrush.com
         //pragma: no-cache
-        //referer: https://ahrefs.com/user/login
+        //referer: https://www.semrush.com/users/login.html
         //sec-fetch-mode: cors
         //sec-fetch-site: same-origin
-        //user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
-        //x-requested-with: XMLHttpRequest
+        //user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36
+        //x-xsrf-token: qABx1UKUy7KGiViJeqEDHsO3oaCC03f6Pnj903jA
 
-        //_token: tnjhJdDRETARsrLUZTbU22Ci2ThzL1opQqLwKR7M
-        //email: 1912037638@qq.com
-        //password: Ranqinghua1
-        //return_to: https://ahrefs.com/
+        //{"user-agent-hash":"dce305f9c61beb1f46ab121fae098a7d",
+        //"source":"semrush",
+        //"email":"692860800@qq.com",
+        //"password":"daqing",
+        //"g-recaptcha-response":"",
+        //"locale":"en"}
 
         $index_result = $this->curl(self::$domain);
         preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
 
         $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
-        $data = [
-            '_token' => $token,
+        $data = json_encode([
+            'user-agent-hash' => '',
+            'source' => 'semrush',
             'email' => $this->user_name,
             'password' => $this->password,
-            'return_to' => self::$domain
-        ];
+            'g-recaptcha-response' => '',
+            'locale' => 'en',
+        ]);
+
         $result = $this->curl(self::$login_url, $data);
         if ($result['code'] == 200) {
             return true;
