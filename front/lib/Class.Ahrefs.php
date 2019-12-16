@@ -218,6 +218,7 @@ class Ahrefs
         $index_result = $this->curl(self::$domain);
         preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
 
+        dd($index_result);
         $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
         $data = [
             '_token' => $token,
