@@ -4,7 +4,6 @@
         "larapack/dd": "^1.1",
         "ext-curl": "*",
         "ext-json": "*",
-        "facebook/webdriver": "^1.7",
-        "nesk/puphpeteer": "^1.6"
+        "facebook/webdriver": "^1.7"
     }
 }

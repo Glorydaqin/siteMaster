@@ -1,11 +1,9 @@
-# chrome headless 安装
-##
-## yum install chromium-headless
-## /usr/lib64/chromium-browser/headless_shell （调用路径）
+selenium docker
+https://github.com/SeleniumHQ/docker-selenium.git
+
+在 4444 端口 启动
+docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
 
 
-# puphpeteer
-##
-## https://github.com/nesk/PuPHPeteer
-## composer require nesk/puphpeteer
-## npm install @nesk/puphpeteer
+# 接口文档地址
+http://facebook.github.io/php-webdriver/latest/
