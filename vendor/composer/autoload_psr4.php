@@ -9,5 +9,10 @@ return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
+    'Socket\\Raw\\' => array($vendorDir . '/clue/socket-raw/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Nesk\\Rialto\\' => array($vendorDir . '/nesk/rialto/src'),
+    'Nesk\\Puphpeteer\\' => array($vendorDir . '/nesk/puphpeteer/src'),
+    'Facebook\\WebDriver\\' => array($vendorDir . '/facebook/webdriver/lib'),
 );

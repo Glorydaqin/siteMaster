@@ -3,6 +3,8 @@
         "filp/whoops": "^2.5",
         "larapack/dd": "^1.1",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "facebook/webdriver": "^1.7",
+        "nesk/puphpeteer": "^1.6"
     }
 }
