@@ -7,7 +7,6 @@ include_once INCLUDE_ROOT . 'etc/init.php';
 
 $server_domain = $_SERVER['HTTP_HOST'] ?? '';
 $script_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-//dd($server_domain);
 $script_uri_tmp_arr = explode('?', $script_uri);
 $script_uri = empty($script_uri_tmp_arr) ? $script_uri : $script_uri_tmp_arr[0];
 
@@ -30,6 +29,9 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'transfer_kwfinder.php';
     } elseif ($server_domain == DOMAIN_SEMRUSH) {
         include_once FRONT_DIR . 'transfer_kwfinder.php';
+    } elseif ($server_domain == DOMAIN_MAJESTIC) {
+        include_once FRONT_DIR . 'transfer_majestic.php';
     }
 }
+
 die("错误的访问 | error access");

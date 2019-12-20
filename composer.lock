@@ -4,69 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df1615acea2725f8a656e6d1a54e6c54",
+    "content-hash": "389af07dfdda035fa6542e7c131d91d7",
     "packages": [
-        {
-            "name": "clue/socket-raw",
-            "version": "v1.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/clue/php-socket-raw.git",
-                "reference": "00ab102d061f6cdb895e79dd4d69140c7bda31cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-socket-raw/zipball/00ab102d061f6cdb895e79dd4d69140c7bda31cc",
-                "reference": "00ab102d061f6cdb895e79dd4d69140c7bda31cc",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "ext-sockets": "*",
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0 || ^6.0 || ^5.2 || ^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Socket\\Raw\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Lück",
-                    "email": "christian@clue.engineering"
-                }
-            ],
-            "description": "Simple and lightweight OOP wrapper for PHP's low-level sockets extension (ext-sockets)",
-            "homepage": "https://github.com/clue/php-socket-raw",
-            "keywords": [
-                "Socket",
-                "client",
-                "datagram",
-                "dgram",
-                "icmp",
-                "ipv6",
-                "server",
-                "stream",
-                "tcp",
-                "udg",
-                "udp",
-                "unix"
-            ],
-            "time": "2019-10-28T12:32:07+00:00"
-        },
         {
             "name": "facebook/webdriver",
             "version": "1.7.1",
@@ -243,127 +182,6 @@
             "time": "2016-12-15T09:34:34+00:00"
         },
         {
-            "name": "nesk/puphpeteer",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nesk/puphpeteer.git",
-                "reference": "21adf25d320f32b005cb3e2f9026616566015fcc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nesk/puphpeteer/zipball/21adf25d320f32b005cb3e2f9026616566015fcc",
-                "reference": "21adf25d320f32b005cb3e2f9026616566015fcc",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "nesk/rialto": "^1.2.0",
-                "php": ">=7.1",
-                "psr/log": "^1.0",
-                "vierbergenlars/php-semver": "^3.0.2"
-            },
-            "require-dev": {
-                "codedungeon/phpunit-result-printer": ">=0.6 <1.0",
-                "monolog/monolog": "^1.23",
-                "phpunit/phpunit": "^6.5|^7.0",
-                "symfony/process": "^4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nesk\\Puphpeteer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Johann Pardanaud",
-                    "email": "pardanaud.j@gmail.com"
-                }
-            ],
-            "description": "A Puppeteer bridge for PHP, supporting the entire API.",
-            "keywords": [
-                "automation",
-                "developer-tools",
-                "headless-chrome",
-                "php",
-                "puppeteer",
-                "testing",
-                "web"
-            ],
-            "time": "2019-06-24T11:12:21+00:00"
-        },
-        {
-            "name": "nesk/rialto",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nesk/rialto.git",
-                "reference": "2403adc6b5f8fd4114d1ec00d9cce2e6ce3a5656"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nesk/rialto/zipball/2403adc6b5f8fd4114d1ec00d9cce2e6ce3a5656",
-                "reference": "2403adc6b5f8fd4114d1ec00d9cce2e6ce3a5656",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "clue/socket-raw": "^1.2",
-                "php": ">=7.1",
-                "psr/log": "^1.0",
-                "symfony/process": "^3.3|^4.0"
-            },
-            "require-dev": {
-                "codedungeon/phpunit-result-printer": ">=0.6 <1.0",
-                "monolog/monolog": "^1.23",
-                "phpunit/phpunit": "^6.5|^7.0"
-            },
-            "suggest": {
-                "ext-weakref": "Required to run all the tests"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nesk\\Rialto\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Johann Pardanaud",
-                    "email": "pardanaud.j@gmail.com"
-                }
-            ],
-            "description": "Manage Node resources from PHP",
-            "keywords": [
-                "Bridge",
-                "Socket",
-                "communication",
-                "node",
-                "php",
-                "wrapper"
-            ],
-            "time": "2019-03-14T20:16:03+00:00"
-        },
-        {
             "name": "psr/log",
             "version": "1.1.2",
             "source": {
@@ -483,16 +301,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.4.1",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "51c0135ef3f44c5803b33dc60e96bf4f77752726"
+                "reference": "b84501ad50adb72a94fb460a5b5c91f693e99c9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/51c0135ef3f44c5803b33dc60e96bf4f77752726",
-                "reference": "51c0135ef3f44c5803b33dc60e96bf4f77752726",
+                "url": "https://api.github.com/repos/symfony/process/zipball/b84501ad50adb72a94fb460a5b5c91f693e99c9b",
+                "reference": "b84501ad50adb72a94fb460a5b5c91f693e99c9b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -534,20 +352,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-28T13:33:56+00:00"
+            "time": "2019-12-06T10:06:46+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "a4862009387721e155be6dc115061f42ee209205"
+                "reference": "d7bc61d5d335fa9b1b91e14bb16861e8ca50f53a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/a4862009387721e155be6dc115061f42ee209205",
-                "reference": "a4862009387721e155be6dc115061f42ee209205",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/d7bc61d5d335fa9b1b91e14bb16861e8ca50f53a",
+                "reference": "d7bc61d5d335fa9b1b91e14bb16861e8ca50f53a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -615,65 +433,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-11-28T14:20:16+00:00"
-        },
-        {
-            "name": "vierbergenlars/php-semver",
-            "version": "3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vierbergenlars/php-semver.git",
-                "reference": "be22b86be4c1133acc42fd1685276792024af5f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vierbergenlars/php-semver/zipball/be22b86be4c1133acc42fd1685276792024af5f9",
-                "reference": "be22b86be4c1133acc42fd1685276792024af5f9",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4"
-            },
-            "bin": [
-                "bin/semver",
-                "bin/update-versions"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "vierbergenlars\\SemVer\\": "src/",
-                    "vierbergenlars\\LibJs\\": "src/"
-                },
-                "classmap": [
-                    "src/vierbergenlars/SemVer/internal.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Vierbergen",
-                    "email": "vierbergenlars@gmail.com"
-                }
-            ],
-            "description": "The Semantic Versioner for PHP",
-            "keywords": [
-                "semantic",
-                "semver",
-                "versioning"
-            ],
-            "time": "2017-07-11T09:53:59+00:00"
+            "time": "2019-12-18T13:50:31+00:00"
         }
     ],
     "packages-dev": [],

@@ -22,16 +22,10 @@ class ComposerStaticInitf7652262257cee0dbb8a817a0440d69c
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Process\\' => 26,
-            'Socket\\Raw\\' => 11,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
-        ),
-        'N' => 
-        array (
-            'Nesk\\Rialto\\' => 12,
-            'Nesk\\Puphpeteer\\' => 16,
         ),
         'F' => 
         array (
@@ -56,21 +50,9 @@ class ComposerStaticInitf7652262257cee0dbb8a817a0440d69c
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
-        'Socket\\Raw\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/clue/socket-raw/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'Nesk\\Rialto\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesk/rialto/src',
-        ),
-        'Nesk\\Puphpeteer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesk/puphpeteer/src',
         ),
         'Facebook\\WebDriver\\' => 
         array (
@@ -78,35 +60,11 @@ class ComposerStaticInitf7652262257cee0dbb8a817a0440d69c
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'v' => 
-        array (
-            'vierbergenlars\\SemVer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/vierbergenlars/php-semver/src',
-            ),
-            'vierbergenlars\\LibJs\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/vierbergenlars/php-semver/src',
-            ),
-        ),
-    );
-
-    public static $classMap = array (
-        'vierbergenlars\\SemVer\\Internal\\Comparator' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
-        'vierbergenlars\\SemVer\\Internal\\Exports' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
-        'vierbergenlars\\SemVer\\Internal\\G' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
-        'vierbergenlars\\SemVer\\Internal\\Range' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
-        'vierbergenlars\\SemVer\\Internal\\SemVer' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf7652262257cee0dbb8a817a0440d69c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf7652262257cee0dbb8a817a0440d69c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf7652262257cee0dbb8a817a0440d69c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitf7652262257cee0dbb8a817a0440d69c::$classMap;
 
         }, null, ClassLoader::class);
     }

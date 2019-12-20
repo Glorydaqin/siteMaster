@@ -1,0 +1,3108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="zh">
+<head>
+	
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({"ugroups":"","uxg":"","ustatus":"R"});
+	</script>
+
+		<script>
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-WL6MF3T');
+		</script>
+
+<script>
+	window.gaEvent = function() {
+		if(typeof(window.dataLayer) !== 'object') {
+			return;
+		}
+
+		if(arguments.length == 1) {
+			window.dataLayer.push({'event': arguments[0]});
+		}
+		else if(arguments.length == 3) {
+			window.dataLayer.push({
+				'event': arguments[1],
+				'event_category': arguments[0],
+				'event_label': arguments[2]
+			});
+		} else {
+			console.warn('Invalid use of gaEvent(). Expects 1 or 3 parameters.');
+		}
+	};
+</script>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<meta name="viewport" content="initial-scale=1.0">
+	
+	
+	
+	<title>仪表板 - Majestic</title>
+	
+	<link href="/static/images/icons/touch-icons/apple-touch-icon.png" rel="apple-touch-icon" />
+	<link href="/static/images/icons/touch-icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+	<link href="/static/images/icons/touch-icons/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+	<link href="/static/images/icons/touch-icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+	<link href="/static/images/icons/touch-icons/icon-hires.png" rel="icon" sizes="192x192" />
+	<link href="/static/images/icons/touch-icons/icon-normal.png" rel="icon" sizes="128x128" />	
+	
+	<link rel="icon" type="image/png" href="/static/images/majestic/favicon.png">
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-320x320.png" sizes="320x320" />
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="/static/images/icons/touch-icons/favicon-128.png" sizes="128x128" />
+	
+	<meta name="application-name" content="Majestic"/>
+	<meta name="theme-color" content="#2d526d">	
+	
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery/jquery-ui-1.10.3.custom.min.css?20160614">
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery/jquery-ui-dialogs.min.css?20160614">
+	<link rel="stylesheet" type="text/css" href="/static/css/yahoo/reset-min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/yahoo/base-min.css">
+	
+	<link rel="stylesheet" type="text/css" href="/static/production/css/c94ff5.majestic.seo.min.cache.css">
+	
+	<!--[if lt IE 9]>	
+		<link rel="stylesheet" type="text/css" href="/static/css/ie/ie.css">
+		<style>
+		.ie8-hide {
+			display: none !important;
+		}
+		.ie8-show {
+			display: block !important;
+		}
+		</style>
+	<![endif]-->
+	
+	
+	<!-- css changes for the bigger header and grey bar -->
+		<style type="text/css">
+		
+		
+		</style>
+
+	
+
+	
+		
+			<link rel="alternate" hreflang="en" href="https://majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="de" href="https://de.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="es" href="https://es.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="fr" href="https://fr.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="it" href="https://it.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="ja" href="https://ja.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="nl" href="https://nl.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="pl" href="https://pl.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="pt" href="https://pt.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="ru" href="https://ru.majestic.com/account"/>
+		
+	
+		
+			<link rel="alternate" hreflang="zh" href="https://zh.majestic.com/account"/>
+		
+	
+
+    <div class="force-hide" id="html-dataload"
+        data-monitoring-event-triggered=""
+        data-user="1"
+        data-dont-show-notifications="1"
+        data-solo-class=""
+        data-user-status="R"
+        data-ux-group=""
+		data-current-path="/account"
+    ></div>
+
+    <div class="force-hide" id="html-translations"
+        data-translation1="&#x6DFB;&#x52A0;&#x5230;&#x6536;&#x96C6;&#x6876;"
+    ></div>
+
+    <div class="force-hide" id="service-config"
+        data-lang="zh"
+        data-default-link-action="URL"
+        data-is-link-action-tab="true"
+    ></div>
+	
+    
+    <script type="text/javascript" src="/static/scripts/service/messaging.js"></script>
+	<script type="text/javascript" src="/static/scripts/polyfill/polyfill.min.js"></script>
+	<script type="text/javascript" src="/static/scripts/jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/scripts/jquery/jquery-ui.min-20140205.js"></script>
+	<script type="text/javascript" src="/static/scripts/bootstrap/bootstrap.min.js"></script>
+		    <script type="text/javascript" src="/static/scripts/vue/vue.min.js"></script>
+	
+	<!--[if lte IE 8]>
+	    <script src="/static/scripts/d3/r2d3.min.js" charset="utf-8"></script>
+	    <script src="/static/scripts/d3/d3-function-ie8.js?20160525"></script>
+	<![endif]-->
+
+    <!--[if gte IE 9]>
+        <script src="/static/scripts/d3/d3.v3.min.js"></script>
+        <script src="/static/scripts/d3/d3-function.js?20160525"></script>
+    <![endif]-->
+
+    <![if !IE]>
+		<script src="/static/scripts/d3/d3.v3.min.js"></script>
+        <script src="/static/scripts/d3/d3-function.js?20160525"></script>
+	<![endif]>
+
+	<script type="text/javascript" src="/static/production/js/443c40.majestic.seo.min.cache.js"></script>
+	
+	<!--[if IE]>
+		<script type="text/javascript" src="/static/scripts/excanvas/excanvas.min.js"></script>
+	<![endif]-->
+	
+	<script type="text/javascript">
+		var htmlDataload = $('#html-dataload').data();
+		var htmlTranslations = $('#html-translations').data();
+		window.config = $('#service-config').data();
+
+		var awardsNotificationText = {};
+		var backlinksDownloadText = {};
+			
+		$(document).ready(function()
+		{
+			$(".concertina").concertina();
+			$("a.youtube").YouTubePopup();
+			
+			$.fn.userNotifications({
+				
+				uxGroup: htmlDataload.uxGroup,
+				currentPath: htmlDataload.currentPath
+			});
+			
+			
+			
+			bindDefaultEvents();
+		});
+		
+		function bindDefaultEvents()
+		{
+			$('.hoverHint, .technicalTerm').majesticPopover(defaultTooltipOptions());
+			$('.actionsIcon').majesticPopover(defaultPopoverActionOptions());
+			$('.ajax-popup-marker').majesticPopover({
+				content: function()
+				{
+					return '<img src="/static/images/icons/loading.gif" />';
+				},
+				defaultPosition: 'right',
+				onClick: false
+			});
+			
+			bindDefaultLinkActions( true );
+			
+            var bucketText = $('#bucketTextTranslations').data();
+
+			$('.addToBucketButton').majBucketButton(bucketText);
+			
+			$('.addToBucketPopoverButton').majBucketButton($.extend({}, bucketText, {
+				addHoverText: htmlTranslations.translation1,
+				updateStatusFunction: updatePopoverBucketStatus											// The function to use when updating the notification popover
+			}));
+		}
+		
+		(function() {
+    //Require for requirejs
+    if(typeof(require) == "function") {
+        require(["vue", 'jquery', 'rque!mj-modal', 'rque!download-all-backlinks', 'd3-function', 'timeout'], registerDownloadAllBacklinksDialog);
+    }
+    else {
+		// attach original function to the window
+		registerDownloadAllBacklinksDialog(Vue, jQuery);
+    }
+
+	function registerDownloadAllBacklinksDialog(Vue, $) {
+		window.openDownloadAllBacklinksDialog = function(query, index) {
+			var width = 400;
+
+			Promise.resolve($.post('/data-output/download-all-backlinks', {
+                'query': query,
+                'index_data_source': index,
+                'no_wrapper': 1
+            })).then(function(response) {
+                var rawExportInformation = response;
+                rawExportInformation['usePrefix'] = false;
+                if(rawExportInformation['noResults']) {
+                    rawExportInformation['index_item_info'] = {
+                        numberOfExternalBacklinks: null,
+                        numberOfAnalysisUnits: null
+                    };
+                    rawExportInformation['default_site_explorer_options'] = {
+                        backlinksShowDeleted: null
+                    };
+                    rawExportInformation['enableAdvancedExportOptions'] = null;
+                    rawExportInformation['analysis_units_remaining'] = null;
+                    rawExportInformation['total_initial_analysis_units'] = null;
+                    rawExportInformation['singleDomainMessage'] = null;
+                    rawExportInformation['mutltipleSubdomainMessage'] = null;
+                    rawExportInformation['singleSubdomainMessage'] = null;
+                    rawExportInformation['multiplePagesMessage'] = null;
+                    rawExportInformation['singlePagesMessage'] = null;
+                    rawExportInformation['analysisCostNear1PtMultiple'] = null;
+                    rawExportInformation['analysisCostNear1PtSingle'] = null;
+                    rawExportInformation['analysisCostNear100PtMultiple'] = null;
+                    rawExportInformation['analysisCostNear100PtSingle'] = null;
+                    rawExportInformation['analysisCostMultiple'] = null;
+                    rawExportInformation['analysisCostSingle'] = null;
+                    rawExportInformation['QueryType'] = null;
+                    rawExportInformation['downloadExists'] = null;
+                    rawExportInformation['DomainVerified'] = null;
+                }
+
+                var parentEl = document.body;
+                var modalDiv = document.createElement('div');
+                modalDiv.id = "modal_div";
+                parentEl.appendChild(modalDiv);
+
+                hideAllPopovers();
+
+                var vm = new Vue({
+                    template: '<mj-modal :width="width" modalTitle="Download All Backlinks" :useCloseButton="true"><download-all-backlinks-dialog :dialogData="contentData" UserStatus="R"></download-all-backlinks-dialog></mj-modal>',
+                    data: {
+                        contentData: rawExportInformation,
+                        width: width
+                    }
+                });
+
+                vm.$mount('#modal_div');
+            });
+        }
+    }
+})();
+
+
+function showDownloadReadyState(downloadPath)
+{
+	$('.download-all-backlinks.active #downloadButton')
+		.removeClass("loading_gif")
+		.addClass("download_ready")
+		.val("Download Ready")
+		.off('click')
+		.on('click', function()
+		{
+			location.href = downloadPath;
+		});
+
+	$('.download-all-backlinks.active .beforeReady').hide();
+	$('.download-all-backlinks.active .statusContent').html(decodeHtmlEntities('&lt;b&gt;&#x60A8;&#x7684;&#x4E0B;&#x8F7D;&#x5DF2;&#x51C6;&#x5907;&#x5C31;&#x7EEA;&#xFF0C;&lt;/b&gt;&#x8BF7;&#x4F7F;&#x7528;&ldquo;&#x4E0B;&#x8F7D;&#x51C6;&#x5907;&#x5C31;&#x7EEA;&rdquo;&#x6309;&#x94AE;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x5C06;&#x60A8;&#x7684;&#x6587;&#x4EF6;&#x52A0;&#x5165;&#x4E86;&#x60A8;&#x7684;&lt;a href=&quot;/reports/downloads&quot;&gt;&#x4E0B;&#x8F7D;&lt;/a&gt;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4F9B;&#x60A8;&#x4EE5;&#x540E;&#x4E0B;&#x8F7D;&#x3002;'));
+}
+
+function openDownloadAllBacklinksDialogNoSubscription()
+{
+	hideAllPopovers();
+
+	$.post(
+		'/data-output/download-all-backlinks/no-subscription',
+		function(response)
+		{
+			$('<div id="dialog-container" title="' + decodeHtmlEntities('&#x4E0B;&#x8F7D;&#x6240;&#x6709;&#x53CD;&#x5411;&#x94FE;&#x63A5;') + '"></div>')
+				.html(response)
+				.dialog({
+					modal: true,
+					resizable: false,
+					draggable: false,
+					width: 600,
+					close: function()
+					{
+						$(this).dialog('destroy').remove();
+						hideAllPopovers();
+					}
+				});
+		}
+	);
+}
+
+function updateAllowanceCharts(verified)
+{
+	if(! verified)
+	{
+		$('.download-all-backlinks.active #allowance_before').hide();
+		$('.download-all-backlinks.active #allowance_after').show();
+		$('.download-all-backlinks.active .allowance_before_label').hide();
+
+		var totalInitialAnalysisUnits = $("#js-total-initial-analysis-units").val();
+		var analysisUnitsRemaining = $("#js-analysis-units-remaining").val();
+		var analysisUnitsCost = $("#js-analysis-res-units").val();
+
+		var percentLeft = 0;
+
+		if(totalInitialAnalysisUnits != 0)
+			percentLeft = ((analysisUnitsRemaining - analysisUnitsCost) / totalInitialAnalysisUnits) * 100;
+
+		if(percentLeft == 0)
+		{
+			$('.download-all-backlinks.active .allowance_after_label').html(decodeHtmlEntities('&#x6CA1;&#x6709;&lt;br&gt;&#x5269;&#x4F59;&#x914D;&#x989D;'));
+		}
+		else if(percentLeft < 1)
+		{
+			$('.download-all-backlinks.active .allowance_after_label').html(decodeHtmlEntities('&#x5269;&#x4F59;&#x4E0D;&#x5230;&lt;b&gt;1%&lt;/b&gt;&lt;br&gt;'));
+		}
+		else if(percentLeft > 99)
+		{
+			$('.download-all-backlinks.active .allowance_after_label').html(decodeHtmlEntities('&#x5269;&#x4F59;&#x5C06;&#x8FD1;&lt;b&gt;100%&lt;/b&gt;&lt;br&gt;'));
+		}
+		else
+		{
+			$('.download-all-backlinks.active .allowance_after_label').html('<b>' + percentLeft.toFixed(0) + '%</b><br />' + decodeHtmlEntities('&#x5269;&#x4F59;'));
+		}
+	}
+
+	$('.download-all-backlinks.active .statusContent').html(decodeHtmlEntities('<b>&#x60A8;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x5173;&#x95ED;&#x6B64;&#x6D88;&#x606F;&#x6846;&#x3002;</b>'));
+}
+
+	</script>
+
+	<script type="text/javascript" src="/static/production/js/c2332f.vue-filters.min.js"></script>
+
+    
+
+	
+	
+	
+</head>
+
+<!--[if lte IE 8 ]>
+<body data-lang="zh" class="zh us-r ie8">
+<![endif]-->
+
+<!--[if IE 9 ]>
+<body data-lang="zh" class="zh us-r ie9">
+<![endif]-->
+
+<!--[if !IE]> -->
+<body data-lang="zh" class="zh us-r">
+<!-- <![endif]-->
+
+	
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WL6MF3T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div id="bucketTextTranslations" class="hide"
+        data-add-hover-text="&#x6DFB;&#x52A0;&#x5230;&#x60A8;&#x7684;&#x6536;&#x96C6;&#x6876;"
+        data-added-hover-text="&#x5DF2;&#x6DFB;&#x52A0;&#x5230;&#x60A8;&#x7684;&#x6536;&#x96C6;&#x6876;"
+        data-added-notification-text="&#x5DF2;&#x6DFB;&#x52A0;&#x5230;&#x6536;&#x96C6;&#x6876;"
+        data-already-added-notification-text="&#x9879;&#x76EE;&#x5DF2;&#x7ECF;&#x5728;&#x6536;&#x96C6;&#x6876;&#x4E2D;"
+        data-removed-notification-text="&#x79FB;&#x51FA;&#x6536;&#x96C6;&#x6876;"
+        data-bucket-full-notification-text="&#x6536;&#x96C6;&#x6876;&#x5DF2;&#x6EE1;"
+        data-ajax-error-notification-text="&#x6DFB;&#x52A0;&#x5230;&#x6536;&#x96C6;&#x6876;&#x65F6;&#x51FA;&#x73B0;&#x9519;&#x8BEF;"
+    ></div>
+
+	
+
+	
+	
+	<div id="header_bg">
+		<div id="top"></div>
+		<div id="bottom"></div>		
+		<div id="bottomGrey"></div>		
+		
+		<div id="yellow_bar"></div>		
+	</div>
+	<div id="container" style="z-index:1">
+	
+		<div id="header" >
+			<!-- BEGIN site/header -->
+<!-- put this here so we dont have to make a new css file each time a new lang is added -->
+<style>
+div.contentPanelWhite {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+	#header ul.horzMenu li.dd-link ul.dd-content li.slidey-sub-menu ul.recent-searches-warning {
+		width: 100px;
+	}
+
+</style>
+<!--[if lte IE 8]>
+<style type="text/css">
+	 #header ul.horzMenu li.dd-link:hover ul.dd-content{top:16px;z-index:999;}
+</style>
+<![endif]-->
+
+<!--[if IE]>
+<style type="text/css">
+	#header ul.horzMenu li.dd-link.account-dd ul.dd-content li.content{
+		min-width: 506px; /* not so great IE fix*/
+</style>
+<![endif]-->
+
+
+<script type="text/javascript">
+	var showingLogout = false;
+
+	$(document).ready(function() {
+	
+		
+	
+
+		var arrow = $("#login_arrow_image");
+
+		<!-- login dropdown -->
+		$(".signin").click(function(e) {
+			e.preventDefault();
+			$("div#signin_menu").toggle();
+			$(".signin").toggleClass("menu-open");
+			if($(".signin").hasClass("menu-open") && !showingLogout)
+			{
+				arrow.css("background-position", "-80px 0");
+				$("#signin input[name='EmailAddress']").focus();
+			}else{
+				arrow.css("background-position", "-65px 0").css("padding-right", "0px");
+				if(!$('h2.full-height-page-title').length)//to stop page scrolling to the bottom
+				{
+					$("#search_text").focus();
+				}
+			}
+		});
+
+		
+
+		$("div#signin_menu").mouseup(function() {
+			return false
+		});
+		$(document).mouseup(function(e) {
+			if($(e.target).parent("a.signin").length==0) {
+				$(".signin").removeClass("menu-open");
+				if(!showingLogout){
+					arrow.css("background-position", "-65px 0");
+				}
+				$("div#signin_menu").hide();
+			}
+		});
+		<!-- to close css dropdown menus in ipads -->
+		if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) {
+			$("#container").click(function() {
+				$('body').focus();
+			});
+		}
+		// mobile main menu
+		$("<div class='mob-sub-menu'><span class='mobile-nav sub-sections' aria-haspopup='true' style='display:none;'>部分</a></span></div>").insertBefore("ul.dd_menu:not(.sub-horz-menu)");
+
+		$("<div class='mob-sub-menu mob-sub-horz-menu'><span class='mobile-nav sub-sections' aria-haspopup='true' style='display:none;'>小节</a></span></div>").insertBefore("ul.sub-horz-menu");
+
+		$("#mobile-nav").click(function() {
+			$("#mob-account-menu ul.horzMenu").hide();
+			var text = $(this).text();
+			$(this).text(text == decodeHtmlEntities("&#x83DC;&#x5355;") ? decodeHtmlEntities("&#x5173;&#x95ED;") : decodeHtmlEntities("&#x83DC;&#x5355;")).toggleClass('close');
+			$("#header #menu_list ul.horzMenu").slideToggle();
+			if($(".mobile-nav.sub-sections").hasClass("close"))
+			{
+				$(".mobile-nav.sub-sections").click();
+			}
+		});
+		// mobile accounts menu
+		$("#mob-user-icon").click(function() {
+			
+				$("#header #menu_list ul.horzMenu").hide();
+				$("#mob-account-menu ul.horzMenu").slideToggle();
+			
+		});
+		// mobile sub section menu
+		$(".mobile-nav.sub-sections").click(function() {
+			$(this).parent().next("ul.dd_menu").slideToggle();
+			var text = $(this).text();
+
+			var buttonDefaultText = decodeHtmlEntities("&#x90E8;&#x5206;");
+
+			if($(this).parent().hasClass("mob-sub-horz-menu"))
+			{
+				var buttonDefaultText = decodeHtmlEntities("&#x5C0F;&#x8282;");
+			}
+
+			$(this).text(text == buttonDefaultText ? decodeHtmlEntities("&#x5173;&#x95ED;") : buttonDefaultText).toggleClass('close');
+		});
+
+		// handling hover menus for switch between mobile & desktop
+		$(window).resize(function()
+		{
+			var menuLinks = "#header ul.horzMenu li.dd-link a.head, #header ul.horzMenu li.dd-link ul.dd-content li a.dd-sub-head, ul.dd_menu li.dd a.dd_head";
+			if($(window).width() <= 640)
+			{
+				makeMobMenuTogglable();
+				$(menuLinks).removeClass('up');
+				$(menuLinks).siblings("ul, div ul").hide();
+			}
+			else
+			{
+				$(menuLinks).off("click").removeClass('toggle-set');
+				$(menuLinks).toggleClass('up');
+				$(menuLinks).siblings("ul, div ul").show();
+			}
+		});
+
+		if($(window).width() <= 640)
+		{
+			makeMobMenuTogglable();
+		}
+
+		$(".account-dd .dd-content").css("left", -($(".account-dd .dd-content").outerWidth() - $(".account-dd .head").outerWidth()));
+		$("#lang .dd-content").css("left", -($("#lang .dd-content").outerWidth() - $("#lang .head").outerWidth() - 5));
+
+		$('.logout_header_link').click(trigger_logout);
+	});
+
+	// changing hover dropdown menus to clickable slidey ones for mobile
+	function makeMobMenuTogglable()
+	{
+		var menuLinks = "#header ul.horzMenu li.dd-link a.head, #header ul.horzMenu li.dd-link ul.dd-content li a.dd-sub-head, ul.dd_menu li.dd a.dd_head";
+
+		$(menuLinks)
+			.not('.toggle-set')
+			.on("click", function()
+			{
+				$(this).toggleClass('up');
+				$(this).siblings("ul, div ul").slideToggle();
+			})
+			.addClass('toggle-set');
+	}
+
+	var tagsToReplace = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;'
+	};
+
+	function trigger_logout()
+	{
+		/* Recent Searches */
+		if(typeof(Storage) !== "undefined")
+		{
+			var sh = sessionStorage.getItem("mj12_search_history");
+			var searchHistory = JSON.parse(sh);
+			if(searchHistory != null){
+				for(var i = 0; i < 5; i++)
+				{
+					searchHistory[i] = "";
+				}
+				sessionStorage.setItem("mj12_search_history", JSON.stringify(searchHistory));
+			}
+		}
+		var tag = $(".logout_header_link");
+		tag.text(decodeHtmlEntities("&#x6B63;&#x5728;&#x767B;&#x51FA;..."));
+		tag.css("background-image", "url('/static/images/icons/loading.gif')").css("background-repeat", "no-repeat").css("background-position", "100% 60%");
+		setTimeout(function(){
+			document.location = "/account/logout";
+		},200);
+	}
+
+	function replaceTag(tag) {
+		return tagsToReplace[tag] || tag;
+	}
+
+	function escapeTags(str) {
+		return str.replace(/[&<>]/g, replaceTag);
+	}
+</script>
+
+
+<div id="nav-top" class="nav-wrapper">
+<div id="majestic_logo">
+	<h1  id="beta" >
+		<a id="mj-logo" href="/">Majestic</a>
+	</h1>
+</div>
+
+<span id="mobile-nav" class="mobile-nav main" aria-haspopup="true" style="display:none;">菜单</span>
+<span id="mob-user-icon" class="mobile-nav account" aria-haspopup="true" style="display:none;"></span>
+
+<div id="mob-account-menu" class="mob-dd-menu mob" style="display:none;">
+	<ul class="horzMenu">
+		<li class="account selected"><a href="/account">仪表板</a></li>
+
+		<li class="dd-link">
+			<a class="head" aria-haspopup="true">我的资料<span class="left-arrow"></span></a>
+			<ul class="dd-content">
+				<li ><a href="/account/my-details">登录资料</a></li>
+				<li ><a href="/account/vat-details">VAT 资料</a></li>
+				<li ><a href="/account/majestic-profile">Majestic 简介</a></li>
+			</ul>
+		</li>
+
+		<li class="dd-link">
+			<a class="head" aria-haspopup="true">奖励<span class="left-arrow"></span><img style="background-image:none" height="16" width="16" src="/static/images/icons/trophy-trans-bg.png"></a>
+			<ul class="dd-content">
+				<li ><a href="/business">领先榜</a></li>
+			</ul>
+		</li>
+
+		<li  class="reports"><a href="/reports">我的报告<img class="reports" height="16" width="16" src="/static/images/backgrounds/1px.png"></a></li>
+		<li  class="messages"><a href="/account/messages">消息<img class="messages" height="16" width="16" src="/static/images/backgrounds/1px.png"></a></li>
+		<li ><a href="/reports/downloads">下载<img class="downloads" height="16" width="15" src="/static/images/backgrounds/1px.png"></a></li>
+
+
+		<li  class="bucket"><a href="/bucket">收集桶<img class="bucket" height="16" width="16" src="/static/images/backgrounds/1px.png"></a></li>
+
+		
+
+		
+
+		<li class="settings"><a href="/account/settings/general">设置</a></li>
+		<li class="logout"><a class="logout_header_link" href="javascript:void(0)">退出</a></li>
+	</ul>
+</div>
+<div id="menu_list" class="mob-dd-menu">
+	<ul class="horzMenu">
+		<li class="dd-link">
+			<a class="head" aria-haspopup="true" href="JavaScript:;">工具<img class="toggle_arrow" height="16" width="16" src="/static/images/backgrounds/1px.png"></a>
+			<ul class="dd-content">
+				
+					<li><a href="/reports/site-explorer-search">站点浏览器预览</a></li>
+					<li><a href="/stats/majestic-million">Majestic Million</a></li>
+					<li><a href="/majestic-widgets/plugins">Majestic 插件</a></li>
+					
+					
+
+					<li class="header">精简版<span class="upgrade-link"><a href="/plans-pricing?recommended=MAJESTIC_LITE_2016">升级 &raquo;</a></span></li>
+					<li class="locked "><a href="/reports/site-explorer-search">站点浏览器</a></li>
+					<li class="locked "><a href="/reports/bulk-backlink-checker">批量反向链接检查器</a></li>
+					<li class="locked"><a href="/reports/url-submitter">URL 提交器</a></li>
+					<li class="locked "><a href="/account/applications/openapps">OpenApp</a></li>
+					
+					
+						<li class="locked "><a href="/account#my-campaigns-tab">推广活动</a></li>
+						<li class="locked "><a href="/webmaster-tools">已验证的域</a></li>
+					
+
+					
+					<li class="header">专业版<span class="upgrade-link">
+						<a href="/plans-pricing">升级 &raquo;</a></span>
+					</li>
+					
+					<li class="locked"><a href="/reports/flow-metrics-history">外链流量记录</a></li>
+				
+					<li class="locked"><a href="/business/">公司简介</a></li>
+					
+					<li class="dd-sub locked" aria-haspopup="true">
+						<a class="dd-sub-head" href="JavaScript:;" style="cursor: default;">比较域<span class="right-arrow"></span></a>
+						<ul>
+							<li class="locked"><a href="/reports/comparator?q1=example.com&IndexDataSource=F">摘要</a></li>
+							<li class="locked"><a href="/reports/compare-domain-backlink-history?q1=example.com&IndexDataSource=F">反向链接历史</a></li>
+							
+					<li class="locked"><a href="/reports/flow-metrics-history">外链流量记录</a></li>
+				
+							<li class="locked"><a href="/reports/compare-topics?q1=example.com&IndexDataSource=F">主题</a></li>
+							<li class="locked"><a href="/reports/cliquehunter">Clique Hunter</a></li>
+						</ul>
+					</li>
+				
+					<li class="locked"><a href="/reports">定制报告</a></li>
+					<li class="locked"><a href="/reports/keyword-checker">关键词检查工具</a></li>
+					<li class="locked"><a href="/reports/neighbourhood-checker">邻居检查工具</a></li>
+					
+					<li class="dd-sub locked" aria-haspopup="true">
+						<a class="dd-sub-head" href="Javascript:;" style="cursor: default;">试验<span class="right-arrow"></span></a>
+						<ul>
+							<li class="locked"><a href="/experimental/search-alpha">搜索浏览器 Alpha</a></li>
+							<li><a href="/experimental/link-profile-fight">链接分布比较</a></li>
+							<li><a href="/experimental/labs">Majestic 实验室</a></li>
+							<li><a href="/experimental/mutual-links">相同链接</a></li>
+							<li><a href="/experimental/pdf-report">PDF 报告</a></li>
+							<li><a href="/experimental/solo-links">Solo Links </a></li>
+						</ul>
+					</li>
+				
+					<li class="locked"><a href="/account?rt=1#my-campaigns-tab">Rank Tracker</a></li>
+				
+					
+					<li class="header">API<span class="upgrade-link"><a href="/plans-pricing?recommended=MAJESTIC_API_2016">升级 &raquo;</a></span></li>
+					<li class="locked"><a href="/account/api" disabled>API 密钥</a></li>
+				
+				
+
+				
+
+				
+
+				
+
+				
+				
+			</ul>
+		</li>
+
+		<li class="dd-link separator support">
+			<a class="head" aria-haspopup="true" href="JavaScript:;">支持<img class="toggle_arrow" height="16" width="16" src="/static/images/backgrounds/1px.png"></a>
+			<ul class="dd-content">
+				
+				
+				
+				<li><a href="https://blog.majestic.com/">博客 <img class="no-sprite ext-link-icon" src="/static/images/icons/external-link-blue.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></a></li>
+
+				<li class=""><a href="/business">商家页面</a></li>
+
+				<li class="header">Help</li>
+				<li >
+					<a href="/help">立即开始</a>
+				</li>
+				<li >
+					<a href="/help/faq">常见问题</a>
+				</li>
+				<li >
+					<a href="/help/verified-domains">已验证的域</a>
+				</li>
+				<li >
+					<a href="/help/glossary">术语表</a>
+				</li>
+				<li >
+					<a href="/help/tools">工具</a>
+				</li>
+				<li >
+					<a href="/help/contact-us">联系我们</a>
+				</li>
+				<li><a href="https://developer-support.majestic.com/api/">API 参考指南 <img class="no-sprite ext-link-icon"  src="/static/images/icons/external-link-blue.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></a></li>
+				
+				<li class="header">Company</li>
+				<li >
+					<a href="/company/about">关于我们</a>
+				</li>
+				<li  >
+					<a href="/company/terms">条款与条件</a>
+				</li>
+				<li  >
+					<a href="/company/privacy-policy">隐私政策</a>
+				</li>
+				<li  >
+					<a href="/company/cookie-policy">Cookie Policy</a>
+				</li>
+				<li >
+					<a href="/company/style-guide">样式指南</a>
+				</li>
+				<li >
+					<a href="/company/gdpr">GDPR</a>
+				</li>
+
+				<li class="dd-sub separate" aria-haspopup="true">
+					<a class="dd-sub-head" href="JavaScript:;" style="cursor: default;">培训&nbsp;<span class="right-arrow"></span></a>
+					<ul>
+						<li><a href="https://blog.majestic.com/how-to-videos/">帮助视频 <img class="no-sprite ext-link-icon" src="/static/images/icons/external-link-blue.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></a></li>
+						<li><a href="https://info.majestic.com/majestic_training">其他培训选项 <img class="no-sprite ext-link-icon" src="/static/images/icons/external-link-blue.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></a></li>
+					</ul>
+				</li>
+
+				
+			</ul>
+		</li>
+
+		
+		
+		
+
+		
+			
+				<li class="separator navTaskbar">
+					
+						<a class="nav-icon hoverHint" href="/reports" title="我的报告">
+							<img class="reports" style="vertical-align:text-bottom;" height="16" width="16" src="/static/images/backgrounds/1px.png">
+						</a>
+					
+					
+					
+						<a class="nav-icon hoverHint" href="/bucket" title="收集桶">
+							<img class="bucket" style="vertical-align:text-bottom;" height="16" width="16" src="/static/images/backgrounds/1px.png">
+						</a>
+					
+					
+					
+						<a class="nav-icon awards-icon hoverHint" href="/account/awards" title="Your Majestic Awards level">
+							<img class="awards" style="vertical-align:text-bottom;" height="16" width="16" src="/static/images/icons/trophy-trans-bg.png">
+							<span class="badge-level">1</span>
+						</a>
+					
+				</li>
+
+                
+				<script type="text/javascript">
+					$(document).ready(function(){
+						$('.nav-icon.hoverHint').majesticPopover($.extend({}, defaultTooltipOptions(), {defaultPosition: 'bottom'}));
+					});
+				</script>
+			
+			
+
+			<li class="dd-link account-dd separator">
+				<a class="head username" aria-haspopup="true" href="JavaScript:;" title="persoom">
+					我的帐户<img class="toggle_arrow" height="16" width="16" src="/static/images/backgrounds/1px.png">
+				</a>
+				<ul class="dd-content">
+					<li class="content">
+						<div class="flex clearb mob-no-flex">
+							<div class="floatl mob-single-panel mob-no-margin">
+								<div class="flex clearb mob-no-flex">
+									<ul class="sub-list">
+										<li class="header">域</li>
+										<!-- <li class="slidey-sub-menu dashboard">
+											<a href="/account">仪表板</a>
+											<ul>
+												<li>
+													<img src="/static/images/majestic/majestic_small.png"/>
+													Majestic
+												</li>
+												<li>
+													<img src="/static/images/majestic/majestic_small.png"/>
+													Majestic
+												</li>
+												<li>
+													<img src="/static/images/majestic/majestic_small.png"/>
+													Majestic
+												</li>
+												<li>
+													<img src="/static/images/majestic/majestic_small.png"/>
+													Majestic
+												</li>
+											</ul>
+										</li> -->
+										<li><a href="/account">仪表板</a></li>
+										
+										<li><a href="/reports/verified-domains">已验证的域</a></li>
+										<li><a href="/bucket">收集桶</a></li>
+										<li><a href="/reports/downloads">下载</a></li>
+										<li><a href="/reports">报告</a></li>
+									</ul>
+									<ul class="sub-list">
+										<li class="header">帐单</li>
+										<li><a href="/account/my-subscriptions">我的订阅</a></li>
+										
+										<li><a href="/account/list-invoices">发票</a></li>
+										<li><a href="/account/invitations">优惠券</a></li>
+									<li><a href="/account/vat-details">VAT 资料</a></li>
+									</ul>
+								</div>
+								<div class="flex float-container mob-no-flex">
+									<ul class="sub-list">
+										<li class="header">My Majestic</li>
+										<li><a href="/account/messages">消息</a></li>
+									</ul>
+									<ul class="sub-list">
+										<li class="header">API</li>
+										<li><a href="/account/api">API 密钥</a></li>
+										<li><a href="/account/applications/openapps">OpenApp</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="profile-info floatl mob-single-panel mob-no-margin">
+								<a href="/account/logo" class="full-width-height-link desk">
+									<div class="profile-pic">
+										<img src="/static/images/icons/upload-profile-picture.png"/>
+									</div>
+								</a>
+								<ul class="profile-actions">
+									<li><a href="/account/my-details">我的资料</a></li>
+									<li><a href="/account/settings">设置</a></li>
+									<li class="dark"><a class="logout_header_link" href="javascript:void(0)">退出</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+		
+
+		<li id="lang" class="lang-dd dd-link separator simplified-menu">
+			<a class="head flex rounded" aria-haspopup="true" href="JavaScript:;">
+				<img class="lang-icon zh" height="24" width="24" src="/static/images/backgrounds/1px.png">
+				<img class="toggle_arrow" height="16" width="16" src="/static/images/backgrounds/1px.png">
+			</a>
+			<ul class="dd-content langs">
+
+				
+				<li class="lang en"><a href="https://majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					English
+					
+				</a></li>
+				
+				<li class="lang de"><a href="https://de.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Deutsch
+					
+				</a></li>
+				
+				<li class="lang es"><a href="https://es.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Español
+					
+				</a></li>
+				
+				<li class="lang fr"><a href="https://fr.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Fran&#231;ais
+					
+				</a></li>
+				
+				<li class="lang it"><a href="https://it.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Italiano
+					
+				</a></li>
+				
+				<li class="lang ja"><a href="https://ja.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					日本語
+					
+				</a></li>
+				
+				<li class="lang nl"><a href="https://nl.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Nederlands
+					
+				</a></li>
+				
+				<li class="lang pl"><a href="https://pl.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Polski
+					
+				</a></li>
+				
+				<li class="lang pt"><a href="https://pt.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Português
+					
+				</a></li>
+				
+				<li class="lang ru"><a href="https://ru.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					Pусский
+					
+				</a></li>
+				
+				<li class="lang zh"><a href="https://zh.majestic.com/account"><img height="24" width="24" src="/static/images/backgrounds/1px.png">
+					中文
+					
+				</a></li>
+				
+			</ul>
+		</li>
+	</ul>
+
+
+	
+	
+	
+	
+		
+	
+		
+			<ul id="nav-user-status-action" class="horzMenu">
+				<li class="nav-btn">
+					<a href="/plans-pricing">计划与定价</a>
+				</li>
+			</ul>
+		
+	
+
+</div>
+<div class="clearb"></div>
+</div>
+<!-- END site/header -->
+
+		</div>
+
+		<div id="content_container_holder">
+			
+	<style>
+		#header_bg #top {
+			height: 240px;
+		}
+	</style>
+	<div class="search-bar dashboard">
+		<script type="text/javascript">
+$(document).ready(function() {
+	$('.indexCheck').removeClass('selected');
+	$('input.checkIndex:checked').parents('.indexCheck').addClass('selected');
+	
+    $('.indexCheck').click(function()
+    {
+        $('.indexCheck').removeClass('selected');
+        $(this).addClass('selected');
+		$(this).find('input').prop('checked', 'true');
+    });
+});
+
+function submitSearch()
+{
+	var q = $('input[name=q]').val();
+	addToSessionStorage(q);
+}
+
+function addToSessionStorage(q)
+{
+    // save recent searches.
+    // turned off for Do Not Track
+    
+}
+</script>
+
+<div id="searchBar" class="search-bar text-center clearb">
+	<form name="urlSearch" method="get" onsubmit="submitSearch()" action="/reports/site-explorer-search">
+		
+		<h2 class="heading">
+			<span class="searchHelp">输入一个域名、URL地址或搜索短语</span>
+			<span class="searchHelp searchCompare">或<a href="javascript:void(0);" onclick="compareInput('input[name=IndexDataSource]:checked', '#search_text');">比较</a> </span>
+		</h2>
+		<div class="flex clearb">
+			<div id="search-entry" class="search-entry">
+				<input name="q" id="search_text" class="search-text" type="text" autofocus value="" autocapitalize="off" autocorrect="off" inputmode="url" placeholder=""/>
+			</div>
+			<div id="explorersubmit" class="submit">
+				<input value="" type="submit">
+			</div>
+		</div>
+		<div id="chooseIndex" class="choose-index clearb">
+			<span class="hoverHint indexCheck selected" title="&#x6700;&#x65B0;&#x7D22;&#x5F15;&#x6BCF;&#x65E5;&#x66F4;&#x65B0;&#xFF0C;&#x5305;&#x542B;&#x6700;&#x65B0;&#x6570;&#x636E;&#x3002;">
+				<label>
+					<img class="sprite fresh" height="16" width="16" src="/static/images/backgrounds/1px.png">
+					使用最新索引
+					<input class="checkIndex" id="freshIndexDataSource" type="radio" name="IndexDataSource" checked value="F">
+				</label>
+			</span>
+			<span class="hoverHint indexCheck" title="&#x5386;&#x53F2;&#x7D22;&#x5F15;&#x5305;&#x542B;&#x6211;&#x4EEC;&#x62E5;&#x6709;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x3002;">					
+				<label>
+					<img class="sprite historic" height="16" width="16" src="/static/images/backgrounds/1px.png">
+					使用历史索引
+					<input class="checkIndex" id="historicIndexDataSource" type="radio" name="IndexDataSource" value="H">
+				</label>
+			</span>
+		</div>
+	</form>
+</div>
+	
+	</div>
+
+
+<style>
+ul.dd_menu{margin-right: 20px;}
+ul.dd_menu li.right{float: right; margin-left: 5px}
+ul.dd_menu li .white-icon{opacity: 0.8}
+ul.dd_menu li .white-icon:hover{opacity: 1}
+
+.selected .not-selected-icon{display: none;}
+
+.selected-icon{display: none;}
+	.selected .selected-icon{display: block;}
+
+#header_bg #bottom {
+    height: 78px;
+}
+.accountHeader {
+	background: #2d526d;
+}
+</style>
+
+<div class="accountHeader">
+    <h2 style="color:#fff;opacity:0.7; line-height: 23px;">帐户</h2>
+</div>
+	<ul class="dd_menu">
+
+<!-- Domain stuff -->
+		<li  class="selected">
+			<a href="/account">
+				<img class="white-icon hoverHint not-selected-icon" src="/static/images/icons/home-icon-flat.png" title="仪表板" />
+				<img class="white-icon hoverHint selected-icon" src="/static/images/icons/home-icon-flat-grey.png" title="仪表板" />
+			</a>
+		</li>
+
+		<li ><a href="/reports/verified-domains">已验证的域</a></li>
+
+		<li ><a href="/bucket">收集桶</a></li>
+
+		<li ><a href="/reports/downloads">下载</a></li>
+
+		<li ><a href="/reports">报告</a></li>
+
+		
+		<li ><a class="disabled" href="/account/api">API</a></li>
+		
+
+		
+<!--- ME stuff -->
+		<li class="right hoverHint " title="消息">
+			<a href="/account/messages">
+				<img class="white-icon not-selected-icon" src="/static/images/icons/bell-flat.png" />
+				<img class="white-icon selected-icon" src="/static/images/icons/bell-flat-grey.png" />
+			</a>
+		</li>
+
+		<li class="right dd" aria-haspopup="true">
+			<a class="dd_head" href="JavaScript:;">我的资料</a>
+			<ul>
+				<li ><a href="/account/my-details">登录资料</a></li>
+				<li ><a href="/account/logo">Logo</a></li>
+				<li ><a href="/account/majestic-profile">Majestic 简介</a></li>
+				<li ><a href="/account/awards">奖励</a></li>
+			</ul>
+		</li>
+
+		<li class="right dd Subscriptions " aria-haspopup="true">
+			<a class="dd_head" href="JavaScript:;"> 帐单</a>
+			<ul>
+				<li ><a href="/account/my-subscriptions">我的订阅</a></li>
+				
+				<li ><a href="/account/vat-details">VAT 资料</a></li>
+				<li ><a href="/account/list-invoices">发票</a></li>
+				<li ><a href="/account/invitations">优惠券</a></li>
+			</ul>
+		</li>
+
+		<li class="right dd" aria-haspopup="true">
+			<a class="dd_head" href="JavaScript:;">设置</a>
+			<ul>
+				<li ><a href="/account/settings/general">General</a></li>
+				<li ><a href="/account/settings/advreport">高级报告</a></li>
+				<li ><a href="/account/settings/site-explorer">Site Explorer</a></li>
+				<li  class="desk"><a href="/account/settings/toolbar-icons">Toolbar Icons</a></li>
+				<li ><a href="/account/settings/recent-searches">Recent Searches</a></li>
+			</ul>
+		</li>
+		
+	</ul>
+	<div class="clearfloat"></div>
+
+
+<noscript>
+	<div class="padded-div js-warning" style="padding-right: 0; margin-top: 20px;">
+		<div class="warningMessage red">
+			<STRONG>警告：</STRONG> 本浏览器的 JavaScript 似乎已被禁用——这可能会影响本网站的用户体验和功能。
+		</div>
+	</div>
+</noscript>
+
+	
+
+<!--[if lte IE 8]>
+<div class="warning-message horz-margin float-container" style="padding: 5px 10px;">
+	<img class="floatl" src="/static/images/icons/alert-circle-red.png" alt="您正在使用较低版本的浏览器。为了确保更快速、更安全的浏览体验，请立即免费更新。" />
+	<p class="floatl" style="margin: 7px 10px;"><b>Warning: Unsupported Browser!</b> You need to <a href="https://support.microsoft.com/en-gb/help/17621/internet-explorer-downloads" target="_blank" rel="noopener">upgrade</a> your browser to be able to use our site.</p>
+</div>
+<![endif]--> 
+
+
+<div id="content_container">
+	<div class="contentPanelTools" style="padding-top: 10px;">
+		
+
+
+
+
+<!-- keep this here -->
+
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$(".section .expand-icon").click(expandSection);
+		$(".section .minimise-icon").click(minimiseSection);
+
+        $("#redirectHereFromHomepage").click(showHomepageRedirect);
+        $("#dontRedirectHereFromHomepage").click(hideHomepageRedirect);
+
+		$(".tools-widget .award-icon img").click(function()
+		{
+			var action = $(this).attr('data-action');
+
+			$(this).parent(".award-icon")
+				.siblings().removeClass("selected")
+				.addClass("selected");
+
+			$(this).parents(".tools-widget").find(".tools-widget-form").attr("action", action);
+
+			if($(this).attr('data-param'))
+			{
+				var paramName = $(this).attr('data-param');
+				$(this).parents(".tools-widget").find(".tools-widget-form input[type='text'].dynamic-param").attr("name", paramName);
+				return;
+			}
+
+			$(this).parents(".tools-widget").find(".tools-widget-form input[type='text'].dynamic-param").attr("name", "q");
+		});
+	});
+
+	function expandSection()
+	{
+		setSectionVisibility(this, true);
+	}
+
+	function minimiseSection()
+	{
+		setSectionVisibility(this, false);
+	}
+
+	function setSectionVisibility(section, visible)
+	{
+		var id = $(section).prop("id")
+			.match(/-(.*)-/)
+			.pop();
+
+		var data = new Object();
+		data["account.widgets." + id + ".visibility"] = visible ? "show" : "hide";
+
+		$.fn.uiPreferences("set", data);
+
+		var visibilityClass = visible ? "expanded" : "minimised";
+
+		$(section).parents(".section")
+			.removeClass("expanded")
+			.removeClass("minimised")
+			.addClass(visibilityClass);
+	}
+
+    function showHomepageRedirect()
+	{
+		setHomepageRedirect(true);
+	}
+
+	function hideHomepageRedirect()
+	{
+		setHomepageRedirect(false);
+	}
+
+    function setHomepageRedirect(redirect)
+    {
+        var data = new Object();
+		data["account.homepage.redirect"] = redirect ? "true" : "false";
+
+        $.fn.uiPreferences("set", data);
+
+        $(".yellow_bar, #header_bg #yellow_bar").slideUp();
+
+    }
+</script>
+
+<div class="summary-page">
+    
+
+	<div class="section">
+		
+
+
+<link href="/static/scripts/featherlight/featherlight.min.css" rel="stylesheet" />
+<script src="/static/scripts/featherlight/featherlight.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/scripts/imgareaselect/css/imgareaselect-default.css" />
+<script type="text/javascript" src="/static/scripts/imgareaselect/scripts/jquery.imgareaselect.pack.js"></script>
+
+<div class="contentPanelWhite noTopPad">
+	<div class="margin-div mob-margin">
+		<h2 class="remove-horz-pad hide">persoom's Campaigns</h2>
+		<div class="flex mob-flex-column">
+			<div class="campaigns-container floatl grey-bg mob-single-panel mob-no-margin">
+				<div class="grey-bg2">
+					<div id="campaigns-nav" class="tab-nav">
+						<span data-tab-content-id="my-campaigns"><label>活动的推广活动</label></span>
+						<span data-tab-content-id="archived-campaigns"><label>已存档</label></span>
+						<span data-tab-content-id="campaign-invitations">
+							<label>邀请</label>
+							<img src="/static/images/icons/alert-alert.png" class="campaign-invites-alert-icon hide" style="margin: 0 0 -3px 5px;"/>
+						</span>
+					</div>
+				</div>
+				<div id="my-campaigns" class="campaign-nav-content grey-bg floatl mob-single-panel mob-no-margin hide">
+					<div class="campaigns">
+					</div>
+					
+						
+
+<div class="demo-campaign campaign flex f-column">
+	<div class="campaign-top flex-row-align-center">
+		<div class="campaign-image">
+			<span class="button button-campaign" title="Number of domains or URLs">15</span>
+			<img src="/customfiles/campaign-imgs/18155a2d-26f4-4082-bb7b-ad2ab76dcfc9.png">
+		</div>
+		<div class="campaign-name">
+			<a href="/dashboard/view-demo-campaign/ab731a97818a20349d49f7b03b4ad5dc">Majestic in Space</a>
+			<br/>
+			<small class="campaign-type-flag backlinks-type">反向链接</small>
+			<div class="campaign-description">A free demo to give you a taste of our all-new Majestic campaigns.</div>
+		</div>
+		<!--
+		<div class="pointer flex-float-right">
+			<button id="hide-demo-campaign" class="delete blue-btn light event-set">不显示 </button>
+		</div>
+		-->
+	</div>
+</div>
+
+										
+					<div class="campaign-nav-content-error small red hide">
+						无法加载您的推广活动。<a href="javascript:void(0);">再试一次</a>。
+					</div>
+					<div class="campaign-nav-content-loading hide">
+						<img src="/static/images/icons/loading.gif"/>
+					</div>
+					<div id="no-campaigns" class="hide horz-margin">
+						<div style="text-align: -webkit-center; margin: 20px 0 20px 0;">
+							<img src="/static/images/icons/personas/reports.png" height="64px" width="64px" style="-webkit-filter: grayscale(100%); filter: grayscale(100%);">
+						</div>
+						<div style="float: left; width: 90%;">
+							我们注意到您还没有创建任何推广活动。 您可以使用右边的面板，开始创建一项新的推广活动：  
+						</div>
+						<div style="float: right;">
+							<img src="/static/images/icons/sidepanel-fujayel-arrow.png">
+						</div>
+					</div>
+				</div>
+				<div id="archived-campaigns" class="campaign-nav-content grey-bg floatl mob-single-panel mob-no-margin hide">
+					<div class="campaigns">
+					</div>
+					<div class="campaign-nav-content-error small red hide">
+						无法加载推广活动存档。<a href="javascript:void(0);">再试一次</a>。
+					</div>
+					<div class="campaign-nav-content-loading hide">
+						<img src="/static/images/icons/loading.gif"/>
+					</div>
+					<div class="campaign-nav-content-footer small text-center vert-pad grey">
+						存档项目将在 60 天后删除。
+					</div>
+				</div>
+				<div id="campaign-invitations" class="campaign-nav-content grey-bg floatl mob-single-panel mob-no-margin hide">
+					<div class="campaigns">
+					</div>
+					<div class="campaign-nav-content-error small red hide">
+						无法加载推广活动邀请。<a href="javascript:void(0);">再试一次</a>。
+					</div>
+					<div class="campaign-nav-content-loading hide">
+						<img src="/static/images/icons/loading.gif"/>
+					</div>
+				</div>
+            </div>
+			
+
+			
+		</div>
+	</div>
+</div>
+<script>
+	$(".campaign-type-options label button").click(function() {
+		var elementToCheck = $("input#" + $(this).parent().attr("for"));
+		var checkboxesInGroup = $("input[name=" + elementToCheck.attr("name") + "]");
+
+		checkboxesInGroup.attr("checked", false);
+
+		elementToCheck.attr("checked", true);
+
+	});
+</script>
+
+<script type="text/javascript">
+	var overrideLocation;
+
+	$('#campaigns-nav > span').click(function()
+	{
+		if($(this).hasClass("active"))
+		{
+			return;
+		}
+
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".campaign-nav-content").hide();
+		var navContentId = $(this).attr("data-tab-content-id");
+
+		if (overrideLocation == undefined) {
+			window.location.hash = navContentId + '-tab';
+		}else{
+			window.location.hash = "#" + overrideLocation;
+		}
+
+		if(navContentId == 'my-campaigns')
+		{
+			listCampaigns();
+		}
+		else if(navContentId == 'archived-campaigns')
+		{
+			listArchivedCampaigns();
+		}
+		else if(navContentId == "campaign-invitations")
+		{
+			listCampaignInvititations();
+		}
+
+		$("#" + navContentId).show();
+	});
+
+	if(location.hash)
+	{
+		var tab = location.hash.slice(location.hash.indexOf('#') + 1).replace(/-tab$/, '');
+		var click = $('#campaigns-nav > span[data-tab-content-id=' + tab + ']')
+		if (click.length) {
+			click.click();
+		}else{
+			overrideLocation = tab;
+			$('#campaigns-nav > span[data-tab-content-id=my-campaigns]').click();
+		}
+
+	}
+	else
+	{
+		$('#campaigns-nav > span[data-tab-content-id=my-campaigns]').click();
+	}
+
+	if($('.demo-campaign').length)
+	{
+		$('#hide-demo-campaign').click(function()
+		{
+			$('.demo-campaign').remove();
+
+			$.fn.uiPreferences('set', {
+				'dashboard.demo-campaign.visibility': 'hide'
+			});
+		});
+	}
+
+    function listCampaigns()
+	{
+		var campaignsContainer = $('#my-campaigns .campaigns').empty();
+		$('.demo-campaign').hide();
+		$('#my-campaigns .campaign-nav-content-error').hide();
+		$('#my-campaigns .campaign-nav-content-loading').show();
+
+		$.post("/dashboard/list-campaigns", function(response)
+		{
+			if(response.trim().length == 0 && $('.demo-campaign').length == 0)
+			{
+				$('#no-campaigns').show();
+			}
+			else
+			{
+				campaignsContainer.html(response);
+				applyEditEvents();
+				bindDefaultEvents();
+			}
+		})
+		.fail(function(){
+			$('#my-campaigns .campaign-nav-content-error').show();
+		})
+		.always(function() {
+			$('.demo-campaign').show();
+			$('#my-campaigns .campaign-nav-content-loading').hide();
+		});
+	}
+
+	$('#my-campaigns .campaign-nav-content-error a').click(listCampaigns);
+
+    function listArchivedCampaigns()
+	{
+		var campaignsContainer = $('#archived-campaigns .campaigns').empty();
+		$('#archived-campaigns .campaign-nav-content-error, #archived-campaigns .campaign-nav-content-footer').hide();
+		$('#archived-campaigns .campaign-nav-content-loading').show();
+
+		$.post("/dashboard/list-archived-campaigns", function(response)
+		{
+			campaignsContainer.html(response);
+
+			if(campaignsContainer.find('.campaign').length > 0)
+			{
+				$('#archived-campaigns .campaign-nav-content-footer').show();
+			}
+		})
+		.fail(function(){
+			$('#archived-campaigns .campaign-nav-content-error').show();
+		})
+		.always(function() {
+			$('#archived-campaigns .campaign-nav-content-loading').hide();
+		});
+	}
+
+	$('#archived-campaigns .campaign-nav-content-error a').click(listArchivedCampaigns);
+
+    function listCampaignInvititations()
+    {
+		var campaignsContainer = $('#campaign-invitations .campaigns').empty();
+		$('#campaign-invitations .campaign-nav-content-error').hide();
+		$('#campaign-invitations .campaign-nav-content-loading').show();
+
+		$.post("/dashboard/list-campaign-invitations", function(response)
+		{
+			campaignsContainer.html(response);
+
+			if(campaignsContainer.find('.campaign').length > 0)
+			{
+				$('.campaign-invites-alert-icon').show();
+			}
+			else
+			{
+				$('.campaign-invites-alert-icon').hide();
+			}
+		})
+		.fail(function(){
+			$('#campaign-invitations .campaign-nav-content-error').show();
+		})
+		.always(function() {
+			$('#campaign-invitations .campaign-nav-content-loading').hide();
+		});
+	}
+
+	$('#campaign-invitations .campaign-nav-content-error a').click(listCampaignInvititations);
+
+    function applyEditEvents()
+    {
+		$('.edit-campaign')
+			.not('.event-set')
+			.addClass('event-set')
+			.click(function()
+			{
+				var campaign = $(this).parents('.campaign');
+				var editIcon = $(this).find('img.edit');
+				toggleEdit(editIcon, campaign);
+			});
+
+		$('.edit-campaign-form').submit(function()
+		{
+			var campaign = $(this).find('.campaign');
+			var campaignName = $(campaign).find("input.edited-campaign-name").val();
+
+			if(imageRequiresSubmit)
+			{
+				if(!campaignName.length)
+				{
+					$(campaign).find("input.edited-campaign-name").val("Untitled");
+				}
+
+				return true;
+			}
+
+			var editIcon = $(campaign).find('img.edit');
+			var imgData = $(campaign).find('input[name=cropped_img_data]').val();
+
+			$(campaign).find(".campaign-error").slideUp();
+
+			$.post("/dashboard/edit-campaign", {
+					name: campaignName,
+					description: $(campaign).find("textarea.edited-campaign-description").val(),
+					campaign_uid: $(campaign).data("campaign-uid"),
+					cropped_img_data: $(campaign).find('input[name=cropped_img_data]').val(),
+					update: 'name,description',
+					type: $(campaign).data('campaignType'),
+					return_json: 1
+				},
+				function(response)
+				{
+					if(response.error)
+					{
+						$(campaign).find(".campaign-error").html(response.error);
+						$(campaign).find(".campaign-error").slideDown();
+						return;
+					}
+
+					$(campaign).find('.campaign-image img').removeData('old');
+					$(campaign).find(".campaign-name a.campaign-rename-name").text(response.name);
+					$(campaign).find(".campaign-description").text(response.description ? response.description : '');
+
+					toggleEdit(editIcon, campaign);
+				}
+			).fail(function() {
+				$(campaign).find(".campaign-error").html($("#js-campaign-edit-error").val());
+				$(campaign).find(".campaign-error").slideDown();
+			});
+
+			return false;
+		});
+
+		$(".edit-options .accept")
+			.not('.event-set')
+			.addClass('event-set')
+			.parent('.edit-campaign-form')
+			.submit();
+
+		$('#my-campaigns .campaign .delete')
+			.not('.event-set')
+			.addClass('event-set')
+			.click(function()
+			{
+				var campaign = $(this).parents('.campaign');
+				var shared = campaign.hasClass('shared');
+				var archiveConfirmed = confirm($("#js-campaign-confirm-archive").val());
+
+				$(campaign).find(".campaign-error").slideUp();
+
+				if(archiveConfirmed)
+				{
+					$.post("/dashboard/archive-campaign", {
+							campaign_uid: $(campaign).data('campaign-uid'),
+							type: $(campaign).data('campaignType')
+						},
+						function(response)
+						{
+							if(response.error)
+							{
+								$(campaign).find(".campaign-error").html(response.error);
+								$(campaign).find(".campaign-error").slideDown();
+								return;
+							}
+
+							if (response.archived)
+							{
+								$(campaign).addClass('hide');
+							}
+
+							if ($('.campaign').not('.hide').length == 0)
+							{
+								$("#my-campaigns").addClass('hide');
+								$("#no-campaigns").removeClass('hide');
+							}
+						}
+					).fail(function() {
+						$(campaign).find(".campaign-error").html($("#js-campaign-error").val());
+						$(campaign).find(".campaign-error").slideDown();
+					});
+				}
+			});
+
+
+		$("div.campaign-name img.starred-campaign")
+			.not('.event-set')
+			.addClass('event-set')
+			.click(function()
+			{
+				var campaign_uid;
+				var campaign = $(this).parents('.campaign').parent();
+
+				if($(this).hasClass("favourited"))
+				{
+					$(this).removeClass("favourited");
+				}
+				else
+				{
+					campaign_uid = $(this).parents('.campaign').data("campaign-uid");
+
+					$("div.campaign-name img").each(function()
+					{
+						$(this).removeClass("favourited");
+					});
+					$(this).addClass("favourited");
+				}
+
+				$(campaign).find(".campaign-error").slideUp();
+
+				$.post("/dashboard/favourite-campaign", {
+						campaign_uid: campaign_uid,
+						type: $(this).parents('.campaign').data('campaignType')
+					},
+					function(response)
+					{
+						if(response.error)
+						{
+							$(campaign).find(".campaign-error").html(response.error);
+							$(campaign).find(".campaign-error").slideDown();
+							return;
+						}
+
+						if($('.demo-campaign').length)
+						{
+							$("#my-campaigns .demo-campaign").after(campaign);
+							return;
+						}
+
+						$("#my-campaigns").prepend(campaign);
+					}
+				).fail(function() {
+					$(campaign).find(".campaign-error").html($("#js-campaign-error").val());
+					$(campaign).find(".campaign-error").slideDown();
+				});
+			});
+
+		setupCampaignImageUpload();
+    }
+
+    applyEditEvents();
+
+    function toggleEdit(editIcon, campaign)
+    {
+		var campaignName = $(campaign).find(".campaign-name a").text();
+		var campaignDescription = $(campaign).find(".campaign-description").text();
+
+		$(campaign).find(".edit-options .edited-campaign-name").val(campaignName);
+		$(campaign).find(".edit-options .edited-campaign-description").val(campaignDescription);
+
+        $(campaign).find(".edit-options").toggleClass('hide');
+        $(campaign).find(".campaign-name a").toggleClass('hide');
+        $(campaign).find(".campaign-name img").toggleClass('hide');
+        $(campaign).find(".campaign-description").toggleClass('hide');
+        $(campaign).find(".campaign-image-upload").toggleClass('hide');
+        $(campaign).find(".edit_overlay").toggleClass('hide');
+        $(campaign).find(".campaign-image .button").toggleClass('hide');
+		$(campaign).find('input[name=cropped_img_data]').val('');
+
+		var imgElement = $(campaign).find('.campaign-image img');
+
+		if(imgElement.data('old'))
+		{
+			imgElement.attr('src', imgElement.data('old'));
+			imgElement.removeData('old');
+		}
+
+		var fileupload = $(campaign).find('.campaign-image-upload input[type=file]');
+		fileupload.replaceWith(fileupload = fileupload.clone(true));
+
+		if($(editIcon).hasClass('cancel'))
+		{
+			$(editIcon)
+				.prop('src', '/static/images/icons/pencil-big.png')
+				.prop('height', '20')
+				.removeClass('cancel');
+
+			return;
+		}
+
+		$(editIcon)
+			.prop('src', '/static/images/icons/alert-page-cross.png')
+			.prop('height', '17')
+			.addClass('cancel');
+    }
+
+	$(".create-campaign form").submit(function()
+	{
+		if(imageRequiresSubmit)
+		{
+			return true;
+		}
+
+		$("#add-campaign-error").slideUp();
+
+		$.post("/dashboard/create-campaign", {
+				name : $("#campaign-name").val(),
+				description : $("#campaign-description").val(),
+				type : $("#campaign-type-options input[checked]").val(),
+				cropped_img_data: $('.create-campaign input[name=cropped_img_data]').val()
+			},
+			function(response)
+			{
+				if(response.error)
+				{
+					console.error(response);
+					$("#add-campaign-error").slideDown();
+					return;
+				}
+
+                $("#no-campaigns").hide();
+                $("#my-campaigns").show();
+
+				if($('.demo-campaign').length)
+				{
+					$("#my-campaigns .demo-campaign").after(response);
+				}
+				else
+				{
+					$("#my-campaigns").prepend(response);
+				}
+
+				$("#campaign-name").val('');
+				$("#campaign-description").val('');
+				$('.create-campaign input[name=cropped_img_data]').val('');
+				$('.create-campaign img').attr('src', $('.create-campaign img').data('old'));
+
+                applyEditEvents();
+				bindDefaultEvents();
+			}
+		)
+		.fail(function(r)
+		{
+			console.error(r);
+			$("#add-campaign-error").slideDown();
+		});
+
+		return false;
+	});
+
+	// image upload
+	var uploadedImage;
+	var imgAreaSelect;
+	var newPPPath = '';
+	var imageRequiresSubmit = false;
+	var MIN_IMAGE_WIDTH = 64;
+	var MIN_IMAGE_HEIGHT = 64;
+	var MAX_IMAGE_WIDTH = 320;
+	var MAX_IMAGE_HEIGHT = 320;
+
+	function setupCampaignImageUpload()
+	{
+		if (window.FileReader)
+		{
+			$(".campaign-image-upload *").hide();
+
+			$('.campaign-image .edit_overlay, .upload-trigger')
+				.off('click.imageupload')
+				.on('click.imageupload', function () {
+					$(this).parents('.campaign, .create-campaign').find('.campaign-image-upload input[type=file]').trigger('click');
+				});
+
+			var canvasSupported = isCanvasSupported();
+
+			if(!canvasSupported)
+			{
+				imageRequiresSubmit = true;
+			}
+
+			$(".campaign-image-upload input[type=file]")
+				.off('change.imageupload')
+				.on('change.imageupload', function () {
+					var campaign = $(this).parents('.campaign, .create-campaign');
+
+					if(canvasSupported)
+					{
+						// Pop up the edit lightbox
+						$('.editImageContent').hide();
+						$('.editImageLoading').show();
+						$.featherlight($('.editImageLightbox'), {
+							beforeClose: function() {
+								cancelImage(campaign);
+							},
+							afterOpen: function() {
+								$('.featherlight .selection_btns .btn').click(function () {
+									if($(this).hasClass('selected'))
+									{
+										return;
+									}
+
+									$(this).addClass('selected')
+										.siblings()
+										.removeClass('selected');
+								});
+
+								$('.featherlight .save').unbind('click')
+									.click(function() {
+										imageConfirmed(campaign);
+									});
+							},
+							closeOnClick: false,
+							root: $('#content_container')
+						});
+					}
+
+					// Load the image and display
+					var reader = new FileReader();
+
+					reader.onload = function (event) {
+						uploadedImage = new Image();
+						uploadedImage.onload = function () {
+							if(canvasSupported)
+							{
+								$('.featherlight .profilePictureSource').attr('src', uploadedImage.src);
+								$('.featherlight .profilePicturePreview').attr('src', uploadedImage.src);
+								imgAreaSelect = $('.featherlight .profilePictureSource').imgAreaSelect({
+									handles: true,
+									parent: $('.featherlight .editImageContent'),
+									minWidth: '1',
+									minHeight: '1',
+									resizeMargin: '4',
+									instance: true
+								});
+
+								$('.featherlight .editImageLoading').hide();
+								$('.featherlight .editImageContent').show();
+							}
+							else
+							{
+								var imgElement = campaign.find('.campaign-image img');
+
+								if(!imgElement.data('old'))
+								{
+									imgElement.data('old', imgElement.attr('src'));
+								}
+
+								imgElement.attr('src', uploadedImage.src);
+								campaign.find('input[name=cropped_img_data]').val('');
+							}
+						};
+						uploadedImage.src = event.target.result;
+					}
+
+					reader.readAsDataURL(this.files[0]);
+				})
+		}
+		else
+		{
+			$('.campaign-image .edit_overlay, .upload-trigger').remove();
+			$('.campaign-image .campaign-image-upload.hide').removeClass('hide');
+			imageRequiresSubmit = true;
+		}
+	}
+
+	function imageConfirmed(campaign)
+	{
+		var imageSelection = imgAreaSelect.getSelection();
+		var cropX = 0;
+		var cropY = 0;
+		var cropWidth = uploadedImage.width;
+		var cropHeight = uploadedImage.height;
+		var outputWidth = MAX_IMAGE_WIDTH;
+		var outputHeight = MAX_IMAGE_HEIGHT;
+		var uploadedSizeRatio = uploadedImage.width / $('.featherlight .profilePictureSource').width();
+		var profilePictureBackground = $("#profilePictureBackgroundColor").val();
+
+		if(imageSelection && imageSelection.height && imageSelection.width)
+		{
+			cropWidth = Math.round(imageSelection.width * uploadedSizeRatio);
+			cropHeight = Math.round(imageSelection.height * uploadedSizeRatio);
+			cropX = Math.round(uploadedSizeRatio * imageSelection.x1);
+			cropY = Math.round(uploadedSizeRatio * imageSelection.y1);
+		}
+
+		if(cropWidth < MIN_IMAGE_WIDTH)
+		{
+			outputHeight = Math.round(outputHeight * (MIN_IMAGE_WIDTH / outputWidth));
+			outputWidth = MIN_IMAGE_WIDTH;
+		}
+		else if(cropWidth < outputWidth)
+		{
+			outputHeight = Math.round(outputHeight * (cropWidth / outputWidth));
+			outputWidth = cropWidth;
+		}
+
+		if(cropHeight < MIN_IMAGE_HEIGHT)
+		{
+			outputWidth = Math.round(outputWidth * (MIN_IMAGE_HEIGHT / outputHeight));
+			outputHeight = MIN_IMAGE_HEIGHT;
+		}
+		else if(cropHeight < outputHeight)
+		{
+			outputWidth = Math.round(outputWidth * (cropHeight / outputHeight));
+			outputHeight = cropHeight;
+		}
+
+		var canvas = document.createElement('canvas');
+        canvas.width = outputWidth;
+        canvas.height = outputHeight;
+
+		if (cropHeight > cropWidth)
+		{
+			height = cropHeight;
+			if(cropHeight > outputHeight)
+			{
+				height = outputHeight;
+			}
+			width = Math.round(height * (cropWidth / cropHeight));
+		}
+		else
+		{
+			width = cropWidth;
+			if(cropWidth > outputWidth)
+			{
+				width = outputWidth;
+			}
+			height = Math.round(width * (cropHeight / cropWidth));
+		}
+
+		x = (canvas.width - width) / 2;
+		y = (canvas.height - height) / 2;
+
+        var context = canvas.getContext('2d');
+		context.fillStyle = "#" + profilePictureBackground;
+		context.fillRect(0,0,canvas.width,canvas.height);
+        context.drawImage(uploadedImage, cropX, cropY, cropWidth, cropHeight, x, y, width, height);
+        var dataURL = canvas.toDataURL('image/png');
+
+		var imgElement = campaign.find('.campaign-image img');
+
+		if(!imgElement.data('old'))
+		{
+			imgElement.data('old', imgElement.attr('src'));
+		}
+
+		imgElement.attr('src', dataURL);
+		campaign.find('input[name=cropped_img_data]').val(dataURL);
+		$.featherlight.current().close();
+
+		var fileupload = campaign.find(".campaign-image-upload input[type=file]");
+		fileupload.replaceWith(fileupload = fileupload.clone(true));
+	}
+
+	function cancelImage(campaign)
+	{
+		var fileupload = campaign.find(".campaign-image-upload input[type=file]");
+		fileupload.replaceWith(fileupload = fileupload.clone(true));
+	}
+
+	function isCanvasSupported()
+	{
+		var elem = document.createElement('canvas');
+
+		if(!(!!(elem.getContext && elem.getContext('2d'))))
+		{
+			return false;
+		}
+
+		var dataUri = elem.toDataURL('image/png');
+		if (!dataUri.match('image/png')) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function updatePreviewBackground(color)
+	{
+		$("#profilePictureSource").css("background","#" + color);
+		$("#profilePictureBackgroundColor").val(color);
+	}
+</script>
+
+<input id="js-campaign-edit-error" type="hidden" value="很抱歉，我们无法编辑此推广活动。请重试一次。"/>
+<input id="js-campaign-error" type="hidden" value="我们无法为您保存更改的信息。请重试。"/>
+<input id="js-campaign-confirm-archive" type="hidden" value="您确定要存档此推广活动吗？
+ 它将被移至存档区，并且必须取消存档才能访问。" />
+
+<div id="slider"></div>
+<div class="lightboxes hide">
+	<div class="editImageLightbox" style="padding: 20px;">
+		<div class="editImageLoading" style="text-align: center;">
+			<img src="/static/images/icons/map_loading.gif" style="margin: 30px;">
+		</div>
+		<div class="editImageContent" style="max-width: 984px; display: block; text-align: center;">
+			<div class="sub_panel" style="padding: 20px; display: inline-block;">
+				<p style="margin: 0 0 10px 0; text-align: center;">在图片上拖动进行裁切。<br />如果您的图片是透明的，您可以添加浅色或深色背景。</p>
+				<img id="profilePictureSource" class="profilePictureSource" style="max-width: 500px;max-height: 400px; background: #fff;"/>
+			</div>
+			<div class="selection_btns" style="display: block; margin: 0px auto 20px; width: 105px;">
+				<div class="btn yes selected" onclick="updatePreviewBackground('fff');">
+					<span>浅色</span>
+				</div>
+				<div class="btn no" onclick="updatePreviewBackground('ccc');">
+					<span>深色</span>
+				</div>
+				<input type="hidden" id="profilePictureBackgroundColor" value="fff"/>
+			</div>
+			<input type="button" class="blue_btn" value="Clear Selection" onclick="imgAreaSelect.cancelSelection();" />
+			<input type="button" class="save blue_btn" value="Save Picture" />
+		</div>
+	</div>
+</div>
+
+
+<style>
+	.campaign-list-status-icons {
+		display: inline-block;
+	}
+
+		.campaign-list-status-icon img {
+			height: 11px;
+			width: 11px;
+		}
+
+		.campaign-list-status-icon.off img {
+			opacity: 0.3;
+		}
+
+	.campaign-type-options {
+		margin-bottom: 10px;
+		font-size: 0px;
+	}
+
+	input.campaign-type-toggle {
+		display: none;
+	}
+
+	label.campaign-type-toggle {
+		display: inline-block;
+		width: 50%;
+	}
+
+		label.campaign-type-toggle button {
+			width: 100%;
+			padding: 10px 10%;
+		}
+
+		label.campaign-type-toggle:nth-child(2) button {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		label.campaign-type-toggle:last-child button {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		input + label.campaign-type-toggle button {
+			background: #335e92;
+		}
+		input[checked] + label.campaign-type-toggle button {
+			background: #5ca1f3;
+		}
+</style>
+
+	</div>
+
+	<div class="section expanded">
+		<div class="title mob-margin">
+			<h2>
+				收集桶, 最近搜索 &amp; 下载
+				<img id="minimise-dashboard-icon" class="minimise-icon title-icon" src="/static/images/icons/icon-cross-16.png" />
+				<img id="expand-dashboard-icon" class="expand-icon title-icon" src="/static/images/icons/icon-cross-arrow-16.png" />
+			</h2>
+		</div>
+
+		<div class="content">
+			
+
+			<div class="flexbox mob-flex-column horz-margin mob-margin">
+				<div class="column-1-1 grey-bg rounded3 vert-pad-10 padded-div remove-horz-pad mob-single-panel mob-margin">
+					
+
+
+<script src="/static/scripts/vue-mixins/has-mounted.js"></script>
+
+
+    
+        
+        
+<script type="text/javascript" src="/static/scripts/util/promise/timeout.js"></script>
+<script type="text/javascript" src="/static/scripts/vue-components/popover-component.js?9ec149"></script>
+<script id="popover-component-template" type="text/x-template">
+
+    
+    <div id="popover-component">
+        <div class="popover in" :class="currentPopoverPosition" :style="[popoverPosition, visibleOrNot]" style="display: block; z-index: 10001;" ref="popover-box" v-on:mouseenter="onHover(true)" v-on:mouseleave="onHover(false)">
+            <div class="arrow" ref="arrow" :style="{ marginTop : arrowMarginTop + 'px' }" ></div>
+            <div class="popover-content">
+                <div class="item headerURL"><span>{{item | truncate(25) }}</span></div>
+                <div class="item">
+                    <a :href="item | prepend-http" rel="nofollow noopener" class="goToUrlLink" target="_blank">
+                        <img width="16" height="16" src="/static/images/icons/cog-link.png" alt="访问站点">
+                        <span class="action">访问 URL</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <span :title="'在站点浏览器中浏览 ' + item + ''">
+                        <a :href="'/reports/site-explorer?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <img width="16" height="16" src="/static/images/icons/cog-explorer.png" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">站点浏览器</span>
+                        </a>
+                    </span> 
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item"  v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/referring-domains?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">引用域</span>
+                        </a>
+                    </span> 
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item"  v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/top-backlinks?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">反向链接</span>
+                        </a>
+                    </span> 
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item"  v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/link-context?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">Context</span>
+                        </a>
+                    </span> 
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item"  v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/anchor-text?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">锚文本</span>
+                        </a>
+                    </span>
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item"  v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/top-pages?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">网页</span>
+                        </a>
+                    </span>
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item" v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/topics?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">主题</span>
+                        </a>
+                    </span>
+                    <span :title="'在站点浏览器中浏览 ' + item + ''" class="sub_item" v-bind:class="{ locked : !userSubscriptionStatus }">
+                        <a :href="'/reports/site-explorer/related-sites?folder=&q=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" :alt="'在站点浏览器中浏览 ' + item + ''">
+                            <span class="action">Related Sites</span>
+                        </a>
+						<sup>新功能！</sup>
+                    </span>					
+                </div>
+                <div class="item" v-bind:class="{ locked : !user}">
+                        <span title="加入推广活动" v-on:click="addToCampaign">
+                            <template v-if="user">
+                                <img width="16" height="16" src="/static/images/icons/cog-add-to-campaign.png" alt="加入推广活动">
+                            </template>
+                            <template v-else>
+                                <img width="16" height="16" src="/static/images/icons/padlock-closed-yellow.png" alt="加入推广活动">
+                            </template>
+                            <span class="action">加入推广活动</span>
+                        </span>
+                </div>
+                <div class="item" v-bind:class="{ locked : !rawExport && !hasHistoric }">
+                    <span title="原始数据导出" v-on:click="downloadBacklinks(indexInUse)">
+                        <img  v-if="rawExport" src="/static/images/icons/cog-export.png" alt="原始数据导出" border="0" height="16" width="16" />
+                        <img v-else src="/static/images/icons/padlock-closed-yellow.png" alt="锁定" border="0" height="16" width="16" />
+                        <span class="action">下载所有反向链接</span>
+                    </span>
+                    <span title="原始数据导出" v-on:click="downloadBacklinks('Fresh')" class="sub_item" v-bind:class="{ locked : !rawExport }">
+                        <span class="action">最新索引</span>
+                    </span>
+                    <span title="原始数据导出" v-on:click="downloadBacklinks('Historic')" class="sub_item" v-bind:class="{ locked : !hasHistoric }">
+                        <span class="action">历史索引</span>
+                    </span>
+                </div>
+                <div class="item" v-bind:class="{ locked : !compareTools }">
+                    <span title="反向链接历史显示我们的爬网程序过去曾发现的链接至某个给定域的所有链接的数量。由于我们的爬网程序效率极高，这些图表可以反映出给定域反向链接的增长情况。">
+                        <a :href="'/reports/compare-domain-backlink-history?q1=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" >
+                            <img v-if="compareTools" src="/static/images/icons/cog-backlink-history.png" alt="反向链接历史" border="0" height="16" width="16"/>
+                            <img v-else src="/static/images/icons/padlock-closed-yellow.png" alt="锁定" border="0" height="16" width="16" />
+                            <span class="action">反向链接历史</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="item"  v-bind:class="{ locked : !hasLinkMapTools }">
+                    <span title="邻居检查工具可以显示任意 IP 或子网上拥有反向链接最多的域（按引用域计算）。">
+                        <a :href="'/reports/neighbourhood-checker?d=' + encodeURIComponent(item) + '&IndexDataSource=' + indexDataSource" >
+                            <img v-if="hasLinkMapTools" src="/static/images/icons/cog-neighbourhood.png" alt="&#x90BB;&#x5C45;&#x68C0;&#x67E5;&#x5DE5;&#x5177;" border="0" height="16" width="16"/>
+                            <img v-else src="/static/images/icons/padlock-closed-yellow.png" alt="&#x9501;&#x5B9A;" border="0" height="16" width="16" />
+                            <span class="action">&#x90BB;&#x5C45;&#x68C0;&#x67E5;&#x5DE5;&#x5177;</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="item" v-bind:class="{ locked : !hasReports }">
+                    <span :title="'为' + item + '创建报告'" >
+                        <a :href="'/reports/create-report?url=' + encodeURIComponent(item) +'&folder='" >
+                            <img v-if="hasReports" src='/static/images/icons/cog-report.png' alt="&#x70B9;&#x6B64;&#x5BF9;&#x62A5;&#x544A;&#x8FDB;&#x884C;&#x6392;&#x5E8F;" border="0" height="16" width="16"/>
+                            <img v-else src="/static/images/icons/padlock-closed-yellow.png" alt="&#x9501;&#x5B9A;" border="0" height="16" width="16" />
+                            <span class="action">创建报告</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="item" v-if="enableVerification" v-bind:class="{ locked : !user }">
+                    <span title="&#x9A8C;&#x8BC1;">
+                        <a :href="'/reports/verified-domains/verify-domain?items=' + encodeURIComponent(item)" >
+                            <img v-if="user" src='/static/images/icons/cog-verify-domain.png' border="0" height="16" width="16"/>
+                            <img v-else src="/static/images/icons/padlock-closed-yellow.png" alt="&#x9501;&#x5B9A;" border="0" height="16" width="16" />
+                            <span class="action">验证</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="item" v-bind:class="{ locked: !user}" ref="bucketOption">
+                    <a v-if="!user" href="/bucket">
+                        <span title="添加到您的收集桶">
+                            <img width="16" height="16" src="/static/images/icons/padlock-closed-yellow.png" alt="&#x9501;&#x5B9A;">
+                            <span class="action">添加到收集桶</span>
+                        </span>
+                    </a>
+                    
+                    <span v-else-if="bucketState === 'before'" title="添加到收集桶" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket.png" alt="添加到收集桶" >
+                        <span class="action">添加到收集桶</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'adding'" title="Adding to bucket" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket-adding.gif" alt="Adding to bucket" >
+                        <span class="action">Adding to bucket</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'added'" title="已添加到收集桶" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket-added.png" alt="已添加到收集桶" >
+                        <span class="action">已添加到收集桶</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'alreadyInBucket'" title="项目已经在收集桶中" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket-added.png" alt="项目已经在收集桶中" >
+                        <span class="action">项目已经在收集桶中</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'removedFromBucket'" title="移出收集桶" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket.png" alt="移出收集桶" >
+                        <span class="action">移出收集桶</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'fullBucket'" title="收集桶已满" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket.png" alt="收集桶已满" >
+                        <span class="action">收集桶已满</span>
+                    </span>    
+                    
+                    <span v-else-if="bucketState === 'bucketError'" title="添加到收集桶时出现错误" v-on:click.once="addToBucket">
+                        <img width="16" height="16" src="/static/images/icons/cog-bucket.png" alt="添加到收集桶时出现错误" >
+                        <span class="action">添加到收集桶时出现错误</span>
+                    </span>    
+                </div>
+                <div class="item settings" v-if="user">
+                    <span style="padding-left: 14px;">
+                        <img width="16" height="16" src="/static/images/icons/cog-16.png">
+                        <a href="/account/settings/general?fromcog=1" class="settings" style="margin-left: 3px;">设置默认操作</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+    
+<script type="text/javascript" src="/static/scripts/vue-components/cog-actions.js?9ec149"></script>
+<script id="cog-action-template" type="text/x-template">
+
+<span class="inline-block" v-on:mouseenter="hoverOn" v-on:mouseleave="hoverOff">
+    <slot>
+        <img src="/static/images/icons/actions.png" height="20px" width="20px" :style="titleExists" ref="triggerCog" class="cogActions">
+    </slot>
+</span>
+
+</script>
+
+
+
+<script type="text/javascript" src="/static/scripts/vue-components/generic/mj-modal.js?9ec149"></script>
+
+<script id="mj-modal-template" type="text/x-template">
+
+    <div class="mj-modal-container">
+        <div class="mj-modal" v-bind:style="{ width: width + 'px'}">
+            <div class="mj-modal-title">
+                <span>{{modalTitle}}</span>
+                <button class="mj-modal-close" v-on:click="destruct" v-if="closeButton">
+                    <span class="mj-modal-close-icon"></span>
+                </button>
+            </div>
+            <div class="mj-modal-content" v-bind:style="{maxHeight: maxHeight + 'px'}">
+                <slot></slot>
+                <button class="modal-titlebar-ok" v-on:click="$emit('ok')" v-if="okButton">
+                    <span>OK</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+
+<script type="text/javascript" src="/static/scripts/d3/d3.min.js"></script>
+<script type="text/javascript" src="/static/scripts/d3/d3-function.js"></script>
+<script type="text/javascript" src="/static/scripts/util/promise/timeout.js"></script>
+<script type="text/javascript" src="/static/scripts/vue-components/download-all-backlinks.js?9ec149"></script>
+
+<script id="download-backlinks-template" type="text/x-template">
+
+    <div>
+        <template v-if="noResults">
+            <p v-html="noResultsErrorMessage"></p>
+			<div class="grey-bg flex-row-align-center flex-justify-center vert-margin-10">
+                <template v-if="!switchingIndex">
+					<span class="download-all-backlinks-index pointer" v-on:click="switchIndex('Fresh')" v-bind:class="{'selected' : indexDataSourceSelected == 'Fresh'}">
+						<span class="flex-row-align-center">
+							<img src="/static/images/icons/tools/fresh-index.png" height="16" width="16" border="0">&nbsp;
+							<label class="pointer" for="freshIndexDataSourceForDownload">最新</label>&nbsp;
+							<input class="radio_mid_align pointer" id="freshIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Fresh" />
+						</span>
+					</span>
+					<span>|</span>
+					<span class="download-all-backlinks-index pointer" v-on:click="switchIndex('Historic')" v-bind:class="{'selected' : indexDataSourceSelected == 'Historic'}">
+						<span class="flex-row-align-center">
+							<img src="/static/images/icons/tools/historic-index.png" height="16" width="16" border="0">&nbsp;
+							<label class="pointer" for="historicIndexDataSourceForDownload">历史</label>&nbsp;
+							<input class="radio_mid_align pointer" id="historicIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Historic" />
+						</span>
+					</span>
+                </template>
+                <template v-else>
+                    <template v-if="switchingIndexError">
+                        <p>抱歉！ 发生错误，请刷新页面，然后重试。</p>
+                    </template>
+                    <template v-else>
+                        <span class="index_switch_delay">Switching index</span>
+                    </template>
+                </template>
+            </div>
+        </template>
+
+        <template v-else>
+            <div class="download-all-backlinks active">
+                <div class="mob-single-panel" v-bind:style="mobPanelStyle">
+
+                    <template v-if="typeOfQuery == 'Domain'">
+                        <template v-if="hasMultipleBacklinks">
+                        <p v-bind:class="{ 'truncated' : query > 50 }">域<b class="query-tooltip" v-bind:title="query">{{ query | truncate(50) }}</b>拥有<b>{{ numberOfBacklinks | numerical-format }}</b>个反向链接。</p>
+                        </template>
+                        <template v-else>
+                        <p v-bind:class="{ 'truncated' : query > 50 }">域<b class="query-tooltip" v-bind:title="query">{{ query | truncate(50) }}</b>拥有<b>{{ numberOfBacklinks | numerical-format }}</b>个反向链接。</p>
+                        </template>
+                    </template>
+
+                    <template v-else-if="typeOfQuery == 'Subdomain'">
+                        <template v-if="hasMultipleBacklinks">
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="mutltipleSubdomainMessage"></p>
+                        </template>
+                        <template v-else>
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="singleSubdomainMessage"></p>
+                        </template>
+                    </template>
+
+                    <template v-else-if="typeOfQuery == 'URL' && usePrefix">
+                        <template v-if="hasMultipleBacklinks">
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="multipleWilcardPages"></p>
+                        </template>
+                        <template v-else>
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="singleWildcardPages"></p>
+                        </template>
+                    </template>
+                    
+                    <template v-else>
+                        <template v-if="hasMultipleBacklinks">
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="multiplePagesMessage"></p>
+                        </template>
+                        <template v-else>
+                            <p v-bind:class="{ 'truncated' : query > 50 }" v-html="singlePagesMessage"></p>
+                        </template>
+                    </template>
+                    
+                    <p v-if="showSupplementalLinks">Plus <b>{{ supplementalLinks | numerical-format }}</b> supplemental links.</p>
+
+                    <template v-if="quickDownloadPossible && selectQuickDownload">
+                        <div>
+                            <p style="color: #080;"><b>有个更好的方法可以下载您的反向链接</b></p>
+                            <p>
+                                如果反向链接的数量较少，我们建议您使用我们的超快速下载。
+                                <template v-if="isDomainVerified">
+                                    不同于导出原始数据，您不用使用您的配额单位，而且您的下载可在瞬间准备完毕。
+                                </template>
+                                <template v-else>
+                                    不同于导出原始数据，您的下载可在瞬间准备完毕。
+                                </template>
+                            </p>
+                            <p>选择类型：</p>
+                            <table width="100%">
+                                <tr>
+                                    <td align="right"><input id="data_type_excel" class="blue" type="radio" name="format" value="Excel" v-model="quickDownloadFormat"></td>
+                                    <td align="left"><span class="hoverTitle" title="可以直接在 Microsoft Excel 中打开的 xls 文件"><label for="data_type_excel">Excel</label></span></td>
+                                    <td align="right"><input id="data_type_csv" class="blue" type="radio" name="format" value="Csv" v-model="quickDownloadFormat"></td>
+                                    <td align="left"><span class="hoverTitle" title="用逗号分隔的 UTF-8 编码文件"><label for="data_type_csv">CSV</label></span></td>
+                                    <td align="right"><input id="data_type_tsv" class="blue" type="radio" name="format" value="Tsv" v-model="quickDownloadFormat"></td>
+                                    <td align="left"><span class="hoverTitle" title="用制表符分隔的 UTF-8 编码文件"><label for="data_type_tsv">TSV</label></span></td>
+                                </tr>
+                            </table>
+                            <form action="/data-output">
+                                <input type="hidden" id="data_output_UsePrefixScan" v-bind:value="usePrefix ? 1 : 0" name="UsePrefixScan">
+                                <input type="hidden" id="data_output_index_data_source" v-bind:value="currentIndexSource" name="index_data_source">
+                                <input type="hidden" id="data_output_item" v-bind:value="query" name="item">
+                                <input type="hidden" id="data_output_mode" v-bind:value="showDeletedBacklinks ? 0 : 1" name="mode">
+                                <input type="hidden" id="data_output_request_name" value="ExplorerBacklinks" name="request_name">
+                                <input type="hidden" id="data_output_request_name" v-bind:value="quickDownloadFormat" name="format">
+                                
+								<div class="grey-bg flex-row-align-center vert-margin-10">
+                                     <template v-if="!switchingIndex">
+										<span class="download-all-backlinks-index pointer " v-on:click="switchIndex('Fresh')" v-bind:class="{'selected' : indexDataSourceSelected == 'Fresh', 'flex-left-auto' : !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)}">
+											<span class="flex-row-align-center">
+												<img src="/static/images/icons/tools/fresh-index.png" height="16" width="16" border="0">&nbsp;
+												<label class="pointer" for="freshIndexDataSourceForDownload">最新</label>&nbsp;
+												<input class="radio_mid_align pointer" id="freshIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Fresh" />
+											</span>
+										</span>
+										<span>|</span>
+										<span class="download-all-backlinks-index pointer" v-on:click="switchIndex('Historic')" v-bind:class="{'selected' : indexDataSourceSelected == 'Historic'}">
+											<span class="flex-row-align-center">
+												<img src="/static/images/icons/tools/historic-index.png" height="16" width="16" border="0">&nbsp;
+												<label class="pointer" for="historicIndexDataSourceForDownload">历史</label>&nbsp;
+												<input class="radio_mid_align pointer" id="historicIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Historic" />
+											</span>
+										</span>
+										<input id="downloadButton" v-if="!tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)" type="submit" class="btn_lrg_green inline-block download-all-backlinks-button flex-left-auto" value="下载 反向链接" style="float: right; margin: 0; overflow: visible;" :disabled="switchingIndex" />
+                                    </template>
+                                    <template v-else>
+                                        <template v-if="switchingIndexError">
+                                            <p>抱歉！ 发生错误，请刷新页面，然后重试。</p>
+                                        </template>
+                                        <template v-else>
+                                            <span class="index_switch_delay">Switching index</span>
+                                        </template>
+                                    </template>
+                                </div>
+                            </form>
+                        </div>                    
+                    </template>
+
+                    <template v-else>
+                        <template v-if="remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified && !tooManyBacklinks">
+                            <div id="insufficient_resources" style="color: #AA4643; border-top: 1px solid #caccce; padding-top: 10px;">
+                                <p>
+                                    我们无法生成下载，因为这使用的资源会超出您现有订阅计划中的可用资源。
+                                </p>
+                            </div>
+                        </template>
+
+                        <template v-else>
+                            <div id="default_download_content" v-if="!tooManyBacklinks">
+                                <template v-if="isDomainVerified && userStat == 'S'">
+                                    <p>
+                                        对于验证域不会扣减配额。
+                                    </p>
+                                </template>
+
+                                <template v-else-if="!isDomainVerified && userStat == 'S'">
+                                    <template v-if="(analysisUnitsCost / remainingAnalysisUnits) * 100 < 1">
+                                        <p v-if="analysisUnitsCost > 1" v-html="analysisCostNear1PtMultipleMessage"></p>
+                                        <p v-else v-html="analysisCostNear1PtSingleMessage"></p>
+                                    </template>
+                                    <template v-else-if="(analysisUnitsCost / remainingAnalysisUnits) * 100 > 99">
+                                        <p v-if="analysisUnitsCost > 1" v-html="analysisCostNear100PtMultipleMessage"></p>
+                                        <p v-else v-html="analysisCostNear100PtSingleMessage"></p>
+                                    </template>
+
+                                    <template v-else>
+                                        <p v-if="analysisUnitsCost > 1" v-html="analysisCostMultipleMessage"></p>
+                                        <p v-else v-html="analysisCostSingleMessage"></p>
+                                    </template>
+                                    <p>
+                                    </p>
+                                </template>
+                            </div>
+                        </template>
+
+                        <transition v-on:before-enter="beforeEnter" v-on:enter="slideDown" v-on:leave="slideUp">
+                            <div id="download_exists" class="error_box" style="margin-bottom: 10px; display:block;" v-if="downloadExists && !buildingDownload && !switchingIndex">
+                                <template v-if="isDownloadComplete">
+                                    <span class="title"></span>
+                                    <p class="message">此下载已经存在于您的<a href="/reports/downloads">下载</a>文件夹中，上次生成时间为  {{ lastDownloadedDate | date-time-format }}.</p>
+                                </template>
+
+                                <template v-else>
+                                    <span class="title"><b>&#x4E0B;&#x8F7D;&#x5DF2;&#x7ECF;&#x8BF7;&#x6C42;</b></span>
+                                    <p class="message">
+                                        我们正在生成您之前针对这个域名已经请求的下载。
+                                        <template v-if="!isDomainVerified">
+                                            &#x5982;&#x679C;&#x60A8;&#x91CD;&#x65B0;&#x751F;&#x6210;&#x4E0B;&#x8F7D;&#xFF0C;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x989D;&#x5916;&#x7684;&#x914D;&#x989D;&#x6263;&#x51CF;&#x3002;
+                                        </template>
+                                    </p>
+                                    <p class="message">Your download will appear in your <a href="/reports/downloads">downloads</a> page.</p>
+                                </template>                            
+                            </div>
+                        </transition>
+
+                        <div class="small" style="padding-top: 10px;" v-if="enabledAdvancedExports && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)">
+                            <span style="background: none repeat scroll 0 0 #E0E0E0; padding: 3px 5px;">高级</span><input id="advanced_export_settings" style="margin: 0px 5px 0px 10px; position: relative; top: 2px;" type="checkbox" v-model="useAdvancedExports"/><label for="advanced_export_settings">使用我的</label><a href="/account/settings/advreport">高级报告设置</a></a>
+                        </div>
+
+                        <transition v-on:before-enter="beforeEnter" v-on:enter="slideDown" v-on:leave="slideUp">
+                            <div class="error_box" style="margin-top: 20px; display:block;" v-if="useAdvancedExports">
+                                <b>警告</b>：仅供高级用户使用。 
+                                <template v-if="isDomainVerified">
+                                    由于对于验证域不会扣减配额，您可能更愿意提取完整的数据。
+                                </template>
+                                <template v-else>
+                                    It will cost {{analysisUnitsCost || numerical-format}} unit<template v-if="analysisUnitsCost > 1">s</template> to prepare this download, but the result may have substantially fewer lines of data.
+                                </template>
+                            </div>
+                        </transition>
+
+                        <div class="grey-bg flex-row-align-center flex-justify-center vert-margin-10">
+                            <template v-if="!switchingIndex">
+								<span class="download-all-backlinks-index pointer " v-on:click="switchIndex('Fresh')" v-bind:class="{'selected' : indexDataSourceSelected == 'Fresh', 'flex-left-auto' : !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)}">
+									<span class="flex-row-align-center">
+										<img src="/static/images/icons/tools/fresh-index.png" height="16" width="16" border="0">&nbsp;
+										<label class="pointer" for="freshIndexDataSourceForDownload">最新</label>&nbsp;
+										<input class="radio_mid_align pointer" id="freshIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Fresh" />
+									</span>
+								</span>
+								<span>|</span>
+								<span class="download-all-backlinks-index pointer" v-on:click="switchIndex('Historic')" v-bind:class="{'selected' : indexDataSourceSelected == 'Historic'}">
+									<span class="flex-row-align-center">
+										<img src="/static/images/icons/tools/historic-index.png" height="16" width="16" border="0">&nbsp;
+										<label class="pointer" for="historicIndexDataSourceForDownload">历史</label>&nbsp;
+										<input class="radio_mid_align pointer" id="historicIndexDataSourceForDownload" type="radio" v-model="indexDataSourceSelected" value="Historic" />
+									</span>
+								</span>
+                                <input id="downloadButton" v-if="!tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)" type="button" v-on:click="downloadComplete ? navigateTo(downloadObject['downloadPath']) : buildingDownload ? null : downloadBacklinks()" class="btn_lrg_green inline-block download-all-backlinks-button flex-left-auto" v-bind:class="{'loading_gif' : buildingDownload, 'download_ready' : downloadComplete, 'download_pause' : downloadResponseError }" :value="downloadButtonText" style="margin-left: 20px; border-radius: 0 2px 2px 0;" :disabled="switchingIndex" />
+                            </template>
+                            <template v-else>
+                                <template v-if="switchingIndexError">
+                                    <p>抱歉！ 发生错误，请刷新页面，然后重试。</p>
+                                </template>
+                                <template v-else>
+                                    <span class="index_switch_delay">Switching index</span>
+                                </template>
+                            </template>
+                        </div>
+
+                        <template v-if="tooManyBacklinks">
+                            <div id="too_many_backlinks" class="error_box" style="display:block; margin-top: 16px;">
+                                <p style="margin-top: 0">
+                                    <b>反向链接太多</b>
+                                </p>
+                                <p>
+                                    抱歉！某些网站的反向链接太多，无法自动处理。
+                                </p>
+                                <p>
+                                    请提交一个支持请求，商量如何获取这些数据。
+                                </p>
+                                <a style="text-decoration: none;" href="/support/contact-us?subject=Raw Backlinks Export"><input id="contact_support" type="button" value="联系支持人"/></a>
+                            </div>
+                        </template>
+
+                        <p class="statusContent" style="clear: both;" v-if="statusMessage  && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)"><b>&#x60A8;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x5173;&#x95ED;&#x6B64;&#x6D88;&#x606F;&#x6846;&#x3002;</b></p>
+                        
+                        <p class="statusContent" style="clear: both;" v-if="downloadComplete  && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)" ><b>您的下载已准备就绪，</b>请使用“下载准备就绪”按钮。我们还将您的文件加入了您的<a href="/reports/downloads">下载</a>文件夹，供您以后下载。</p>
+
+                        <transition v-on:before-enter="beforeEnter" v-on:enter="slideDown" v-on:leave="slideUp">
+                            <div id="pause_content" class="error_box" style="clear: both;" v-if="downloadItemError">
+                                <p>问题：您下载的文件  {{query}}  失败。您的配额没有扣减。请重试。</p>
+                            </div>
+                        </transition>
+
+                        <div id="pause_content" class="error_box" style="clear: both;" v-if="downloadResponseError && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)">
+                            <template v-if="downloadResponseErrorMessage == 'invalidQuery'">
+                                <p class="message">对不起，我们无法识别输入的域/子域或 URL。您的配额没有被扣减。请重试一次。</p>
+                            </template>
+                            <template v-else-if="downloadResponseErrorMessage == 'noLongerVerified'">
+                                <span class="title">域名未验证</span>
+                                <p class="message">这个域/子域或 URL 最近的验证失败。请重试一次。</p>
+                            </template>
+                            <template v-else-if="downloadResponseErrorMessage == 'insufficientResources'">
+                                <p class="message">对不起，您当前的订阅计划没有足够的资源完成此下载。</p>
+                            </template>
+                            <template v-else-if="downloadResponseErrorMessage == 'freeBacklinksAllowanceReached'">
+                                <span class="title">反向链接太多</span>
+                                <p class="message">抱歉！某些网站的反向链接太多，无法自动处理。</p>
+                            </template>
+                        </div>
+                        
+                        <transition v-on:before-enter="beforeEnter" v-on:enter="slideDown" v-on:leave="slideUp">
+                            <div v-if="buildBacklinkError  && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)">
+                                <div class="error_box" style="clear: both;">
+                                    <h3>抱歉！</h3>
+                                    <p>发生错误，请刷新页面，然后重试。</p>
+                                </div>
+                            </div>
+                        </transition>
+
+                        <transition v-on:leave="slideUp">
+                            <p class="beforeReady small" style="clear: both;" v-if="!noResults && !downloadComplete && !tooManyBacklinks && !(remainingAnalysisUnits < analysisUnitsCost && !isDomainVerified)">
+                                * 根据域的大小不同，生成您的下载可能需要几秒钟到半小时的时间。这将出现在您的<a href="/reports/downloads">下载</a>页面。 所有下载均为Gzip格式，可以使用第三方工具如<a href="http://www.7-zip.org/">7-zip</a>或<a href="http://www.rarlab.com/">WinRAR</a>提取。
+                            </p>
+                        </transition>
+                    </template>
+
+
+			        <a href="javascript:void(0);" style="float: right; margin: 10px 0px 0px;" v-on:click="toggleQuickDownload" v-if="quickDownloadPossible && !buildingDownload && !switchingIndex && selectQuickDownload">不，我想导出原始数据</a>
+			        <a href="javascript:void(0);" style="float: right; margin: 10px 0px 0px;" v-on:click="toggleQuickDownload" v-if="quickDownloadPossible && !buildingDownload && !switchingIndex && !selectQuickDownload">不，我想快速下载</a>
+
+                </div>
+                <div id="allowanceCharts" class="mob-single-panel mob-auto-height" style="margin: 10px 0;" v-bind:style="allowanceChartStyle">
+                    <span><b>配额</b></span>
+
+                    <div id="allowance_before" class="allowances_chart_container" style="width:90px;height:90px;" v-show="showBeforeAllowanceChart">
+                        <div id="allowance_before_cogs" ref="allowance_before"></div>
+                    </div>
+                    <span class="allowance_before_label" v-show="showBeforeAllowanceChart">
+                        <template v-if="isDomainVerified || selectQuickDownload">
+                            免费
+                        </template>
+                        <template v-else>
+                            之前
+                        </template>
+                    </span>
+
+                    <template v-show="!isDomainVerified">
+                        <template v-if="analysisUnitsCost == remainingAnalysisUnits">
+                            <div id="no_allowance_remaing">
+                                <div id="allowance_after" style="width:71px;height:71px; background:#AA4643; border-radius:71px; display:block; margin: 0 auto 10px;"><div id="allowance_after_cogs" v-show="!selectQuickDownload"></div></div>
+                                没有<br>剩余配额
+                            </div>
+                        </template>
+                        <template v-else-if="analysisUnitsCost < remainingAnalysisUnits && !isDomainVerified">
+                            <div id="allowance_after" class="allowances_chart_container" style="width:90px;height:90px;" v-show="!selectQuickDownload"><div id="allowance_after_cogs" ref="allowance_after"></div></div>
+                            <span class="allowance_after_label" v-if="showBeforeAllowanceChart" v-show="!selectQuickDownload">之后</span>
+                            <template v-if="!showBeforeAllowanceChart">
+                                    <span class="allowance_after_label" v-if="allowanceUnitsPercentRemaining == 0" v-show="!selectQuickDownload">没有<br>剩余配额</span>
+                                    <span class="allowance_after_label" v-else-if="allowanceUnitsPercentRemaining < 1" v-show="!selectQuickDownload">剩余不到<b>1%</b><br></span>
+                                    <span class="allowance_after_label" v-else-if="allowanceUnitsPercentRemaining > 99" v-show="!selectQuickDownload">剩余将近<b>100%</b><br></span>
+                                    <template v-else>
+                                        <span class="allowance_after_label" v-show="!selectQuickDownload"><b>{{ allowanceUnitsPercentRemaining | round }}%</b><br />&#x5269;&#x4F59;</span>
+                                    </template>
+                            </template>
+                            </span>
+                        </template>
+                    </template>
+                </div>
+            </div>
+        </template>
+        <input ref="js-used-allowance" type="hidden" value="&#x5DF2;&#x4F7F;&#x7528;"/>
+        <input ref="js-left-allowance" type="hidden" value="&#x5269;&#x4F59;"/>
+    </div>
+
+</script>
+
+
+
+<div class="bucket-item-summary" id="vue-bucket-summary">
+	<h3>您收集桶列表中的书签</h3>
+	
+		<p>在整个网站，您都可以通过选择“添加到收集桶”，将任何网站或 URL 添加到您的收集桶列表。</p>
+		<form method="POST" action="/bucket/add-items" class="vert-margin-10">
+			<input id="bucket_input" type="text" placeholder="将网站加入您的书签" value="" name="items" class="rounded3" required>
+			<input type="hidden" value="6aa61fa4-1f6a-4655-9c5a-c88fbacf21ba" name="uid"/>
+			<input class="button orange" type="submit" value="试试">
+		</form>
+		<p class="small"><a href="/bucket">管理您的收集桶列表</a></p>
+	
+</div>
+
+<script>
+	$('#vue-bucket-summary .actionsContainer[v-cloak]').each(function() {
+		new Vue({
+			el: this,
+			mixins: [window.hasMountedMixin]
+		})
+	})
+</script>
+				</div>
+			</div>
+
+			<div class="flexbox mob-flex-column">
+				<div class="column-1-2 margin-right rounded3 padded-div remove-horz-pad vert-margin-10 mob-single-panel mob-no-margin">
+					<script type="text/javascript">
+$(document).ready(function() {
+
+    
+
+});
+</script>
+
+<div>
+    <h3 class="mob-margin">最近搜索</h3>
+    <div id="recent-searches-summary" class="recent-searches">
+
+			<p>我们可以保存您最近的五次搜索。</p>
+			<p>您只需要在您的<a href="/account/settings/recent-searches">设置</a>页面打开<i>最近搜索</i>选项即可。</p>
+
+    </div>
+    <p class="small">
+        <a href="/account/settings/recent-searches">启用</a>
+		<span class="recent-searches-options">
+		</span>
+    </p>
+</div>
+
+				</div>
+				<div class="column-1-2 rounded3 padded-div remove-horz-pad vert-margin-10 mob-single-panel mob-no-margin">
+					
+
+
+<div>
+    <h3 class="mob-margin">下载</h3>
+    
+		<p>您没有文件要下载。</p>
+		<p><a href="/plans-pricing">订阅用户</a>可以以 Excel、TSV、CSV 或 Google Sheets 格式从我们几乎所有的数据表下载数据。</p> 
+ 
+    
+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section expanded">
+		<div class="title mob-margin">
+			<h2>
+				来自 Majestic 官方博客
+				<img id="minimise-news-icon" class="minimise-icon title-icon" src="/static/images/icons/icon-cross-16.png"/>
+				<img id="expand-news-icon" class="expand-icon title-icon" src="/static/images/icons/icon-cross-arrow-16.png"/>
+			</h2>
+		</div>
+
+		<div class="content">
+			<div class="flexbox mob-flex-column">
+				<div class="column-1-1 margin-right vert-margin-10 padded-div remove-horz-pad mob-single-panel mob-margin">
+					<div id="blog_news_summary">
+    
+    <ul>
+        
+            
+                <li><a href="https://blog.majestic.com/development/2019-majestic-backlink-tool-year-in-review/" target="_blank" rel="noopener">2019 &ndash; Majestic Backlink Platform Year in Review</a></li>
+            
+        
+            
+                <li><a href="https://blog.majestic.com/commentary/considering-search-digital-marketing-in-2020/" target="_blank" rel="noopener">Considering Search &amp; Digital Marketing in 2020.</a></li>
+            
+        
+            
+                <li><a href="https://blog.majestic.com/case-studies/are-spam-nofollow-links-harmful/" target="_blank" rel="noopener">Are SPAM Nofollow Links Harmful?</a></li>
+            
+        
+            
+                <li><a href="https://blog.majestic.com/training/majestic-backlink-checker-and-link-building-workshop-at-smxl-milan-2019/" target="_blank" rel="noopener">Majestic Backlink Checker and Link Building Workshop at SMXL Milan 2019</a></li>
+            
+        
+            
+                <li><a href="https://blog.majestic.com/company/compare-related-sites/" target="_blank" rel="noopener">New Time-Saver: Compare  Related Sites</a></li>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </ul>
+    
+    <p class="small">这些新闻链接来自我们的<a class="small" href="http://blog.majestic.com/" target="_blank">博客</a>，将在新标签页中打开</p> 
+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section expanded">
+		<div class="title mob-margin">
+			<h2>
+				挖掘 Majestic 的更多功能
+				<img id="minimise-addons-icon" class="minimise-icon title-icon" src="/static/images/icons/icon-cross-16.png" />
+				<img id="expand-addons-icon" class="expand-icon title-icon" src="/static/images/icons/icon-cross-arrow-16.png" />
+			</h2>
+		</div>
+
+		<div class="content horz-margin mob-margin">
+			<div class="flexbox mob-flex-column">
+				<div class="column-1-3 margin-right grey-bg rounded3 mob-single-panel mob-margin">
+					<div>
+	<h3>帮助视频</h3>
+	<div class="contentPanelWhite noTopPad">
+		<p>
+			访问 <a href="http://blog.majestic.com/how-to-videos/">Majestic 博客</a>，观看我们的系列帮助视频。
+		</p>
+		<p>
+			这些视频专门针对 Majestic 制作，旨在向您演示如何使用我们网站的某些功能。其中一些视频已翻译为不同的语言，而且都可以在我们的 <a target="_blank" href="https://www.youtube.com/user/Majesticseovideo">Majestic YouTube 频道</a>观看。
+		</p>
+	</div>
+</div>
+				</div>
+				<div class="column-1-3 margin-left grey-bg rounded3 mob-single-panel mob-margin">
+					<div>
+	<h3>安装我们的浏览器扩展</h3>
+	<div class="padded-div inline-block">
+		<div>
+			<a class="block vert-margin-10" target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/majestic-seo-backlink-ana/pnmjaflneibolacpepklokkjnakmikmg">
+				<img src="/static/images/external-logos/chrome-web-store-small.png" height="58" width="206" border="0" title="Chrome 反向链接分析器" alt="Chrome 反向链接分析器"/>
+			</a>
+		</div>
+		<div>
+			<a class="block vert-margin-10" target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/majestic-seo-backlink-addon/">
+				<img width="150" height="57" src="/static/images/external-logos/firefox-icon.png" alt="Download Button" style="background: #fff none repeat scroll 0 0; border: 1px solid #ccc;padding: 5px 33px 0 20px;"/>
+			</a>
+		</div>
+	</div>
+</div>
+				</div>
+				<div class="column-1-3 margin-left grey-bg rounded3 mob-single-panel mob-margin">
+					<div>
+    <h3>Google Sheets 插件</h3>
+	<div class="contentPanelWhite noTopPad">
+		<p>从 Majestic 将链接数据直接导入您的 Google 电子表格，无需登录您的 Majestic 帐户。</p>
+		<p><a href="https://chrome.google.com/webstore/detail/majestic/ibgpannijkpmffaofdhoiabomgmiohdk">下载我们的 Google Sheets 插件</a>.</p>
+	</div>
+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	</div>
+	<div class="clearboth"></div>
+</div>
+
+
+			<div class="push"></div>
+			<!-- end #container -->
+		</div>
+	</div>
+	
+	<div class="footer-container">
+	
+
+	
+        
+        <div class="footer-sub-panel" style="background: rgba(255,255,255,0.3) none repeat scroll 0 0 !important;">
+            <div class="footer-sub-panel-content">
+                <div class="mob-single-panel mob-margin text-center">
+					
+					<p>我们可以为您改进此页面吗？<b><a href="/support/contact-us?Topic=feedback&subject=%E9%92%88%E5%AF%B9%E9%A1%B5%E9%9D%A2%20%22/account%22%20%E7%9A%84%E5%8F%8D%E9%A6%88" style="color: #fff;">请告诉我们</a></b></p>
+                </div>
+            </div>
+        </div>
+        
+	<div class="footer-sub-panel">
+		<div class="footer-sub-panel-content">
+			<div class="mob-single-panel mob-margin index-panel">
+				
+
+
+<div class="index-stats flexbox mob-flex-column">
+	<div class="column-1-2 margin-right vert-margin-10 mob-single-panel mob-no-margin" style="margin-right: 3%; width: 48%;">
+        <h3>最新索引</h3>
+		<div class="vert-pad-10">
+			<span>抓取的唯一 URL：</span>
+			<span class="floatr">440,270,106,837</span>
+		</div>
+		<div>
+			<span>发现的唯一 URL：</span>
+			<span class="floatr">1,094,083,451,713</span>
+		</div>
+		<div class="vert-pad-10">
+			<span>日期范围：</span>
+			<span class="floatr">19 Aug 2019 到 20 Dec 2019</span>
+		</div>
+		<div>
+			<span><a href="/support/faq#IndexBuilt">上次更新：</a></span>
+			<span class="floatr">
+				
+						2小时31分钟以前
+					
+			</span>
+		</div>
+    </div>
+    <div class="column-1-2 margin-left vert-margin-10 mob-single-panel" style="width: 48%;">
+        <h3>历史索引</h3>
+		<div class="vert-pad-10">
+			<span>抓取的唯一 URL：</span>
+			<span class="floatr">2,105,428,744,375</span>
+		</div>
+		<div>
+			<span>发现的唯一 URL：</span>
+			<span class="floatr"> 8,485,618,151,026</span>
+		</div>
+		<div class="vert-pad-10">
+			<span>日期范围：</span>
+			<span class="floatr">13 Oct 2013 到 15 May 2019</span>
+		</div>
+		<div>
+			<span><a href="/support/faq#IndexBuilt">上次更新：</a></span>
+			<span class="floatr"> 23 Jul 2019</span>
+		</div>
+    </div>
+</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="find-us footer-column">
+			<h5>SOCIAL</h5>
+			<ul>
+				<li class="twitter">
+					<a href="https://twitter.com/Majestic" title="Twitter" target="_blank" rel="noopener">
+					Twitter</a>
+				</li>
+				<li class="facebook"><a href="https://www.facebook.com/MajesticSite" title="Facebook" target="_blank" rel="noopener">Facebook</a></li>
+				<li class="youtube"><a href="https://youtube.com/c/majesticseo" title="Youtube" target="_blank" rel="noopener">Youtube</a></li>
+				<li class="linkedin"><a href="https://www.linkedin.com/groups/4343451" title="LinkedIn" target="_blank" rel="noopener">LinkedIn</a></li>
+				<li class="blog"><a href="https://blog.majestic.com" title="博客" target="_blank" rel="noopener">博客</a>  <img src="/static/images/icons/external-link.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></li>
+			</ul>
+		</div>
+
+		<div class="company footer-column">
+			<h5>COMPANY</h5>
+			<ul>
+				<li><a href="/support/contact-us">联系我们</a></li>
+				<li><a href="/support/about">关于</a></li>
+				<li><a href="/support/terms">条款与条件</a></li>
+				<li><a href="/support/privacy-policy">隐私政策</a></li>
+				<li><a href="/support/gdpr">GDPR</a></li>
+				<li><a href="https://blog.majestic.com/careers-at-majestic/" target="_blank" rel="noopener">就业机会</a>  <img src="/static/images/icons/external-link.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></li>
+			</ul>
+		</div>
+
+		<div class="empty footer-column">
+			<h5>工具</h5>
+			<ul>
+				<li><a href="/plans-pricing">计划与定价</a></li>
+				<li><a href="/reports/site-explorer-search">站点浏览器</a></li>
+				<li><a href="/reports/comparator?q1=example.com">比较域</a></li>
+				<li><a href="/reports/bulk-backlink-checker">批量反向链接</a></li>
+				<li><a href="/toybox/search-alpha?q=google">搜索浏览器</a></li>
+				<li><a href="https://developer-support.majestic.com/" target="_blank" rel="noopener">开发者 API</a> <img src="/static/images/icons/external-link.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5; " /></li>
+			</ul>
+		</div>
+
+		<div class="empty footer-column">
+			<h5>MAJESTIC FOR</h5>
+			<ul>
+				<li><a href="/support/tools/for-seoprofessionals">SEO 专业人员</a></li>
+				<li><a href="/support/tools/for-analysts">媒体分析师</a></li>
+				<li><a href="/backlink-checker">Backlink Checker</a></li>
+				<li><a href="/link-context">Link Context</a></li>
+				<li><a href="https://majesticanalytics.com" target="_blank" rel="noopener">企业</a> <img src="/static/images/icons/external-link.png" title="&#x5916;&#x90E8;&#x94FE;&#x63A5;" /></li>
+			</ul>
+		</div>
+
+		<div class="awards footer-column">
+			<a href="https://blog.majestic.com/press/majestic-win-princess-royal-award-for-training/" target="_blank" rel="noopener"><img src="/static/images/header-footer/princess-royal-2018.png" title="Winner of the Princess Royal Training Award for 2018" /></a>
+			<a href="https://blog.majestic.com/company/queens-award-winners-2017/" target="_blank" rel="noopener"><img src="/static/images/header-footer/the-queens-award-2017-trans.png" title="Winner of The Queen's Award For Enterprise: International Trade, 2017" /></a>	
+			<a href="https://blog.majestic.com/company/queensawardwinner/" target="_blank" rel="noopener"><img src="/static/images/header-footer/the-queens-award-2016-trans.png" title="Winners of The Queen's Award For Enterprise: Innovation 2016" /></a>
+					
+
+			<div class="up">
+				<a href="javascript:scrollToTop()">top ^</a>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+<!--
+    Third party attributions:
+
+    * Font Awesome Free by @fontawesome - https://fontawesome.com
+    * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+-->
+
+	
+		<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  
+
+	_paq.push(['setDocumentTitle',document.domain + "/" + document.title + "/version=/usr=R"]);	
+  
+
+	_paq.push(['setCustomVariable',  1,"Subdomain", "zh", "page"]); 
+	_paq.push(['setCustomVariable',  2,"Usr", "R", "page"]);
+	_paq.push(['setCustomVariable',  3,"Domain", "Majestic", "page"]);	
+	
+	
+		_paq.push(['setCustomVariable',  5,"UserGroups", "", "page"]);
+	
+	_paq.push(['trackPageView']); 
+	_paq.push(['enableLinkTracking']); 
+	_paq.push(['setDomains',"*.majestic.com"]);
+	_paq.push(['setCookieDomain','*.majestic.com']);
+
+	(function() {
+		var secure = ("https:" == document.location.protocol);
+		var u=(secure ? "https" : "http") + "://analytics.majestic.com/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 2]);
+		_paq.push(['setSecureCookie', secure]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+		g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+	
+</script>
+<noscript><p><img src="//analytics.majestic.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+	
+
+	
+</body>
+</html>

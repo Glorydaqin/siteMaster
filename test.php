@@ -1,28 +1,20 @@
 <?php
-namespace Facebook\WebDriver;
 
+
+ini_set('date.timezone', 'PRC');
+define('IN_DS', true);
+define('INCLUDE_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
 require 'vendor/autoload.php';
+include_once INCLUDE_ROOT . 'etc/init.php';
 
 
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 
-$host = '192.168.10.138:4444/wd/hub'; // this is the default
-$capabilities = DesiredCapabilities::chrome();
-$driver = RemoteWebDriver::create($host, $capabilities, 5000);
-
-try{
-
-    $driver->get('https://www.semrush.com');
-    $cookie = $driver->manage()->getCookies();
-    d($cookie);
-    d($driver->getTitle());
-    $driver->quit();
+$user_name = '692860800@qq.com';
+$user_pass = 'daqing';
+$majestic = new Majestic($user_name,$user_pass);
+$majestic->login();
 
 
-}catch (\Exception $exception){
+//获取验证码
 
-    $driver->quit();
-    dd($exception);
-}
 

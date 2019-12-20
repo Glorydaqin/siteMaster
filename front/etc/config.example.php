@@ -18,3 +18,4 @@ define('DOMAIN', 'test.com');
 define('DOMAIN_KWFINDER', 'kwfinder.' . DOMAIN);
 define('DOMAIN_AHREFS', 'ahrefs.' . DOMAIN);
 define('DOMAIN_SEMRUSH', 'semrush.' . DOMAIN);
+define('DOMAIN_MAJESTIC', 'majestic.' . DOMAIN);
