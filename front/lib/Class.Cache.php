@@ -62,5 +62,3 @@ class Cache
         return @mkdir($dir, $mode);
     }
 }
-
-?>

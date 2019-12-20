@@ -16,8 +16,6 @@ try {
 
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     $account_id = $_SESSION['account_id'];
-//转发页面
-    $url = trim($url, '/');
 
 //检查账号存在
     $account = Account::get_account($account_id, $_SESSION['site_id']);
@@ -31,7 +29,12 @@ try {
     ) {
         die('folder limit ｜ 目录访问限制');
     }
+
+    $url = trim($url, '/');
     $url_is_cdn = false;
+    if (stripos($url, '.js') || stripos($url, '.css') || stripos($url, '.svg')) {
+        $url_is_cdn = true;
+    }
 
     //查询记录数
 //    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');

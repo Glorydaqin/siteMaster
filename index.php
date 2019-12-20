@@ -22,16 +22,15 @@ if ($server_domain == DOMAIN) {
     } elseif ($script_uri == '/test/') {
         include_once FRONT_DIR . 'test.php';
     }
-} elseif (in_array($server_domain, [DOMAIN_AHREFS, DOMAIN_KWFINDER])) {
-    if ($server_domain == DOMAIN_AHREFS) {
-        include_once FRONT_DIR . 'transfer_ahrefs.php';
-    } elseif ($server_domain == DOMAIN_KWFINDER) {
-        include_once FRONT_DIR . 'transfer_kwfinder.php';
-    } elseif ($server_domain == DOMAIN_SEMRUSH) {
-        include_once FRONT_DIR . 'transfer_kwfinder.php';
-    } elseif ($server_domain == DOMAIN_MAJESTIC) {
-        include_once FRONT_DIR . 'transfer_majestic.php';
-    }
+} elseif ($server_domain == DOMAIN_AHREFS) {
+    include_once FRONT_DIR . 'transfer_ahrefs.php';
+} elseif ($server_domain == DOMAIN_KWFINDER) {
+    include_once FRONT_DIR . 'transfer_kwfinder.php';
+} elseif ($server_domain == DOMAIN_SEMRUSH) {
+    include_once FRONT_DIR . 'transfer_semrush.php';
+} elseif ($server_domain == DOMAIN_MAJESTIC) {
+    include_once FRONT_DIR . 'transfer_majestic.php';
 }
+
 
 die("错误的访问 | error access");

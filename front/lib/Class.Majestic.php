@@ -63,7 +63,7 @@ class Majestic
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
+        curl_setopt($ch, CURLOPT_TIMEOUT, 50);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
         curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
@@ -119,14 +119,14 @@ class Majestic
     public function get($url, $data = [], $is_cdn = false)
     {
         //检查是否有缓存，有则调用缓存
-//        $cache = new Cache();
-//        if ($is_cdn) {
-//            $cache_file = $cache->get_cache($url);
-//            if ($cache_file) {
-//                $cache_file = json_decode($cache_file, true);
-//                return $cache_file;
-//            }
-//        }
+        $cache = new Cache();
+        if ($is_cdn) {
+            $cache_file = $cache->get_cache($url);
+            if ($cache_file) {
+                $cache_file = json_decode($cache_file, true);
+                return $cache_file;
+            }
+        }
 
 
         if (!$this->check_is_login()) {
@@ -142,10 +142,10 @@ class Majestic
                 $result = $this->curl($url, $data);
             }
         }
-//        if ($is_cdn) {
-//            $result_str = json_encode($result);
-//            $cache->set_cache($url, $result_str);
-//        }
+        if ($is_cdn) {
+            $result_str = json_encode($result);
+            $cache->set_cache($url, $result_str);
+        }
         return $result;
     }
 
@@ -249,30 +249,14 @@ class Majestic
      */
     public function revoke_url($url)
     {
-        $real_url = self::$domain . $url;
-        if (stripos($url, 'mangools_domain/') !== false) {
-            $real_url = str_replace("mangools_domain/", KwFinder::$mangools_domain, $url);
-        } elseif (stripos($url, 'mangools_api_domain/') !== false) {
-            $real_url = str_replace("mangools_api_domain/", KwFinder::$mangools_api_domain, $url);
+        if (stripos($url, 'majestic.com')) {
+            return $url;
         }
-        if (stripos($real_url, 'users/current_user') !== false) {
-            $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
-        }
-        return $real_url;
+        return self::$domain . $url;
     }
 
     public function replace_main_js($url, $html)
     {
-        if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
-            //替换    https://api2.mangools.com => /mangools_api_domain
-            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
-            //替换 https://mangools.com => /mangools_domain
-            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
-            //替换    https://app.kwfinder.com =>
-            $html = str_replace('https://app.kwfinder.com', PROTOCOL . DOMAIN_KWFINDER, $html);
-            //替换    app.kwfinder.com =>
-            $html = str_replace('app.kwfinder.com', DOMAIN_KWFINDER, $html);
-        }
         return $html;
     }
 
