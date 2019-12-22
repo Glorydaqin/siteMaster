@@ -105,12 +105,6 @@ try {
             return $matches[0];
         }, $html);
 
-        //添加一个top bar
-        $html = preg_replace_callback("/(<body>)/", function ($matches) {
-            $inner_html = "<div style='position:fixed;z-index:99999;background-color:#ddd;'><a href='" . PROTOCOL . DOMAIN . "/choose_account/'>HOME-选账号</a></div>";
-            return $matches[0] . $inner_html;
-        }, $html);
-
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }

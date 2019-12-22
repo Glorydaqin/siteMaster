@@ -103,12 +103,8 @@ try {
             return $matches[0];
         }, $html);
 
-        //添加一个top bar
-        $html = preg_replace_callback("/(<body[^>]+?>)/", function ($matches) use ($keywordLimit) {
-            $limit = 10 - $keywordLimit;
-            $inner_html = "<div style='position:absolute; z-index:99; top:5;  background-color:#ddd; '><a href='" . PROTOCOL . DOMAIN . "/choose_account/'>HOME-选账号({$limit}/10)</a></div>";
-            return $matches[0] . $inner_html;
-        }, $html);
+        //替换用户信息
+        $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }
 
     header('Content-Type: ' . $response['info']['content_type']);
