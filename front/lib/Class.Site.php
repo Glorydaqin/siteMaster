@@ -27,6 +27,7 @@ class Site
 
     /**
      * @param $user_id
+     * @return mixed
      */
     public static function get_list_with_access($user_id)
     {

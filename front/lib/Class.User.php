@@ -50,7 +50,7 @@ class User
         $keyval = array_combine(array_column($access, 'site_id'), array_column($access, 'expired_at'));
         if (isset($keyval[$site_id])) {
             if ($now < strtotime($keyval[$site_id])) {
-                return true;
+                return $keyval[$site_id];
             }
         }
         return false;

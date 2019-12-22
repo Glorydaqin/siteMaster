@@ -21,11 +21,9 @@ if ($server_domain == DOMAIN) {
     } elseif ($script_uri == '/dashboard/') {
         include_once FRONT_DIR . 'dashboard.php';
     } elseif ($script_uri == '/choose/') {
-        include_once FRONT_DIR . 'choose_site.php';
+        include_once FRONT_DIR . 'choose.php';
     } elseif ($script_uri == '/logout/') {
         include_once FRONT_DIR . 'logout.php';
-    } elseif ($script_uri == '/choose_account/') {
-        include_once FRONT_DIR . 'choose_account.php';
     } elseif ($script_uri == '/test/') {
         include_once FRONT_DIR . 'test.php';
     }

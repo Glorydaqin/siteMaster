@@ -46,6 +46,7 @@ foreach ($site_list as &$site) {
     }
     $site['account_list'] = $account_list;
 }
+//dd($site_list);
 
 $tpl->assign('site_list', $site_list);
 

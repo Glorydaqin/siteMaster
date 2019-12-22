@@ -24,10 +24,10 @@
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-12">
         <blockquote class="text-warning" style="font-size:14px">
-            感谢选择Vip For Me,下方是您可访问的服务和对应的实效
+            感谢选择 Vip For Me,下方是您可访问的服务和对应的时效
             <br>有任何问题联系请联系卖家
 
-            <h4 class="text-danger">全新Vip For Me ,他来了</h4>
+            <h4 class="text-danger">全新 Vip For Me ,他来了</h4>
         </blockquote>
 
         <hr>
@@ -63,29 +63,33 @@
                             <div id="tab-<?=$site['id']?>" class="tab-pane <?if($key == 0){?> active <?}?>">
 
                                 <a class="list-group-item active">
-                                    <h3 class="list-group-item-heading"><?=$site['name']?></h3>
+                                    <h3 class="list-group-item-heading">
+                                        <?=$site['name']?>&nbsp;&nbsp;<span class="small">权限到期时间:<?=$site['is_available']?></span>
+                                    </h3>
 
                                     <p class="list-group-item-text"><?=$site['desc']?></p>
                                 </a>
-                                <!--                        <a class="list-group-item">-->
-                                <!--                            <h3 class="list-group-item-heading">选择账号</h3>-->
-                                <!---->
-                                <!--                            <p class="list-group-item-text">沉思十五年中事，才也纵横，泪也纵横，双负箫心与剑名。春来没个关心梦，自忏飘零，不信飘零，请看床头金字经。</p>-->
-                                <!--                        </a>-->
-                                <div class="faq-item">
-                                    <div class="row">
-                                        <?foreach ($site['account_list'] as $account){?>
-                                            <div class="col-md-8">
-                                                <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">账号<?=$account['id']?></a>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <?foreach ($account['target'] as $target){?>
-                                                    <span class="btn-sm btn-info"><?=$target['name']?></span>
-                                                <?}?>
-                                            </div>
-                                        <?}?>
+
+                                <?if($site['is_available']){?>
+                                    <div class="faq-item">
+                                        <div class="row">
+                                            <?foreach ($site['account_list'] as $account){?>
+                                                <div class="col-md-4">
+                                                    <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">账号<?=$account['id']?></a>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <?foreach ($account['target'] as $target){?>
+                                                        <span class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>')"><?=$target['name']?></span>
+                                                    <?}?>
+                                                </div>
+                                            <?}?>
+                                        </div>
                                     </div>
+                                <?}else{?>
+                                <div class="faq-item">
+                                    账号已过期，请续费
                                 </div>
+                                <?}?>
                             </div>
 
                         <?}?>
@@ -129,6 +133,26 @@
 
     <!-- 欢迎信息 -->
     <script src="/js/welcome.js"></script>
+
+    <script>
+        function go(url) {
+            window.open(url);
+        }
+
+        function openLayerFrame(title,url){
+
+            //iframe层
+            parent.layer.open({
+                type: 2,
+                title: title,
+                shadeClose: true,
+                maxmin: true,
+                shade: 0.8,
+                area: ['90%', '90%'],
+                content: url //iframe的url
+            });
+        }
+    </script>
 </body>
 
 </html>

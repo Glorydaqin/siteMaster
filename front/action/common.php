@@ -16,12 +16,12 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['HTTP_HOST'] != DOMAIN) {
     //site_id
     if (!isset($_SESSION['site_id'])) {
-        temporarily_header_302(PROTOCOL . DOMAIN . '/choose_site/');
+        die('参数错误，请关闭重试');
     }
 
     // 转发子域名验证 session
     if (!isset($_SESSION['account_id'])) {
-        temporarily_header_302(PROTOCOL . DOMAIN . '/choose_account/');
+        die('参数错误，请关闭重试');
     }
 
 }
