@@ -52,7 +52,7 @@ if (!isset($_POST['account_id'])) {
     //有数据了就该往外站跳转了
     if ($account_info['site_name'] == 'ahrefs') {
         $url = PROTOCOL . DOMAIN_AHREFS . '/dashboard';
-    } elseif ($account_info['site_name'] == 'kwfinder') {
+    } elseif ($account_info['site_name'] == 'mangools') {
         $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
     } elseif ($account_info['site_name'] == 'majestic') {
         $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';

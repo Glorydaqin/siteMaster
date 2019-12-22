@@ -15,7 +15,12 @@ define('LOG_DIR', dirname(INCLUDE_ROOT) . '/log/');
 
 define("PROTOCOL", 'http://');
 define('DOMAIN', 'test.com');
-define('DOMAIN_KWFINDER', 'kwfinder.' . DOMAIN);
 define('DOMAIN_AHREFS', 'ahrefs.' . DOMAIN);
 define('DOMAIN_SEMRUSH', 'semrush.' . DOMAIN);
 define('DOMAIN_MAJESTIC', 'majestic.' . DOMAIN);
+//mangools 系列
+define('DOMAIN_KWFINDER', 'kwfinder.' . DOMAIN);
+define('DOMAIN_SERPCHECKER', 'serpchecker.' . DOMAIN);
+define('DOMAIN_SERPWATCHER', 'serpwatcher.' . DOMAIN);
+define('DOMAIN_LINKMINER', 'linkminer.' . DOMAIN);
+define('DOMAIN_SITEPROFILER', 'siteprofiler.' . DOMAIN);
