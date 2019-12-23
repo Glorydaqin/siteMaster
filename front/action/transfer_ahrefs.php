@@ -72,8 +72,7 @@ try {
     //记录操作
     UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
 
-//    if (stripos($response['info']['content_type'], 'text/html') !== false) {
-    if ($response['info']['content_type'] == 'text/html') {
+    if (stripos($response['info']['content_type'], 'text/html') !== false) {
 // 替换内容
 //链接
         $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
@@ -102,10 +101,6 @@ try {
             return $matches[0];
         }, $html);
 
-
-    }
-
-    if (stripos($response['info']['content_type'], 'text/html') !== false) {
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }
