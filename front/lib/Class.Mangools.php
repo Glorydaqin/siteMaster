@@ -135,14 +135,22 @@ class Mangools
     public function get($url, $data = [], $is_cdn = false)
     {
         //检查是否有缓存，有则调用缓存
-//        $cache = new Cache();
-//        if ($is_cdn) {
-//            $cache_file = $cache->get_cache($url);
-//            if ($cache_file) {
-//                $cache_file = json_decode($cache_file, true);
-//                return $cache_file;
-//            }
-//        }
+        $cache = new Cache();
+        if (stripos($url, '/users/current_user')) {
+            $cache_file = $cache->get_cache($url, 60);
+            $result = json_decode($cache_file, true);
+
+            if (!empty($result['body'])) {
+                return $cache_file;
+            }
+        }
+        if ($is_cdn) {
+            $cache_file = $cache->get_cache($url);
+            if ($cache_file) {
+                $cache_file = json_decode($cache_file, true);
+                return $cache_file;
+            }
+        }
 
 
         if (!$this->check_is_login()) {
@@ -158,10 +166,14 @@ class Mangools
                 $result = $this->curl($url, $data);
             }
         }
-//        if ($is_cdn) {
-//            $result_str = json_encode($result);
-//            $cache->set_cache($url, $result_str);
-//        }
+        if (stripos($url, '/users/current_user') && !empty($result['body'])) {
+            $result_str = json_encode($result);
+            $cache->set_cache($url, $result_str);
+        }
+        if ($is_cdn && !empty($result['body'])) {
+            $result_str = json_encode($result);
+            $cache->set_cache($url, $result_str);
+        }
         return $result;
     }
 

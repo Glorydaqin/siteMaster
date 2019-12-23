@@ -139,7 +139,7 @@ class Ahrefs
             $this->login();
             $result = $this->curl($url, $data);
         }
-        if ($is_cdn) {
+        if ($is_cdn && !empty($result['body'])) {
             $result_str = json_encode($result);
             $cache->set_cache($url, $result_str);
         }
