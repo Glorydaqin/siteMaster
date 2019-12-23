@@ -48,7 +48,7 @@ if ($account_info['site_name'] == 'ahrefs') {
     $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';
 } else {
     //回去重新选site
-    $url = PROTOCOL . DOMAIN . '/choose_site/';
+    $url = PROTOCOL . DOMAIN . '/dashboard/';
 }
 
 temporarily_header_302($url);
