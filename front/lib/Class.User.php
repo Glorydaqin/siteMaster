@@ -56,4 +56,30 @@ class User
         return false;
     }
 
+    /**
+     * 获取上次登陆session id
+     *
+     * @param $user_id
+     * @return string
+     */
+    public static function get_last_session_id($user_id)
+    {
+        $info = self::get_info($user_id);
+        return $info['last_session_id'] ?? '';
+    }
+
+    /**
+     * 设置上次登陆session id
+     * @param $user_id
+     * @param string $session_id
+     * @return string
+     */
+    public static function set_last_session_id($user_id, $session_id = '')
+    {
+
+        $sql = "update user set last_session_id = '{$session_id}' where id = {$user_id}";
+        $result = $GLOBALS['db']->query($sql);
+
+        return $result;
+    }
 }

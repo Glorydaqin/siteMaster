@@ -11,6 +11,13 @@
 if (!isset($_SESSION['user_id'])) {
     temporarily_header_302(PROTOCOL . DOMAIN . '/');
 }
+//检查session_id 是否一致
+$session_id = session_id();
+$last_session_id = User::get_last_session_id($_SESSION['user_id']);
+if ($last_session_id != $session_id) {
+    session_unset();
+    temporarily_header_302(PROTOCOL . DOMAIN . '/');
+}
 
 //其他站点下检查配置
 if ($_SERVER['HTTP_HOST'] != DOMAIN) {
@@ -23,5 +30,4 @@ if ($_SERVER['HTTP_HOST'] != DOMAIN) {
     if (!isset($_SESSION['account_id'])) {
         die('参数错误，请关闭重试');
     }
-
 }

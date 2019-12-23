@@ -24,6 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_expired_at'] = $row['expired_at'];
         $_SESSION['site_expired_at'] = User::get_access($row['id']);
 
+        //更新session_id
+        $session_id = session_id();
+        User::set_last_session_id($row['id'], $session_id);
+
         temporarily_header_302('/index/');
     } elseif ($row && strtotime($row['expired_at']) < time()) {
         die('user deny | 账号过期');
