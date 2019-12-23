@@ -23,9 +23,7 @@ try {
     $first_sub = explode('/', $url)[0];
 
 //检查账号存在
-    d($_SESSION);
     $account = Account::get_account($account_id, $_SESSION['site_id']);
-    dd($account);
     if (empty($account)) {
         die('account error | 账号错误');
     }
