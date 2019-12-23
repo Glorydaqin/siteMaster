@@ -72,18 +72,18 @@
 
                                 <?if($site['is_available']){?>
                                     <div class="faq-item">
+                                        <?foreach ($site['account_list'] as $account){?>
                                         <div class="row">
-                                            <?foreach ($site['account_list'] as $account){?>
-                                                <div class="col-md-4">
-                                                    <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">账号<?=$account['id']?></a>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <?foreach ($account['target'] as $target){?>
-                                                        <span class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>')"><?=$target['name']?></span>
-                                                    <?}?>
-                                                </div>
-                                            <?}?>
+                                            <div class="col-md-4">
+                                                <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">账号<?=$account['id']?></a>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <?foreach ($account['target'] as $target){?>
+                                                    <span class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')"><?=$target['name']?></span>
+                                                <?}?>
+                                            </div>
                                         </div>
+                                        <?}?>
                                     </div>
                                 <?}else{?>
                                 <div class="faq-item">

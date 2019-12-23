@@ -12,8 +12,9 @@ if (!defined('IN_DS')) {
 
 include_once 'common.php';
 
-$account_id = $_GET['account_id'];
-$site_id = $_GET['site_id'];
+$account_id = $_GET['account_id'] ?? '';
+$site_id = $_GET['site_id'] ?? '';
+$site_name = $_GET['site_name'] ?? '';
 
 if (empty($site_id) || empty($account_id) || !is_numeric($site_id) || !is_numeric($account_id)) {
     die('error param | 参数错误');
@@ -31,7 +32,18 @@ if (empty($account_info)) {
 if ($account_info['site_name'] == 'ahrefs') {
     $url = PROTOCOL . DOMAIN_AHREFS . '/dashboard';
 } elseif ($account_info['site_name'] == 'mangools') {
-    $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
+    if ($site_name == 'serpchecker') {
+        $url = PROTOCOL . DOMAIN_SERPCHECKER . '/dashboard';
+    } elseif ($site_name == 'serpwatcher') {
+        $url = PROTOCOL . DOMAIN_SERPWATCHER . '/dashboard';
+    } elseif ($site_name == 'linkminer') {
+        $url = PROTOCOL . DOMAIN_LINKMINER . '/dashboard';
+    } elseif ($site_name == 'siteprofiler') {
+        $url = PROTOCOL . DOMAIN_SITEPROFILER . '/dashboard';
+    } else {
+        $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
+    }
+
 } elseif ($account_info['site_name'] == 'majestic') {
     $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';
 } else {
