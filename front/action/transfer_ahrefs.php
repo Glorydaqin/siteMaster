@@ -23,7 +23,9 @@ try {
     $first_sub = explode('/', $url)[0];
 
 //检查账号存在
+    d($_SESSION);
     $account = Account::get_account($account_id, $_SESSION['site_id']);
+    dd($account);
     if (empty($account)) {
         die('account error | 账号错误');
     }
@@ -72,7 +74,7 @@ try {
     //记录操作
     UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
 
-    if (stripos($response['info']['content_type'], 'text/html') !== false) {
+    if (stripos(' ' . $response['info']['content_type'], 'text/html')) {
 // 替换内容
 //链接
         $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
