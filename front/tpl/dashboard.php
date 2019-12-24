@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <?foreach ($account['target'] as $target){?>
-                                                    <span class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')"><?=$target['name']?></span>
+                                                    <a class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')"><?=$target['name']?></a>
                                                 <?}?>
                                             </div>
                                         </div>
