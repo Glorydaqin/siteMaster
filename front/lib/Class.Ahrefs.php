@@ -11,6 +11,7 @@ class Ahrefs
     private $user_name = '';
     private $password = '';
     private $cookie_key = '';
+    public $buffer = ''; //your download buffer goes here.
 
     public function __construct($user_name, $password)
     {
@@ -116,6 +117,25 @@ class Ahrefs
         return $r;
     }
 
+
+    function progressfunc($ch, $totalDownloadSize, $bytesDownloaded, $totalRequestSize, $bytesUploaded)
+    {
+        global $buffer;
+        echo $buffer;
+        $buffer = '';
+        //echo str_repeat('<span></span>',100);//if you have buffering issues, this is an ugly workaround...
+        flush();
+    }
+
+    function writefunc($ch, $data)
+    {
+        global $buffer;
+        static $written = 0;
+        $buffer .= $data;
+        $written += strlen($data);
+        return $written;
+    }
+
     public function curl_download($url, $data)
     {
         $ch = curl_init();
@@ -149,24 +169,25 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'writefunc');
+        curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'progressfunc');
         curl_exec($ch);
-        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'curl_receive_handle');
 
         curl_close($ch);
 
     }
 
-    /**
-     * 处理分段获取的数据
-     * @param $handle
-     * @param $data
-     * @return int
-     */
-    private function curl_receive_handle($handle,$data){
-        echo $data; // Ouput to the user
-        $length = strlen($data);
-        return $length;
-    }
+//    /**
+//     * 处理分段获取的数据
+//     * @param $handle
+//     * @param $data
+//     * @return int
+//     */
+//    private function curl_receive_handle($handle,$data){
+//        echo $data; // Ouput to the user
+//        $length = strlen($data);
+//        return $length;
+//    }
 
 
     public function get($url, $data = [], $is_cdn = false)
