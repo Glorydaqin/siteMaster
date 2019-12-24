@@ -114,7 +114,11 @@
 
                     <address>
                         <strong>加速访问</strong><br>
-                        有vpn用户请优先开启全局模式访问，可用保证服务稳定链接
+                        有vpn用户请优先开启全局模式访问，可保证服务稳定连接
+                    </address>
+                    <address>
+                        <strong>浏览器</strong><br>
+                        请务必使用chrome,firefox等现代浏览器访问服务
                     </address>
                 </div>
             </div>
