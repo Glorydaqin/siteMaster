@@ -117,25 +117,6 @@ class Ahrefs
         return $r;
     }
 
-
-    function progressfunc($ch, $totalDownloadSize, $bytesDownloaded, $totalRequestSize, $bytesUploaded)
-    {
-        global $buffer;
-        echo $buffer;
-        $buffer = '';
-        //echo str_repeat('<span></span>',100);//if you have buffering issues, this is an ugly workaround...
-        flush();
-    }
-
-    function writefunc($ch, $data)
-    {
-        global $buffer;
-        static $written = 0;
-        $buffer .= $data;
-        $written += strlen($data);
-        return $written;
-    }
-
     public function curl_download($url, $data)
     {
         $ch = curl_init();
@@ -169,15 +150,12 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
-//        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'writefunc');
         curl_setopt($ch, CURLOPT_WRITEFUNCTION, function($curl, $data) {
             echo $data;
             return strlen($data);
         });
-//        curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'progressfunc');
         curl_exec($ch);
         curl_close($ch);
-
     }
 
 
