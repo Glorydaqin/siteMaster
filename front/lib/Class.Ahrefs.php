@@ -116,6 +116,59 @@ class Ahrefs
         return $r;
     }
 
+    public function curl_download($url, $data)
+    {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 200);   //只需要设置一个秒的数量就可以
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
+        curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
+        if (!file_exists($cookie_file)) {
+            file_put_contents($cookie_file, "");
+        }
+
+        if (!empty($data)) {
+            // post数据
+            curl_setopt($ch, CURLOPT_POST, 1);
+            // post的变量
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            curl_setopt($ch, CURLOPT_POST, 1);
+        }
+
+        $clean_header = $this->get_clean_header();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
+        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
+        curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+        curl_exec($ch);
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'curl_receive_handle');
+
+        curl_close($ch);
+
+    }
+
+    /**
+     * 处理分段获取的数据
+     * @param $handle
+     * @param $data
+     * @return int
+     */
+    private function curl_receive_handle($handle,$data){
+        echo $data; // Ouput to the user
+        $length = strlen($data);
+        return $length;
+    }
+
+
     public function get($url, $data = [], $is_cdn = false)
     {
         //检查是否有缓存，有则调用缓存
@@ -127,7 +180,6 @@ class Ahrefs
                 return $cache_file;
             }
         }
-
 
         if (!$this->check_is_login()) {
             $this->login();

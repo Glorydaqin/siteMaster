@@ -16,7 +16,6 @@ try {
 
 //$url = $_GET['url'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-
     $account_id = $_SESSION['account_id'];
 //转发页面
     $url = trim($url, '/');
@@ -56,7 +55,15 @@ try {
         $post_data = $_POST;
     }
 
-    $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
+
+    if (stripos($real_url, 'site-explorer/csv-download')) {
+        //下载接口使用分段下载
+        header("Content-Type:text/csv");
+        $Ahrefs->curl_download($real_url, $post_data);
+    } else {
+        $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
+    }
+
     $html = $response['body'];
     if ($url_is_cdn) {
         header("Cache-Control: public");
