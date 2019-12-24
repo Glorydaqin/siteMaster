@@ -59,7 +59,9 @@ try {
     if (stripos($real_url, 'site-explorer/csv-download')) {
         //下载接口使用分段下载
         header("Content-Type:text/csv");
+        header('Content-Disposition: attachment; filename="file.csv"');
         $Ahrefs->curl_download($real_url, $post_data);
+        die;
     } else {
         $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
     }

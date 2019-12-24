@@ -169,25 +169,16 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
-        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'writefunc');
-        curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'progressfunc');
+//        curl_setopt($ch, CURLOPT_WRITEFUNCTION, 'writefunc');
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, function($curl, $data) {
+            echo $data;
+            return strlen($data);
+        });
+//        curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'progressfunc');
         curl_exec($ch);
-
         curl_close($ch);
 
     }
-
-//    /**
-//     * 处理分段获取的数据
-//     * @param $handle
-//     * @param $data
-//     * @return int
-//     */
-//    private function curl_receive_handle($handle,$data){
-//        echo $data; // Ouput to the user
-//        $length = strlen($data);
-//        return $length;
-//    }
 
 
     public function get($url, $data = [], $is_cdn = false)
