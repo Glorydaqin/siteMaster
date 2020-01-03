@@ -4,6 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'site_master');
 define('DB_USER', 'homestead');
 define('DB_PASS', 'secret');
+define('DB_PORT', 3306);
 
 define('MYSQL_ENCODING', 'UTF8');
 define('DEBUG_MODE', true);

@@ -17,7 +17,7 @@ if (DEBUG_MODE) {
     error_reporting(0);
 }
 
-$db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS);
+$db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
 $tpl = new Template();
 //session 子域名共享
 ini_set("session.cookie_domain", '.' . DOMAIN);
