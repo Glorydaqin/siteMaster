@@ -27,6 +27,8 @@ if ($server_domain == DOMAIN) {
     } elseif ($script_uri == '/test/') {
         include_once FRONT_DIR . 'test.php';
     }
+} elseif ($server_domain == 'www.' . DOMAIN) {
+    temporarily_header_302(PROTOCOL . DOMAIN . '/');
 } elseif ($server_domain == DOMAIN_AHREFS) {
     include_once FRONT_DIR . 'transfer_ahrefs.php';
 } elseif ($server_domain == DOMAIN_SEMRUSH) {
