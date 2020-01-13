@@ -12,3 +12,6 @@ if (file_exists(DATA_ROOT)) {
     echo "DATA_ROOT 目标目录存在，请重新配置目录";
 }
 system("cp -r " . INCLUDE_ROOT . "data/ " . DATA_ROOT);
+
+
+echo "finish" . PHP_EOL;

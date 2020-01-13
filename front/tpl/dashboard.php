@@ -72,14 +72,19 @@
 
                                 <?if($site['is_available']){?>
                                     <div class="faq-item">
-                                        <?foreach ($site['account_list'] as $account){?>
+                                        <?foreach ($site['account_list'] as $inner_key=>$account){?>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">账号<?=$account['id']?></a>
+                                                <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">
+                                                    <?=($inner_key+1)?>号服务器
+                                                </a>
                                             </div>
                                             <div class="col-md-8">
                                                 <?foreach ($account['target'] as $target){?>
-                                                    <a class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')"><?=$target['name']?></a>
+                                                    <a class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
+                                                        <?=$target['name']?>
+                                                        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+                                                    </a>
                                                 <?}?>
                                             </div>
                                         </div>
