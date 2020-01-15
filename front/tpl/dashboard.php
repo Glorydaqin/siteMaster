@@ -81,10 +81,10 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <?foreach ($account['target'] as $target){?>
-                                                    <a class="btn-sm btn-info" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
+                                                    <button class="center-block btn-sm btn-info" style="margin-bottom:5px;" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
                                                         <?=$target['name']?>
                                                         <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                    </a>
+                                                    </button>
                                                 <?}?>
                                             </div>
                                         </div>

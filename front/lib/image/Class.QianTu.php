@@ -1,6 +1,5 @@
 <?php
 
-namespace lib\image;
 /**
  * Created by PhpStorm.
  * User: qinwei
@@ -41,4 +40,9 @@ class QianTu
         return $img_url_no_watermark;
     }
 
+    public function downImage($url)
+    {
+        $content = $this->curl($url);
+        return $content;
+    }
 }

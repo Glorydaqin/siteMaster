@@ -18,6 +18,7 @@ try {
     $url = $_POST['url'] ?? '';
     $type = $_POST['type'] ?? '';
 
+    echo "coming soon!";
 
 } catch (\Exception $exception) {
     Log::info($exception);

@@ -68,6 +68,69 @@
         ]
     },
     {
+        "name": "fileeye/mimemap",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FileEye/MimeMap.git",
+            "reference": "c509cc3f919dae122b0435d514680943918d0e7e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FileEye/MimeMap/zipball/c509cc3f919dae122b0435d514680943918d0e7e",
+            "reference": "c509cc3f919dae122b0435d514680943918d0e7e",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "<9",
+            "sebastian/comparator": "*",
+            "sebastian/diff": "*",
+            "squizlabs/php_codesniffer": "*",
+            "symfony/console": "*",
+            "symfony/filesystem": "*",
+            "symfony/var-dumper": "*",
+            "symfony/yaml": "*"
+        },
+        "time": "2019-11-23T08:05:46+00:00",
+        "bin": [
+            "bin/fileeye-mimemap"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "FileEye\\MimeMap\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0-or-later"
+        ],
+        "description": "A PHP library to handle MIME Content-Type fields and their related file extensions.",
+        "homepage": "https://github.com/FileEye/MimeMap",
+        "keywords": [
+            "mime",
+            "mime-database",
+            "mime-parser",
+            "mime-type"
+        ]
+    },
+    {
         "name": "filp/whoops",
         "version": "2.5.0",
         "version_normalized": "2.5.0.0",

@@ -29,6 +29,7 @@ class ComposerStaticInitf7652262257cee0dbb8a817a0440d69c
         ),
         'F' => 
         array (
+            'FileEye\\MimeMap\\' => 16,
             'Facebook\\WebDriver\\' => 19,
         ),
     );
@@ -53,6 +54,10 @@ class ComposerStaticInitf7652262257cee0dbb8a817a0440d69c
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'FileEye\\MimeMap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fileeye/mimemap/src',
         ),
         'Facebook\\WebDriver\\' => 
         array (
