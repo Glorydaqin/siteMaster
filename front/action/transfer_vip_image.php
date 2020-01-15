@@ -64,7 +64,7 @@ try {
         $ext = new Extension($extend);
         $content_type = ($ext->getDefaultType());
         header('content-type: ' . $content_type);
-        header("Content-Disposition: attachment; filename=" . $info['source_url']);
+        header("Content-Disposition: attachment; filename=" . $image_url);
         echo file_get_contents($file_content);
         die;
 

@@ -94,8 +94,8 @@
                                 <td><?=$record['page_url']?></td>
                                 <td><?=$record['created_at']?></td>
                                 <td>
-                                    <a onclick="openLayerFrame('预览图片','/image/prev/?url=<?=$record['page_url']?>')">预览</a>
-                                    <a target="_blank" href="/image/down/?url=<?=urlencode($record['page_url'])?>&type=<?=$record['site']?>">下载</a>
+                                    <a class="btn-sm btn-info" onclick="openLayerFrame('预览图片','/image/prev/?url=<?=$record['page_url']?>')">预览</a>
+                                    <a class="btn-sm btn-success" target="_blank" href="/image/down/?url=<?=urlencode($record['page_url'])?>&type=<?=$record['site']?>">下载</a>
                                 </td>
                             </tr>
                         <?}?>
