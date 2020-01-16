@@ -27,8 +27,8 @@ try{
 
     $driver = RemoteWebDriver::create($host, $capabilities, 5000);
 
-//    $driver->get('https://www.semrush.com/users/login.html');
-    $driver->get('https://www.semrush.com');
+    $driver->get('https://www.semrush.com/users/login.html');
+//    $driver->get('https://www.semrush.com');
 //    $driver->get('https://www.baidu.com');
     $cookie = $driver->manage()->getCookies();
     d($cookie);
