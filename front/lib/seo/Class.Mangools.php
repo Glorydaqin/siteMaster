@@ -285,53 +285,31 @@ class Mangools
     public function replace_main_js($url, $html)
     {
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
+
+            //替换工具相关域名
+            $html = str_replace("https://app.kwfinder.com",PROTOCOL.DOMAIN_KWFINDER,$html);
+            $html = str_replace("https://app.siteprofiler.com",PROTOCOL.DOMAIN_SITEPROFILER,$html);
+            $html = str_replace("https://app.linkminer.com",PROTOCOL.DOMAIN_LINKMINER,$html);
+            $html = str_replace("https://app.serpwatcher.com",PROTOCOL.DOMAIN_SERPWATCHER,$html);
+            $html = str_replace("https://app.serpchecker.com",PROTOCOL.DOMAIN_SERPCHECKER,$html);
+            //替换    https://api2.mangools.com => /mangools_api_domain
+            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
+            //替换 https://mangools.com => /mangools_domain
+            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
+
             if ($this->in_domain == DOMAIN_SITEPROFILER) {
-                //替换    https://api2.mangools.com => /mangools_api_domain
-                $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_SITEPROFILER . '/mangools_api_domain', $html);
-                //替换 https://mangools.com => /mangools_domain
-                $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_SITEPROFILER . '/mangools_domain', $html);
-                //替换    https://app.siteprofiler.com =>
-                $html = str_replace('https://app.siteprofiler.com', PROTOCOL . DOMAIN_SITEPROFILER, $html);
                 //替换    app.siteprofiler.com =>
                 $html = str_replace('app.siteprofiler.com', DOMAIN_SITEPROFILER, $html);
             } elseif ($this->in_domain == DOMAIN_SERPWATCHER) {
-                //替换    https://api2.mangools.com => /mangools_api_domain
-                $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_SERPWATCHER . '/mangools_api_domain', $html);
-                //替换 https://mangools.com => /mangools_domain
-                $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_SERPWATCHER . '/mangools_domain', $html);
-                //替换    https://app.serpwatcher.com =>
-                $html = str_replace('https://app.serpwatcher.com', PROTOCOL . DOMAIN_SERPWATCHER, $html);
-                //替换    app.serpwatcher.com =>
+                 //替换    app.serpwatcher.com =>
                 $html = str_replace('app.serpwatcher.com', DOMAIN_SERPWATCHER, $html);
             } elseif ($this->in_domain == DOMAIN_SERPCHECKER) {
-                //替换    https://api2.mangools.com => /mangools_api_domain
-                $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_SERPCHECKER . '/mangools_api_domain', $html);
-                //替换 https://mangools.com => /mangools_domain
-                $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_SERPCHECKER . '/mangools_domain', $html);
-                //替换    https://app.serpchecker.com =>
-                $html = str_replace('https://app.serpchecker.com', PROTOCOL . DOMAIN_SERPCHECKER, $html);
                 //替换    app.serpchecker.com =>
                 $html = str_replace('app.serpchecker.com', DOMAIN_SERPCHECKER, $html);
             } elseif ($this->in_domain == DOMAIN_LINKMINER) {
-                //替换    https://api2.mangools.com => /mangools_api_domain
-                $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_LINKMINER . '/mangools_api_domain', $html);
-                //替换 https://mangools.com => /mangools_domain
-                $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_LINKMINER . '/mangools_domain', $html);
-                //替换    https://app.linkminer.com =>
-                $html = str_replace('https://app.linkminer.com', PROTOCOL . DOMAIN_LINKMINER, $html);
                 //替换    app.linkminer.com =>
                 $html = str_replace('app.linkminer.com', DOMAIN_LINKMINER, $html);
-            } else {
-                //替换    https://api2.mangools.com => /mangools_api_domain
-                $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
-                //替换 https://mangools.com => /mangools_domain
-                $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
-                //替换    https://app.kwfinder.com =>
-                $html = str_replace('https://app.kwfinder.com', PROTOCOL . DOMAIN_KWFINDER, $html);
-                //替换    app.kwfinder.com =>
-                $html = str_replace('app.kwfinder.com', DOMAIN_KWFINDER, $html);
             }
-
         }
         return $html;
     }

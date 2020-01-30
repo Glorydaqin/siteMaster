@@ -14,9 +14,9 @@ include_once 'common.php';
 
 try {
 
-    $account_id = $_SESSION['account_id'];
-    $url = $_POST['url'] ?? '';
-    $type = $_POST['type'] ?? '';
+//    $account_id = $_SESSION['account_id'];
+//    $url = $_POST['url'] ?? '';
+//    $type = $_POST['type'] ?? '';
 
     echo "coming soon!";
 

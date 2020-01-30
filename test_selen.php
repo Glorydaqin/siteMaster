@@ -35,11 +35,17 @@ try {
     $driver = RemoteWebDriver::create($host, $capabilities, 5000);
 
     $driver->get('https://www.semrush.com/users/login.html');
-    echo "get login finish" . PHP_EOL;
 //    $driver->get('https://www.semrush.com');
 //    $driver->get('https://www.baidu.com');
 //    $cookie = $driver->manage()->getCookies();
-    $driver->manage()->timeouts()->implicitlyWait(15);    //隐性设置15秒
+
+    $driver->wait(20)->until(
+        WebDriverExpectedCondition::visibilityOfElementLocated(
+            WebDriverBy::className('sc-btn__inner')
+        )
+    );
+    echo "get login finish" . PHP_EOL;
+//    $driver->manage()->timeouts()->implicitlyWait(15);    //隐性设置15秒
     $driver->findElement(WebDriverBy::name('email'))->sendKeys($user);
     $driver->findElement(WebDriverBy::name('password'))->sendKeys($password);
     $driver->findElement(WebDriverBy::className('sc-btn__inner'))->click();
