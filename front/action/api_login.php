@@ -24,8 +24,8 @@ $data = [
 $row = User::check_user($username, $password);
 if ($row && strtotime($row['expired_at']) >= time()) {
     $site_expired_at = User::get_access_with($row['id'], $site_id);
-    $data['data'] = $site_expired_at;
-    if (strtotime($site_expired_at['expired_at']) > time()) {
+    $data['data']['site_expired_at'] = $site_expired_at;
+    if (strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
     } else {
         $data['data']['is_active'] = true;
