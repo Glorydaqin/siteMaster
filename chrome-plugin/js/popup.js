@@ -19,18 +19,22 @@ $(document).ready(function () {
     let url = "https://vipfor.me/api/login/";
     let data = {username: username, password: password, site_id: 2};
     $.post(url, data, function (response) {
-      console.log(response);
+      let jsonObj = JSON.parse(response);
 
-      if (response.code === 200 && response.data.is_active === true) {
+      console.log(jsonObj);
+      if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+        //修改字段
+        let account_str = "";
+        jsonObj.data.account_list.forEach(function (item,index) {
+          $('#accountList').append('<div id="bDiv2" class="divaa loginNum"><span>登录账号'+(index+1)+'</span></div>')
+        });
         //账号成功则显示 mDivb
         $('#mDivb').show();
         $('#mDiv').hide();
       } else {
         alert("登陆失败或账号过期");
       }
-
     });
-
   });
 
   $(".loginNum").on("click", function () {
