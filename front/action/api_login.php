@@ -15,6 +15,7 @@ $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 $username = addslashes($username);
 $password = addslashes($password);
+$site_id = $_POST['site_id'] ?? 1;
 
 $data = [
     'code' => 200,
@@ -22,12 +23,14 @@ $data = [
 ];
 $row = User::check_user($username, $password);
 if ($row && strtotime($row['expired_at']) >= time()) {
-    $_SESSION['user_id'] = $row['id'];
-    $_SESSION['username'] = $row['username'];
-    $_SESSION['user_expired_at'] = $row['expired_at'];
-    $_SESSION['site_expired_at'] = User::get_access($row['id']);
+    $site_expired_at = User::get_access_with($row['id'], $site_id);
+    $data['data'] = $site_expired_at;
+    if (strtotime($site_expired_at['expired_at']) > time()) {
+        $data['data']['is_active'] = true;
+    } else {
+        $data['data']['is_active'] = true;
+    }
 
-    $data['data'] = User::get_access($row['id']);
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
 } else {

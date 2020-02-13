@@ -17,14 +17,20 @@ $(document).ready(function () {
     });
 
     let url = "https://vipfor.me/api/login/";
-    let data = {username: username, password: password};
+    let data = {username: username, password: password, site_id: 2};
     $.post(url, data, function (response) {
+      console.log(response);
+
+      if (response.code === 200 && response.data.is_active === true) {
+        //账号成功则显示 mDivb
+        $('#mDivb').show();
+        $('#mDiv').hide();
+      } else {
+        alert("登陆失败或账号过期");
+      }
 
     });
 
-    //账号成功则显示 mDivb
-    $('#mDivb').show();
-    $('#mDiv').hide();
   });
 
   $(".loginNum").on("click", function () {
