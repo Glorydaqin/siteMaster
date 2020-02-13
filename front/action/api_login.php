@@ -31,7 +31,7 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         $data['data']['is_active'] = true;
     }
     //取账号
-    $data['account_list'] = Account::get_site_list($site_id);
+    $data['data']['account_list'] = Account::get_site_list($site_id);
 
 
 } elseif ($row && strtotime($row['expired_at']) < time()) {
