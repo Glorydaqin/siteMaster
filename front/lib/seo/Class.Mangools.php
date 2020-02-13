@@ -2,7 +2,6 @@
 
 class Mangools
 {
-//    public static $cdn_domain = "https://cdn.ahrefs.com";
     public static $domain = "https://app.kwfinder.com/";
     public static $mangools_domain = "https://mangools.com/";
     public static $mangools_api_domain = "https://api2.mangools.com/";
@@ -81,7 +80,7 @@ class Mangools
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_REFERER, self::$mangools_domain);//这里写一个来源地址，可以写要抓的页面的首页
+        curl_setopt($ch, CURLOPT_REFERER, self::$mangools_domain);
         curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -136,7 +135,7 @@ class Mangools
     {
         //检查是否有缓存，有则调用缓存
         $cache = new Cache();
-        if (stripos($url, '/users/current_user')) {
+        if (stripos($url, '/users/current_user') || stripos($url, 'v3/system/me')) {
             $cache_file = $cache->get_cache($url, 60);
             $result = json_decode($cache_file, true);
 
@@ -158,7 +157,7 @@ class Mangools
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/users/current_user') && !empty($result['body'])) {
+        if (stripos($result['url'], 'v3/system/me') && !empty($result['body'])) {
             $response = json_decode($result['body'], true);
             if (empty($response['user'])) {
                 // 返回用户是空说明需要登陆了
@@ -244,14 +243,16 @@ class Mangools
             'ref' => 'msg-app-kw',
             'button' => '',
         ];
+//        d($data);
         $result = $this->curl(self::$login_url, $data);
-//        d($result);
-        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
+//        dd($result);
+//        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
+        if ($result['code'] == 200) {
             //记录当前这个sso ticket
-            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
-            $ticket = $match_ticket[1][0] ?? '';
-            (new Cache())->set_cache($this->cookie_key, $ticket);
-
+//            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
+//            $ticket = $match_ticket[1][0] ?? '';
+//            (new Cache())->set_cache($this->cookie_key, $ticket);
+//            echo $result['body'];exit();
             return true;
         }
         return false;
@@ -276,9 +277,9 @@ class Mangools
         } elseif (stripos($url, 'mangools_api_domain/') !== false) {
             $real_url = str_replace("mangools_api_domain/", self::$mangools_api_domain, $url);
         }
-        if (stripos($real_url, 'users/current_user') !== false) {
-            $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
-        }
+//        if (stripos($real_url, 'users/current_user') !== false) {
+//            $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
+//        }
         return $real_url;
     }
 
@@ -287,11 +288,11 @@ class Mangools
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
 
             //替换工具相关域名
-            $html = str_replace("https://app.kwfinder.com",PROTOCOL.DOMAIN_KWFINDER,$html);
-            $html = str_replace("https://app.siteprofiler.com",PROTOCOL.DOMAIN_SITEPROFILER,$html);
-            $html = str_replace("https://app.linkminer.com",PROTOCOL.DOMAIN_LINKMINER,$html);
-            $html = str_replace("https://app.serpwatcher.com",PROTOCOL.DOMAIN_SERPWATCHER,$html);
-            $html = str_replace("https://app.serpchecker.com",PROTOCOL.DOMAIN_SERPCHECKER,$html);
+            $html = str_replace("https://app.kwfinder.com", PROTOCOL . DOMAIN_KWFINDER, $html);
+            $html = str_replace("https://app.siteprofiler.com", PROTOCOL . DOMAIN_SITEPROFILER, $html);
+            $html = str_replace("https://app.linkminer.com", PROTOCOL . DOMAIN_LINKMINER, $html);
+            $html = str_replace("https://app.serpwatcher.com", PROTOCOL . DOMAIN_SERPWATCHER, $html);
+            $html = str_replace("https://app.serpchecker.com", PROTOCOL . DOMAIN_SERPCHECKER, $html);
             //替换    https://api2.mangools.com => /mangools_api_domain
             $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
             //替换 https://mangools.com => /mangools_domain
@@ -301,7 +302,7 @@ class Mangools
                 //替换    app.siteprofiler.com =>
                 $html = str_replace('app.siteprofiler.com', DOMAIN_SITEPROFILER, $html);
             } elseif ($this->in_domain == DOMAIN_SERPWATCHER) {
-                 //替换    app.serpwatcher.com =>
+                //替换    app.serpwatcher.com =>
                 $html = str_replace('app.serpwatcher.com', DOMAIN_SERPWATCHER, $html);
             } elseif ($this->in_domain == DOMAIN_SERPCHECKER) {
                 //替换    app.serpchecker.com =>

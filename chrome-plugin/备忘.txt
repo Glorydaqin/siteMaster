@@ -1,0 +1,32 @@
+//页面类型
+//background、popup、tab、infobar、notification
+//  tab：像正常网页一样在浏览器的Tab中打开的页面。
+//  infobar： 在浏览器顶部信息栏显示的信息页面。
+//  notification：在浏览器底部显示的通知页面。
+
+
+// 页面触发事件
+// DOMContentLoaded 文档加载完成
+// click 点击事件
+
+document.addEventListener('DOMContentLoaded', function() {
+}
+
+// popup 获取 background
+chrome.extension.getBackgroundPage()
+
+//当前tabs
+chrome.tabs.getSelected(null, function(tab) {})
+
+//像background推送消息
+chrome.runtime.sendMessage({}, function(response) {})
+
+//获取页面
+// type: background、popup、tab、infobar、notification
+chrome.extension.getViews({type:"popup"})
+
+//消息推送
+//Extension Page ==> Content Script
+API：chrome.tabs.sendRequest 和 chrome.extension.onRequest
+//Content Script ==> Extension Page
+API：chrome.runtime.sendMessage 和 chrome.runtime.onMessage

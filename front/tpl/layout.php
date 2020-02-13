@@ -58,12 +58,12 @@
                 <li>
                     <a class="J_menuItem" href="/dashboard/"><i class="fa fa-amazon"></i> <span class="nav-label">SEO工具</span></a>
                 </li>
-                <li>
-                    <a class="J_menuItem" href="/image/"><i class="fa fa-picture-o"></i> <span class="nav-label">图片工具</span></a>
-                </li>
-                <li>
-                    <a class="J_menuItem" href="/document/"><i class="fa fa-file-word-o"></i> <span class="nav-label">文档工具</span></a>
-                </li>
+<!--                <li>-->
+<!--                    <a class="J_menuItem" href="/image/"><i class="fa fa-picture-o"></i> <span class="nav-label">图片工具</span></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a class="J_menuItem" href="/document/"><i class="fa fa-file-word-o"></i> <span class="nav-label">文档工具</span></a>-->
+<!--                </li>-->
 
             </ul>
         </div>
