@@ -70,11 +70,16 @@ try {
     if ($url_is_cdn) {
         header("Cache-Control: public");
         header("Pragma: cache");
-        $offset = 60 * 60 * 24; // cache 1 day
+        $offset = 60 * 60 * 24 * 7; // cache 7 day
         $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
         header($ExpStr);
         header('Content-Type: ' . $response['info']['content_type']);
 
+        //给subscriptionMessage 加上display none
+        if (stripos($url, 'css/ahrefs.css')) {
+            $html .= "
+        [class$='subscriptionMessage']{display:none}";
+        }
         echo $html;
         die;
     }
@@ -113,12 +118,6 @@ try {
 
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
-    }
-
-    //给subscriptionMessage 加上display none
-    if (stripos($url, 'css/ahrefs.css')) {
-        $html .= "
-        [class$='subscriptionMessage']{display:none}";
     }
 
     header('Content-Type: ' . $response['info']['content_type']);
