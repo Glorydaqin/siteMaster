@@ -96,6 +96,7 @@ try {
             }
             return $matches[0];
         }, $html);
+
 //    //资源
         $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
             // 明确的当前域名 开头
@@ -112,6 +113,12 @@ try {
 
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
+    }
+
+    //给subscriptionMessage 加上display none
+    if (stripos($url, 'css/ahrefs.css')) {
+        $html .= "
+        [class$='subscriptionMessage']{display:none}";
     }
 
     header('Content-Type: ' . $response['info']['content_type']);
