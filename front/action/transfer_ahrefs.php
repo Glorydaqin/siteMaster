@@ -78,7 +78,7 @@ try {
         //给subscriptionMessage 加上display none
         if (stripos($url, 'css/ahrefs.css')) {
             $html .= "
-        [class$='subscriptionMessage']{display:none};
+        [class$='subscriptionMessage']{display:none}
         .dropdown-item--title.user-title{display:none}";
         }
         echo $html;
