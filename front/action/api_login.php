@@ -31,9 +31,12 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         $data['data']['is_active'] = true;
     }
     //取账号
-    $data['data']['account_list'] = Account::get_site_list($site_id);
+    $account_list = Account::get_site_list($site_id);
+    foreach ($account_list as $key => $item) {
+        $account_list[$key]['password'] = compileCode($item['password']);
+    }
 
-
+    $data['data']['account_list'] = $account_list;
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
 } else {

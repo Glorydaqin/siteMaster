@@ -47,3 +47,51 @@ if (!function_exists('getallheaders'))
         return $headers;
     }
 }
+
+
+// usage: echo charCodeAt("This is a string", 7)
+function charCodeAt($str, $i){
+    return ord(substr($str, $i, 1));
+}
+
+// usage: echo fromCharCode(72, 69, 76, 76, 79)
+function fromCharCode(){
+    return array_reduce(func_get_args(),function($a,$b){$a.=chr($b);return $a;});
+}
+
+/**
+ * 解密
+ * @param $str
+ * @return mixed|string
+ */
+function unCompileCode($str){
+    $str = base64_decode($str);
+    for (
+        $t = fromCharCode(
+            charCodeAt($str,0) - strlen($str)
+        ),$o = 1;
+        $o < strlen($str);
+        $o++
+    ){
+        $t .= fromCharCode(
+            charCodeAt($str,$o) - charCodeAt($t,$o-1)
+        );
+    }
+    return $t;
+}
+
+/**
+ * 加密
+ * @param $str
+ * @return mixed|string
+ */
+function compileCode($str){
+    $tmp = fromCharCode(charCodeAt($str,0) + strlen($str));
+    for ($i = 1;$i<strlen($str);$i++){
+        $tmp .= fromCharCode(
+            charCodeAt($str,$i)+charCodeAt($str,$i-1)
+        );
+    }
+    $tmp = base64_encode($tmp);
+    return $tmp;
+}

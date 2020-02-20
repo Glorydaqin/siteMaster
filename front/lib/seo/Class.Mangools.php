@@ -126,6 +126,7 @@ class Mangools
             ],
             'response' => $log_r
         ];
+//        dd($log_content);
         Log::info($log_content);
 
         return $r;
@@ -243,7 +244,6 @@ class Mangools
             'ref' => 'msg-app-kw',
             'button' => '',
         ];
-//        d($data);
         $result = $this->curl(self::$login_url, $data);
 //        dd($result);
 //        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
