@@ -70,7 +70,7 @@
                                     <p class="list-group-item-text"><?=$site['desc']?></p>
                                 </a>
 
-                                <?if($site['name']!='mangools'){?>
+                                <?if($site['name']=='mangools'){?>
 
                                 <div class="faq-item">
                                     <a target="_blank" href="/plugins/vip-login.zip">插件下载地址</a>
