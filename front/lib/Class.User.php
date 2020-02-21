@@ -10,6 +10,19 @@ class User
     }
 
     /**
+     * 修改 last plugin id
+     * @param $user_id
+     * @param $plugin_id
+     * @return mixed
+     */
+    public static function set_last_plugin_id($user_id, $plugin_id)
+    {
+        $check_sql = "update user set last_plugin_id = '{$plugin_id}' where id = {$user_id}";
+        $row = $GLOBALS['db']->query($check_sql);
+        return $row;
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

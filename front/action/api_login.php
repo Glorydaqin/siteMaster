@@ -23,7 +23,11 @@ $data = [
 ];
 $row = User::check_user($username, $password);
 if ($row && strtotime($row['expired_at']) >= time()) {
+    $last_plugin_id = time() . rand(1000, 9999);
+    User::set_last_plugin_id($row['id'], $last_plugin_id);
+
     $site_expired_at = User::get_access_with($row['id'], $site_id);
+    $data['data']['last_plugin_id'] = $last_plugin_id;
     $data['data']['site_expired_at'] = $site_expired_at;
     if (strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
