@@ -70,36 +70,35 @@
                                     <p class="list-group-item-text"><?=$site['desc']?></p>
                                 </a>
 
-                                <?if($site['name']=='mangools'){?>
-
-                                <div class="faq-item">
-                                    <a target="_blank" href="/plugins/vip-login.zip">插件下载地址</a>
-                                    <br>
-                                    <a target="_blank" href="/plugins/插件安装.gif">插件安装说明</a>
-                                </div>
-
-                                <?}?>
-
-                                <?if($site['is_available'] && $site['name']!='mangools'){?>
-                                    <div class="faq-item">
-                                        <?foreach ($site['account_list'] as $inner_key=>$account){?>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">
-                                                    <?=($inner_key+1)?>号服务器
-                                                </a>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <?foreach ($account['target'] as $target){?>
-                                                    <button class="center-block btn-sm btn-info" style="margin-bottom:5px;" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
-                                                        <?=$target['name']?>
-                                                        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                    </button>
-                                                <?}?>
-                                            </div>
+                                <?if($site['is_available']){?>
+                                    <?if($site['name']=='mangools'){?>
+                                        <div class="faq-item">
+                                            <a target="_blank" href="/plugins/vip-login.zip">插件下载地址</a>
+                                            <br>
+                                            <a target="_blank" href="/plugins/插件安装.gif">插件安装说明</a>
                                         </div>
-                                        <?}?>
-                                    </div>
+                                    <?}else{?>
+                                        <div class="faq-item">
+                                            <?foreach ($site['account_list'] as $inner_key=>$account){?>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">
+                                                            <?=($inner_key+1)?>号服务器
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <?foreach ($account['target'] as $target){?>
+                                                            <button class="center-block btn-sm btn-info" style="margin-bottom:5px;" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
+                                                                <?=$target['name']?>
+                                                                <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+                                                            </button>
+                                                        <?}?>
+                                                    </div>
+                                                </div>
+                                            <?}?>
+                                        </div>
+                                    <?}?>
+
                                 <?}else{?>
                                 <div class="faq-item">
                                     账号已过期，请续费
