@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/chrome-plugin-demo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/chrome_app_test/chrome-plugin-demo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vip-login" vcs="Git" />
   </component>
 </project>

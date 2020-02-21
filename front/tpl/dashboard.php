@@ -70,7 +70,17 @@
                                     <p class="list-group-item-text"><?=$site['desc']?></p>
                                 </a>
 
-                                <?if($site['is_available']){?>
+                                <?if($site['name']!='mangools'){?>
+
+                                <div class="faq-item">
+                                    <a target="_blank" href="/plugins/vip-login.zip">插件下载地址</a>
+                                    <br>
+                                    <a target="_blank" href="/plugins/插件安装.gif">插件安装说明</a>
+                                </div>
+
+                                <?}?>
+
+                                <?if($site['is_available'] && $site['name']!='mangools'){?>
                                     <div class="faq-item">
                                         <?foreach ($site['account_list'] as $inner_key=>$account){?>
                                         <div class="row">
