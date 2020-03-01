@@ -228,7 +228,7 @@ class SEMRush
         if (stripos(' ' . $url, "cdn_semrush/")) {
             $real_url = self::$cdn_domain . substr($url, strlen('cdn_semrush/'));
         } elseif (stripos(' ' . $url, "cdn_dpa_semrush/")) {
-            $real_url = self::$cdn_dpa_domain . substr($url, strlen('cdn_semrush/'));
+            $real_url = self::$cdn_dpa_domain . substr($url, strlen('cdn_dpa_semrush/'));
         } else {
             $real_url = self::$domain . $url;
         }
