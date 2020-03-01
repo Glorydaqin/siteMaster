@@ -4,6 +4,7 @@ class SEMRush
 {
     public static $domain = "https://www.semrush.com/";
     public static $cdn_domain = "https://cdn.semrush.com/";
+    public static $cdn_dpa_domain = "https://cdn-dpa.semrush.com/";
     public static $login_page_url = 'https://www.semrush.com/login/';
     public static $login_url = 'https://www.semrush.com/sso/authorize';
 
@@ -226,6 +227,8 @@ class SEMRush
     {
         if (stripos(' ' . $url, "cdn_semrush/")) {
             $real_url = self::$cdn_domain . substr($url, strlen('cdn_semrush/'));
+        } elseif (stripos(' ' . $url, "cdn_dpa_semrush/")) {
+            $real_url = self::$cdn_dpa_domain . substr($url, strlen('cdn_semrush/'));
         } else {
             $real_url = self::$domain . $url;
         }
@@ -233,15 +236,24 @@ class SEMRush
         return $real_url;
     }
 
+    /**
+     * 域名替换
+     * @param $html
+     * @return string|string[]|null
+     */
     public function trans_url($html)
     {
         $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
             // 明确的当前域名 开头
             if (substr($matches[1], 0, 1) != '/') {
+                $matches[1] = str_replace("https://", '', $matches[1]);
+                $matches[1] = str_replace("http://", '', $matches[1]);
                 // 不明确的域名开头
-                if (stripos($matches[1], 'cdn.semrush.com')) {
+                if (substr($matches[1], 0, strlen('cdn.semrush.com')) == "cdn.semrush.com") {
                     return 'href="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
-                } elseif (stripos($matches[1], 'semrush.com')) {
+                } elseif (substr($matches[1], 0, strlen('cdn-dpa.semrush.com')) == "cdn-dpa.semrush.com") {
+                    return 'href="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_dpa_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                } elseif (substr($matches[1], 0, strlen('semrush.com')) == "semrush.com") {
                     return 'href="' . PROTOCOL . DOMAIN_SEMRUSH . '/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
                 }
             }
@@ -251,10 +263,14 @@ class SEMRush
         $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
             // 明确的当前域名 开头
             if (substr($matches[1], 0, 1) != '/') {
+                $matches[1] = str_replace("https://", '', $matches[1]);
+                $matches[1] = str_replace("http://", '', $matches[1]);
                 // 不明确的域名开头
-                if (stripos($matches[1], 'cdn.semrush.com')) {
+                if (substr($matches[1], 0, strlen('cdn.semrush.com')) == "cdn.semrush.com") {
                     return 'src="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
-                } elseif (stripos($matches[1], 'semrush.com')) {
+                } elseif (substr($matches[1], 0, strlen('cdn-dpa.semrush.com')) == "cdn-dpa.semrush.com") {
+                    return 'src="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_dpa_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                } elseif (substr($matches[1], 0, strlen('semrush.com')) == "semrush.com") {
                     return 'src="' . PROTOCOL . DOMAIN_SEMRUSH . '/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
                 }
             }
