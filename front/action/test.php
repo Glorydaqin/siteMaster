@@ -14,14 +14,14 @@ if (!DEBUG_MODE) {
     die('error access');
 }
 
-dd(1);
 try {
-    $account = Account::get_account(2, 'semrush');
+    $username = "692860800@qq.com";
+    $password = "daqing";
     //登陆
-    $transfer = new SEMRush($account['username'], $account['password']);
+    $transfer = new SEMRush($username, $password);
 
 
-    $response = $transfer->get(SEMRush::$domain . 'dashboard');
+    $response = $transfer->get(SEMRush::$domain . 'dashboard/');
     dd($response);
 
 } catch (\Exception $exception) {

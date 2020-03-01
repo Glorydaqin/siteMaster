@@ -2,11 +2,13 @@
 
 class SEMRush
 {
-    public static $cdn_domain = "https://cdn.ahrefs.com/";
-    public static $domain = "https://semrush.com/";
-    public static $login_url = 'https://semrush.com/user/login';
+    public static $domain = "https://www.semrush.com/";
+    public static $cdn_domain = "https://cdn.semrush.com/";
+    public static $login_page_url = 'https://www.semrush.com/login/';
+    public static $login_url = 'https://www.semrush.com/sso/authorize';
 
-    public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+    public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36';
+    public static $user_agent_hash = '2feb4b063d6ac9078120a336bd1e9ed0';
 
     private $user_name = '';
     private $password = '';
@@ -55,7 +57,7 @@ class SEMRush
         return $tmp;
     }
 
-    public function curl($url, $data = [])
+    public function curl($url, $data = [], $header = [])
     {
         $ch = curl_init();
 
@@ -73,7 +75,9 @@ class SEMRush
         if (!file_exists($cookie_file)) {
             file_put_contents($cookie_file, "");
         }
-
+        if (!empty($header)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        }
         if (!empty($data)) {
             // post数据
             curl_setopt($ch, CURLOPT_POST, 1);
@@ -120,21 +124,20 @@ class SEMRush
     {
         //检查是否有缓存，有则调用缓存
         $cache = new Cache();
-        if ($is_cdn) {
-            $cache_file = $cache->get_cache($url);
-            if ($cache_file) {
-                $cache_file = json_decode($cache_file, true);
-                return $cache_file;
-            }
-        }
-
+//        if ($is_cdn) {
+//            $cache_file = $cache->get_cache($url);
+//            if ($cache_file) {
+//                $cache_file = json_decode($cache_file, true);
+//                return $cache_file;
+//            }
+//        }
 
         if (!$this->check_is_login()) {
             $this->login();
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/user/login')) {
+        if (stripos($result['url'], '/login/') || $result['url'] == self::$domain) {
             //跳转到登陆的说明未登陆
             $this->login();
             $result = $this->curl($url, $data);
@@ -174,50 +177,91 @@ class SEMRush
 
     public function login()
     {
-        //:authority: www.semrush.com
-        //:method: POST
-        //:path: /sso/authorize
-        //:scheme: https
-        //accept: application/json, text/plain, */*
-        //accept-encoding: gzip, deflate, br
-        //accept-language: zh-CN,zh;q=0.9,en;q=0.8
-        //cache-control: no-cache
-        //content-length: 160
-        //content-type: application/json;charset=UTF-8
-        //cookie: __cfduid=df92aaaf16a7f0e88642741ec0b656f8f1572497476; ref_code=__default__; n_userid=rBtUbl26aEQWyQAPBWNSAg==; _ga=GA1.2.1655811541.1572497481; _gcl_au=1.1.936760122.1572497481; visit_first=1572497483031; tracker_ai_user=5gQ1L|2019-10-31T04:51:24.555Z; community_layout=k91rnvfimdv7kbs94c2agt2avs; mindboxDeviceUUID=1edd1e4f-fdf3-4fa8-a6aa-171469a0ed44; directCrm-session=%7B%22deviceGuid%22%3A%221edd1e4f-fdf3-4fa8-a6aa-171469a0ed44%22%7D; marketing=%7B%22user_cmp%22%3A%22%22%2C%22user_label%22%3A%22%22%7D; db=us; userdata=%7B%22tz%22%3A%22GMT+8%22%2C%22ol%22%3A%22zh%22%7D; utz=Asia%2FShanghai; __zlcmid=vfikNzRRRBpfvi; site_csrftoken=V08H2xOu7ajaUiBEsCfmbXMD2fBbDnIzumvC4KD4DAFmQKYW9eLj8Y5Yq4IlRVS2; __cflb=1796434593; _gid=GA1.2.1138566631.1576480861; ga_exp_7xHEszwjQFucPwMnhXHIzQ=0; _gac_UA-6197637-22=1.1576480909.Cj0KCQiA0NfvBRCVARIsAO4930kzW5lHXZTnHMBxgMU8TYJTdyl3WeE7t1bNceHrPWQ991BfuvYE2DkaAr9XEALw_wcB; _gcl_aw=GCL.1576480909.Cj0KCQiA0NfvBRCVARIsAO4930kzW5lHXZTnHMBxgMU8TYJTdyl3WeE7t1bNceHrPWQ991BfuvYE2DkaAr9XEALw_wcB; uvts=06ee9aaf-dff5-4d2f-5f57-9c26e8e10af6; __insp_uid=2685121539; billing_csrf_cookie=billing_csrf_cookie; webinars_session=UOOG7XXDKGl5LStsgLdm6SfeOmfD5xFyv3DSqJfn; community-semrush=rTiKExCgneJOcBVKiECTkV61iOyboiZOWOgBdCTI; blog_split=C; lux_uid=157648811925430662; __insp_wid=826279527; __insp_nv=false; __insp_targlpu=aHR0cHM6Ly93d3cuc2VtcnVzaC5jb20vdXNlcnMvbG9naW4uaHRtbA%3D%3D; __insp_targlpt=TG9naW4gdG8gU0VNcnVzaA%3D%3D; __insp_norec_sess=true; PHPSESSID=6f7d5ccddd59f2eeace20c9af2a362f0; SSO-JWT=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZjdkNWNjZGRkNTlmMmVlYWNlMjBjOWFmMmEzNjJmMCIsImlhdCI6MTU3NjQ4ODMwNiwiaXNzIjoic3NvIn0.tZMQuWR1HCLwHf9r1Ixv8SqVgmYl6a4OgOy6qCujyYec2jmmSz0UNI-J1AVN0GKKK6ypMZZIfa6e32n5LNt4WQ; XSRF-TOKEN=qABx1UKUy7KGiViJeqEDHsO3oaCC03f6Pnj903jA; usertype=Unlogged-User; __insp_slim=1576488349925; _gat=1
-        //origin: https://www.semrush.com
-        //pragma: no-cache
-        //referer: https://www.semrush.com/users/login.html
-        //sec-fetch-mode: cors
-        //sec-fetch-site: same-origin
-        //user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36
-        //x-xsrf-token: qABx1UKUy7KGiViJeqEDHsO3oaCC03f6Pnj903jA
+        //x-newrelic-id: VQEOWV5VDRAHUVRTBwkAUg==
+        //x-xsrf-token: ZYZZNbdiphInrIXHsNt0ZPH3Jp6eXG93IZ4gckCD
 
-        //{"user-agent-hash":"dce305f9c61beb1f46ab121fae098a7d",
-        //"source":"semrush",
-        //"email":"692860800@qq.com",
-        //"password":"daqing",
-        //"g-recaptcha-response":"",
-        //"locale":"en"}
+//        $login_page = self::curl(self::$login_page_url);
+//        $content = $login_page['body'];
+//        preg_match_all("/xpid\:\"([^\"]+)\"/", $content, $match_xid);
+//        preg_match_all("/\"csrfToken\":\s+\"([^\"]+)\"/", $content, $match_xtoken);
+//        $xid = $match_xid[1][0] ?? '';
+//        $xtoken = $match_xtoken[1][0] ?? '';
+//
+//        $header = [
+//            'x-newrelic-id:' . $xid,
+//            'x-xsrf-token:' . $xtoken,
+//            'Content-Type:' . 'application/x-www-form-urlencoded'
+//        ];
+//        d($header);
 
-        $index_result = $this->curl(self::$domain);
-        preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
-
-        $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
-        $data = json_encode([
-            'user-agent-hash' => '',
+        //email:692860800@qq.com
+        //locale:en
+        //source:semrush
+        //g-recaptcha-response:
+        //user-agent-hash:2feb4b063d6ac9078120a336bd1e9ed0
+        //password:daqing
+        $data = [
+            'user-agent-hash' => self::$user_agent_hash,
             'source' => 'semrush',
             'email' => $this->user_name,
             'password' => $this->password,
             'g-recaptcha-response' => '',
             'locale' => 'en',
-        ]);
+        ];
 
         $result = $this->curl(self::$login_url, $data);
+
         if ($result['code'] == 200) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 域名恢复
+     * @param $url
+     * @return string
+     */
+    public function revoke_url($url)
+    {
+        if (stripos(' ' . $url, "cdn_semrush/")) {
+            $real_url = self::$cdn_domain . substr($url, strlen('cdn_semrush/'));
+        } else {
+            $real_url = self::$domain . $url;
+        }
+
+        return $real_url;
+    }
+
+    public function trans_url($html)
+    {
+        $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 不明确的域名开头
+                if (stripos($matches[1], 'cdn.semrush.com')) {
+                    return 'href="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                } elseif (stripos($matches[1], 'semrush.com')) {
+                    return 'href="' . PROTOCOL . DOMAIN_SEMRUSH . '/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                }
+            }
+            return $matches[0];
+        }, $html);
+
+        $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
+            // 明确的当前域名 开头
+            if (substr($matches[1], 0, 1) != '/') {
+                // 不明确的域名开头
+                if (stripos($matches[1], 'cdn.semrush.com')) {
+                    return 'src="' . PROTOCOL . DOMAIN_SEMRUSH . '/cdn_semrush/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                } elseif (stripos($matches[1], 'semrush.com')) {
+                    return 'src="' . PROTOCOL . DOMAIN_SEMRUSH . '/' . substr($matches[1], stripos($matches[1], 'semrush.com') + strlen('semrush.com') + 1) . '"';
+                }
+            }
+            return $matches[0];
+        }, $html);
+
+        return $html;
     }
 
 }
