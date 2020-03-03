@@ -6,7 +6,7 @@ class Ahrefs
     public static $domain = "https://ahrefs.com/";
     public static $login_url = 'https://ahrefs.com/user/login';
 
-    public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+    public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
 
     private $user_name = '';
     private $password = '';
@@ -33,7 +33,7 @@ class Ahrefs
         $this->cookie_key = "siteMaster_Ahrefs_" . $user_name;
         $this->type = $type;
         $this->mock_redis_key = 'ahrefs_mock_user_' . $user_name;
-        self::$user_agent = $this->type == 'mock' ? $mock_user_agent : $user_agent;
+        $this->user_agent = $this->type == 'mock' ? $mock_user_agent : $user_agent;
     }
 
     /**
@@ -63,7 +63,7 @@ class Ahrefs
         if (isset($headers['Accept'])) {
             unset($headers['Accept']);
         }
-        $headers['User-Agent'] = self::$user_agent;
+        $headers['User-Agent'] = $this->user_agent;
         $tmp = [];
         foreach ($headers as $header => $val) {
             $tmp[] = $header . ': ' . $val;
@@ -79,7 +79,7 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
-        curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -141,7 +141,7 @@ class Ahrefs
         curl_setopt($ch, CURLOPT_TIMEOUT, 200);   //只需要设置一个秒的数量就可以
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_REFERER, self::$domain);//这里写一个来源地址，可以写要抓的页面的首页
-        curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -256,8 +256,6 @@ class Ahrefs
 #HttpOnly_.ahrefs.com   TRUE    /       FALSE   0       BSSESSID        {$this->password}
 oo;
             file_put_contents($cookie_file, $content);
-            d($this->type);
-            dd(self::$user_agent);
             return true;
         }
 
