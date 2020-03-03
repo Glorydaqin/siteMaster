@@ -258,7 +258,8 @@ class Ahrefs
 oo;
             $res = file_put_contents($cookie_file, $content);
             if($res){
-                dd($res);
+                d($res);
+                dd(file_get_contents($content));
             }
             return true;
         }
