@@ -95,3 +95,41 @@ function compileCode($str){
     $tmp = base64_encode($tmp);
     return $tmp;
 }
+
+
+function curl($url, $data = [])
+{
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_REFERER, '');//这里写一个来源地址，可以写要抓的页面的首页
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+    if (!empty($data)) {
+        // post数据
+        curl_setopt($ch, CURLOPT_POST, 1);
+        // post的变量
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    }
+//
+//    $clean_header = $this->get_clean_header();
+//    curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
+    $content = curl_exec($ch);
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $res = curl_getinfo($ch);
+    curl_close($ch);
+    $r = array();
+    $r['code'] = $httpCode;
+    $r['url'] = $res['url'];
+    $r['body'] = $content;
+    $r['info'] = $res;
+
+    return $r;
+}

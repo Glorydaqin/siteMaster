@@ -28,7 +28,7 @@ class RedisCache
 	}
 	
 	//设置缓存
-	function set($key,&$content,$exp_time=86400){
+	private function set($key,&$content,$exp_time=86400){
         $this->c_obj->set($key,$content,$exp_time);
 	}
 }

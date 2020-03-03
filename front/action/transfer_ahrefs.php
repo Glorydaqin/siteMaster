@@ -46,7 +46,8 @@ try {
         }
     }
 
-    $Ahrefs = new Ahrefs($account['username'], $account['password']);
+    $type = $account['type'] == 2 ? 'mock' : 'normal';
+    $Ahrefs = new Ahrefs($account['username'], $account['password'], $type);
 
     $raw_data = file_get_contents('php://input');
     if (!empty($raw_data)) {
