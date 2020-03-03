@@ -256,6 +256,8 @@ class Ahrefs
 #HttpOnly_.ahrefs.com   TRUE    /       FALSE   0       BSSESSID        {$this->password}
 oo;
             file_put_contents($cookie_file, $content);
+            d($this->type);
+            dd($this->user_agent);
             return true;
         }
 
