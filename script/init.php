@@ -1,8 +1,9 @@
 <?php
 ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
-define('INCLUDE_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
-require '../vendor/autoload.php';
+define('ROOT_PATH', dirname(dirname(__FILE__)));
+define('INCLUDE_ROOT', ROOT_PATH . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
+require ROOT_PATH . '/vendor/autoload.php';
 include_once INCLUDE_ROOT . 'etc/init.php';
 
 //初始化

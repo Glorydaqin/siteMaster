@@ -1,14 +1,16 @@
 <?php
 ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
-define('INCLUDE_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
-require '../vendor/autoload.php';
+define('ROOT_PATH', dirname(dirname(__FILE__)));
+define('INCLUDE_ROOT', ROOT_PATH . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
+require ROOT_PATH . '/vendor/autoload.php';
 include_once INCLUDE_ROOT . 'etc/init.php';
 
+set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
-//$sleep_time = rand(15, 300);
-//sleep($sleep_time);
+$sleep_time = rand(15, 180);
+sleep($sleep_time);
 
 //
 $url = "https://www.xixuanseo.com/s/login.php";
