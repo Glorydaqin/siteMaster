@@ -194,16 +194,6 @@ class Ahrefs
         $result = $this->curl($url, $data);
         if (stripos($result['url'], '/user/login') || stripos($result['body'], 'Sign in to Ahrefs')) {
             //跳转到登陆的说明未登陆 || 没跳转但是需要登陆
-            if ($this->type == 'mock') {
-                //不用重新登陆了，直接删除账号，提示重新选择账号
-                $redis = new RedisCache();
-                $mock_times = $redis->get_cache($this->mock_redis_key);
-                if ($mock_times > $this->mock_max_error_time) {
-                    echo "当前访问错误，请切换账号访问";
-                    die;
-                }
-                $redis->set_cache($this->mock_redis_key, $mock_times ? $mock_times + 1 : 1);
-            }
             $this->login();
             $result = $this->curl($url, $data);
         }
@@ -254,6 +244,17 @@ class Ahrefs
 #HttpOnly_.ahrefs.com   TRUE    /       FALSE   0       BSSESSID        {$this->password}
 oo;
             file_put_contents($cookie_file, $content);
+
+
+            //不用重新登陆了，直接删除账号，提示重新选择账号
+            $redis = new RedisCache();
+            $mock_times = $redis->get_cache($this->mock_redis_key);
+            if ($mock_times > $this->mock_max_error_time) {
+                echo "当前访问错误，请切换账号访问";
+                die;
+            }
+            $redis->set_cache($this->mock_redis_key, $mock_times ? $mock_times + 1 : 1);
+
             return true;
         }
 
