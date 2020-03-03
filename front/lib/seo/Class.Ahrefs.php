@@ -192,8 +192,8 @@ class Ahrefs
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/user/login')) {
-            //跳转到登陆的说明未登陆
+        if (stripos($result['url'], '/user/login') || stripos($result['body'], 'Sign in to Ahrefs')) {
+            //跳转到登陆的说明未登陆 || 没跳转但是需要登陆
             if ($this->type == 'mock') {
                 //不用重新登陆了，直接删除账号，提示重新选择账号
                 $redis = new RedisCache();

@@ -35,7 +35,7 @@ class Account
      */
     public static function get_site_list($site_id = 0)
     {
-        $sql = "select * from site_account where site_id = {$site_id};";
+        $sql = "select * from site_account where site_id = {$site_id} and deleted = 0;";
         $result = $GLOBALS['db']->getRows($sql);
         return $result;
     }

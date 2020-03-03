@@ -50,7 +50,6 @@ if ($response['code'] == 200) {
             //  `deleted` tinyint(2) DEFAULT '0',
             $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$username}','{$username}',2);";
 
-            dump($insert_sql);
             $GLOBALS['db']->query($insert_sql);
         }
     }
