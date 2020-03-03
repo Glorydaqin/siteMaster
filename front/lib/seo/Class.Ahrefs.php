@@ -259,7 +259,8 @@ oo;
             $res = file_put_contents($cookie_file, $content);
             if($res){
                 d($res);
-                dd(file_get_contents($cookie_file));
+                d(file_get_contents($cookie_file));
+                dd(file_get_contents('/home/data/rent_data/cookie/siteMaster_Ahrefs_ahrefs10002@outlook.com.txt'));
             }
             return true;
         }
