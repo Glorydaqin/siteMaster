@@ -238,7 +238,9 @@ class Ahrefs
             $mock_times = $redis->get_cache($this->mock_redis_key);
             $mock_times = !empty($mock_times) ? $mock_times : 1;
             if ($mock_times > $this->mock_max_error_time) {
-                echo "当前访问错误，请切换账号访问";
+                $up_sql = "update site_account set deleted=1 where id = {$_SESSION['account_id']}";
+                $GLOBALS['db']->query($up_sql);
+                echo "当前访问错误，请切换其他账号访问";
                 die;
             }
             $redis->set_cache($this->mock_redis_key, $mock_times + 1);
