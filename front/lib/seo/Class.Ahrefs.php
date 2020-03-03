@@ -256,7 +256,10 @@ class Ahrefs
 
 #HttpOnly_.ahrefs.com   TRUE    /       TRUE   {$month_later}       BSSESSID        {$this->password}
 oo;
-            file_put_contents($cookie_file, $content);
+            $res = file_put_contents($cookie_file, $content);
+            if($res){
+                dd($res);
+            }
             return true;
         }
 
