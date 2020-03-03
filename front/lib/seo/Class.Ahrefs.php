@@ -259,7 +259,7 @@ oo;
             $res = file_put_contents($cookie_file, $content);
             if($res){
                 d($res);
-                dd(file_get_contents($content));
+                dd(file_get_contents($cookie_file));
             }
             return true;
         }
