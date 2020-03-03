@@ -233,6 +233,16 @@ class Ahrefs
     public function login()
     {
         if ($this->type == 'mock') {
+            //不用重新登陆了，直接删除账号，提示重新选择账号
+            $redis = new RedisCache();
+            $mock_times = $redis->get_cache($this->mock_redis_key);
+            $mock_times = !empty($mock_times) ? $mock_times : 1;
+            if ($mock_times > $this->mock_max_error_time) {
+                echo "当前访问错误，请切换账号访问";
+                die;
+            }
+            $redis->set_cache($this->mock_redis_key, $mock_times + 1);
+
             //写入账号
             $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
 
@@ -244,16 +254,6 @@ class Ahrefs
 #HttpOnly_.ahrefs.com   TRUE    /       FALSE   0       BSSESSID        {$this->password}
 oo;
             file_put_contents($cookie_file, $content);
-
-
-            //不用重新登陆了，直接删除账号，提示重新选择账号
-            $redis = new RedisCache();
-            $mock_times = $redis->get_cache($this->mock_redis_key);
-            if ($mock_times > $this->mock_max_error_time) {
-                echo "当前访问错误，请切换账号访问";
-                die;
-            }
-            $redis->set_cache($this->mock_redis_key, $mock_times ? $mock_times + 1 : 1);
 
             return true;
         }
