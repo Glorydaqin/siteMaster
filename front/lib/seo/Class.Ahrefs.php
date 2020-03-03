@@ -13,7 +13,7 @@ class Ahrefs
     private $cookie_key = '';
     private $type = 'normal';
     public $buffer = ''; //your download buffer goes here.
-    private $mock_max_error_time = 6; // mock 最多尝试登陆4次。不行就删账号
+    private $mock_max_error_time = 5; // mock 最多尝试登陆4次。不行就删账号
     private $mock_redis_key;
 
     /**
@@ -27,13 +27,13 @@ class Ahrefs
         $mock_user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36';
         $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
 
-        self::$user_agent = $this->type == 'mock' ? $mock_user_agent : $user_agent;
 
         $this->user_name = $user_name;
         $this->password = $password;
         $this->cookie_key = "siteMaster_Ahrefs_" . $user_name;
         $this->type = $type;
         $this->mock_redis_key = 'ahrefs_mock_user_' . $user_name;
+        self::$user_agent = $this->type == 'mock' ? $mock_user_agent : $user_agent;
     }
 
     /**
