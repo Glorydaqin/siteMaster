@@ -13,7 +13,7 @@ class Ahrefs
     private $cookie_key = '';
     private $type = 'normal';
     public $buffer = ''; //your download buffer goes here.
-    private $mock_max_error_time = 5; // mock 最多尝试登陆4次。不行就删账号
+    private $mock_max_error_time = 3; // mock 最多尝试登陆4次。不行就删账号
     private $mock_redis_key;
 
     /**
