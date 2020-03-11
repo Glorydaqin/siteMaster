@@ -17,13 +17,13 @@ try {
 //$url = $_GET['url'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 
-    $account_id = $_SESSION['account_id'];
+    $account_id = $_COOKIE['account_id'];
 //转发页面
     $url = trim($url, '/');
     $first_sub = explode('/', $url)[0];
 
 //检查账号存在
-    $account = Account::get_account($account_id, $_SESSION['site_id']);
+    $account = Account::get_account($account_id, $_COOKIE['site_id']);
     if (empty($account)) {
         die('account error | 账号错误');
     }
@@ -68,7 +68,7 @@ try {
         die;
     }
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $_COOKIE['site_id'], $account_id, $url);
 
     if (stripos(' ' . strtolower($response['info']['content_type']), 'text/html')) {
 

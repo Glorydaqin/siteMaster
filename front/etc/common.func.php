@@ -1,10 +1,11 @@
 <?php
 if (!defined('IN_DS')) {
-	die('Hacking attempt');
+    die('Hacking attempt');
 }
 
 
-function getip(){
+function getip()
+{
     if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
         $ip = getenv("HTTP_CLIENT_IP");
     else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
@@ -15,32 +16,41 @@ function getip(){
         $ip = $_SERVER['REMOTE_ADDR'];
     else
         $ip = "unknown";
-    return($ip);
+    return ($ip);
 }
 
-function temporarily_header_401() {
-	header('HTTP/1.1 401 Moved Permanently');
-	header('Cache-Control: no-cache');
-	exit;
-}
-
-function temporarily_header_302($url = '') {
-	$url = trim($url);
-	header('HTTP/1.1 302 Moved Permanently');
-	header('Cache-Control: no-cache');
-	header('Location: ' . $url);
-	exit;
-}
-
-if (!function_exists('getallheaders'))
+function temporarily_header_401()
 {
+    header('HTTP/1.1 401 Moved Permanently');
+    header('Cache-Control: no-cache');
+    exit;
+}
+
+function temporarily_header_302($url = '')
+{
+    $url = trim($url);
+    header('HTTP/1.1 302 Moved Permanently');
+    header('Cache-Control: no-cache');
+    header('Location: ' . $url);
+    exit;
+}
+
+function page_jump($url = '', $message = '')
+{
+    $alert = '';
+    if (!empty($message)) {
+        $alert = "alert('{$message}');";
+    }
+    echo "<SCRIPT language=JavaScript>{$alert}location.href='{$url}';</SCRIPT>";
+    die();
+}
+
+if (!function_exists('getallheaders')) {
     function getallheaders()
     {
         $headers = [];
-        foreach ($_SERVER as $name => $value)
-        {
-            if (substr($name, 0, 5) == 'HTTP_')
-            {
+        foreach ($_SERVER as $name => $value) {
+            if (substr($name, 0, 5) == 'HTTP_') {
                 $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
             }
         }
@@ -50,13 +60,18 @@ if (!function_exists('getallheaders'))
 
 
 // usage: echo charCodeAt("This is a string", 7)
-function charCodeAt($str, $i){
+function charCodeAt($str, $i)
+{
     return ord(substr($str, $i, 1));
 }
 
 // usage: echo fromCharCode(72, 69, 76, 76, 79)
-function fromCharCode(){
-    return array_reduce(func_get_args(),function($a,$b){$a.=chr($b);return $a;});
+function fromCharCode()
+{
+    return array_reduce(func_get_args(), function ($a, $b) {
+        $a .= chr($b);
+        return $a;
+    });
 }
 
 /**
@@ -64,17 +79,18 @@ function fromCharCode(){
  * @param $str
  * @return mixed|string
  */
-function unCompileCode($str){
+function unCompileCode($str)
+{
     $str = base64_decode($str);
     for (
         $t = fromCharCode(
-            charCodeAt($str,0) - strlen($str)
-        ),$o = 1;
+            charCodeAt($str, 0) - strlen($str)
+        ), $o = 1;
         $o < strlen($str);
         $o++
-    ){
+    ) {
         $t .= fromCharCode(
-            charCodeAt($str,$o) - charCodeAt($t,$o-1)
+            charCodeAt($str, $o) - charCodeAt($t, $o - 1)
         );
     }
     return $t;
@@ -85,11 +101,12 @@ function unCompileCode($str){
  * @param $str
  * @return mixed|string
  */
-function compileCode($str){
-    $tmp = fromCharCode(charCodeAt($str,0) + strlen($str));
-    for ($i = 1;$i<strlen($str);$i++){
+function compileCode($str)
+{
+    $tmp = fromCharCode(charCodeAt($str, 0) + strlen($str));
+    for ($i = 1; $i < strlen($str); $i++) {
         $tmp .= fromCharCode(
-            charCodeAt($str,$i)+charCodeAt($str,$i-1)
+            charCodeAt($str, $i) + charCodeAt($str, $i - 1)
         );
     }
     $tmp = base64_encode($tmp);
@@ -132,4 +149,16 @@ function curl($url, $data = [])
     $r['info'] = $res;
 
     return $r;
+}
+
+
+/**
+ * 设置选择的账号和网址cookie
+ * @param $site_id
+ * @param $account_id
+ * @param string $domain
+ */
+function set_choose_session($site_id, $account_id, $key = '')
+{
+    $_SESSION[$key] = ['account_id' => $account_id, 'site_id' => $site_id];
 }

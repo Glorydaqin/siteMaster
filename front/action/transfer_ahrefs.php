@@ -14,15 +14,17 @@ include_once 'common.php';
 
 try {
 
-//$url = $_GET['url'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-    $account_id = $_SESSION['account_id'];
+    $choose_session = $_SESSION['ahrefs'] ?? [];
+    $account_id = $choose_session['account_id'] ?? '';
+    $site_id = $choose_session['site_id'] ?? '';
+//    dd($choose_session);
 //转发页面
     $url = trim($url, '/');
     $first_sub = explode('/', $url)[0];
 
 //检查账号存在
-    $account = Account::get_account($account_id, $_SESSION['site_id']);
+    $account = Account::get_account($account_id, $site_id);
     if (empty($account)) {
         die('account error | 账号错误');
     }
@@ -32,6 +34,9 @@ try {
     ])) {
         die('folder limit ｜ 目录访问限制');
     }
+    $type = $account['type'] == 2 ? 'mock' : 'normal';
+    $Ahrefs = new Ahrefs($account['username'], $account['password'], $type);
+
     $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
 
     $real_url = Ahrefs::$domain . $url;
@@ -39,15 +44,9 @@ try {
     if ($url_is_cdn) {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     } else {
-        //查询记录数
-        $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
-        if ($keywordLimit >= 10) {
-            die('Reach the keywords limit | 达到查询限制');
-        }
+        //验证和记录访问
+        $Ahrefs->check_limit($url, $_SESSION['user_id']);
     }
-
-    $type = $account['type'] == 2 ? 'mock' : 'normal';
-    $Ahrefs = new Ahrefs($account['username'], $account['password'], $type);
 
     $raw_data = file_get_contents('php://input');
     if (!empty($raw_data)) {
@@ -55,7 +54,6 @@ try {
     } else {
         $post_data = $_POST;
     }
-
 
     if (stripos($real_url, 'site-explorer/csv-download')) {
         //下载接口使用分段下载
@@ -89,7 +87,7 @@ try {
         die;
     }
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $site_id, $account_id, $url);
 
     if (stripos(' ' . $response['info']['content_type'], 'text/html')) {
 // 替换内容

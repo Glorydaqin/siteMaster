@@ -2,10 +2,11 @@
 ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
 define('INCLUDE_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
+$server_domain = $_SERVER['HTTP_HOST'] ?? '';
+
 require '../vendor/autoload.php';
 include_once INCLUDE_ROOT . 'etc/init.php';
 
-$server_domain = $_SERVER['HTTP_HOST'] ?? '';
 $script_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 $script_uri_tmp_arr = explode('?', $script_uri);
 $script_uri = empty($script_uri_tmp_arr) ? $script_uri : $script_uri_tmp_arr[0];

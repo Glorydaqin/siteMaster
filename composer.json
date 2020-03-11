@@ -4,6 +4,7 @@
         "larapack/dd": "^1.1",
         "ext-curl": "*",
         "ext-json": "*",
+        "ext-redis": "*",
         "facebook/webdriver": "^1.7",
         "fileeye/mimemap": "^1.1"
     }

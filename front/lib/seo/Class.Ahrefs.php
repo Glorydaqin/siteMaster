@@ -32,7 +32,7 @@ class Ahrefs
         $this->password = $password;
         $this->cookie_key = "siteMaster_Ahrefs_" . $user_name;
         $this->type = $type;
-        $this->mock_redis_key = 'ahrefs_mock_user_' . $user_name;
+        $this->mock_redis_key = REDIS_PRE . 'ahrefs_mock_user:' . $user_name;
         $this->user_agent = $this->type == 'mock' ? $mock_user_agent : $user_agent;
     }
 
@@ -238,10 +238,10 @@ class Ahrefs
             $mock_times = $redis->get_cache($this->mock_redis_key);
             $mock_times = !empty($mock_times) ? $mock_times : 1;
             if ($mock_times > $this->mock_max_error_time) {
+                $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
                 $up_sql = "update site_account set deleted=1 where id = {$_SESSION['account_id']}";
-                $GLOBALS['db']->query($up_sql);
-                echo "当前访问错误，请切换其他账号访问 <a href='" . PROTOCOL . DOMAIN . "/index/'>返回</a>";
-                die;
+                $db->query($up_sql);
+                page_jump(PROTOCOL . DOMAIN . '/index/', '当前访问错误，请切换其他账号访问');
             }
             $redis->set_cache($this->mock_redis_key, $mock_times + 1);
 
@@ -312,4 +312,25 @@ class Ahrefs
         return false;
     }
 
+    // 检查是否达到限制
+    public function check_limit($url, $user_id)
+    {
+        $key = REDIS_PRE . 'user_limit:' . $user_id;
+
+        if (stripos(' ' . $url, 'site-explorer/overview/v2/subdomains/live?')) {
+            $limit_site_explorer_limit = 30;
+            $limit_site_explorer_key = REDIS_PRE . 'site_explorer:' . $user_id;
+
+            $redis = RedisCache::connect();
+            //拿到这个key的 score
+            $score = $redis->zScore($key, $limit_site_explorer_key);
+            $score = $score ?? 0;
+            if ($score >= $limit_site_explorer_limit) {
+                // 达到限制
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard/', '超出查询限制数量');
+            }
+            $redis->zAdd($key, $score + 1, $limit_site_explorer_key);
+        }
+
+    }
 }

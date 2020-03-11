@@ -10,6 +10,18 @@ class User
     }
 
     /**
+     * 保存用户信息到redis
+     * @param $user_id
+     * @param $info
+     */
+    public static function cache_user_info($user_id, $info)
+    {
+        $key = REDIS_PRE . "user_info:" . $user_id;
+        $redis = new RedisCache();
+        $redis->set_cache($key, json_encode($info, true), 86400);
+    }
+
+    /**
      * 修改 last plugin id
      * @param $user_id
      * @param $plugin_id
@@ -77,8 +89,14 @@ class User
      */
     public static function get_last_session_id($user_id)
     {
-        $info = self::get_info($user_id);
-        return $info['last_session_id'] ?? '';
+        $key = REDIS_PRE . "last_session_id:" . $user_id;
+        $redis = new RedisCache();
+        $info = $redis->get_cache($key);
+        return $info;
+
+        /*
+                $info = self::get_info($user_id);
+                return $info['last_session_id'] ?? '';*/
     }
 
     /**
@@ -89,10 +107,14 @@ class User
      */
     public static function set_last_session_id($user_id, $session_id = '')
     {
+        // last session 更改为redis
+        $key = REDIS_PRE . "last_session_id:" . $user_id;
+        $redis = new RedisCache();
+        $redis->set_cache($key, $session_id);
 
-        $sql = "update user set last_session_id = '{$session_id}' where id = {$user_id}";
-        $result = $GLOBALS['db']->query($sql);
-
-        return $result;
+//        $sql = "update user set last_session_id = '{$session_id}' where id = {$user_id}";
+//        $result = $GLOBALS['db']->query($sql);
+//
+//        return $result;
     }
 }

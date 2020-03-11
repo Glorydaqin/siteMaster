@@ -10,9 +10,19 @@ class Account
      */
     public static function get_account($id, $site_id = 1)
     {
-        $sql = "select * from site_account where id = {$id} and site_id = {$site_id};";
-        $result = $GLOBALS['db']->getFirstRow($sql);
-        return $result;
+        //改为从redis取
+        $redis = new RedisCache();
+        $key = REDIS_PRE . 'account_info:' . $id;
+        $info = $redis->get_cache($key);
+
+        if (!$info)
+            return [];
+
+        $info = json_decode($info, true);
+        if ($info['site_id'] != $site_id)
+            return [];
+
+        return $info;
     }
 
     /**

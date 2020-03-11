@@ -20,13 +20,14 @@ if (empty($site_id) || empty($account_id) || !is_numeric($site_id) || !is_numeri
     die('error param | 参数错误');
 }
 
-$_SESSION['account_id'] = $account_id;
-$_SESSION['site_id'] = $site_id;
-
 $account_info = Account::get_account_with_site($account_id, $site_id);
 if (empty($account_info)) {
     die("error param | 参数错误");
 }
+//缓存账号信息
+$redis = new RedisCache();
+$key = REDIS_PRE . 'account_info:' . $account_id;
+$redis->set_cache($key, json_encode($account_info));
 
 //有数据了就该往外站跳转了
 if ($account_info['site_name'] == 'ahrefs') {
@@ -43,7 +44,6 @@ if ($account_info['site_name'] == 'ahrefs') {
     } else {
         $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
     }
-
 } elseif ($account_info['site_name'] == 'majestic') {
     $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';
 } elseif ($account_info['site_name'] == 'semrush') {
@@ -52,6 +52,8 @@ if ($account_info['site_name'] == 'ahrefs') {
     //回去重新选site
     $url = PROTOCOL . DOMAIN . '/dashboard/';
 }
+set_choose_session($site_id, $account_id, $account_info['site_name']);
 
 temporarily_header_302($url);
+//page_jump($url);
 exit();

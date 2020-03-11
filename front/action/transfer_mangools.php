@@ -15,7 +15,8 @@ include_once 'common.php';
 try {
     $in_domain = $_SERVER['HTTP_HOST'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-    $account_id = $_SESSION['account_id'];
+    $choose_session = $_SESSION['mangools'] ?? [];
+    $account_id = $_COOKIE['account_id'];
 
 //检查账号存在
     $account = Account::get_account($account_id, $_SESSION['site_id']);
@@ -67,7 +68,7 @@ try {
     }
     //http://kwfinder.vipfor.me/mangools_api_domain/v3/kwfinder/serps?kw=ss&location_id=0&page=0 实际搜索的链接
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $_COOKIE['site_id'], $account_id, $url);
 
 // 替换内容
     if (isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html') {

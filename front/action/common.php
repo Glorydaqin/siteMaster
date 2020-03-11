@@ -21,13 +21,16 @@ if ($last_session_id != $session_id) {
 
 //其他站点下检查配置
 if ($_SERVER['HTTP_HOST'] != DOMAIN) {
+    $key = substr($_SERVER['HTTP_HOST'], 0, stripos($_SERVER['HTTP_HOST'], DOMAIN) - 1);
+
+    $choose_session = $_SESSION[$key] ?? [];
     //site_id
-    if (!isset($_SESSION['site_id'])) {
+    if (!isset($choose_session['site_id'])) {
         die('参数错误，请关闭重试');
     }
 
-    // 转发子域名验证 session
-    if (!isset($_SESSION['account_id'])) {
+    // 转发子域名验证 cookie
+    if (!isset($choose_session['account_id'])) {
         die('参数错误，请关闭重试');
     }
 }

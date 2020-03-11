@@ -15,10 +15,10 @@ include_once 'common.php';
 try {
 
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-    $account_id = $_SESSION['account_id'];
+    $account_id = $_COOKIE['account_id'];
 
 //检查账号存在
-    $account = Account::get_account($account_id, $_SESSION['site_id']);
+    $account = Account::get_account($account_id, $_COOKIE['site_id']);
     if (empty($account)) {
         die('account error | 账号错误');
     }
@@ -35,11 +35,6 @@ try {
         $url_is_cdn = true;
     }
 
-    //查询记录数
-//    $keywordLimit = UserRecord::check_user_limit($_SESSION['user_id'], $_SESSION['site_id'], 'site-explorer/overview/v2/subdomains/live');
-//    if ($keywordLimit >= UserRecord::keywordsLimit) {
-//        die('Reach the keywords limit | 达到关键词限制');
-//    }
     $transfer = new Majestic($account['username'], $account['password']);
     $real_url = $transfer->revoke_url($url);
 
@@ -66,7 +61,7 @@ try {
     }
 
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $_SESSION['site_id'], $account_id, $url);
+    UserRecord::record($_SESSION['user_id'], $_COOKIE['site_id'], $account_id, $url);
 
 // 替换内容
     if (isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html') {

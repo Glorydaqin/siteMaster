@@ -13,18 +13,22 @@ class UserRecord
      */
     public static function record($user_id, $site_id, $account_id, $url)
     {
-        $date = date("Y-m-d");
-        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`,`date`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}','{$date}');";
-        $GLOBALS['db']->query($sql);
+        //redis 记录 以用户 日期 为维度的列表 的 有序集合
+//        $date = date("Y-m-d");
+//        $redis = new RedisCache();
+//        $key = REDIS_PRE.'user_record:'.$user_id.':'
+
+//        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`,`date`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}','{$date}');";
+//        $GLOBALS['db']->query($sql);
     }
 
     public static function check_user_limit($user_id, $site_id, $url_pre = 'site-explorer/overview/v2/subdomains/live')
     {
-        $date = date("Y-m-d");
-
-        $sql = "select count(*) as num from user_record where user_id = {$user_id} and site_id={$site_id} and url like '{$url_pre}%' and date = '{$date}' group by id";
-        $count = $GLOBALS['db']->getFirstRowColumn($sql, 'num');
-        return empty($count) ? 0 : $count;
+//        $date = date("Y-m-d");
+//
+//        $sql = "select count(*) as num from user_record where user_id = {$user_id} and site_id={$site_id} and url like '{$url_pre}%' and date = '{$date}' group by id";
+//        $count = $GLOBALS['db']->getFirstRowColumn($sql, 'num');
+//        return empty($count) ? 0 : $count;
     }
 
     public static function check_account_limit($user_id, $limit)

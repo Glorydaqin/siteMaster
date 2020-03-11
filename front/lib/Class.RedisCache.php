@@ -1,34 +1,57 @@
 <?php
+
 class RedisCache
 {
-	public $c_obj   = null;
-	
-	function __construct($server='127.0.0.1', $port='6379') {
-        $this->c_obj = new Redis();
-        $this->c_obj->connect($server,$port);
-	}
-	
-	//设置缓存
-	function set_cache($key,$content,$exp_time=86400){
+    private static $redis;
+    private static $server;
+    private static $port;
 
-        $this->set($key,$content,$exp_time);
+    function __construct($server = REDIS_HOST, $port = REDIS_PORT)
+    {
+        self::$server = $server;
+        self::$port = $port;
+        return self::connect();
+    }
 
-		return $content;
-	}
-	
-	//获取缓存
-	function get_cache($key){
+    public static function connect()
+    {
+        if (!isset(self::$redis)) {
+            $redis = new \Redis();
+            $redis->connect(self::$server, self::$port);
+            return self::$redis = $redis;
+        }
+        return self::$redis;
+    }
 
-        $res =$this->c_obj->get($key);
+    //设置缓存
+    function set_cache($key, $content, $exp_time = 86400)
+    {
+        self::$redis->set($key, $content, $exp_time);
+
+        return $content;
+    }
+
+    //获取缓存
+    function get_cache($key)
+    {
+        $res = self::$redis->get($key);
         if ($res === false || empty($res)) {
             return '';
-        }else{
+        } else {
             return $res;
         }
-	}
-	
-	//设置缓存
-	private function set($key,&$content,$exp_time=86400){
-        $this->c_obj->set($key,$content,$exp_time);
-	}
+    }
+
+    public function __call($name, $arguments)
+    {
+        $redis = self::connect();
+        return call_user_func_array([$redis, $name], $arguments);
+    }
+
+    public static function __callStatic($name, $arguments)
+    {
+        $redis = self::connect();
+        return call_user_func_array([$redis, $name], $arguments);
+    }
+
 }

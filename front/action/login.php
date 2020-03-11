@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //更新session_id
         $session_id = session_id();
         User::set_last_session_id($row['id'], $session_id);
+        //更新redis user info
+        User::cache_user_info($row['id'], $row);
 
         temporarily_header_302('/index/');
     } elseif ($row && strtotime($row['expired_at']) < time()) {
