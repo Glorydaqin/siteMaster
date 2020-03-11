@@ -13,29 +13,30 @@ $sleep_time = rand(15, 180);
 sleep($sleep_time);
 
 //
-$url = "https://www.xixuanseo.com/s/login.php";
-//type: ahrefs54g6a2sd1PQLG6xy1
-//name: 2506306536@qq.com
-//pass: 5888
-//ip: 183.67.59.156
-//addrs: 重庆市
+$url = "http://www.xixuanseo.com/aaa/login.php";
+//type: xy1
+//para: zxzuan@gmail.com
+//parb: 5999
+//parc: 183.67.56.241
+//pard: 重庆市
 
-//dd($url);
 $data = [
-    "type" => 'ahrefs54g6a2sd1PQLG6xy1',
-    'name' => '2506306536@qq.com',
-    'pass' => '5888',
-    'ip' => '183.67.58.156',
-    'addrs' => '重庆市'
+    "type" => 'xy1',
+    'para' => 'zxzuan@gmail.com',
+    'parb' => '5999',
+    'parc' => '183.67.56.241',
+    'pard' => '重庆市'
 ];
 $response = curl($url, $data);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
-    $site_sql = "select * from site where name='ahrefs'";
+    $site_sql = "select * from site where name='mangools'";
     $site = $db->getFirstRow($site_sql);
 
     $json = json_decode($response['body'], true);
     $cookies = $json['cookies'] ?? [];
+
+    //mock类型的先删除后写入
 
     foreach ($cookies as $cookie) {
         //如果不存在，则写入

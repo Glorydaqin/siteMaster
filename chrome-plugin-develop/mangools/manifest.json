@@ -27,8 +27,7 @@
 		"webRequest",
 		"webRequestBlocking",
 		"storage",
-		"management",
-		"http://*/"
+		"management"
 	],
 	"content_scripts": [{
 		"matches": [

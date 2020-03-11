@@ -58,7 +58,7 @@ $(document).ready(function () {
     let password = $("#i2").val();
 
     let url = "https://vipfor.me/api/login/";
-    let data = {username: username, password: password, site_id: 2};
+    let data = {username: username, password: password, site_id: 2, v: 2};
     let index = layer.load(1, {
       shade: [0.1, '#fff'] //0.1透明度的白色背景
     });
@@ -76,7 +76,7 @@ $(document).ready(function () {
         bg.setLastPluginId(jsonObj.data.last_plugin_id);
         showAccountList(jsonObj.data.account_list);
       } else {
-        alert("登陆失败或账号过期");
+        alert(jsonObj.message);
       }
     });
   });
@@ -84,19 +84,41 @@ $(document).ready(function () {
   //选账号登录按钮
   $(document).on('click', '.loginNum', function () {
     bg.setCurrentAccountIndex($(this).attr('data-index'));
+    let accountInfo = bg.getCurrentAccount();
 
-    chrome.windows.create({
-      url: "https://mangools.com/users/sign_in",
-      width: 420,
-      height: 800,
-      type: "popup"
-    }, function (window) {
+    if (accountInfo.type === '2') {
+      //cookie 模式 种植cookie
+      let timestamps = Math.round(new Date() / 1000) + 86400 * 30;
+      let new_cookie = {
+        'url': 'https://mangools.com/',
+        "name": "_mangotools_com_session",
+        'value': accountInfo.username,
+        // 'domain': 'mangools.com',
+        'httpOnly': true,
+        'secure': true,
+        // 'expirationDate': timestamps
+      };
+      console.log(new_cookie);
+      chrome.cookies.set(
+          new_cookie, function (cookie) {
+            chrome.tabs.create({url: 'https://app.kwfinder.com'});
+            showLogout();
+          }
+      );
+    } else {
+      chrome.windows.create({
+        url: "https://mangools.com/users/sign_in",
+        width: 420,
+        height: 800,
+        type: "popup"
+      }, function (window) {
 
-      bg.setLoginWindowId(window.id);
-      bg.setLoginTabId(window.tabs[0].id);
+        bg.setLoginWindowId(window.id);
+        bg.setLoginTabId(window.tabs[0].id);
 
-      showLogout();
-    });
+        showLogout();
+      });
+    }
   });
 
   //登出

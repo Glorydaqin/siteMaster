@@ -64,17 +64,21 @@ document.addEventListener('DOMContentLoaded', function () {
     return false;
   };
   //如果用户在工具栏调起开发者工具，那么判断浏览器的可视高度和可视宽度是否有改变，如有改变则关闭本页面
-  var h = window.innerHeight, w = window.innerWidth;
-  window.onresize = function () {
-    if (h != window.innerHeight || w != window.innerWidth) {
-      window.close();
-      window.location = "about:blank";
-    }
-  };
-
-  console.log('DOMContentLoaded 我被执行了！');
+  // var h = window.innerHeight, w = window.innerWidth;
+  // window.onresize = function () {
+  //   if (h != window.innerHeight || w != window.innerWidth) {
+  //     window.close();
+  //     window.location = "about:blank";
+  //   }
+  // };
+  $("a[href='/users/sign_out']").hide();
 
   let url = window.location.href;
+  if (url.includes("https://mangools.com/apps") && tabId === loginTabId) {
+    //关闭loginTabId 新开kwfinder 页面
+    chrome.tabs.remove(loginTabId);
+    chrome.tabs.create({url: 'https://app.kwfinder.com'});
+  }
 
   if (url.includes("https://mangools.com/users/sign_in")) {
     if (tabId === loginTabId) {

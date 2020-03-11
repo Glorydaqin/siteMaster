@@ -16,11 +16,19 @@ $password = $_POST['password'] ?? '';
 $username = addslashes($username);
 $password = addslashes($password);
 $site_id = $_POST['site_id'] ?? 1;
+$v = $_POST['v'] ?? 1;
 
 $data = [
     'code' => 200,
     'data' => []
 ];
+if ($v < 2) {
+    $data['code'] = 40001;
+    $data['message'] = '请升级插件';
+
+    echo json_encode($data);
+    exit();
+}
 $row = User::check_user($username, $password);
 if ($row && strtotime($row['expired_at']) >= time()) {
     $last_plugin_id = time() . rand(1000, 9999);
@@ -43,8 +51,10 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     $data['data']['account_list'] = $account_list;
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
+    $data['message'] = '账号到期';
 } else {
     $data['code'] = 4002;
+    $data['message'] = '账号或密码错误';
 }
 
 echo json_encode($data);

@@ -39,6 +39,16 @@ function setCurrentAccountIndex(val) {
   currentAccountIndex = val;
 }
 
+function getCurrentAccount() {
+  let item = accountList[currentAccountIndex];
+  return ({
+    username: item.username,
+    password: str_decrypt(item.password),
+    type: item.type,
+    accountList: accountList
+  });
+}
+
 /**
  * 解密函数
  * @param str 待解密字符串
@@ -59,7 +69,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   if (request.type === 'getCurrentAccount') {
     let item = accountList[currentAccountIndex];
-    sendResponse({username: item.username, password: str_decrypt(item.password), accountList: accountList});
+    sendResponse({
+      username: item.username,
+      password: str_decrypt(item.password),
+      type: item.type,
+      accountList: accountList
+    });
   } else if (request.type === 'getTabId') {
     sendResponse({currentTabId: sender.tab.id, loginTabId: loginTabId});
   } else if (request.type === 'getPageStatus') {
@@ -183,4 +198,11 @@ chrome.runtime.onInstalled.addListener({
 //卸载时触发
 chrome.runtime.onSuspend.addListener(function () {
   loginInfoClear();
+});
+
+chrome.cookies.onChanged.addListener(function (changeInfo) {
+
+  // if (changeInfo.cookie.name == "_mangotools_com_session") {
+  //   console.log(changeInfo);
+  // }
 });
