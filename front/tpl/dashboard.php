@@ -75,7 +75,7 @@
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="/plugins/vip-login.zip" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    <a href="/plugins/mangools.zip" target="_blank" class="faq-question" style="color: #f8ac59">
                                                         插件下载地址
                                                     </a>
                                                 </div>

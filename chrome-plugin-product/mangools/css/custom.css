@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-#mDiv,#mDivb,#mDivc {
+#mDiv, #mDivb, #mDivc {
     width: 300px;
     height: 550px;
     background-color: #eee;
@@ -31,7 +31,7 @@
     margin-top: 16px;
 }
 
-#mDiv0,#mDiv1 {
+#mDiv0, #mDiv1 {
     height: 40px;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -45,7 +45,7 @@
     position: absolute;
 }
 
-#i1,#i2 {
+#i1, #i2 {
     font-size: 16px;
     border: 0px;
     background-color: #eee;
@@ -68,17 +68,19 @@
 #mDivb .divaa {
     height: 40px;
 }
-#accountList{
+
+#accountList {
     margin-top: 20px;
 }
-#mDivb .divaa  span {
+
+#mDivb .divaa span {
     font-size: 24px;
     line-height: 40px;
     color: #fff;
     letter-spacing: 5px;
 }
 
-#dDiv1,#dDiv2 {
+#dDiv1, #dDiv2 {
     margin-top: 24px;
 }
 
@@ -90,11 +92,11 @@
     letter-spacing: 2px;
 }
 
-#bDiv3,#bDiv4,#bDiv6,#bDiv7,#bDiv8 {
+#bDiv3, #bDiv4, #bDiv6, #bDiv7, #bDiv8 {
     margin-top: 19px;
 }
 
-#bDiv1,#bDiv5 {
+#bDiv1, #bDiv5 {
     height: 300px;
     text-align: center;
     font-size: 26px;
@@ -112,4 +114,8 @@
 
 .divaa:hover {
     cursor: pointer;
+}
+
+.loginNum {
+    margin-bottom: 20px;
 }
