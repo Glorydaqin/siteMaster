@@ -29,7 +29,7 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'test.php';
     } elseif ($script_uri == '/api/login/') {
         include_once FRONT_DIR . 'api_login.php';
-    }elseif ($script_uri == '/api/check/') {
+    } elseif ($script_uri == '/api/check/') {
         include_once FRONT_DIR . 'api_check.php';
     } //image 下载类别
     elseif (substr($script_uri, 0, strlen('/image/')) == '/image/') {
@@ -48,6 +48,8 @@ if ($server_domain == DOMAIN) {
     include_once FRONT_DIR . 'transfer_majestic.php';
 } elseif (in_array($server_domain, [DOMAIN_KWFINDER, DOMAIN_LINKMINER, DOMAIN_SERPCHECKER, DOMAIN_SERPWATCHER, DOMAIN_SITEPROFILER])) {
     include_once FRONT_DIR . 'transfer_mangools.php';
+} elseif ($server_domain == DOMAIN_SPYFU) {
+    include_once FRONT_DIR . 'transfer_spyfu.php';
 }
 
 

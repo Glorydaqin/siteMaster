@@ -40,6 +40,10 @@ foreach ($site_list as &$site) {
             $target = [
                 ['name' => $site['name'], 'url' => PROTOCOL . DOMAIN_MAJESTIC],
             ];
+        } elseif ($site['name'] == 'spyfu') {
+            $target = [
+                ['name' => $site['name'], 'url' => PROTOCOL . DOMAIN_SPYFU],
+            ];
         }
 
         $account['target'] = $target;

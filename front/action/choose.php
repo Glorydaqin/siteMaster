@@ -48,6 +48,8 @@ if ($account_info['site_name'] == 'ahrefs') {
     $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';
 } elseif ($account_info['site_name'] == 'semrush') {
     $url = PROTOCOL . DOMAIN_SEMRUSH . '/dashboard/';
+} elseif ($account_info['site_name'] == 'spyfu') {
+    $url = PROTOCOL . DOMAIN_SPYFU . '/hq/';
 } else {
     //回去重新选site
     $url = PROTOCOL . DOMAIN . '/dashboard/';
