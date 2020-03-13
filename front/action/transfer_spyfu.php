@@ -143,7 +143,7 @@ try {
         }, $html);
 
         //替换用户信息
-        $html = str_replace($account['username'], 'account_' . $account_id, $html);
+//        $html = str_replace($account['username'], 'account_' . $account_id, $html);
     }
 
     header('Content-Type: ' . $response['info']['content_type']);
