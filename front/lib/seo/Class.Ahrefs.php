@@ -324,5 +324,21 @@ class Ahrefs
             $redis->zAdd($key, $score + 1, $limit_site_explorer_key);
         }
 
+        // 导出每人4000
+        if (stripos(' ' . $url, '/v3/api-adaptor/keIdeasExport')) {
+            $limit = 4000;
+            $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
+
+            $redis = RedisCache::connect();
+            //拿到这个key的 score
+            $score = $redis->zScore($key, $limit_key);
+            $score = $score ?? 0;
+            $curl_num = $_POST['limit'] ?? 1000;
+            if ($score + $curl_num >= $limit) {
+                // 达到限制
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard/', '超出导出限制数量');
+            }
+            $redis->zAdd($key, $score + $curl_num, $limit_key);
+        }
     }
 }
