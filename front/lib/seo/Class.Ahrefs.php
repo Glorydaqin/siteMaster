@@ -13,7 +13,7 @@ class Ahrefs
     private $cookie_key = '';
     private $type = 'normal';
     public $buffer = ''; //your download buffer goes here.
-    private $mock_max_error_time = 2; // mock 最多尝试登陆4次。不行就删账号
+    private $mock_max_error_time = 1; // mock 最多尝试登陆4次。不行就删账号
     private $mock_redis_key;
 
     /**
@@ -215,17 +215,6 @@ class Ahrefs
         if (empty(file_get_contents($cookie_file))) {
             return false;
         }
-//        preg_match_all("/TRUE	(\d+?)	BSSESSID/", file_get_contents($cookie_file), $match_time);
-//        $cookie_time = isset($match_time[1][0]) ? $match_time[1][0] : 0;
-//        if ($cookie_time < time()) {
-//            return false;
-//        }
-//        return true;
-
-//        $result = $this->curl(self::$domain . 'dashboard');
-//        if ($result['code'] != 200 || !stripos($result['body'], 'Account settings')) {
-//            return false;
-//        }
         return true;
     }
 
@@ -239,7 +228,9 @@ class Ahrefs
             $mock_times = !empty($mock_times) ? $mock_times : 1;
             if ($mock_times > $this->mock_max_error_time) {
                 $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
-                $up_sql = "update site_account set deleted=1 where id = {$_SESSION['account_id']}";
+                $choose_session = $_SESSION['ahrefs'] ?? [];
+                $account_id = $choose_session['account_id'] ?? '';
+                $up_sql = "update site_account set deleted=1 where id = {$account_id}";
                 $db->query($up_sql);
                 page_jump(PROTOCOL . DOMAIN . '/index/', '当前访问错误，请切换其他账号访问');
             }

@@ -18,7 +18,7 @@ try {
     $choose_session = $_SESSION['ahrefs'] ?? [];
     $account_id = $choose_session['account_id'] ?? '';
     $site_id = $choose_session['site_id'] ?? '';
-//    dd($choose_session);
+
 //转发页面
     $url = trim($url, '/');
     $first_sub = explode('/', $url)[0];
@@ -35,7 +35,7 @@ try {
         die('folder limit ｜ 目录访问限制');
     }
     $type = $account['type'] == 2 ? 'mock' : 'normal';
-    $Ahrefs = new Ahrefs($account['username'], $account['password'], $type);
+    $transfer = new Ahrefs($account['username'], $account['password'], $type);
 
     $url_is_cdn = (stripos($url, 'cdn_ahrefs_com') !== false) ? true : false;
 
@@ -45,7 +45,7 @@ try {
         $real_url = Ahrefs::$cdn_domain . substr($url, strlen('cdn_ahrefs_com/'));
     } else {
         //验证和记录访问
-        $Ahrefs->check_limit($url, $_SESSION['user_id']);
+        $transfer->check_limit($url, $_SESSION['user_id']);
     }
 
     $raw_data = file_get_contents('php://input');
@@ -59,10 +59,10 @@ try {
         //下载接口使用分段下载
         header("Content-Type:text/csv");
         header('Content-Disposition: attachment; filename="file.csv"');
-        $Ahrefs->curl_download($real_url, $post_data);
+        $transfer->curl_download($real_url, $post_data);
         die;
     } else {
-        $response = $Ahrefs->get($real_url, $post_data, $url_is_cdn);
+        $response = $transfer->get($real_url, $post_data, $url_is_cdn);
     }
 
     $html = $response['body'];
