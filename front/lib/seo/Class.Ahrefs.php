@@ -338,6 +338,8 @@ class Ahrefs
     {
         $key = REDIS_PRE . 'user_limit:' . $user_id;
         $day = date("Ymd");
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);
 
         if (stripos(' ' . $url, 'site-explorer/overview/v2/subdomains/live?')) {
             $limit_site_explorer_limit = 30;
@@ -359,12 +361,13 @@ class Ahrefs
             $limit = 4000;
             $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
 
+            d($data);
             dd($_POST);
             $redis = RedisCache::connect();
             //拿到这个key的 score
             $score = $redis->zScore($key, $limit_key);
             $score = $score ?? 0;
-            $curl_num = $_POST['limit'] ?? 1000;
+            $curl_num = $data['limit'] ?? 1000;
             if ($score + $curl_num >= $limit) {
                 // 达到限制
                 page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');
