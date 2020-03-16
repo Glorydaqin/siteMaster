@@ -306,9 +306,10 @@ class Ahrefs
     /**
      * 返回用户额度字符串
      * @param $user_id
+     * @param $source
      * @return string
      */
-    public function get_limit($user_id)
+    public function get_limit($user_id, $source)
     {
         $html = "";
         $redis = RedisCache::connect();
@@ -327,8 +328,8 @@ class Ahrefs
         $score = $score ?? 0;
         $html .= ",导出:" . ($limit - $score) . "/" . $limit;
 
-        $html = '<div style="position: absolute;top: 0;left: 0;">' . $html . '</div>';
-
+        $html = '<div style="position: absolute;top: 0;left: 0;color: black;z-index: 999;background: #7e8a904d;">' . $html . '</div>';
+        $html = str_replace('</body>', $html . '</body>', $source);
         return $html;
     }
 
