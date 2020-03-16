@@ -38,7 +38,7 @@ if ($response['code'] == 200) {
         die('error');
     }
 
-
+    dump($response['body']);
     $json = explode(',', $response['body']);
     $cookies = [];
     foreach ($json as $item) {
@@ -47,9 +47,10 @@ if ($response['code'] == 200) {
         }
     }
 
+    dump($cookies);
     //mock类型的先删除后写入
-    $db_accounts_sql = "select * from site_account where site_id = {$site['id']} and type=2";
-    $db_accounts = $db->getRows($delete_sql);
+    $db_accounts_sql = "select * from site_account where site_id = {$site['id']} and `type`=2;";
+    $db_accounts = $db->getRows($db_accounts_sql);
     $key_map = array_combine(array_column($db_accounts, 'username'), array_column($db_accounts, 'id'));
     foreach ($cookies as $cookie) {
         if (isset($key_map[$cookie])) {
