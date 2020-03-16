@@ -349,7 +349,7 @@ class Ahrefs
         $day = date("Ymd");
 
         if (stripos(' ' . $url, 'site-explorer/overview/v2/subdomains/live?')) {
-            $limit_site_explorer_limit = 30;
+            $limit_site_explorer_limit = 15;
             $limit_site_explorer_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
 
             $redis = RedisCache::connect();
