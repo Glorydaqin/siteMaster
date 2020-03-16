@@ -322,7 +322,7 @@ class Ahrefs
         $score = $score ?? 0;
         $html .= "今日剩余域名:" . ($limit - $score) . "/" . $limit;
 
-        $limit = 4000;
+        $limit = 1000;
         $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
@@ -358,11 +358,9 @@ class Ahrefs
 
         // 导出每人4000
         if (stripos(' ' . $url, 'v3/api-adaptor/keIdeasExport')) {
-            $limit = 4000;
+            $limit = 1000;
             $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
 
-            d($data);
-            dd($_POST);
             $redis = RedisCache::connect();
             //拿到这个key的 score
             $score = $redis->zScore($key, $limit_key);
