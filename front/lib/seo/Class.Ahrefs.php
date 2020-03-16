@@ -316,17 +316,26 @@ class Ahrefs
         $key = REDIS_PRE . 'user_limit:' . $user_id;
         $day = date("Ymd");
 
+        //域名查询
         $limit = 30;
         $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
-        $html .= "今日剩余域名:" . ($limit - $score) . "/" . $limit;
+        $html .= "今日余额,域名:" . ($limit - $score) . "/" . $limit;
 
+        //关键词
         $limit = 1000;
-        $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
+        $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天4000次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
-        $html .= ",导出:" . ($limit - $score) . "/" . $limit;
+        $html .= ",关键词导出:" . ($limit - $score) . "/" . $limit;
+
+        //外链数量
+        $limit = 4000;
+        $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天4000次
+        $score = $redis->zScore($key, $limit_key);
+        $score = $score ?? 0;
+        $html .= ",外链导出:" . ($limit - $score) . "/" . $limit;
 
         $html = '<div style="position: absolute;top: 0;left: 0;color: black;z-index: 999;background: #7e8a904d;">' . $html . '</div>';
         $html = str_replace('</body>', $html . '</body>', $source);
@@ -338,8 +347,6 @@ class Ahrefs
     {
         $key = REDIS_PRE . 'user_limit:' . $user_id;
         $day = date("Ymd");
-        $request_body = file_get_contents('php://input');
-        $data = json_decode($request_body, true);
 
         if (stripos(' ' . $url, 'site-explorer/overview/v2/subdomains/live?')) {
             $limit_site_explorer_limit = 30;
@@ -358,6 +365,9 @@ class Ahrefs
 
         // 导出每人4000
         if (stripos(' ' . $url, 'v3/api-adaptor/keIdeasExport')) {
+            $request_body = file_get_contents('php://input');
+            $data = json_decode($request_body, true);
+
             $limit = 1000;
             $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
 
@@ -366,6 +376,23 @@ class Ahrefs
             $score = $redis->zScore($key, $limit_key);
             $score = $score ?? 0;
             $curl_num = $data['limit'] ?? 1000;
+            if ($score + $curl_num >= $limit) {
+                // 达到限制
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');
+            }
+            $redis->zAdd($key, $score + $curl_num, $limit_key);
+        }
+
+        // 外链
+        if (stripos(' ' . $url, 'site-explorer/ajax/set/start-background-export')) {
+            $limit = 4000;
+            $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天30次
+
+            $redis = RedisCache::connect();
+            //拿到这个key的 score
+            $score = $redis->zScore($key, $limit_key);
+            $score = $score ?? 0;
+            $curl_num = $_POST['limit'] ?? 1000;
             if ($score + $curl_num >= $limit) {
                 // 达到限制
                 page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');

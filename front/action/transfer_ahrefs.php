@@ -30,8 +30,8 @@ try {
     }
 
     if (in_array($first_sub, [
-            'account'
-        ]) && $url != 'account/limits-and-usage/web') {
+        'account', 'user'
+    ])) {
         die('folder limit ｜ 目录访问限制');
     }
     $type = $account['type'] == 2 ? 'mock' : 'normal';
@@ -122,8 +122,8 @@ try {
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
         //替换account 按钮为 limit & usage
-        $html = str_replace("<a href=\"/account/my-account\" class=\"dropdown-item\">Account settings</a>",
-            "<a href=\"/account/limits-and-usage/web\" class=\"dropdown-item\">Limits & Usage</a>", $html);
+//        $html = str_replace("<a href=\"/account/my-account\" class=\"dropdown-item\">Account settings</a>",
+//            "<a href=\"/account/limits-and-usage/web\" class=\"dropdown-item\">Limits & Usage</a>", $html);
         //放上余量信息
         $html = $transfer->get_limit($_SESSION['user_id'], $html);
     }
