@@ -162,3 +162,11 @@ function set_choose_session($site_id, $account_id, $key = '')
 {
     $_SESSION[$key] = ['account_id' => $account_id, 'site_id' => $site_id];
 }
+
+/*
+ 判断当前的运行环境是否是cli模式
+ */
+function is_cli()
+{
+    return preg_match("/cli/i", php_sapi_name()) ? true : false;
+}

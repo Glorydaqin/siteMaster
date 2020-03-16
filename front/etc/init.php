@@ -18,7 +18,7 @@ if (DEBUG_MODE) {
 }
 
 //非主域名不主动启用数据库
-if ($server_domain == DOMAIN) {
+if (!is_cli() && $server_domain == DOMAIN) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $tpl = new Template();
 }

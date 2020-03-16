@@ -45,15 +45,23 @@ if ($response['code'] == 200) {
         $counts = $db->getRows($check_sql);
 
         if (count($counts) == 0) {
-            //写数据
-            //`site_id` int(11) NOT NULL,
-            //  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-            //  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-            //  `type` tinyint(2) unsigned DEFAULT '1' COMMENT '1 普通账号，2 mock账号',
-            //  `deleted` tinyint(2) DEFAULT '0',
-            $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$username}','{$username}',2);";
+            //拿一条删除的数据来修改
+            $get_sql = "select * from site_account where site_id = {$site['id']} and `type` = 2 and deleted = 1 limit 1";
+            $account = $db->getFirstRow($get_sql);
 
-            $db->query($insert_sql);
+            if ($account) {
+                $up_sql = "update site_account set username = '{$username}',password = '{$username}',deleted = 0,`type` = 2 where id = {$account['id']};";
+                $db->query($up_sql);
+            } else {
+                //写数据
+                //`site_id` int(11) NOT NULL,
+                //  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+                //  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+                //  `type` tinyint(2) unsigned DEFAULT '1' COMMENT '1 普通账号，2 mock账号',
+                //  `deleted` tinyint(2) DEFAULT '0',
+                $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$username}','{$username}',2);";
+                $db->query($insert_sql);
+            }
         }
     }
 
