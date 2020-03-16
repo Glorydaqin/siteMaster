@@ -320,7 +320,7 @@ class Ahrefs
         $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
-        $html .= "域名:" . ($limit - $score) . "/" . $limit;
+        $html .= "今日剩余域名:" . ($limit - $score) . "/" . $limit;
 
         $limit = 4000;
         $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
