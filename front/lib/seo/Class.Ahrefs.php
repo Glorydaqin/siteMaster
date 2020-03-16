@@ -355,10 +355,11 @@ class Ahrefs
         }
 
         // 导出每人4000
-        if (stripos(' ' . $url, '/v3/api-adaptor/keIdeasExport')) {
+        if (stripos(' ' . $url, 'v3/api-adaptor/keIdeasExport')) {
             $limit = 4000;
             $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
 
+            dd($_POST);
             $redis = RedisCache::connect();
             //拿到这个key的 score
             $score = $redis->zScore($key, $limit_key);
