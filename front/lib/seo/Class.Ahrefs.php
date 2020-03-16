@@ -303,6 +303,33 @@ class Ahrefs
         return false;
     }
 
+    /**
+     * 返回用户额度字符串
+     * @param $user_id
+     * @return string
+     */
+    public function get_limit($user_id)
+    {
+        $html = "";
+        $redis = RedisCache::connect();
+        $key = REDIS_PRE . 'user_limit:' . $user_id;
+        $day = date("Ymd");
+
+        $limit = 30;
+        $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
+        $score = $redis->zScore($key, $limit_key);
+        $score = $score ?? 0;
+        $html .= "域名:" . ($limit - $score) / $limit;
+
+        $limit = 4000;
+        $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天30次
+        $score = $redis->zScore($key, $limit_key);
+        $score = $score ?? 0;
+        $html .= ",导出:" . ($limit - $score) / $limit;
+
+        return $html;
+    }
+
     // 检查是否达到限制
     public function check_limit($url, $user_id)
     {
@@ -319,7 +346,7 @@ class Ahrefs
             $score = $score ?? 0;
             if ($score >= $limit_site_explorer_limit) {
                 // 达到限制
-                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard/', '超出查询限制数量');
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出查询限制数量');
             }
             $redis->zAdd($key, $score + 1, $limit_site_explorer_key);
         }
@@ -336,7 +363,7 @@ class Ahrefs
             $curl_num = $_POST['limit'] ?? 1000;
             if ($score + $curl_num >= $limit) {
                 // 达到限制
-                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard/', '超出导出限制数量');
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');
             }
             $redis->zAdd($key, $score + $curl_num, $limit_key);
         }

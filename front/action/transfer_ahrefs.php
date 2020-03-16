@@ -121,6 +121,8 @@ try {
 
         //替换用户信息
         $html = str_replace($account['username'], 'account_' . $account_id, $html);
+        //放上余量信息
+        $html = $transfer->get_limit($_SESSION['user_id']) . $html;
     }
 
     header('Content-Type: ' . $response['info']['content_type']);
