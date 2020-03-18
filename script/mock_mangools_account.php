@@ -10,7 +10,7 @@ set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
 $sleep_time = rand(15, 180);
-sleep($sleep_time);
+//sleep($sleep_time);
 
 //
 $url = "http://www.xixuanseo.com/aaa/login.php";
@@ -27,8 +27,9 @@ $data = [
     'parc' => '183.67.56.241',
     'pard' => '重庆市'
 ];
+d($data);
 $response = curl($url, $data);
-
+d($response);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $site_sql = "select * from site where name='mangools'";
