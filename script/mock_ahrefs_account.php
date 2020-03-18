@@ -9,7 +9,7 @@ include_once INCLUDE_ROOT . 'etc/init.php';
 set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
-$sleep_time = rand(15, 180);
+$sleep_time = rand(15, 50);
 sleep($sleep_time);
 
 //
@@ -37,6 +37,7 @@ if ($response['code'] == 200) {
     $json = json_decode($response['body'], true);
     $cookies = $json['cookies'] ?? [];
 
+    $insert = $update = 0;
     foreach ($cookies as $cookie) {
         //如果不存在，则写入
 
@@ -52,6 +53,7 @@ if ($response['code'] == 200) {
             if ($account) {
                 $up_sql = "update site_account set username = '{$username}',password = '{$username}',deleted = 0,`type` = 2 where id = {$account['id']};";
                 $db->query($up_sql);
+                $update++;
             } else {
                 //写数据
                 //`site_id` int(11) NOT NULL,
@@ -61,8 +63,10 @@ if ($response['code'] == 200) {
                 //  `deleted` tinyint(2) DEFAULT '0',
                 $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$username}','{$username}',2);";
                 $db->query($insert_sql);
+                $insert++;
             }
         }
     }
 
+    dd('finish , insert ' . $insert . ',update ' . $update);
 }

@@ -10,8 +10,8 @@ include_once INCLUDE_ROOT . 'etc/init.php';
 set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
-$sleep_time = rand(15, 180);
-//sleep($sleep_time);
+$sleep_time = rand(5, 50);
+sleep($sleep_time);
 
 //
 $url = "http://www.xixuanseo.com/aaa/login.php";
