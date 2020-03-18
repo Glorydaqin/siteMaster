@@ -30,7 +30,7 @@ $data = [
 ];
 //dump($data);
 $response = curl($url, $data);
-//dump($response);
+d($response);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $site_sql = "select * from site where name='mangools'";
