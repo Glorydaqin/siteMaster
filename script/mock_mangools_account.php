@@ -80,5 +80,5 @@ if ($response['code'] == 200) {
         $delete++;
     }
 
-    die(date("Y-m-d H:i:s") . 'finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete . PHP_EOL);
+    die(date("Y-m-d H:i:s") . ' - finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete . PHP_EOL);
 }
