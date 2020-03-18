@@ -82,3 +82,4 @@ if ($response['code'] == 200) {
 
     die(date("Y-m-d H:i:s") . ' - finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete . PHP_EOL);
 }
+die(date("Y-m-d H:i:s") . ' - error response code' . $response['code'] . PHP_EOL);
