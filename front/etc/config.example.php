@@ -8,9 +8,6 @@ define('DB_PORT', 3306);
 
 define('MYSQL_ENCODING', 'UTF8');
 define('DEBUG_MODE', true);
-
-define('HTTP_HOST', $_SERVER['HTTP_HOST']);
-define('SITE_URL', 'https://' . HTTP_HOST);
 define('DATA_ROOT', INCLUDE_ROOT . 'data/');
 define('FRONT_DIR', INCLUDE_ROOT . 'action/');
 define('LOG_DIR', dirname(INCLUDE_ROOT) . '/log/');
