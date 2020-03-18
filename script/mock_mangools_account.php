@@ -13,8 +13,8 @@ include_once INCLUDE_ROOT . 'etc/init.php';
 set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
-//$sleep_time = rand(5, 50);
-//sleep($sleep_time);
+$sleep_time = rand(5, 50);
+sleep($sleep_time);
 
 //
 $url = "http://www.xixuanseo.com/aaa/login.php";
@@ -31,9 +31,7 @@ $data = [
     'parc' => '183.67.56.241',
     'pard' => '重庆市'
 ];
-//dump($data);
 $response = curl($url, $data);
-var_dump($response);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $site_sql = "select * from site where name='mangools'";
@@ -82,5 +80,5 @@ if ($response['code'] == 200) {
         $delete++;
     }
 
-    die('finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete);
+    die(date("Y-m-d H:i:s") . 'finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete . PHP_EOL);
 }
