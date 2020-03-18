@@ -8,6 +8,8 @@ $server_domain = '';
 require ROOT_PATH . '/vendor/autoload.php';
 include_once INCLUDE_ROOT . 'etc/init.php';
 
+//cli 下面不要用dd 这类函数，centos显示有问题
+
 set_time_limit(300);
 //从竞争对手插件里拿账号cookie
 //随机等待时间
@@ -31,7 +33,7 @@ $data = [
 ];
 //dump($data);
 $response = curl($url, $data);
-d($response);
+var_dump($response);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $site_sql = "select * from site where name='mangools'";
@@ -80,5 +82,5 @@ if ($response['code'] == 200) {
         $delete++;
     }
 
-    dd('finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete);
+    die('finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete);
 }
