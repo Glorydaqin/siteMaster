@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
 define('ROOT_PATH', dirname(dirname(__FILE__)));
@@ -27,46 +28,44 @@ $data = [
     'parc' => '183.67.56.241',
     'pard' => '重庆市'
 ];
-d($data);
+//dump($data);
 $response = curl($url, $data);
-d($response);
+//dump($response);
 if ($response['code'] == 200) {
     $db = new Mysql(DB_NAME, DB_HOST, DB_USER, DB_PASS, DB_PORT);
     $site_sql = "select * from site where name='mangools'";
     $site = $db->getFirstRow($site_sql);
 
     if (!$site) {
-        die('error');
+        die('site error');
     }
 
-    dump($response['body']);
+//    dump($response['body']);
     $json = explode(',', $response['body']);
     $cookies = [];
     foreach ($json as $item) {
-        if (strlen($item) > 300) {
-            $cookies[] = $item;
+        if (strlen($item) > 300 && !isset($cookies[$item])) {
+            $cookies[$item] = $item;
         }
     }
 
-    dump($cookies);
     //mock类型的先删除后写入
     $db_accounts_sql = "select * from site_account where site_id = {$site['id']} and `type`=2;";
     $db_accounts = $db->getRows($db_accounts_sql);
+
     $key_map = array_combine(array_column($db_accounts, 'username'), array_column($db_accounts, 'id'));
+
     foreach ($cookies as $cookie) {
+
         if (isset($key_map[$cookie])) {
             //更新为未删除
             $up_sql = "update site_account set deleted=0 where id={$key_map[$cookie]} and deleted = 1";
+
             $db->query($up_sql);
             unset($key_map[$cookie]);
         } else {
-            //新写入
-            //`site_id` int(11) NOT NULL,
-            //  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-            //  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-            //  `type` tinyint(2) unsigned DEFAULT '1' COMMENT '1 普通账号，2 mock账号',
-            //  `deleted` tinyint(2) DEFAULT '0',
-            $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$username}','{$username}',2);";
+
+            $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$cookie}','{$cookie}',2);";
 
             $db->query($insert_sql);
         }
