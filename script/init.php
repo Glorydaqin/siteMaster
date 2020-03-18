@@ -3,6 +3,7 @@ ini_set('date.timezone', 'PRC');
 define('IN_DS', true);
 define('ROOT_PATH', dirname(dirname(__FILE__)));
 define('INCLUDE_ROOT', ROOT_PATH . DIRECTORY_SEPARATOR . "front" . DIRECTORY_SEPARATOR);
+$server_domain = '';
 require ROOT_PATH . '/vendor/autoload.php';
 include_once INCLUDE_ROOT . 'etc/init.php';
 
