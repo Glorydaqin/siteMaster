@@ -55,6 +55,7 @@ if ($response['code'] == 200) {
 
     $key_map = array_combine(array_column($db_accounts, 'username'), array_column($db_accounts, 'id'));
 
+    $insert = $update = $delete = 0;
     foreach ($cookies as $cookie) {
 
         if (isset($key_map[$cookie])) {
@@ -63,11 +64,11 @@ if ($response['code'] == 200) {
 
             $db->query($up_sql);
             unset($key_map[$cookie]);
+            $update++;
         } else {
-
             $insert_sql = "insert into site_account(site_id,username,password,`type`) value ({$site['id']},'{$cookie}','{$cookie}',2);";
-
             $db->query($insert_sql);
+            $insert++;
         }
     }
 
@@ -75,6 +76,8 @@ if ($response['code'] == 200) {
     foreach ($key_map as $id) {
         $up_sql = "update site_account set deleted=1 where id={$id} and deleted = 0";
         $db->query($up_sql);
+        $delete++;
     }
 
+    dd('finish , insert ' . $insert . ",update " . $update . ',delete ' . $delete);
 }
