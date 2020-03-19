@@ -48,8 +48,7 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         $account_list[$key]['password'] = compileCode($item['password']);
     }
 
-    shuffle($account_list);
-    $data['data']['account_list'] = $account_list;
+    $data['data']['account_list'] = array_reverse($account_list);
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
     $data['message'] = '账号到期';
