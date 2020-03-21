@@ -330,12 +330,12 @@ class Ahrefs
         $score = $score ?? 0;
         $html .= ",关键词导出:" . ($limit - $score) . "/" . $limit;
 
-        //外链数量
-        $limit = 4000;
-        $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天4000次
-        $score = $redis->zScore($key, $limit_key);
-        $score = $score ?? 0;
-        $html .= ",外链导出:" . ($limit - $score) . "/" . $limit;
+//        //外链数量
+//        $limit = 4000;
+//        $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天4000次
+//        $score = $redis->zScore($key, $limit_key);
+//        $score = $score ?? 0;
+//        $html .= ",外链导出:" . ($limit - $score) . "/" . $limit;
 
         $html = '<div style="position: absolute;top: 0;left: 0;color: black;z-index: 999;background: #7e8a904d;">' . $html . '</div>';
         $html = str_replace('</body>', $html . '</body>', $source);
@@ -383,21 +383,21 @@ class Ahrefs
             $redis->zAdd($key, $score + $curl_num, $limit_key);
         }
 
-        // 外链
-        if (stripos(' ' . $url, 'site-explorer/ajax/set/start-background-export')) {
-            $limit = 4000;
-            $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天30次
-
-            $redis = RedisCache::connect();
-            //拿到这个key的 score
-            $score = $redis->zScore($key, $limit_key);
-            $score = $score ?? 0;
-            $curl_num = $_POST['limit'] ?? 1000;
-            if ($score + $curl_num >= $limit) {
-                // 达到限制
-                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');
-            }
-            $redis->zAdd($key, $score + $curl_num, $limit_key);
-        }
+//        // 外链
+//        if (stripos(' ' . $url, 'site-explorer/ajax/set/start-background-export')) {
+//            $limit = 4000;
+//            $limit_key = REDIS_PRE . "link_export-{$day}:" . $user_id; //每人每天30次
+//
+//            $redis = RedisCache::connect();
+//            //拿到这个key的 score
+//            $score = $redis->zScore($key, $limit_key);
+//            $score = $score ?? 0;
+//            $curl_num = $_POST['limit'] ?? 1000;
+//            if ($score + $curl_num >= $limit) {
+//                // 达到限制
+//                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出导出限制数量');
+//            }
+//            $redis->zAdd($key, $score + $curl_num, $limit_key);
+//        }
     }
 }

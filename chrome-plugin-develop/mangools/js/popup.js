@@ -38,13 +38,10 @@ $(document).ready(function () {
       chrome.runtime.sendMessage({type: 'getAccountList'}, function (accountList) {
         showAccountList(accountList)
       })
-
     }
   });
 
   chrome.storage.local.get({username: null, password: null}, function (items) {
-    console.log(items.username, items.password);
-
     $("#i1").val(items.username);
     $("#i2").val(items.password);
   });
@@ -53,12 +50,14 @@ $(document).ready(function () {
   $("#login").on("click", function () {
     bg.closePlugins();
 
+    let mainfest = chrome.runtime.getManifest();
+
     //账号登陆
     let username = $("#i1").val();
     let password = $("#i2").val();
 
     let url = "https://vipfor.me/api/login/";
-    let data = {username: username, password: password, site_id: 2, v: 2};
+    let data = {username: username, password: password, site_id: 2, v: mainfest.manifest_version};
     let index = layer.load(1, {
       shade: [0.1, '#fff'] //0.1透明度的白色背景
     });
@@ -68,6 +67,7 @@ $(document).ready(function () {
 
       layer.close(index);
       if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+        bg.loginInfoClear();
         chrome.storage.local.set({username: username, password: password}, function () {
           console.log('本地账号保存成功！');
           bg.setUser(username, password);
@@ -88,7 +88,6 @@ $(document).ready(function () {
 
     if (accountInfo.type === '2') {
       //cookie 模式 种植cookie
-      let timestamps = Math.round(new Date() / 1000) + 86400 * 30;
       let new_cookie = {
         'url': 'https://mangools.com/',
         "name": "_mangotools_com_session",
@@ -98,7 +97,6 @@ $(document).ready(function () {
         'secure': true,
         // 'expirationDate': timestamps
       };
-      console.log(new_cookie);
       chrome.cookies.set(
           new_cookie, function (cookie) {
             chrome.tabs.create({url: 'https://app.kwfinder.com'});

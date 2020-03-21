@@ -10,6 +10,7 @@ let lastPluginId = null;
 let username = null;
 let password = null;
 
+
 function setUser(user, pass) {
   username = user;
   password = pass;
@@ -120,11 +121,9 @@ function savePluginInfo(pluginId) {
 }
 
 function closeOpenWindow() {
-  chrome.windows.get(loginWindowId, {}, function (window) {
-    if (window) {
-      chrome.windows.remove(loginWindowId);
-    }
-  });
+  if (loginWindowId) {
+    chrome.windows.remove(loginWindowId)
+  }
 }
 
 function clearCookie(domain) {
@@ -136,8 +135,10 @@ function clearCookie(domain) {
   })
 }
 
-function clearStorage(domain) {
-
+function clearStorage() {
+  chrome.tabs.executeScript({
+    code: 'localStorage.clear();'
+  });
 }
 
 /**
@@ -145,7 +146,9 @@ function clearStorage(domain) {
  */
 function loginInfoClear() {
   clearCookie('mangools.com');
-  clearStorage('mangools.com');
+  clearCookie('kwfinder.com');
+  clearCookie('app.kwfinder.com');
+  clearStorage();
 }
 
 setInterval(function () {
@@ -205,4 +208,10 @@ chrome.cookies.onChanged.addListener(function (changeInfo) {
   // if (changeInfo.cookie.name == "_mangotools_com_session") {
   //   console.log(changeInfo);
   // }
+});
+
+chrome.windows.onRemoved.addListener(function (windowId) {
+  if (windowId === loginWindowId) {
+    loginWindowId = null;
+  }
 });
