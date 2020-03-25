@@ -317,7 +317,7 @@ class Ahrefs
         $day = date("Ymd");
 
         //域名查询
-        $limit = 30;
+        $limit = 15;
         $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
