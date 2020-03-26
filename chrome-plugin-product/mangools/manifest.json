@@ -1,6 +1,6 @@
 {
-	"name": "vip login",
-	"version": "1.1",
+	"name": "mangools login",
+	"version": "3.1",
 	"description": "vip login",
 	"manifest_version": 2,
 	"browser_action": {

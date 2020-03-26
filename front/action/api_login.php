@@ -22,7 +22,7 @@ $data = [
     'code' => 200,
     'data' => []
 ];
-if ($v < 2) {
+if ($v < 3) {
     $data['code'] = 40001;
     $data['message'] = '请升级插件';
 
