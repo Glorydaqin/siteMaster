@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
   //   }
   // };
   $("a[href='/users/sign_out']").hide();
+  // $("svg[data-icon='power-off']").parent().hide();
+  // $('div[class="uk-text-bold mg-truncate"]').hide();
 
   let url = window.location.href;
   if (url.includes("https://mangools.com/apps") && tabId === loginTabId) {

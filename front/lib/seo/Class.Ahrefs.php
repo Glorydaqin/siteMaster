@@ -317,7 +317,7 @@ class Ahrefs
         $day = date("Ymd");
 
         //域名查询
-        $limit = 20;
+        $limit = $user_id == 224 ? 80 : 20; //特殊用户特殊处理
         $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
@@ -349,7 +349,7 @@ class Ahrefs
         $day = date("Ymd");
 
         if (stripos(' ' . $url, 'site-explorer/overview/v2/subdomains/live?')) {
-            $limit_site_explorer_limit = 20;
+            $limit_site_explorer_limit = $user_id == 224 ? 80 : 20; //特殊用户特殊处理
             $limit_site_explorer_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
 
             $redis = RedisCache::connect();

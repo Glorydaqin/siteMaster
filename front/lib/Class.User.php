@@ -18,7 +18,20 @@ class User
     {
         $key = REDIS_PRE . "user_info:" . $user_id;
         $redis = new RedisCache();
-        $redis->set_cache($key, json_encode($info, true), 86400);
+        $redis->set_cache($key, json_encode($info), 86400);
+    }
+
+    /**
+     * 用户信息从redis
+     * @param $user_id
+     * @return string
+     */
+    public static function cache_get_user_info($user_id)
+    {
+        $key = REDIS_PRE . "user_info:" . $user_id;
+        $redis = new RedisCache();
+        $info = $redis->get_cache($key);
+        return $info;
     }
 
     /**
@@ -35,12 +48,19 @@ class User
     }
 
     /**
-     * @param $id
+     * @param $user_id
      * @return mixed
      */
-    public static function get_info($id)
+    public static function get_info($user_id)
     {
-        $sql = "select * from user where id = {$id}";
+//        $key = REDIS_PRE . "user_info:" . $user_id;
+//        $redis = new RedisCache();
+//        $info = $redis->get_cache($key);
+//        if (!empty($info)) {
+//            return json_decode($info, true);
+//        }
+
+        $sql = "select * from user where id = {$user_id}";
         $result = $GLOBALS['db']->getFirstRow($sql);
         return $result;
     }
