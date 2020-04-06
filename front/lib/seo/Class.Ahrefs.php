@@ -324,7 +324,7 @@ class Ahrefs
         $html .= "今日余额,域名:" . ($limit - $score) . "/" . $limit;
 
         //关键词查询
-        $limit = 25;
+        $limit = 20;
         $limit_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
@@ -375,7 +375,7 @@ class Ahrefs
             $request_body = file_get_contents('php://input');
             $data = json_decode($request_body, true);
 
-            $limit_keyword_limit = 25;
+            $limit_keyword_limit = 20;
             $limit_keyword_explorer_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //每人每天25次
 
             $redis = RedisCache::connect();
