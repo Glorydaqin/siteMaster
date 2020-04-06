@@ -323,7 +323,14 @@ class Ahrefs
         $score = $score ?? 0;
         $html .= "今日余额,域名:" . ($limit - $score) . "/" . $limit;
 
-        //关键词
+        //关键词查询
+        $limit = 1000;
+        $limit_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //每人每天4000次
+        $score = $redis->zScore($key, $limit_key);
+        $score = $score ?? 0;
+        $html .= ",关键词:" . ($limit - $score) . "/" . $limit;
+
+        //关键词导出
         $limit = 1000;
         $limit_key = REDIS_PRE . "keyword_export-{$day}:" . $user_id; //每人每天4000次
         $score = $redis->zScore($key, $limit_key);
@@ -361,6 +368,26 @@ class Ahrefs
                 page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出查询限制数量');
             }
             $redis->zAdd($key, $score + 1, $limit_site_explorer_key);
+        }
+
+        //关键词 通过集合计算
+        if (stripos(' ' . $url, 'v3/api-adaptor/keIdeasOverview')) {
+            $request_body = file_get_contents('php://input');
+            $data = json_decode($request_body, true);
+
+            $limit_keyword_limit = 25;
+            $limit_keyword_explorer_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //每人每天25次
+
+            $redis = RedisCache::connect();
+            $members = $redis->sMembers($limit_keyword_explorer_key);
+            $score = count($members);
+
+            if ($score >= $limit_keyword_limit) {
+                // 达到限制
+                page_jump(PROTOCOL . DOMAIN_AHREFS . '/dashboard', '超出查询限制数量');
+            }
+            $redis->sAdd($limit_keyword_explorer_key, $data['keyword'] ?? '');
+            $redis->zAdd($key, $score + 1, $limit_keyword_explorer_key);
         }
 
         // 导出每人4000

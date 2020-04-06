@@ -37,6 +37,13 @@ function temporarily_header_302($url = '')
 
 function page_jump($url = '', $message = '')
 {
+
+//    $request_body = file_get_contents('php://input');
+//    $data = json_decode($request_body, true);
+//    if (!empty($data)) {
+//        die('["Error","MonthlyRowsLimitReached"]');
+//    }
+
     $alert = '';
     if (!empty($message)) {
         $alert = "alert('{$message}');";
