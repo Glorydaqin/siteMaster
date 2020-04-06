@@ -324,8 +324,8 @@ class Ahrefs
         $html .= "今日余额,域名:" . ($limit - $score) . "/" . $limit;
 
         //关键词查询
-        $limit = 1000;
-        $limit_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //每人每天4000次
+        $limit = 25;
+        $limit_key = REDIS_PRE . "keyword_explorer-{$day}:" . $user_id; //
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
         $html .= ",关键词:" . ($limit - $score) . "/" . $limit;
