@@ -66,6 +66,10 @@ class Ahrefs
         $headers['User-Agent'] = $this->user_agent;
         $tmp = [];
         foreach ($headers as $header => $val) {
+            if (strtolower(substr($header, 0, 2)) == 'cf-' || strtolower(substr($header, 0, 2)) == 'cdn') {
+                continue;
+            }
+
             $tmp[] = $header . ': ' . $val;
         }
         return $tmp;
