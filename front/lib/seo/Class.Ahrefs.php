@@ -286,7 +286,7 @@ class Ahrefs
         //password: Ranqinghua1
         //return_to: https://ahrefs.com/
 
-        $index_result = $this->curl(self::$domain);
+        $index_result = $this->curl(self::$login_url);
 //        preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
         preg_match_all("/name=\"_token\" content=\"(.*?)\"/", $index_result['body'], $match_result);
 
