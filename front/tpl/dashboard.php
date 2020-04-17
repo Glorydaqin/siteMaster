@@ -44,13 +44,13 @@
                     <div class="panel-options">
 
                         <ul class="nav nav-tabs">
-                            <?foreach ($site_list as $key=>$site){?>
-                                <li class="<?if($key == 0){?> active <?}?>">
-                                    <a data-toggle="tab" href="#tab-<?=$site['id']?>"><i class="fa fa-laptop"></i>
-                                    <?=$site['name']?>
+                            <? foreach ($site_list as $key => $site) { ?>
+                                <li class="<? if ($key == 0) { ?> active <? } ?>">
+                                    <a data-toggle="tab" href="#tab-<?= $site['id'] ?>"><i class="fa fa-laptop"></i>
+                                        <?= $site['name'] ?>
                                     </a>
                                 </li>
-                            <?}?>
+                            <? } ?>
 
                         </ul>
                     </div>
@@ -58,83 +58,91 @@
 
                 <div class="panel-body">
                     <div class="tab-content">
-                        <?foreach ($site_list as $key=>$site){?>
+                        <? foreach ($site_list as $key => $site) { ?>
 
-                            <div id="tab-<?=$site['id']?>" class="tab-pane <?if($key == 0){?> active <?}?>">
+                            <div id="tab-<?= $site['id'] ?>" class="tab-pane <? if ($key == 0) { ?> active <? } ?>">
 
                                 <a class="list-group-item active">
                                     <h3 class="list-group-item-heading">
-                                        <?=$site['name']?>&nbsp;&nbsp;<span class="small">权限到期时间:<?=$site['is_available']?></span>
+                                        <?= $site['name'] ?>&nbsp;&nbsp;<span
+                                                class="small">权限到期时间:<?= $site['is_available'] ?></span>
                                     </h3>
 
-                                    <p class="list-group-item-text"><?=$site['desc']?></p>
+                                    <p class="list-group-item-text"><?= $site['desc'] ?></p>
                                 </a>
 
-                                <?if($site['is_available']){?>
-                                    <?if($site['name'] == 'mangools'){?>
+                                <? if ($site['is_available']) { ?>
+                                    <? if ($site['name'] == 'mangools') { ?>
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="/plugins/mangools.zip" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    <a href="/plugins/mangools.zip" target="_blank" class="faq-question"
+                                                       style="color: #f8ac59">
                                                         插件下载地址
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="/plugins/插件安装.gif" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    <a href="/plugins/插件安装.gif" target="_blank" class="faq-question"
+                                                       style="color: #f8ac59">
                                                         插件安装说明
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    <?}elseif($site['name'] == 'ahrefs'){?>
-                                    <div class="faq-item">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a href="/plugins/ahrefs.zip" target="_blank" class="faq-question" style="color: #f8ac59">
-                                                    插件下载地址
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a href="/plugins/插件安装.gif" target="_blank" class="faq-question" style="color: #f8ac59">
-                                                    插件安装说明
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?}else{?>
+                                    <? } elseif ($site['name'] == 'ahrefs') { ?>
                                         <div class="faq-item">
-                                            <?foreach ($site['account_list'] as $inner_key=>$account){?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <a href="/plugins/ahrefs.zip" target="_blank" class="faq-question"
+                                                       style="color: #f8ac59">
+                                                        插件下载地址
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <a href="/plugins/插件安装.gif" target="_blank" class="faq-question"
+                                                       style="color: #f8ac59">
+                                                        插件安装说明
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <? } else { ?>
+                                        <div class="faq-item">
+                                            <? foreach ($site['account_list'] as $inner_key => $account) { ?>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <a data-toggle="collapse" class="faq-question" style="color: #f8ac59">
-                                                            <?=($inner_key+1)?>号服务器
+                                                        <a data-toggle="collapse" class="faq-question"
+                                                           style="color: #f8ac59">
+                                                            <?= ($inner_key + 1) ?>号服务器
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <?foreach ($account['target'] as $target){?>
-                                                            <button class="center-block btn-sm btn-info" style="margin-bottom:5px;" onclick="go('<?=PROTOCOL.DOMAIN?>/choose/?site_id=<?=$site['id']?>&account_id=<?=$account['id']?>&site_name=<?=$target['name']?>')">
-                                                                <?=$target['name']?>
+                                                        <? foreach ($account['target'] as $target) { ?>
+                                                            <button class="center-block btn-sm btn-info"
+                                                                    style="margin-bottom:5px;"
+                                                                    onclick="go('<?= PROTOCOL . DOMAIN ?>/choose/?site_id=<?= $site['id'] ?>&account_id=<?= $account['id'] ?>&site_name=<?= $target['name'] ?>')">
+                                                                <?= $target['name'] ?>
                                                                 <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
                                                             </button>
-                                                        <?}?>
+                                                        <? } ?>
                                                     </div>
                                                 </div>
-                                            <?}?>
+                                            <? } ?>
                                         </div>
-                                    <?}?>
+                                    <? } ?>
 
-                                <?}else{?>
-                                <div class="faq-item">
-                                    账号已过期，请续费
-                                </div>
-                                <?}?>
+                                <? } else { ?>
+                                    <div class="faq-item">
+                                        账号已过期，请续费
+                                    </div>
+                                <? } ?>
                             </div>
 
-                        <?}?>
+                        <? } ?>
 
                     </div>
 
@@ -165,6 +173,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>插件安装指南</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <address>
+                        1.下载完解压
+                    </address>
+                    <address>
+                        2.然后打开 chrome://extensions/
+                    </address>
+                    <address>
+                        3. 点击左上角的 “加载已解压的扩展程序”，弹出之后选择解压的那个目录
+                    </address>
+                    <address>
+                        4.然后在 joif.cn 网页的右上角就可以看到插件，点击 输入账号密码
+                    </address>
+                    <address>
+                        5.选择账号 就可以进入了
+                    </address>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -181,23 +214,23 @@
     <script src="/js/welcome.js"></script>
 
     <script>
-        function go(url) {
-            window.open(url);
-        }
+      function go(url) {
+        window.open(url);
+      }
 
-        function openLayerFrame(title,url){
+      function openLayerFrame(title, url) {
 
-            //iframe层
-            parent.layer.open({
-                type: 2,
-                title: title,
-                shadeClose: true,
-                maxmin: true,
-                shade: 0.8,
-                area: ['90%', '90%'],
-                content: url //iframe的url
-            });
-        }
+        //iframe层
+        parent.layer.open({
+          type: 2,
+          title: title,
+          shadeClose: true,
+          maxmin: true,
+          shade: 0.8,
+          area: ['90%', '90%'],
+          content: url //iframe的url
+        });
+      }
     </script>
 </body>
 
