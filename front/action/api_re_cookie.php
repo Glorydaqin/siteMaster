@@ -16,8 +16,10 @@ $site_account_id = addslashes($site_account_id);
 $info = Account::get_site_account($site_account_id);
 if ($info) {
 
-    $transfer = new Ahrefs($info['username'], $info['password']);
     $cookie_file = DIR_TMP_COOKIE . $transfer->cookie_key . ".txt";
+    @unlink($cookie_file);
+
+    $transfer = new Ahrefs($info['username'], $info['password']);
     $result = $transfer->login();
     if ($result) {
         //取cookie内容
