@@ -39,14 +39,34 @@ class Account
     }
 
     /**
-     * 获取账号列表
-     * @param int $site_id
-     * @param int $type
+     * 通过id找账号
+     * @param $id
      * @return mixed
      */
-    public static function get_site_list($site_id = 0, $type = 1)
+    public static function get_site_account($id)
     {
-        $sql = "select * from site_account where site_id = {$site_id} and deleted = 0 and type={$type} order by sort asc,id asc;";
+        //通过id 找账号
+        $sql = "select * from site_account where id = {$id};";
+        $result = $GLOBALS['db']->getFirstRow($sql);
+        return $result;
+    }
+
+    /**
+     * 获取账号列表
+     * @param int $site_id
+     * @param int $type 1 普通类型 2 mock类型
+     * @param boolean $is_expired 是否过期 默认否
+     * @return mixed
+     */
+    public static function get_site_list($site_id = 0, $type = 1, $is_expired = false)
+    {
+        $time = date("Y-m-d H:i:s");
+        if ($is_expired) {
+            $expire_str = "expired_at < '{$time}'";
+        } else {
+            $expire_str = "expired_at > '{$time}'";
+        }
+        $sql = "select * from site_account where site_id = {$site_id} and deleted = 0 and type={$type} and {$expire_str} order by sort asc,id asc;";
         $result = $GLOBALS['db']->getRows($sql);
         return $result;
     }

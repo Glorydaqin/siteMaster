@@ -67,12 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
   // };
 
   // var timer = setInterval(function () {
-  //   if ($("#userMenuDropdown").css('display') == 'none') {
+  //   if ($("a[href='/user/logout']").css('display') == 'none') {
   //     clearInterval(timer);
   //     return;
   //   }
   //   $("#userMenuDropdown").css("cssText", 'display:none !important');
   // }, 1000);
+
+  var style = "<style>" +
+      "a[href='/user/logout']{display:none !important}" +
+      "a[href='/account/my-account']{display:none !important;}" +
+      "[class$='subscriptionMessage']{display:none}" +
+      "</style>";
+  $(style).insertAfter('head');
 
   let url = window.location.href;
 });

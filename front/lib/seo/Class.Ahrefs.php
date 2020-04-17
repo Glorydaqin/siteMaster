@@ -6,11 +6,11 @@ class Ahrefs
     public static $domain = "https://ahrefs.com/";
     public static $login_url = 'https://ahrefs.com/user/login';
 
-    public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+    public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36';
 
     private $user_name = '';
     private $password = '';
-    private $cookie_key = '';
+    public $cookie_key = '';
     private $type = 'normal';
     public $buffer = ''; //your download buffer goes here.
     private $mock_max_error_time = 1; // mock 最多尝试登陆4次。不行就删账号
@@ -25,7 +25,7 @@ class Ahrefs
     public function __construct($user_name, $password, $type = 'normal')
     {
         $mock_user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36';
-        $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+        $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36';
 
 
         $this->user_name = $user_name;
