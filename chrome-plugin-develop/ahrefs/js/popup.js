@@ -56,7 +56,7 @@ $(document).ready(function () {
     let username = $("#i1").val();
     let password = $("#i2").val();
 
-    let url = "https://vipfor.me/api/login/";
+    let url = "https://joif.cn/api/login/";
     let data = {username: username, password: password, site_id: 1, v: mainfest.version};
     let index = layer.load(1, {
       shade: [0.1, '#fff'] //0.1透明度的白色背景
@@ -91,7 +91,7 @@ $(document).ready(function () {
       'url': 'https://ahrefs.com/',
       "name": "BSSESSID",
       'value': accountInfo.password,
-      // 'domain': 'mangools.com',
+      'domain': '.ahrefs.com',
       'httpOnly': true,
       'secure': true,
       // 'expirationDate': timestamps

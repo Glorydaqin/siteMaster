@@ -166,7 +166,7 @@ setInterval(function () {
   //每分钟检测一次是否是最新设备在线
   if (lastPluginId && pageStatus !== 'login' && username) {
 
-    $.post('https://vipfor.me/api/check/', {
+    $.post('https://joif.cn/api/check/', {
       'username': username,
       'password': password,
       'last_plugin_id': lastPluginId

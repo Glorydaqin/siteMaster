@@ -71,7 +71,7 @@
                                 </a>
 
                                 <?if($site['is_available']){?>
-                                    <?if($site['name']=='mangools'){?>
+                                    <?if($site['name'] == 'mangools'){?>
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -88,6 +88,41 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    <?}else{?>
+                                    <?if($site['name'] == 'mangools'){?>
+                                    <div class="faq-item">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="/plugins/mangools.zip" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    插件下载地址
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="/plugins/插件安装.gif" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    插件安装说明
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?}else if($site['name'] == 'ahrefs'){?>
+                                    <div class="faq-item">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="/plugins/ahrefs.zip" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    插件下载地址
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="/plugins/插件安装.gif" target="_blank" class="faq-question" style="color: #f8ac59">
+                                                    插件安装说明
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <?}else{?>
                                         <div class="faq-item">
                                             <?foreach ($site['account_list'] as $inner_key=>$account){?>

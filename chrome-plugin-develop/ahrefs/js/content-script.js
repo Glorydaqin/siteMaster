@@ -56,23 +56,23 @@ chrome.runtime.sendMessage({type: 'getTabId'}, function (response) {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  //禁用右键（防止右键查看源代码）
-  window.oncontextmenu = function () {
-    return false;
-  };
-  //禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-  window.onkeydown = window.onkeyup = window.onkeypress = function () {
-    window.event.returnValue = false;
-    return false;
-  };
+  // //禁用右键（防止右键查看源代码）
+  // window.oncontextmenu = function () {
+  //   return false;
+  // };
+  // //禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+  // window.onkeydown = window.onkeyup = window.onkeypress = function () {
+  //   window.event.returnValue = false;
+  //   return false;
+  // };
 
-  var timer = setInterval(function () {
-    if ($(".mg-header>nav>div").css('display') == 'none') {
-      clearInterval(timer);
-      return;
-    }
-    $(".mg-header>nav>div").css("cssText", 'display:none !important');
-  }, 1000);
+  // var timer = setInterval(function () {
+  //   if ($("#userMenuDropdown").css('display') == 'none') {
+  //     clearInterval(timer);
+  //     return;
+  //   }
+  //   $("#userMenuDropdown").css("cssText", 'display:none !important');
+  // }, 1000);
 
   let url = window.location.href;
 });
