@@ -11,5 +11,13 @@ if (!defined('IN_DS')) {
 }
 include_once 'common.php';
 
+$nav = [
+    ['url' => '/dashboard/', 'name' => 'SEO工具', 'fa' => 'fa-amazon'],
+];
+//if (User::is_admin()) {
+//    $nav[] = ['url' => '/admin/user_list', 'name' => '用户管理', 'fa' => 'fa-amazon'];
+//}
+
+$tpl->assign('nav', $nav);
 echo $tpl->render('layout.php');
 exit();

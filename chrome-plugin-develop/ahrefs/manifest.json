@@ -1,0 +1,43 @@
+{
+	"name": "ahrefs login",
+	"version": "3.1",
+	"description": "vip login",
+	"manifest_version": 2,
+	"browser_action": {
+		"default_icon": "img/icon.png",
+		"default_title": "vip login",
+		"default_popup": "popup.html"
+	},
+	"icons": {
+		"16": "img/icon.png",
+		"48": "img/icon.png"
+	},
+	"background": {
+		"scripts": [
+			"js/jquery2.1.4.min.js",
+			"js/account.js",
+			"js/background.js"
+		],
+		"persistent": true
+	},
+	"permissions": [
+		"tabs",
+		"cookies",
+		"<all_urls>",
+		"webRequest",
+		"webRequestBlocking",
+		"storage",
+		"management"
+	],
+	"content_scripts": [{
+		"matches": [
+			"https://ahrefs.com/*",
+		],
+		"js": [
+			"js/jquery2.1.4.min.js",
+			"js/content-script.js"
+		],
+		"css": [],
+		"run_at": "document_start"
+	}]
+}

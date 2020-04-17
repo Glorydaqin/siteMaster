@@ -57,7 +57,7 @@ $(document).ready(function () {
     let password = $("#i2").val();
 
     let url = "https://vipfor.me/api/login/";
-    let data = {username: username, password: password, site_id: 2, v: mainfest.version};
+    let data = {username: username, password: password, site_id: 1, v: mainfest.version};
     let index = layer.load(1, {
       shade: [0.1, '#fff'] //0.1透明度的白色背景
     });
@@ -86,54 +86,40 @@ $(document).ready(function () {
     bg.setCurrentAccountIndex($(this).attr('data-index'));
     let accountInfo = bg.getCurrentAccount();
 
-    if (accountInfo.type === '2') {
-      //cookie 模式 种植cookie
-      let new_cookie = {
-        'url': 'https://mangools.com/',
-        "name": "_mangotools_com_session",
-        'value': accountInfo.username,
-        // 'domain': 'mangools.com',
-        'httpOnly': true,
-        'secure': true,
-        // 'expirationDate': timestamps
-      };
-      // chrome.tabs.create({url: 'https://app.kwfinder.com'}, function (tab) {
-      //
-      //   // 创建页面后 清除cookie 后重新植入cookie 然后刷新页面
-      //   bg.loginInfoClear();
-      //
-      //   chrome.cookies.set(
-      //       new_cookie, function (cookie) {
-      //         console.log(cookie);
-      //         // setTimeout(function () {
-      //         //   chrome.tabs.reload(tab.id)
-      //         // }, 5000);
-      //
-      //         showLogout();
-      //       }
-      //   );
-      // });
+    //cookie 模式 种植cookie
+    let new_cookie = {
+      'url': 'https://ahrefs.com/',
+      "name": "BSSESSID",
+      'value': accountInfo.password,
+      // 'domain': 'mangools.com',
+      'httpOnly': true,
+      'secure': true,
+      // 'expirationDate': timestamps
+    };
+    // chrome.tabs.create({url: 'https://app.kwfinder.com'}, function (tab) {
+    //
+    //   // 创建页面后 清除cookie 后重新植入cookie 然后刷新页面
+    //   bg.loginInfoClear();
+    //
+    //   chrome.cookies.set(
+    //       new_cookie, function (cookie) {
+    //         console.log(cookie);
+    //         // setTimeout(function () {
+    //         //   chrome.tabs.reload(tab.id)
+    //         // }, 5000);
+    //
+    //         showLogout();
+    //       }
+    //   );
+    // });
 
-      chrome.cookies.set(
-          new_cookie, function (cookie) {
-            chrome.tabs.create({url: 'https://app.kwfinder.com'});
-            showLogout();
-          }
-      );
-    } else {
-      chrome.windows.create({
-        url: "https://mangools.com/users/sign_in",
-        width: 420,
-        height: 800,
-        type: "popup"
-      }, function (window) {
+    chrome.cookies.set(
+        new_cookie, function (cookie) {
+          chrome.tabs.create({url: 'https://ahrefs.com/dashboard'});
+          showLogout();
+        }
+    );
 
-        bg.setLoginWindowId(window.id);
-        bg.setLoginTabId(window.tabs[0].id);
-
-        showLogout();
-      });
-    }
   });
 
   //登出

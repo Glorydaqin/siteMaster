@@ -41,11 +41,12 @@ class Account
     /**
      * 获取账号列表
      * @param int $site_id
+     * @param int $type
      * @return mixed
      */
-    public static function get_site_list($site_id = 0)
+    public static function get_site_list($site_id = 0, $type = 1)
     {
-        $sql = "select * from site_account where site_id = {$site_id} and deleted = 0 order by sort asc,id asc;";
+        $sql = "select * from site_account where site_id = {$site_id} and deleted = 0 and type={$type} order by sort asc,id asc;";
         $result = $GLOBALS['db']->getRows($sql);
         return $result;
     }

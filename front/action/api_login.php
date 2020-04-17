@@ -43,9 +43,10 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         $data['data']['is_active'] = true;
     }
     //取账号
-    $account_list = Account::get_site_list($site_id);
+    $account_list = Account::get_site_list($site_id, 2);
     foreach ($account_list as $key => $item) {
-        $account_list[$key]['password'] = compileCode($item['password']);
+        $account_list[$key]['password'] = !empty($item['cookie']) ? compileCode($item['cookie']) : compileCode($item['password']);
+//        $account_list[$key]['password'] = compileCode($item['password']);
     }
 
     $data['data']['account_list'] = array_reverse($account_list);

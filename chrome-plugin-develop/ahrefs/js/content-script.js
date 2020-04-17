@@ -2,7 +2,6 @@
 let password = null;
 let tabId = null;
 let loginTabId = null;
-let loginButtonInsert = '<p style="margin-top: 10px;display: block;width: 320px;margin: 0 auto;background: #e4a5a5;">点击Sign in手动登陆</p>'
 
 function mockClick(element) {
   let dispatchMouseEvent = function (target, var_args) {
@@ -76,37 +75,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 1000);
 
   let url = window.location.href;
-  if (url.includes("https://mangools.com/apps") && tabId === loginTabId) {
-    //关闭loginTabId 新开kwfinder 页面
-    chrome.tabs.remove(loginTabId);
-    chrome.tabs.create({url: 'https://app.kwfinder.com'});
-  }
-
-  if (url.includes("https://mangools.com/users/sign_in")) {
-    if (tabId === loginTabId) {
-      //给当前页面写入账号密码
-      chrome.runtime.sendMessage({type: 'getCurrentAccount'}, function (response) {
-        console.log('拿到账号');
-        console.log(response);
-
-        setTimeout(function () {
-
-          $("#user_email").val(response.username).attr("readonly", "readonly");
-          $("#user_password").val(response.password).attr("readonly", "readonly");
-
-          //注入点击按钮
-          $(loginButtonInsert).insertAfter('.uk-text-center button');
-        }, 500);
-
-        setTimeout(function () {
-          // simulateClick($(".mg-btn"), true);
-        }, 3000)
-      });
-
-      //注入让用户主动点击提醒按钮
-    } else {
-      console.log('用户自主打开登陆页面')
-    }
-
-  }
 });

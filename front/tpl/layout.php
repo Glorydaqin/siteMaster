@@ -55,9 +55,11 @@
                     <div class="logo-element">H+
                     </div>
                 </li>
-                <li>
-                    <a class="J_menuItem" href="/dashboard/"><i class="fa fa-amazon"></i> <span class="nav-label">SEO工具</span></a>
-                </li>
+                <?foreach ($nav as $item){?>
+                    <li>
+                        <a class="J_menuItem" href="<?=$item['url']?>"><i class="fa <?=$item['fa']?>"></i> <span class="nav-label"><?=$item['name']?></span></a>
+                    </li>
+                <?}?>
 <!--                <li>-->
 <!--                    <a class="J_menuItem" href="/image/"><i class="fa fa-picture-o"></i> <span class="nav-label">图片工具</span></a>-->
 <!--                </li>-->

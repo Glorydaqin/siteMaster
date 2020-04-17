@@ -139,24 +139,11 @@ function clearCookie(domain) {
   })
 }
 
-function clearStorage() {
-  chrome.tabs.getCurrent(function (tab) {
-    if (tab) {
-      chrome.tabs.executeScript({
-        code: 'localStorage.clear();'
-      });
-    }
-  })
-}
-
 /**
  * 清除cookie 和相关登录信息
  */
 function loginInfoClear() {
-  clearCookie('mangools.com');
-  clearCookie('kwfinder.com');
-  clearCookie('app.kwfinder.com');
-  clearStorage();
+  clearCookie('ahrefs.com');
 }
 
 setInterval(function () {
@@ -203,9 +190,7 @@ chrome.runtime.onInstalled.addListener({
 
 //卸载时触发
 chrome.runtime.onSuspend.addListener(function () {
-  chrome.tabs.create({url: 'https://app.kwfinder.com'}, function (tab) {
-    this.loginInfoClear();
-  })
+  this.loginInfoClear();
 });
 
 chrome.windows.onRemoved.addListener(function (windowId) {

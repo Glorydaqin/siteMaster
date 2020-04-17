@@ -31,6 +31,10 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'api_login.php';
     } elseif ($script_uri == '/api/check/') {
         include_once FRONT_DIR . 'api_check.php';
+//    } elseif (substr($script_uri, 0, strlen('/admin_api/')) == '/admin_api/') {
+//        include_once FRONT_DIR . 'admin_api.php';
+//    } elseif (substr($script_uri, 0, strlen('/admin_view/')) == '/admin_view/') {
+//        include_once FRONT_DIR . 'admin_view.php';
     } //image 下载类别
     elseif (substr($script_uri, 0, strlen('/image/')) == '/image/') {
         include_once FRONT_DIR . 'transfer_vip_image.php';

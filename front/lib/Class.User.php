@@ -2,6 +2,14 @@
 
 class User
 {
+    public static function is_admin()
+    {
+        if (isset($_SESSION['username']) && $_SESSION['username'] == 'admin') {
+            return true;
+        }
+        return false;
+    }
+
     public static function check_user($username, $password)
     {
         $check_sql = "select * from user where username = '{$username}' and password = '{$password}'";
