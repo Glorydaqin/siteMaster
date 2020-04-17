@@ -302,6 +302,7 @@ class Ahrefs
             'return_to' => self::$domain
         ];
         $result = $this->curl(self::$login_url, $data);
+        dump($result);
         if ($result['code'] == 200) {
             return true;
         }
