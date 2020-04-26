@@ -76,7 +76,7 @@
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="/plugins/mangools.zip" target="_blank" class="faq-question"
+                                                    <a href="/plugins/mangools.zip?t=<?=time()?>" target="_blank" class="faq-question"
                                                        style="color: #f8ac59">
                                                         插件下载地址
                                                     </a>
@@ -95,7 +95,7 @@
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="/plugins/ahrefs.zip" target="_blank" class="faq-question"
+                                                    <a href="/plugins/ahrefs.zip?t=<?=time()?>" target="_blank" class="faq-question"
                                                        style="color: #f8ac59">
                                                         插件下载地址
                                                     </a>
@@ -190,7 +190,7 @@
                         3. 点击左上角的 “加载已解压的扩展程序”，弹出之后选择解压的那个目录
                     </address>
                     <address>
-                        4.然后在 joif.cn 网页的右上角就可以看到插件，点击 输入账号密码
+                        4.然后在浏览器的右上角就可以看到插件，点击 输入账号密码
                     </address>
                     <address>
                         5.选择账号 就可以进入了
