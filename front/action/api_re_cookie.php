@@ -30,11 +30,14 @@ foreach ($list as $info) {
             $GLOBALS['db']->query($sql);
 
             dump("update account: {$info['username']} ,cookie:{$match[1][0]}");
-            continue;
+        }else{
+            dump("update account: {$info['username']} ,cookie: error match");
+            dump($cookie_content);
         }
+    }else{
+        dump("update account: {$info['username']} ,code != 200");
     }
 
-    dump("update account: {$info['username']} ,cookie: error");
 }
 
 
