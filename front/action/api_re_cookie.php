@@ -10,16 +10,13 @@ if (!defined('IN_DS')) {
     die('Hacking attempt');
 }
 
-$site_account_id = $_GET['site_account_id'] ?? '';
-$site_account_id = addslashes($site_account_id);
+$list = Account::get_site_list(1, 2);
 
-$info = Account::get_site_account($site_account_id);
-if ($info) {
-
+foreach ($list as $info) {
+    $transfer = new Ahrefs($info['username'], $info['password']);
     $cookie_file = DIR_TMP_COOKIE . $transfer->cookie_key . ".txt";
     @unlink($cookie_file);
 
-    $transfer = new Ahrefs($info['username'], $info['password']);
     $result = $transfer->login();
     if ($result) {
         //取cookie内容
@@ -27,13 +24,18 @@ if ($info) {
         preg_match_all("/BSSESSID\t([^\s\n]+)/", $cookie_content, $match);
 
         if (isset($match[1][0])) {
+
             //内容写db
-            $sql = "update site_account set cookie = '{$match[1][0]}' where id = {$site_account_id}";
+            $sql = "update site_account set cookie = '{$match[1][0]}' where id = {$info['id']}";
             $GLOBALS['db']->query($sql);
-            echo $match[1][0];
+
+            dump("update account: {$info['username']} ,cookie:{$match[1][0]}");
+            continue;
         }
     }
+
+    dump("update account: {$info['username']} ,cookie: error");
 }
-echo 0;
+
 
 exit();
