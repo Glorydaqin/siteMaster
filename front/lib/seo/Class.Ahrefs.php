@@ -4,7 +4,8 @@ class Ahrefs
 {
     public static $cdn_domain = "https://cdn.ahrefs.com/";
     public static $domain = "https://ahrefs.com/";
-    public static $login_url = 'https://ahrefs.com/user/login';
+//    public static $login_url = 'https://ahrefs.com/user/login';
+    public static $login_url = 'https://auth.ahrefs.com/auth/login';
 
     public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36';
 
@@ -75,7 +76,7 @@ class Ahrefs
         return $tmp;
     }
 
-    public function curl($url, $data = [])
+    public function curl($url, $data = [], $headers = [])
     {
         $ch = curl_init();
 
@@ -105,7 +106,11 @@ class Ahrefs
         }
 
         $clean_header = $this->get_clean_header();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $clean_header);
+        }
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
         $content = curl_exec($ch);
@@ -196,7 +201,7 @@ class Ahrefs
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/user/login') || stripos($result['url'],'/sessions-exceeded') || stripos($result['body'], 'Sign in to Ahrefs')) {
+        if (stripos($result['url'], '/user/login') || stripos($result['url'], '/sessions-exceeded') || stripos($result['body'], 'Sign in to Ahrefs')) {
             //跳转到登陆的说明未登陆 || 没跳转但是需要登陆
             $this->login();
             $result = $this->curl($url, $data);
@@ -290,18 +295,24 @@ class Ahrefs
         //password: Ranqinghua1
         //return_to: https://ahrefs.com/
 
-        $index_result = $this->curl(self::$login_url);
-//        preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
-        preg_match_all("/name=\"_token\" content=\"(.*?)\"/", $index_result['body'], $match_result);
+//        $index_result = $this->curl(self::$login_url);
+////        preg_match_all("/value=\"(.*?)\"\s+?name=\"_token\"/", $index_result['body'], $match_result);
+//        preg_match_all("/name=\"_token\" content=\"(.*?)\"/", $index_result['body'], $match_result);
+//
+//        $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
+//        $data = [
+//            '_token' => $token,
+//            'email' => $this->user_name,
+//            'password' => $this->password,
+//            'return_to' => self::$domain
+//        ];
 
-        $token = isset($match_result[1][0]) ? $match_result[1][0] : '';
-        $data = [
-            '_token' => $token,
-            'email' => $this->user_name,
-            'password' => $this->password,
-            'return_to' => self::$domain
-        ];
+        $data = json_encode([
+            'auth' => ['login' => $this->user_name, 'password' => $this->password],
+            'remember_me' => true,
+        ]);
         $result = $this->curl(self::$login_url, $data);
+
         if ($result['code'] == 200) {
             return true;
         }

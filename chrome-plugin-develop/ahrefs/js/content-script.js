@@ -1,7 +1,5 @@
 ﻿let username = null;
 let password = null;
-let tabId = null;
-let loginTabId = null;
 
 function mockClick(element) {
   let dispatchMouseEvent = function (target, var_args) {
@@ -45,34 +43,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     sendResponse('收到account了！');
   }
 });
-chrome.runtime.sendMessage({type: 'getTabId'}, function (response) {
-  console.log(response);
-  tabId = response.currentTabId;
-  loginTabId = response.loginTabId;
-});
-// //登陆状态重置代码
-// chrome.runtime.sendMessage({type: 'checkLogin'}, function (response) {
-// });
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  // //禁用右键（防止右键查看源代码）
-  // window.oncontextmenu = function () {
-  //   return false;
-  // };
-  // //禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-  // window.onkeydown = window.onkeyup = window.onkeypress = function () {
-  //   window.event.returnValue = false;
-  //   return false;
-  // };
-
-  // var timer = setInterval(function () {
-  //   if ($("a[href='/user/logout']").css('display') == 'none') {
-  //     clearInterval(timer);
-  //     return;
-  //   }
-  //   $("#userMenuDropdown").css("cssText", 'display:none !important');
-  // }, 1000);
 
   var style = "<style>" +
       "a[href='/user/logout']{display:none !important}" +

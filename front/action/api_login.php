@@ -15,15 +15,31 @@ $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 $username = addslashes($username);
 $password = addslashes($password);
-$site_id = $_POST['site_id'] ?? 1;
+$site_id = addslashes($_POST['site_id']) ?? 1;
 $v = $_POST['v'] ?? 1;
 
 $data = [
     'code' => 200,
     'data' => []
 ];
-if ($v < 3) {
-    $data['code'] = 40001;
+//检查 site 版本配置
+$site_info = Site::get_info($site_id);
+if (!$site_info) {
+    $data['code'] = 4001;
+    $data['message'] = '参数错误';
+    echo json_encode($data);
+    exit();
+}
+
+if ($site_info['name'] == 'ahrefs') {
+    $last_version = 3.2;
+} elseif ($site_info['name'] == 'mangools') {
+    $last_version = 3;
+} else {
+    $last_version = 1;
+}
+if ($v < $last_version) {
+    $data['code'] = 4001;
     $data['message'] = '请升级插件';
 
     echo json_encode($data);

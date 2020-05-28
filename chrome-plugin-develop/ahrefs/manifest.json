@@ -1,6 +1,6 @@
 {
 	"name": "ahrefs login",
-	"version": "3.1",
+	"version": "3.3",
 	"description": "vip login",
 	"manifest_version": 2,
 	"browser_action": {

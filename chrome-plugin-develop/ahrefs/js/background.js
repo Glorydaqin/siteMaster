@@ -1,19 +1,14 @@
-let loginWindowId = null;
-let loginTabId = null;
 let accountList = [];   //所有账号列表
 let currentAccountIndex = 0;  //当前选的账号index
-let closedPlugins = []; //关闭的所有扩展
-let pluginId = chrome.runtime.id; //当前扩展id
-let todayFirst = true;
+// let pluginId = chrome.runtime.id; //当前扩展id
 let pageStatus = 'login'; // login  account  logout
 let lastPluginId = null;
 let username = null;
 let password = null;
 
-
 function setUser(user, pass) {
-  username = user;
-  password = pass;
+  this.username = user;
+  this.password = pass;
 }
 
 function setPageStatus(status) {
@@ -22,10 +17,6 @@ function setPageStatus(status) {
 
 function setLastPluginId(id) {
   lastPluginId = id;
-}
-
-function setLoginWindowId(val) {
-  loginWindowId = val;
 }
 
 function setLoginTabId(val) {
@@ -102,35 +93,6 @@ function sendMessageToContentScript(message, callback) {
   });
 }
 
-function closePlugins() {
-  chrome.management.getAll(function (allPlugins) {
-    $.each(allPlugins, function (index, val) {
-      if (val.enabled === true && val.id !== pluginId) {
-        chrome.management.setEnabled(val.id, false);
-        savePluginInfo(val.id)
-      }
-    });
-  });
-}
-
-function revertPlugins() {
-  $.each(closedPlugins, function (index, val) {
-    chrome.management.setEnabled(val, true, function () {
-      closedPlugins.splice(index, 1)
-    });
-  });
-}
-
-function savePluginInfo(pluginId) {
-  closedPlugins.push(pluginId);
-}
-
-function closeOpenWindow() {
-  if (loginWindowId) {
-    chrome.windows.remove(loginWindowId)
-  }
-}
-
 function clearCookie(domain) {
   chrome.cookies.getAll({domain: domain}, function (cookies) {
     $.each(cookies, function (index, val) {
@@ -145,22 +107,6 @@ function clearCookie(domain) {
 function loginInfoClear() {
   clearCookie('ahrefs.com');
 }
-
-setInterval(function () {
-
-  //定时检查扩展,避免禁用的被用户主动启动
-  chrome.management.getAll(function (allPlugins) {
-    $.each(allPlugins, function (index, val) {
-      if (val.enabled === true && val.id !== pluginId && val.id in closedPlugins) {
-        chrome.management.setEnabled(val.id, false);
-      }
-    });
-  });
-
-  //定时检查mangools相关页面是否存在
-  //pageStatus !== login 并且页面3分钟内存在mangool页面 给后台传递在线信息 ，后台返回上一次登录设备，确保单一设备登录
-
-}, 3000);
 
 setInterval(function () {
   //每分钟检测一次是否是最新设备在线
@@ -184,17 +130,11 @@ setInterval(function () {
 }, 5000);
 
 //安装时触发
-chrome.runtime.onInstalled.addListener({
-  //清除 cookie storage
+chrome.runtime.onInstalled.addListener(function () {
+  this.loginInfoClear();
 });
 
 //卸载时触发
 chrome.runtime.onSuspend.addListener(function () {
   this.loginInfoClear();
-});
-
-chrome.windows.onRemoved.addListener(function (windowId) {
-  if (windowId === loginWindowId) {
-    loginWindowId = null;
-  }
 });

@@ -48,7 +48,7 @@ $(document).ready(function () {
 
   //登录按钮
   $("#login").on("click", function () {
-    bg.closePlugins();
+    // bg.closePlugins();
 
     let mainfest = chrome.runtime.getManifest();
 
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
   //登出
   $("#logout").on("click", function () {
-    bg.revertPlugins();
+    // bg.revertPlugins();
     bg.loginInfoClear();
     bg.closeOpenWindow();
 

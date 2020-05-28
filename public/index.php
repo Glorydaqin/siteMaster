@@ -11,7 +11,6 @@ $script_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 $script_uri_tmp_arr = explode('?', $script_uri);
 $script_uri = empty($script_uri_tmp_arr) ? $script_uri : $script_uri_tmp_arr[0];
 
-
 if ($server_domain == DOMAIN) {
     // 自主page
     if (empty($script_uri) || $script_uri == "/") {

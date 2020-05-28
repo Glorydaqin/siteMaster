@@ -18,28 +18,29 @@ foreach ($list as $info) {
     @unlink($cookie_file);
 
     $result = $transfer->login();
+    dump($result);
     if ($result) {
+        //取cookie内容
+        $cookie_content = file_get_contents($cookie_file);
+        dump($cookie_content);
+        preg_match_all("/BSSESSID\t([^\s\n]+)/", $cookie_content, $match);
+        dump($match);
 
+        if (isset($match[1][0])) {
+
+            //内容写db
+            $sql = "update site_account set cookie = '{$match[1][0]}' where id = {$info['id']}";
+            $GLOBALS['db']->query($sql);
+
+            dump("update account: {$info['username']} ,cookie:{$match[1][0]}");
+        }else{
+            dump("update account: {$info['username']} ,cookie: error match");
+            dump($cookie_content);
+        }
     }else{
-
         dump("update account: {$info['username']} ,code != 200");
     }
 
-    //取cookie内容
-    $cookie_content = file_get_contents($cookie_file);
-    preg_match_all("/BSSESSID\t([^\s\n]+)/", $cookie_content, $match);
-
-    if (isset($match[1][0])) {
-
-        //内容写db
-        $sql = "update site_account set cookie = '{$match[1][0]}' where id = {$info['id']}";
-        $GLOBALS['db']->query($sql);
-
-        dump("update account: {$info['username']} ,cookie:{$match[1][0]}");
-    }else{
-        dump("update account: {$info['username']} ,cookie: error match");
-        dump($cookie_content);
-    }
 }
 
 

@@ -24,10 +24,7 @@ $data = [
 $row = User::check_user($username, $password);
 if ($row && strtotime($row['expired_at']) >= time()) {
     if($last_plugin_id != $row['last_plugin_id']){
-        $data = [
-            'code' => 40005,
-            'data' => [],
-        ];
+        $data['code'] = 4005;
     }
 
 } elseif ($row && strtotime($row['expired_at']) < time()) {

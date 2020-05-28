@@ -48,8 +48,6 @@ $(document).ready(function () {
 
   //登录按钮
   $("#login").on("click", function () {
-    bg.closePlugins();
-
     let mainfest = chrome.runtime.getManifest();
 
     //账号登陆
@@ -96,22 +94,6 @@ $(document).ready(function () {
       'secure': true,
       // 'expirationDate': timestamps
     };
-    // chrome.tabs.create({url: 'https://app.kwfinder.com'}, function (tab) {
-    //
-    //   // 创建页面后 清除cookie 后重新植入cookie 然后刷新页面
-    //   bg.loginInfoClear();
-    //
-    //   chrome.cookies.set(
-    //       new_cookie, function (cookie) {
-    //         console.log(cookie);
-    //         // setTimeout(function () {
-    //         //   chrome.tabs.reload(tab.id)
-    //         // }, 5000);
-    //
-    //         showLogout();
-    //       }
-    //   );
-    // });
 
     chrome.cookies.set(
         new_cookie, function (cookie) {
@@ -124,9 +106,7 @@ $(document).ready(function () {
 
   //登出
   $("#logout").on("click", function () {
-    bg.revertPlugins();
     bg.loginInfoClear();
-    bg.closeOpenWindow();
 
     showLogin();
   });
