@@ -1,112 +1,99 @@
 ﻿let username = null;
 let password = null;
 let tabId = null;
-let loginTabId = null;
-let loginButtonInsert = '<p style="margin-top: 10px;display: block;width: 320px;margin: 0 auto;background: #e4a5a5;">点击Sign in手动登陆</p>'
+let openTabId = null;
+
+// let loginButtonInsert = '<p style="margin-top: 10px;display: block;width: 320px;margin: 0 auto;background: #e4a5a5;">点击Sign in手动登陆</p>'
 
 function mockClick(element) {
-  let dispatchMouseEvent = function (target, var_args) {
-    console.log('action:' + var_args);
-    let e = document.createEvent("MouseEvents");
-    e.initEvent.apply(e, Array.prototype.slice.call(arguments, 1));
-    target.dispatchEvent(e);
-  };
-  if (element) {
-    dispatchMouseEvent(element, 'mouseover', true, true);
-    dispatchMouseEvent(element, 'mousedown', true, true);
-    dispatchMouseEvent(element, 'click', true, true);
-    dispatchMouseEvent(element, 'mouseup', true, true);
-  }
+    let dispatchMouseEvent = function (target, var_args) {
+        console.log('action:' + var_args);
+        let e = document.createEvent("MouseEvents");
+        e.initEvent.apply(e, Array.prototype.slice.call(arguments, 1));
+        target.dispatchEvent(e);
+    };
+    if (element) {
+        dispatchMouseEvent(element, 'mouseover', true, true);
+        dispatchMouseEvent(element, 'mousedown', true, true);
+        dispatchMouseEvent(element, 'click', true, true);
+        dispatchMouseEvent(element, 'mouseup', true, true);
+    }
 }
 
 // 模拟点击
 function simulateClick(dom, mouseEvent) {
-  let domNode = dom.get(0)
-  console.log('simulateClick', dom, mouseEvent)
-  if (mouseEvent && domNode) {
-    return mockClick(domNode)
-  }
-  try {
-    domNode.trigger("tap")
-    domNode.trigger("click")
-  } catch (error) {
-    try {
-      mockClick(domNode)
-    } catch (err) {
-      console.log('fullback to mockClick', err)
+    let domNode = dom.get(0)
+    console.log('simulateClick', dom, mouseEvent)
+    if (mouseEvent && domNode) {
+        return mockClick(domNode)
     }
-  }
+    try {
+        domNode.trigger("tap")
+        domNode.trigger("click")
+    } catch (error) {
+        try {
+            mockClick(domNode)
+        } catch (err) {
+            console.log('fullback to mockClick', err)
+        }
+    }
 }
 
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.type === 'data') {
-    username = request.data.username;
-    password = request.data.password;
-    sendResponse('收到account了！');
-  }
+    if (request.type === 'data') {
+        username = request.data.username;
+        password = request.data.password;
+        sendResponse('收到account了！');
+    } else if (request.type === 'addCookie') {
+        let new_cookie = {
+            'url': 'https://mangools.com/',
+            "name": "_mangotools_com_session",
+            'value': request.cookie,
+            // 'domain': 'mangools.com',
+            'httpOnly': true,
+            'secure': true,
+            // 'expirationDate': timestamps
+        };
+        chrome.cookies.set(
+            new_cookie, function (cookie) {
+                console.log('set cookie')
+                console.log(cookie);
+
+                sendResponse({result: true, msg: cookie});
+            }
+        );
+    }
 });
+
 chrome.runtime.sendMessage({type: 'getTabId'}, function (response) {
-  console.log(response);
-  tabId = response.currentTabId;
-  loginTabId = response.loginTabId;
+    console.log(response);
+    tabId = response.currentTabId;
+    openTabId = response.openTabId;
+
+    if (openTabId === tabId && response.pageStatus === 'account') {
+        //account 页面清理storage
+        chrome.tabs.executeScript(null, {code: 'localStorage.clear();'}, function (result) {
+            console.log('clear storage result');
+            console.log(result)
+        });
+    }
 });
-// //登陆状态重置代码
-// chrome.runtime.sendMessage({type: 'checkLogin'}, function (response) {
-// });
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  //禁用右键（防止右键查看源代码）
-  window.oncontextmenu = function () {
-    return false;
-  };
-  //禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-  window.onkeydown = window.onkeyup = window.onkeypress = function () {
-    window.event.returnValue = false;
-    return false;
-  };
+    //禁用右键（防止右键查看源代码）
+    window.oncontextmenu = function () {
+        return false;
+    };
 
-  var timer = setInterval(function () {
-    if ($(".mg-header>nav>div").css('display') == 'none') {
-      clearInterval(timer);
-      return;
-    }
-    $(".mg-header>nav>div").css("cssText", 'display:none !important');
-  }, 1000);
+    var timer = setInterval(function () {
+        // if ($(".mg-header>nav>div").css('display') == 'none') {
+        //   clearInterval(timer);
+        //   return;
+        // }
+        // $(".mg-header>nav>div").css("cssText", 'display:none !important');
 
-  let url = window.location.href;
-  if (url.includes("https://mangools.com/apps") && tabId === loginTabId) {
-    //关闭loginTabId 新开kwfinder 页面
-    chrome.tabs.remove(loginTabId);
-    chrome.tabs.create({url: 'https://app.kwfinder.com'});
-  }
+    }, 1000);
 
-  if (url.includes("https://mangools.com/users/sign_in")) {
-    if (tabId === loginTabId) {
-      //给当前页面写入账号密码
-      chrome.runtime.sendMessage({type: 'getCurrentAccount'}, function (response) {
-        console.log('拿到账号');
-        console.log(response);
-
-        setTimeout(function () {
-
-          $("#user_email").val(response.username).attr("readonly", "readonly");
-          $("#user_password").val(response.password).attr("readonly", "readonly");
-
-          //注入点击按钮
-          $(loginButtonInsert).insertAfter('.uk-text-center button');
-        }, 500);
-
-        setTimeout(function () {
-          // simulateClick($(".mg-btn"), true);
-        }, 3000)
-      });
-
-      //注入让用户主动点击提醒按钮
-    } else {
-      console.log('用户自主打开登陆页面')
-    }
-
-  }
 });

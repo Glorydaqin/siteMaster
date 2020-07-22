@@ -1,10 +1,10 @@
 let loginWindowId = null;
 let loginTabId = null;
+let openTabId = null;
 let accountList = [];   //所有账号列表
 let currentAccountIndex = 0;  //当前选的账号index
 let closedPlugins = []; //关闭的所有扩展
 let pluginId = chrome.runtime.id; //当前扩展id
-let todayFirst = true;
 let pageStatus = 'login'; // login  account  logout
 let lastPluginId = null;
 let username = null;
@@ -12,42 +12,46 @@ let password = null;
 
 
 function setUser(user, pass) {
-  username = user;
-  password = pass;
+    username = user;
+    password = pass;
 }
 
 function setPageStatus(status) {
-  pageStatus = status;
+    pageStatus = status;
 }
 
 function setLastPluginId(id) {
-  lastPluginId = id;
+    lastPluginId = id;
 }
 
 function setLoginWindowId(val) {
-  loginWindowId = val;
+    loginWindowId = val;
 }
 
 function setLoginTabId(val) {
-  loginTabId = val;
+    loginTabId = val;
+}
+
+function setOpenTabId(val) {
+    openTabId = val;
 }
 
 function setAccountList(val) {
-  accountList = val;
+    accountList = val;
 }
 
 function setCurrentAccountIndex(val) {
-  currentAccountIndex = val;
+    currentAccountIndex = val;
 }
 
 function getCurrentAccount() {
-  let item = accountList[currentAccountIndex];
-  return ({
-    username: item.username,
-    password: str_decrypt(item.password),
-    type: item.type,
-    accountList: accountList
-  });
+    let item = accountList[currentAccountIndex];
+    return ({
+        username: item.username,
+        password: str_decrypt(item.password),
+        type: item.type,
+        accountList: accountList
+    });
 }
 
 /**
@@ -56,160 +60,115 @@ function getCurrentAccount() {
  * @returns {string}
  */
 function str_decrypt(str) {
-  // str = decodeURIComponent(str);
-  str = window.atob(str);
-  var c = String.fromCharCode(str.charCodeAt(0) - str.length);
+    // str = decodeURIComponent(str);
+    str = window.atob(str);
+    var c = String.fromCharCode(str.charCodeAt(0) - str.length);
 
-  for (var i = 1; i < str.length; i++) {
-    c += String.fromCharCode(str.charCodeAt(i) - c.charCodeAt(i - 1));
-  }
-  return c;
+    for (var i = 1; i < str.length; i++) {
+        c += String.fromCharCode(str.charCodeAt(i) - c.charCodeAt(i - 1));
+    }
+    return c;
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
-  if (request.type === 'getCurrentAccount') {
-    let item = accountList[currentAccountIndex];
-    sendResponse({
-      username: item.username,
-      password: str_decrypt(item.password),
-      type: item.type,
-      accountList: accountList
-    });
-  } else if (request.type === 'getTabId') {
-    sendResponse({currentTabId: sender.tab.id, loginTabId: loginTabId});
-  } else if (request.type === 'getPageStatus') {
-    sendResponse(pageStatus);
-  } else if (request.type === 'getAccountList') {
-    sendResponse(accountList);
-  } else if (request.type === 'checkLogin') {
-    //检查是否已经登陆了插件，没有则clear
-    if (pageStatus !== 'logout') {
-      this.loginInfoClear();
+    if (request.type === 'getCurrentAccount') {
+        let item = accountList[currentAccountIndex];
+        sendResponse({
+            username: item.username,
+            password: str_decrypt(item.password),
+            type: item.type,
+            accountList: accountList
+        });
+    } else if (request.type === 'getTabId') {
+        sendResponse({currentTabId: sender.tab.id, openTabId: openTabId});
+    } else if (request.type === 'getPageStatus') {
+        sendResponse(pageStatus);
+    } else if (request.type === 'getAccountList') {
+        sendResponse(accountList);
+    } else if (request.type === 'checkLogin') {
+        //检查是否已经登陆了插件，没有则clear
+        if (pageStatus !== 'logout') {
+            this.loginInfoClear();
+        }
+        sendResponse({});
+    } else {
+        console.log(request, sender)
     }
-    sendResponse({});
-  } else {
-    console.log(request, sender)
-  }
 });
 
 
 function sendMessageToContentScript(message, callback) {
-  chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
-      if (callback) callback(response);
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
+            if (callback) callback(response);
+        });
     });
-  });
-}
-
-function closePlugins() {
-  chrome.management.getAll(function (allPlugins) {
-    $.each(allPlugins, function (index, val) {
-      if (val.enabled === true && val.id !== pluginId) {
-        chrome.management.setEnabled(val.id, false);
-        savePluginInfo(val.id)
-      }
-    });
-  });
-}
-
-function revertPlugins() {
-  $.each(closedPlugins, function (index, val) {
-    chrome.management.setEnabled(val, true, function () {
-      closedPlugins.splice(index, 1)
-    });
-  });
-}
-
-function savePluginInfo(pluginId) {
-  closedPlugins.push(pluginId);
-}
-
-function closeOpenWindow() {
-  if (loginWindowId) {
-    chrome.windows.remove(loginWindowId)
-  }
 }
 
 function clearCookie(domain) {
-  chrome.cookies.getAll({domain: domain}, function (cookies) {
-    $.each(cookies, function (index, val) {
-      chrome.cookies.remove({url: "https://" + val.domain, name: val.name})
+    chrome.cookies.getAll({domain: domain}, function (cookies) {
+        $.each(cookies, function (index, val) {
+            chrome.cookies.remove({url: "https://" + val.domain, name: val.name})
+        })
     })
-  })
 }
 
 function clearStorage() {
-  chrome.tabs.getCurrent(function (tab) {
-    if (tab) {
-      chrome.tabs.executeScript({
-        code: 'localStorage.clear();'
-      });
-    }
-  })
+    chrome.tabs.query({'currentWindow': true}, function (tabArray) {
+
+        for (var i = 0; i < tabArray.length; i++) {
+            let tabInfo = tabArray[i];
+            if (tabInfo.url.includes('app.kwfinder.com')) {
+                chrome.tabs.executeScript(
+                    tabArray[i].id,
+                    {code: 'localStorage.clear();'}
+                );
+            }
+        }
+    })
 }
 
 /**
  * 清除cookie 和相关登录信息
  */
 function loginInfoClear() {
-  clearCookie('mangools.com');
-  clearCookie('kwfinder.com');
-  clearCookie('app.kwfinder.com');
-  clearStorage();
+    clearCookie('mangools.com');
+    clearCookie('kwfinder.com');
+    clearCookie('app.kwfinder.com');
+    clearStorage()
 }
 
 setInterval(function () {
+    //每分钟检测一次是否是最新设备在线
+    if (lastPluginId && pageStatus !== 'login' && username) {
 
-  //定时检查扩展,避免禁用的被用户主动启动
-  chrome.management.getAll(function (allPlugins) {
-    $.each(allPlugins, function (index, val) {
-      if (val.enabled === true && val.id !== pluginId && val.id in closedPlugins) {
-        chrome.management.setEnabled(val.id, false);
-      }
-    });
-  });
+        $.post('https://vipfor.me/api/check/', {
+            'username': username,
+            'password': password,
+            'last_plugin_id': lastPluginId
+        }, function (response) {
+            let jsonObj = JSON.parse(response);
+            console.log(jsonObj);
 
-  //定时检查mangools相关页面是否存在
-  //pageStatus !== login 并且页面3分钟内存在mangool页面 给后台传递在线信息 ，后台返回上一次登录设备，确保单一设备登录
+            if (jsonObj.code !== 200) {
+                loginInfoClear();
+                pageStatus = 'login';
+            }
+        });
+    }
 
-}, 3000);
+}, 60000);
 
-setInterval(function () {
-  //每分钟检测一次是否是最新设备在线
-  if (lastPluginId && pageStatus !== 'login' && username) {
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
-    $.post('https://vipfor.me/api/check/', {
-      'username': username,
-      'password': password,
-      'last_plugin_id': lastPluginId
-    }, function (response) {
-      let jsonObj = JSON.parse(response);
-      console.log(jsonObj);
+    //当account状态时清除storage
+    if (tabId === openTabId && pageStatus === 'account' && tab.status === 'complete') {
 
-      if (jsonObj.code !== 200) {
-        loginInfoClear();
-        pageStatus = 'login';
-      }
-    });
-  }
-
-}, 5000);
-
-//安装时触发
-chrome.runtime.onInstalled.addListener({
-  //清除 cookie storage
-});
-
-//卸载时触发
-chrome.runtime.onSuspend.addListener(function () {
-  chrome.tabs.create({url: 'https://app.kwfinder.com'}, function (tab) {
-    this.loginInfoClear();
-  })
-});
-
-chrome.windows.onRemoved.addListener(function (windowId) {
-  if (windowId === loginWindowId) {
-    loginWindowId = null;
-  }
-});
+        chrome.tabs.executeScript(tab.id, {code: 'localStorage.clear();'}, function (result) {
+            console.log('clear storage result');
+            console.log(result)
+        });
+        loginInfoClear()
+    }
+})
