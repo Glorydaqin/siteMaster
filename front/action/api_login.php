@@ -38,9 +38,10 @@ if ($site_info['name'] == 'ahrefs') {
 } else {
     $last_version = 1;
 }
+
 if ($v < $last_version) {
     $data['code'] = 4001;
-    $data['message'] = '请升级插件';
+    $data['message'] = '插件已升级,请卸载当前版本插件,登陆(https://vipfor.me)重新下载安装最新插件';
 
     echo json_encode($data);
     exit();
@@ -60,15 +61,17 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     }
     //取账号
     $account_list = Account::get_site_list($site_id, 2);
+
+    $accounts = [];
     foreach ($account_list as $key => $item) {
-        $account_list[$key]['password'] = !empty($item['cookie']) ? compileCode($item['cookie']) : compileCode($item['password']);
-//        $account_list[$key]['password'] = compileCode($item['password']);
+        //加密后的cookie
+        $accounts['encodeToken'] = compileCode($item['cookie']);
     }
 
-    $data['data']['account_list'] = array_reverse($account_list);
+    $data['data']['account_list'] = array_reverse($accounts);
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
-    $data['message'] = '账号到期';
+    $data['message'] = '账号已到期';
 } else {
     $data['code'] = 4002;
     $data['message'] = '账号或密码错误';

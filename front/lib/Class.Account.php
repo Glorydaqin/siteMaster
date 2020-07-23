@@ -67,8 +67,7 @@ class Account
             $expire_str = "expired_at > '{$time}'";
         }
         $sql = "select * from site_account where site_id = {$site_id} and deleted = 0 and type={$type} and {$expire_str} order by sort asc,id asc;";
-        $result = $GLOBALS['db']->getRows($sql);
-        return $result;
+        return $GLOBALS['db']->getRows($sql);
     }
 
     /**
