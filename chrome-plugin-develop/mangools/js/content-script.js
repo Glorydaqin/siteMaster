@@ -88,12 +88,12 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     var timer = setInterval(function () {
-        // if ($(".mg-header>nav>div").css('display') == 'none') {
-        //   clearInterval(timer);
-        //   return;
-        // }
-        // $(".mg-header>nav>div").css("cssText", 'display:none !important');
+        if ($(".mg-header>nav>div").css('display') == 'none') {
+          clearInterval(timer);
+          return;
+        }
+        $(".mg-header>nav>div").css("cssText", 'display:none !important');
 
-    }, 1000);
+    }, 100);
 
 });
