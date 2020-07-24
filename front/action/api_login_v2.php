@@ -65,7 +65,7 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     $accounts = [];
     foreach ($account_list as $key => $item) {
         //加密后的cookie
-        $accounts['encodeToken'] = compileCode($item['cookie']);
+        $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
     }
 
     $data['data']['account_list'] = array_reverse($accounts);

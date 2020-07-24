@@ -67,7 +67,7 @@ $(document).ready(function () {
         let username = $("#i1").val();
         let password = $("#i2").val();
 
-        let url = "https://vipfor.me/api/login/";
+        let url = "https://vipfor.me/api/login_v2/";
         let data = {username: username, password: password, site_id: 2, v: mainfest.version};
         let index = layer.load(1, {
             shade: [0.1, '#fff'] //0.1透明度的白色背景
