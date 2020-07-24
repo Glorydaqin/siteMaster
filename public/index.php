@@ -28,6 +28,8 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'test.php';
     } elseif ($script_uri == '/api/login/') {
         include_once FRONT_DIR . 'api_login.php';
+    } elseif ($script_uri == '/api/login_v2/') {
+        include_once FRONT_DIR . 'api_login_v2.php';
     } elseif ($script_uri == '/api/check/') {
         include_once FRONT_DIR . 'api_check.php';
     } elseif ($script_uri == '/api/re_cookie/') {
