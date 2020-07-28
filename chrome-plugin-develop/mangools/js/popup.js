@@ -107,12 +107,14 @@ $(document).ready(function () {
         let new_cookie = {
             'url': 'https://mangools.com/',
             "name": "_mangotools_com_session",
-            'value': accountInfo.username,
+            'value': accountInfo.encodeToken,
             // 'domain': 'mangools.com',
             'httpOnly': true,
             'secure': true,
             // 'expirationDate': timestamps
         };
+        console.log(new_cookie)
+
         chrome.cookies.set(
             new_cookie, function (cookie) {
 

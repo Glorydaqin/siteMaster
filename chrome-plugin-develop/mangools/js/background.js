@@ -46,13 +46,13 @@ function setCurrentAccountIndex(val) {
 
 function getCurrentAccount() {
     let item = accountList[currentAccountIndex];
+    console.log(item)
     return ({
-        username: item.username,
-        password: str_decrypt(item.password),
-        type: item.type,
+        encodeToken: str_decrypt(item.encodeToken),
         accountList: accountList
     });
 }
+
 
 /**
  * 解密函数
@@ -60,7 +60,7 @@ function getCurrentAccount() {
  * @returns {string}
  */
 function str_decrypt(str) {
-    // str = decodeURIComponent(str);
+    // str = base64decode(str);
     str = window.atob(str);
     var c = String.fromCharCode(str.charCodeAt(0) - str.length);
 
@@ -75,9 +75,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.type === 'getCurrentAccount') {
         let item = accountList[currentAccountIndex];
         sendResponse({
-            username: item.username,
-            password: str_decrypt(item.password),
-            type: item.type,
+            encodeToken: str_decrypt(item.encodeToken),
             accountList: accountList
         });
     } else if (request.type === 'getTabId') {

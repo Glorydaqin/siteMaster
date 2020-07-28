@@ -9,12 +9,13 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function (details) {
         return {requestHeaders: details.requestHeaders};
     },
     {
-        urls: ["*://*.kwfinder.com/*",
-            "*://*.serpchecker.com/*",
-            "*://*.serpwatcher.com/*",
-            "*://*.linkminer.com/*",
-            "*://*.siteprofiler.com/*",
-            "*://mangools.com/*"]
+        // urls: ["*://*.kwfinder.com/*",
+        //     "*://*.serpchecker.com/*",
+        //     "*://*.serpwatcher.com/*",
+        //     "*://*.linkminer.com/*",
+        //     "*://*.siteprofiler.com/*",
+        //     "*://mangools.com/*"]
+        urls: ["<all_urls>"]
     },
     ["blocking", "requestHeaders"]
 );
