@@ -48,7 +48,7 @@ function getCurrentAccount() {
     let item = accountList[currentAccountIndex];
     console.log(item)
     return ({
-        encodeToken: str_decrypt(item.encodeToken),
+        encodeToken: item.encodeToken,
         accountList: accountList
     });
 }
@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.type === 'getCurrentAccount') {
         let item = accountList[currentAccountIndex];
         sendResponse({
-            encodeToken: str_decrypt(item.encodeToken),
+            encodeToken: item.encodeToken,
             accountList: accountList
         });
     } else if (request.type === 'getTabId') {

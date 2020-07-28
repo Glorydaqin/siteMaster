@@ -1,6 +1,6 @@
 <?php
 /**
- * 都要调用的数据
+ * 插件登录接口
  * Created by PhpStorm.
  * User: daqin
  * Date: 2018/3/14

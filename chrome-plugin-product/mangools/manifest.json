@@ -1,16 +1,17 @@
 {
 	"name": "mangools login",
-	"version": "3.1",
-	"description": "vip login",
+	"version": "3.3",
+	"description": "私人使用mangools系列登录工具",
 	"manifest_version": 2,
 	"browser_action": {
 		"default_icon": "img/icon.png",
-		"default_title": "vip login",
+		"default_title": "mangools login",
 		"default_popup": "popup.html"
 	},
 	"icons": {
 		"16": "img/icon.png",
-		"48": "img/icon.png"
+		"48": "img/icon.png",
+		"128": "img/icon.png"
 	},
 	"background": {
 		"scripts": [
@@ -31,7 +32,8 @@
 	],
 	"content_scripts": [{
 		"matches": [
-			"https://mangools.com/*"
+			"https://mangools.com/*",
+			"https://app.kwfinder.com/*"
 		],
 		"js": [
 			"js/jquery2.1.4.min.js",

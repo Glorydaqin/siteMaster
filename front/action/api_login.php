@@ -34,7 +34,7 @@ if (!$site_info) {
 if ($site_info['name'] == 'ahrefs') {
     $last_version = 3.2;
 } elseif ($site_info['name'] == 'mangools') {
-    $last_version = 3;
+    $last_version = 3.2;
 } else {
     $last_version = 1;
 }
