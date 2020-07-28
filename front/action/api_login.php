@@ -40,7 +40,7 @@ if ($site_info['name'] == 'ahrefs') {
 }
 if ($v < $last_version) {
     $data['code'] = 4001;
-    $data['message'] = '请升级插件';
+    $data['message'] = '插件已升级,请卸载当前版本插件,登陆(https://vipfor.me)重新下载安装最新插件';
 
     echo json_encode($data);
     exit();
