@@ -38,6 +38,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function (details) {
       }
       return {requestHeaders: details.requestHeaders};
     },
-    {urls: ["*://ahrefs.com/*", "*://auth.ahrefs.com/*"]},
+    {urls: ["*://ahrefs.com/*", "*://*.ahrefs.com/*"]},
     ["blocking", "requestHeaders"]
 );

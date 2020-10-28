@@ -84,7 +84,7 @@ $(document).ready(function () {
                 });
                 bg.setAccountList(jsonObj.data.account_list);
                 bg.setLastPluginId(jsonObj.data.last_plugin_id);
-
+                layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
 
                 chrome.tabs.create({url: 'https://app.kwfinder.com', active: false}, function (tab) {
                     console.log(tab)
