@@ -54,6 +54,8 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     $site_expired_at = User::get_access_with($row['id'], $site_id);
     $data['data']['last_plugin_id'] = $last_plugin_id;
     $data['data']['site_expired_at'] = $site_expired_at;
+    $data['data']['left_day'] = round((strtotime($site_expired_at) - time()) / 86400, 1);
+
     if (strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
     } else {
