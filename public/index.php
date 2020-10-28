@@ -34,12 +34,6 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'api_check.php';
     } elseif ($script_uri == '/api/re_cookie/') {
         include_once FRONT_DIR . 'api_re_cookie.php';    //重新生成cookie
-    } //image 下载类别
-    elseif (substr($script_uri, 0, strlen('/image/')) == '/image/') {
-        include_once FRONT_DIR . 'transfer_vip_image.php';
-    } //文档 下载类别
-    elseif (substr($script_uri, 0, strlen('/document/')) == '/document/') {
-        include_once FRONT_DIR . 'transfer_vip_document.php';
     }
 } elseif ($server_domain == 'www.' . DOMAIN) {
     temporarily_header_302(PROTOCOL . DOMAIN . '/');

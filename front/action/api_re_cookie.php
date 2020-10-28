@@ -10,10 +10,17 @@ if (!defined('IN_DS')) {
     die('Hacking attempt');
 }
 
-$list = Account::get_site_list(1, 2);
+$site_id = isset($_GET['site_id']) ? addslashes($_GET['site_id']) : 1;
+
+$list = Account::get_site_list($site_id, 2);
 
 foreach ($list as $info) {
-    $transfer = new Ahrefs($info['username'], $info['password']);
+    if($site_id == 2){
+        $transfer = new Mangools($info['username'], $info['password'],'https://app.kwfinder.com/');
+    }else{
+        $transfer = new Ahrefs($info['username'], $info['password']);
+    }
+
     $cookie_file = DIR_TMP_COOKIE . $transfer->cookie_key . ".txt";
     @unlink($cookie_file);
 
@@ -23,7 +30,7 @@ foreach ($list as $info) {
         //取cookie内容
         $cookie_content = file_get_contents($cookie_file);
         dump($cookie_content);
-        preg_match_all("/BSSESSID\t([^\s\n]+)/", $cookie_content, $match);
+        preg_match_all("/_mangotools_com_session\t([^\s\n]+)/", $cookie_content, $match);
         dump($match);
 
         if (isset($match[1][0])) {

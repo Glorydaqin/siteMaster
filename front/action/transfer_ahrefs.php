@@ -30,7 +30,7 @@ try {
     }
 
     if (in_array($first_sub, [
-        'account', 'user'
+        'account', 'user' , 'api-adaptor/authLogout'
     ])) {
         die('folder limit ｜ 目录访问限制');
     }

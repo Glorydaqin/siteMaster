@@ -62,9 +62,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.type === 'getCurrentAccount') {
     let item = accountList[currentAccountIndex];
     sendResponse({
-      username: item.username,
-      password: str_decrypt(item.password),
-      type: item.type,
+      encodeToken: str_decrypt(item.encodeToken),
       accountList: accountList
     });
   } else if (request.type === 'getTabId') {
@@ -112,7 +110,7 @@ setInterval(function () {
   //每分钟检测一次是否是最新设备在线
   if (lastPluginId && pageStatus !== 'login' && username) {
 
-    $.post('https://joif.cn/api/check/', {
+    $.post('https://vipfor.me/api/check/', {
       'username': username,
       'password': password,
       'last_plugin_id': lastPluginId

@@ -201,7 +201,10 @@ class Ahrefs
         }
 
         $result = $this->curl($url, $data);
-        if (stripos($result['url'], '/user/login') || stripos($result['url'], '/sessions-exceeded') || stripos($result['body'], 'Sign in to Ahrefs')) {
+        if (stripos($result['url'], '/user/login') ||
+            stripos($result['url'], '/sessions-exceeded') ||
+            stripos($result['body'], 'Sign in to Ahrefs') ||
+            stripos($result['body'], 'Sign in')) {
             //跳转到登陆的说明未登陆 || 没跳转但是需要登陆
             $this->login();
             $result = $this->curl($url, $data);
@@ -337,7 +340,7 @@ class Ahrefs
         $limit_key = REDIS_PRE . "site_explorer-{$day}:" . $user_id; //每人每天30次
         $score = $redis->zScore($key, $limit_key);
         $score = $score ?? 0;
-        $html .= "今日余额,域名:" . ($limit - $score) . "/" . $limit;
+        $html .= "域名:" . ($limit - $score) . "/" . $limit;
 
         //关键词查询
         $limit = 20;

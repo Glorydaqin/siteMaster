@@ -7,8 +7,10 @@ class Mangools
     public static $mangools_api_domain = "https://api2.mangools.com/";
 
     public static $login_url = 'https://mangools.com/users/sign_in';
+    public static $cookie_url = 'https://mangools.com/analytics/sources/set_cookie?referrer=https://mangools.com/users/sign_in';
+    
 
-    public static $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
+    public static $user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36';
 
     private $user_name = '';
     private $password = '';
@@ -70,6 +72,18 @@ class Mangools
         foreach ($headers as $header => $val) {
             $tmp[] = $header . ': ' . $val;
         }
+//sec-fetch-dest: document
+// sec-fetch-mode: navigate
+// sec-fetch-site: same-origin
+// sec-fetch-user: ?1
+// upgrade-insecure-requests: 1
+        $tmp[] = 'sec-fetch-dest: document';
+        $tmp[] = 'sec-fetch-mode: navigate';
+        $tmp[] = 'sec-fetch-site: same-origin';
+        $tmp[] = 'sec-fetch-user: ?1';
+        $tmp[] = 'upgrade-insecure-requests: 1';
+        $tmp[] = 'referer: https://mangools.com/users/sign_in?ref=msg-app-kw&redirect=https%3A%2F%2Fapp.kwfinder.com';
+
         return $tmp;
     }
 
@@ -79,13 +93,13 @@ class Mangools
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 25);   //只需要设置一个秒的数量就可以
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_REFERER, self::$mangools_domain);
         curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 
         $cookie_file = DIR_TMP_COOKIE . $this->cookie_key . ".txt";
         if (!file_exists($cookie_file)) {
@@ -105,6 +119,7 @@ class Mangools
         $content = curl_exec($ch);
 
         $res = curl_getinfo($ch);
+        $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
         $r = array();
@@ -112,22 +127,24 @@ class Mangools
         $r['url'] = $res['url'];
         $r['body'] = $content;
         $r['info'] = $res;
+        // 根据头大小去获取头信息内容
+        $r['response_header'] = substr($content, 0, $headerSize);
 
         //写详细请求记录
-        $log_r = $r;
-        $log_r['body'] = utf8_encode($log_r['body']);
-        $log_content = [
-            'cookie_file' => $cookie_file,
-            'cookie_content' => file_get_contents($cookie_file),
-            'request' => [
-                'url' => $url,
-                'header' => $clean_header,
-                'data' => $data
-            ],
-            'response' => $log_r
-        ];
-//        dd($log_content);
-        Log::info($log_content);
+//         $log_r = $r;
+//         $log_r['body'] = utf8_encode($log_r['body']);
+//         $log_content = [
+//             'cookie_file' => $cookie_file,
+//             'cookie_content' => file_get_contents($cookie_file),
+//             'request' => [
+//                 'url' => $url,
+//                 'header' => $clean_header,
+//                 'data' => $data
+//             ],
+//             'response' => $log_r
+//         ];
+// //        dd($log_content);
+//         Log::info($log_content);
 
         return $r;
     }
@@ -244,10 +261,14 @@ class Mangools
             'ref' => 'msg-app-kw',
             'button' => '',
         ];
+        dump($data);
         $result = $this->curl(self::$login_url, $data);
-//        dd($result);
+
+        $reset_result = $this->curl(self::$cookie_url);
+       dump($result);
+       dd($reset_result);
 //        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
-        if ($result['code'] == 200) {
+        if ($result['code'] == 200 && $reset_result['code'] == 200) {
             //记录当前这个sso ticket
 //            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
 //            $ticket = $match_ticket[1][0] ?? '';

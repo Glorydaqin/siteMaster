@@ -19,3 +19,13 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function (details) {
     },
     ["blocking", "requestHeaders"]
 );
+
+// chrome.webRequest.onCompleted.addListener(function (detail) {
+//         console.log(detail)
+//
+//     }, {
+//         urls: ["https://api.mangools.com/v3/kwfinder/limits"]
+//         // urls: ["<all_urls>"]
+//     },
+//     [ "responseHeaders"]
+// );
