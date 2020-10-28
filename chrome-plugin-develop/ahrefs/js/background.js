@@ -34,9 +34,7 @@ function setCurrentAccountIndex(val) {
 function getCurrentAccount() {
   let item = accountList[currentAccountIndex];
   return ({
-    username: item.username,
-    password: str_decrypt(item.password),
-    type: item.type,
+    encodeToken: str_decrypt(item.encodeToken),
     accountList: accountList
   });
 }
@@ -48,6 +46,9 @@ function getCurrentAccount() {
  */
 function str_decrypt(str) {
   // str = decodeURIComponent(str);
+
+  console.log('str decrypt')
+  console.log(str)
   str = window.atob(str);
   var c = String.fromCharCode(str.charCodeAt(0) - str.length);
 
