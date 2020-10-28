@@ -1,0 +1,25 @@
+{
+  "name": "sitemaster",
+  "version": "1.0.0",
+  "description": "## base  #### 登陆等公共服务",
+  "main": "index.js",
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "uglify-js": "^3.11.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glorydaqin/siteMaster.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glorydaqin/siteMaster/issues"
+  },
+  "homepage": "https://github.com/Glorydaqin/siteMaster#readme"
+}
