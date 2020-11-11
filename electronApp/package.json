@@ -1,0 +1,31 @@
+{
+  "name": "electron-tabs",
+  "version": "0.15.0",
+  "description": "Simple tabs for Electron applications",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brrd/electron-tabs"
+  },
+  "scripts": {
+    "demo": "electron ./demo",
+    "start": "nodemon --watch ./demo/app.js --exec \"electron ./demo\""
+  },
+  "keywords": [
+    "electron",
+    "tab",
+    "tabs",
+    "webview"
+  ],
+  "author": "brrd",
+  "license": "MIT",
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron": "^8.0.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "dragula": "^3.7.3",
+    "electron-tabs": "^0.15.0"
+  }
+}
