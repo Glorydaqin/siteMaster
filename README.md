@@ -19,3 +19,12 @@
 ## docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
 # 接口文档地址
 ## http://facebook.github.io/php-webdriver/latest/
+
+## mangools token和ticket记录有效期 , 记录时间: 2020-10-29 11:20
+## https://app.kwfinder.com/?login_token=9CRYzQY7wytkTZPwSsFF&sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e
+## 退出链接: https://app.kwfinder.com/?login_token&sso_ticket
+
+邮箱 | 邮箱密码 | ahrefs密码
+--------------------------------------------------------
+
+ah1234t@outlook.com  | daqing666  | daqing666
