@@ -1,0 +1,30 @@
+.etabs-tabs {
+    padding-left: 65px;
+}
+
+.control-buttons {
+    background: #f9f1f1b5;
+    width: 64px;
+    position: absolute;
+    z-index: 999;
+    /*border-right: 1px solid #aaa;*/
+}
+
+.control-buttons a {
+    text-align: center;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    cursor: pointer;
+}
+
+#user-center #btn-hide {
+    display: block;
+    position: relative;
+    top: 10px;
+    z-index: 1000;
+}

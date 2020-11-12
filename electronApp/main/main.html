@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>electron-tabs-demo</title>
+    <link rel="stylesheet" href="../electron-tabs.css">
+    <link rel="stylesheet" href="../node_modules/dist/dragula.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body style="margin:0">
+
+<div id="user-center">
+    <div class="login">
+        <form action="">
+            <input type="text">
+            <input type="password">
+            <select name="choose">
+                <option value="ahrefs">Ahrefs</option>
+                <option value="mangools">Mangools</option>
+            </select>
+            <input type="submit" name="submit" value="登录">
+        </form>
+    </div>
+    <div class="main">
+        asdfasdf
+
+        <div class="account-tab">
+            <div class="account-list">
+                <h4>Ahrefs</h4>
+                <ul>
+                    <li>
+                        <button>账号1</button>
+                    </li>
+                    <li>
+                        <button>账号2</button>
+                    </li>
+                    <li>
+                        <button>账号3</button>
+                    </li>
+                    <li>
+                        <button>账号4</button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button id="btn-hide">隐藏</button>
+</div>
+
+
+<div class="etabs-tabgroup">
+    <div class="control-buttons">
+        <a class="iconfont icon-fanhui" id="btn-fanhui" title="返回"></a>
+        <a class="iconfont icon-shuaxin" id="btn-shuaxin" title="刷新"></a>
+    </div>
+    <div class="etabs-tabs"></div>
+    <div class="etabs-buttons"></div>
+</div>
+<div class="etabs-views"></div>
+
+
+<!--<script src="js/jquery.js"></script>-->
+<script src="main.js"></script>
+</body>
+</html>

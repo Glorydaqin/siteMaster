@@ -3444,7 +3444,7 @@ video {
 
 .fancybox img {
     margin-bottom: 5px;
-    /* Only for demo */
+    /* Only for main */
     width: 24%;
 }
 
@@ -7110,7 +7110,7 @@ body.rtls.top-navigation .footer.fixed {
 /*
  *
  *   This is style for skin config
- *   Use only in demo theme
+ *   Use only in main theme
  *
 */
 
@@ -7761,7 +7761,7 @@ body.skin-3 {
 }
 
 
-/* Only demo */
+/* Only main */
 
 @media (max-width: 1000px) {
     .welcome-message {

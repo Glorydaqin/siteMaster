@@ -8,8 +8,8 @@
     "url": "https://github.com/brrd/electron-tabs"
   },
   "scripts": {
-    "demo": "electron ./demo",
-    "start": "nodemon --watch ./demo/app.js --exec \"electron ./demo\""
+    "start": "electron main",
+    "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\""
   },
   "keywords": [
     "electron",

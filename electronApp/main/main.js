@@ -1,84 +1,37 @@
-<!DOCTYPE html>
-<html>
+//const TabGroup = require('electron-tabs') normally but for main :
+const TabGroup = require("../index");
+const dragula = require("dragula");
+const {ipcRenderer} = require('electron')
 
-<head>
-  <title>electron-tabs-demo</title>
-  <link rel="stylesheet" href="../electron-tabs.css">
-  <link rel="stylesheet" href="../node_modules/dist/dragula.css">
-  <link rel="stylesheet" href="font/iconfont.css">
-
-  <style>
-    .etabs-tabs {
-      padding-left: 65px;
-    }
-
-    .control-buttons {
-      background: #f9f1f1b5;
-      width: 64px;
-      position: absolute;
-      z-index: 999;
-      /*border-right: 1px solid #aaa;*/
-    }
-
-    .control-buttons a {
-      text-align: center;
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      margin: 0;
-      padding: 0;
-      float: left;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body style="margin:0">
-
-<div class="etabs-tabgroup">
-  <div class="control-buttons">
-    <a class="iconfont icon-fanhui" id="btn-fanhui" title="返回"></a>
-    <a class="iconfont icon-shuaxin" id="btn-shuaxin" title="刷新"></a>
-  </div>
-  <div class="etabs-tabs"></div>
-  <div class="etabs-buttons"></div>
-</div>
-<div class="etabs-views"></div>
-
-
-<script>
-  //const TabGroup = require('electron-tabs') normally but for demo :
-  const TabGroup = require("../index");
-  const dragula = require("dragula");
-  const {ipcRenderer} = require('electron')
-
-  let tabGroup = new TabGroup({
+let tabGroup = new TabGroup({
     // 显示新加标签
     // newTab: {
     //   title: 'New Tab'
     // },
     ready: function (tabGroup) {
-      dragula([tabGroup.tabContainer], {
-        direction: "horizontal"
-      });
+        dragula([tabGroup.tabContainer], {
+            direction: "horizontal"
+        });
     }
-  });
+});
 
-  tabGroup.addTab({
+tabGroup.addTab({
     title: 'baidu',
     src: 'http://app.kwfinder.com',
-  });
+});
 
-  tabGroup.addTab({
+tabGroup.addTab({
     title: "Electron",
     src: "http://electron.atom.io",
     visible: true,
     active: true
-  });
+});
 
-  let btnFanhui = document.getElementById('btn-fanhui');
-  let btnShuaxin = document.getElementById('btn-shuaxin');
-  btnFanhui.onclick = function () {
+let btnFanhui = document.getElementById('btn-fanhui');
+let btnShuaxin = document.getElementById('btn-shuaxin');
+let btnHide = document.getElementById("btn-hide");
+let userCenter = document.getElementById('user-center');
+btnFanhui.onclick = function () {
     // if(tabGroup.getActiveTab().webview.canGoBack()){
     //   tabGroup.getActiveTab().webview.goBack();
     // }
@@ -97,7 +50,7 @@
     document.cookie = "_mangotools_com_session=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     document.cookie = "_mangotools_com_session=` + cookie + `; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=mangools.com; path=/";
     `, false, function (result) {
-      console.log(result)
+        console.log(result)
     })
     //   // 先用来写cookie
     //   let new_cookie = {
@@ -109,10 +62,13 @@
     //     'secure': true,
     //     // 'expirationDate': timestamps
     //   };
-  }
-  btnShuaxin.onclick = function () {
+}
+btnShuaxin.onclick = function () {
     tabGroup.getActiveTab().webview.reload();
-  }
-</script>
-</body>
-</html>
+}
+
+btnHide.onclick = function () {
+    let styleHide = userCenter.getElementsByTagName('div')[0].style.display;
+    userCenter.getElementsByTagName('div')[0].style.display = styleHide === 'none' ? 'block' : 'none';
+    btnHide.innerText = styleHide === 'none' ? '显示' : '隐藏';
+}

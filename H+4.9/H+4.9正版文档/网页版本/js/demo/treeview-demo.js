@@ -84,13 +84,13 @@ $(function () {
         {
             text: '父节点 3',
             icon: 'glyphicon glyphicon-earphone',
-            href: '#demo',
+            href: '#main',
             tags: ['11']
           },
         {
             text: '父节点 4',
             icon: 'glyphicon glyphicon-cloud-download',
-            href: '/demo.html',
+            href: '/main.html',
             tags: ['19'],
             selected: true
           },

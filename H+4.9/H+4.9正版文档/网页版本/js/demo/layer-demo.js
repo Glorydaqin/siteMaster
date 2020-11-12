@@ -1,4 +1,4 @@
-/*! layer demo */ ;
+/*! layer main */ ;
 ! function () {
     var gather = {
         htdy: $('html, body')
@@ -60,7 +60,7 @@
         case 7:
             parent.layer.open({
                 type: 1,
-                skin: 'layui-layer-demo',
+                skin: 'layui-layer-main',
                 closeBtn: false,
                 area: '350px',
                 shift: 2,
@@ -127,7 +127,7 @@
                     photos: gather.photoJSON
                 });
             } else {
-                $.getJSON('js/demo/photos.json?v=', function (json) {
+                $.getJSON('js/main/photos.json?v=', function (json) {
                     gather.photoJSON = json;
                     layer.photos({
                         photos: json
