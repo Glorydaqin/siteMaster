@@ -127,7 +127,7 @@ $(document).ready(function () {
 
             // Code for demos
             function createColorpickers() {
-                // Api main
+                // Api demo
                 var bodyStyle = $('body')[0].style;
                 $('#demo_apidemo').colorpicker({
                     color: bodyStyle.backgroundColor
@@ -141,7 +141,7 @@ $(document).ready(function () {
                     horizontal: true
                 });
 
-                $('.main-auto').colorpicker();
+                $('.demo-auto').colorpicker();
 
                 // Disabled / enabled triggers
                 $(".disable-button").click(function (e) {
@@ -158,13 +158,13 @@ $(document).ready(function () {
             createColorpickers();
 
             // Create / destroy instances
-            $('.main-destroy').click(function (e) {
+            $('.demo-destroy').click(function (e) {
                 e.preventDefault();
-                $('.main').colorpicker('destroy');
+                $('.demo').colorpicker('destroy');
                 $(".disable-button, .enable-button").off('click');
             });
 
-            $('.main-create').click(function (e) {
+            $('.demo-create').click(function (e) {
                 e.preventDefault();
                 createColorpickers();
             });

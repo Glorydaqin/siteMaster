@@ -12,7 +12,7 @@ function $childNode(name) {
 }
 
 // tooltips
-$('.tooltip-main').tooltip({
+$('.tooltip-demo').tooltip({
     selector: "[data-toggle=tooltip]",
     container: "body"
 });
