@@ -11,16 +11,24 @@
 <body style="margin:0">
 
 <div id="user-center">
-    <div class="login">
-        <form action="">
-            <input type="text">
-            <input type="password">
+    <div class="user-info">
+        <div class="login">
+
+            <input type="text" id="username">
+            <input type="password" id="password">
             <select name="choose">
                 <option value="ahrefs">Ahrefs</option>
                 <option value="mangools">Mangools</option>
             </select>
-            <input type="submit" name="submit" value="登录">
-        </form>
+
+            <button onclick="login()">登录</button>
+
+        </div>
+
+        <div class="logout">
+            欢迎你, , <a href="javascript:logout()">退出</a>
+        </div>
+
     </div>
     <div class="main">
         asdfasdf
@@ -61,7 +69,8 @@
 <div class="etabs-views"></div>
 
 
-<!--<script src="js/jquery.js"></script>-->
+<script>window.$ = window.jQuery = require("./js/jquery");</script>
+<script src="js/common.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

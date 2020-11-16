@@ -17,12 +17,12 @@ let tabGroup = new TabGroup({
 
 tabGroup.addTab({
     title: 'baidu',
-    src: 'http://app.kwfinder.com',
+    src: 'http://baidu.com',
 });
 
 tabGroup.addTab({
     title: "Electron",
-    src: "http://electron.atom.io",
+    src: "https://ie.icoa.cn/",
     visible: true,
     active: true
 });
@@ -69,6 +69,64 @@ btnShuaxin.onclick = function () {
 
 btnHide.onclick = function () {
     let styleHide = userCenter.getElementsByTagName('div')[0].style.display;
-    userCenter.getElementsByTagName('div')[0].style.display = styleHide === 'none' ? 'block' : 'none';
+    userCenter.getElementsByClassName('main')[1].style.display = styleHide === 'none' ? 'block' : 'none';
     btnHide.innerText = styleHide === 'none' ? '显示' : '隐藏';
+}
+
+/**
+ * 登录
+ */
+function login() {
+
+    let username = $("#username").val();
+    let password = $("#password").val();
+    let data = {username: username, password: password, site_id: 2, v: 3.3};
+
+    $.post('https://vipfor.me/api/login_v2/', data, function (response) {
+        let jsonObj = JSON.parse(response);
+        console.log(jsonObj)
+        if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+
+            // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
+
+            initInnerAccount('mangools')
+        } else {
+            alert(jsonObj.message);
+        }
+    })
+
+}
+
+function logout() {
+
+}
+
+
+function initInnerAccount(type = 'mangools') {
+    if (type === 'mangools') {
+        //清除浏览器标签
+        tabGroup.getTabs().forEach((tab) => {
+            tab.close(true)
+        })
+
+        var url = 'https://app.kwfinder.com/?login_token=9CRYzQY7wytkTZPwSsFF&sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e';
+        //打开新的标签页
+        tabGroup.addTab({
+            title: "开启中,请稍候..",
+            src: url,
+            visible: true,
+            active: true
+        });
+    }
+    if (type === 'ahrefs') {
+
+    }
+}
+
+/**
+ * 切换植入账号
+ * @param index
+ */
+function changeInnerAccount(index = 0) {
+
 }
