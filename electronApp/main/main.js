@@ -80,7 +80,8 @@ function login() {
 
     let username = $("#username").val();
     let password = $("#password").val();
-    let data = {username: username, password: password, site_id: 2, v: 3.3};
+    let chooseSite = $("#chooseSite").val();
+    let data = {username: username, password: password, site_id: chooseSite, v: 3.3};
 
     $.post('https://vipfor.me/api/login_v2/', data, function (response) {
         let jsonObj = JSON.parse(response);
@@ -88,6 +89,9 @@ function login() {
         if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
 
             // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
+            $(".login").hide();
+            $(".logout .username").text(username);
+            $(".logout").show();
 
             initInnerAccount('mangools')
         } else {
