@@ -14,38 +14,33 @@
     <div class="user-info">
         <div class="login">
 
-            <input type="text" id="username">
-            <input type="password" id="password">
+            <input type="text" id="username" placeholder="账号">
+            <input type="password" id="password" placeholder="密码">
             <select name="site" id="chooseSite">
                 <option value="1">Ahrefs</option>
                 <option value="2">Mangools</option>
             </select>
 
             <button onclick="login()">登录</button>
-
         </div>
 
         <div class="logout">
-            欢迎你: <span class="username"></span>,权限剩余：<span class="left_day">30</span>天, <a href="javascript:logout()">退出</a>
+            欢迎你: <span class="username"></span>,权限剩余：<span class="left_day">30</span>天, <a
+                href="javascript:logout()">退出</a>
         </div>
 
     </div>
     <div class="main">
-
-        <div class="account-tab">
-            <h4>Ahrefs</h4>
-            <div class="account-list">
-                <ul>
-                    <li>
-                        <a href="#">账号1</a>
-                    </li>
-
-                </ul>
-            </div>
+        <div class="account-list">
+            <ul>
+                <li>
+                    <a href="#">账号1</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <button id="btn-hide">隐藏</button>
 </div>
+<button id="btn-hide">隐藏</button>
 
 
 <div class="etabs-tabgroup">

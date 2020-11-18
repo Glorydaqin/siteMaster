@@ -22,13 +22,37 @@
     cursor: pointer;
 }
 
-#user-center #btn-hide {
+.logout {
+    display: none;
+}
+
+#btn-hide {
+    margin: 0 auto;
+    width: 80px;
     display: block;
     position: relative;
     top: 10px;
-    z-index: 1000;
+    opacity: .7;
 }
 
-.logout{
+.main {
     display: none;
+}
+
+.main ul{
+    height: 25px;
+}
+
+.main ul > li {
+    list-style: none;
+    display: block;
+    border: 1px solid;
+    float: left;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.main ul > li a {
+    text-decoration: none;
+    color: black;
 }

@@ -39,21 +39,21 @@ app.on('ready', function () {
 
 
 
-  ipcMain.on('insertCookie', function(event, arg) {
-    console.log(arg);  // prints "ping"
+  ipcMain.on('insertCookie', function(event, cookie) {
+    console.log(cookie);  // prints "ping"
 
     // 修改cookie 。 存在的会覆盖
-    let cookie = { url: 'http://www.github.com', name: 'dummy_name', value: 'dummy' }
+    // let cookie = { url: 'http://www.github.com', name: 'dummy_name', value: 'dummy' }
     session.defaultSession.cookies.set(cookie)
         .then(() => {
           // success
+          event.returnValue = {code: 0, message:'success'}; // 同步回复
         }, (error) => {
           console.error(error)
+
+          event.returnValue = {code: 1, message:error}; // 同步回复
         })
 
-
-    // event.sender.send('asynchronous-reply', 'pong'); // 异步回复
-    event.returnValue = 'pong'; // 同步回复
   });
 
 });
