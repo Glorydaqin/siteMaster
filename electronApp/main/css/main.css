@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-.logout {
+.logout,.main {
     display: none;
 }
 
@@ -33,26 +33,13 @@
     position: relative;
     top: 10px;
     opacity: .7;
+    z-index: 99;
 }
 
-.main {
-    display: none;
+.cursor_pointer{
+    cursor: pointer;
 }
 
-.main ul{
-    height: 25px;
-}
-
-.main ul > li {
-    list-style: none;
-    display: block;
-    border: 1px solid;
-    float: left;
-    padding: 1px 5px;
-    border-radius: 5px;
-}
-
-.main ul > li a {
-    text-decoration: none;
-    color: black;
+.cursor_none{
+    cursor: none;
 }

@@ -3,42 +3,84 @@
 
 <head>
     <title>electron-tabs-demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+
     <link rel="stylesheet" href="../electron-tabs.css">
-    <link rel="stylesheet" href="../node_modules/dist/dragula.css">
     <link rel="stylesheet" href="font/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body style="margin:0">
+<body>
 
-<div id="user-center">
-    <div class="user-info">
-        <div class="login">
+<div id="user-center" class="row">
 
-            <input type="text" id="username" placeholder="账号">
-            <input type="password" id="password" placeholder="密码">
-            <select name="site" id="chooseSite">
-                <option value="1">Ahrefs</option>
-                <option value="2">Mangools</option>
-            </select>
+    <div class="user-info col-sm-8">
 
-            <button onclick="login()">登录</button>
+        <div class="login ibox float-e-margins">
+
+            <div class="ibox-title">
+                <h5>登陆系统</h5>
+            </div>
+            <div class="ibox-content">
+                <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="username" class="sr-only">账号</label>
+                        <input type="text" placeholder="请输入账号" id="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">密码</label>
+                        <input type="password" placeholder="请输入密码" id="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="site" id="chooseSite">
+                            <option value="1">Ahrefs</option>
+                            <option value="2">Mangools</option>
+                        </select>
+
+                    </div>
+                    <!--<div class="checkbox m-l m-r-xs">-->
+                    <!--<label class="i-checks">-->
+                    <!--<input type="checkbox"><i></i> 自动登录</label>-->
+                    <!--</div>-->
+                    <button class="btn btn-success" type="button" onclick="login()">登录</button>
+                </form>
+            </div>
         </div>
 
-        <div class="logout">
-            欢迎你: <span class="username"></span>,权限剩余：<span class="left_day">30</span>天, <a
-                href="javascript:logout()">退出</a>
-        </div>
 
+        <div class="logout ibox float-e-margins">
+
+            <div class="ibox-title">
+                <h5>用户中心</h5>
+            </div>
+            <div class="ibox-content">
+                欢迎你: <span class="username"></span>,权限剩余：<span class="left_day">30</span>天, <a
+                    href="javascript:logout()">退出</a>
+            </div>
+        </div>
     </div>
-    <div class="main">
-        <div class="account-list">
-            <ul>
-                <li>
-                    <a href="#">账号1</a>
-                </li>
-            </ul>
+
+    <div class="main col-sm-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>选择账号</h5>
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group account-list">
+                    <li class="list-group-item">
+                        <span class="badge badge-primary">切换</span> vip账号1
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+
 </div>
 <button id="btn-hide">隐藏</button>
 
@@ -54,8 +96,21 @@
 <div class="etabs-views"></div>
 
 
-<script>window.$ = window.jQuery = require("./js/jquery");</script>
+<script>window.$ = window.jQuery = require("./js/jquery.min");</script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
 <script src="js/common.js"></script>
 <script src="main.js"></script>
+
+<script>
+  // 禁止页面刷新
+  window.onkeydown = function (e) {
+    var ev = window.event || e;
+    var code = ev.keyCode || ev.which;
+    if (code === 82 && (ev.metaKey || ev.ctrlKey)) {
+      console.log('flush def')
+      return false;
+    }
+  }
+</script>
 </body>
 </html>
