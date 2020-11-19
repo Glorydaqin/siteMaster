@@ -6,7 +6,7 @@
     background: #f9f1f1b5;
     width: 64px;
     position: absolute;
-    z-index: 999;
+    z-index: 10;
     /*border-right: 1px solid #aaa;*/
 }
 
@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-.logout,.main {
+.logout, .main {
     display: none;
 }
 
@@ -36,10 +36,30 @@
     z-index: 99;
 }
 
-.cursor_pointer{
+.browser {
+    position: relative;
+}
+
+.browser .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    opacity: .6;
+    background: black;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    color: #d28b8b;
+    font-size: 18px;
+}
+
+.cursor_pointer {
     cursor: pointer;
 }
 
-.cursor_none{
+.cursor_none {
     cursor: none;
 }

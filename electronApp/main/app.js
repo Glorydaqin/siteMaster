@@ -53,7 +53,6 @@ app.on('ready', function () {
 
           event.returnValue = {code: 1, message:error}; // 同步回复
         })
-
   });
 
 });

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>electron-tabs-demo</title>
+    <title>vip share</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -39,6 +39,7 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="site" id="chooseSite">
+                            <option value="0">选择平台</option>
                             <option value="1">Ahrefs</option>
                             <option value="2">Mangools</option>
                         </select>
@@ -60,8 +61,12 @@
                 <h5>用户中心</h5>
             </div>
             <div class="ibox-content">
-                欢迎你: <span class="username"></span>,权限剩余：<span class="left_day">30</span>天, <a
-                    href="javascript:logout()">退出</a>
+                <p>
+                    欢迎你: <span class="username"></span> &nbsp;<a class="badge badge-warning" href="javascript:logout()">退出</a>
+                </p>
+                <p>
+                    权限剩余：<span class="left_day">30</span>天
+                </p>
             </div>
         </div>
     </div>
@@ -84,16 +89,21 @@
 </div>
 <button id="btn-hide">隐藏</button>
 
-
-<div class="etabs-tabgroup">
-    <div class="control-buttons">
-        <a class="iconfont icon-fanhui" id="btn-fanhui" title="返回"></a>
-        <a class="iconfont icon-shuaxin" id="btn-shuaxin" title="刷新"></a>
+<div class="browser">
+    <div class="etabs-tabgroup">
+        <div class="control-buttons">
+            <a class="iconfont icon-fanhui" id="btn-fanhui" title="返回"></a>
+            <a class="iconfont icon-shuaxin" id="btn-shuaxin" title="刷新"></a>
+        </div>
+        <div class="etabs-tabs"></div>
+        <div class="etabs-buttons"></div>
     </div>
-    <div class="etabs-tabs"></div>
-    <div class="etabs-buttons"></div>
+    <div class="etabs-views"></div>
+
+    <div class="cover">请先登录选择账号</div>
 </div>
-<div class="etabs-views"></div>
+
+
 
 
 <script>window.$ = window.jQuery = require("./js/jquery.min");</script>
