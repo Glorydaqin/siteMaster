@@ -53,5 +53,6 @@ if (ahrefs_host.indexOf(web_host) >= 0) {
     }, 100);
   });
 } else {
-  alert("禁止访问此地址");
+  // alert("禁止访问此地址");
+
 }

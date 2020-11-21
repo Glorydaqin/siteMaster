@@ -7,9 +7,25 @@
     "type": "git",
     "url": "https://github.com/brrd/electron-tabs"
   },
+  "build": {
+    "appId": "com.vipshare.app",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
+  },
   "scripts": {
     "start": "electron main",
-    "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\""
+    "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\"",
+    "dist": "electron-builder --win --x64"
   },
   "keywords": [
     "electron",
@@ -22,6 +38,7 @@
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^8.0.0",
+    "electron-builder": "^22.9.1",
     "nodemon": "^2.0.6"
   },
   "dependencies": {

@@ -22,22 +22,6 @@ app.on('ready', function () {
     mainWindow.focus();
   });
 
-  // ipcMain.on('message', function (event, arg) {
-  //     console.log(event);
-  //     console.log(arg);
-  //
-  //     ipcMain.reply('reply', 'afsdfa');
-  // });
-
-  // Query all cookies.
-  session.defaultSession.cookies.get({})
-      .then((cookies) => {
-        console.log(cookies)
-      }).catch((error) => {
-    console.log(error)
-  })
-
-
 
   ipcMain.on('insertCookie', function(event, cookie) {
     console.log(cookie);  // prints "ping"
@@ -51,6 +35,19 @@ app.on('ready', function () {
         }, (error) => {
           console.error(error)
 
+          event.returnValue = {code: 1, message:error}; // 同步回复
+        })
+  });
+
+  ipcMain.on('clearSession', function(event) {
+    // console.log(sessionOption);  // prints "ping"
+
+    session.clearStorageData()
+        .then(() => {
+          // success
+          event.returnValue = {code: 0, message:'success'}; // 同步回复
+        }, (error) => {
+          console.error(error)
           event.returnValue = {code: 1, message:error}; // 同步回复
         })
   });
