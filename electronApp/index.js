@@ -439,6 +439,7 @@ const TabPrivate = {
   initWebview: function () {
     const webview = this.webview = document.createElement("webview");
     this.webview.setAttribute('useragent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36');
+    this.webview.setAttribute('preload','js/webview_preload.js'); //植入js
 
     const tabWebviewDidFinishLoadHandler = function (e) {
       this.emit("webview-ready", this);
