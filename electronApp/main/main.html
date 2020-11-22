@@ -8,7 +8,6 @@
 
     <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
 
@@ -18,76 +17,78 @@
 </head>
 <body>
 
-<div id="user-center" class="row">
+<div style="position: relative">
+    <div id="user-center" class="row">
 
-    <div class="user-info col-sm-8">
+        <div class="user-info col-sm-8">
 
-        <div class="login ibox float-e-margins">
+            <div class="login ibox float-e-margins">
 
-            <div class="ibox-title">
-                <h5>登陆系统</h5>
+                <div class="ibox-title">
+                    <h5>登陆系统</h5>
+                </div>
+                <div class="ibox-content">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="username" class="sr-only">账号</label>
+                            <input type="text" placeholder="请输入账号" id="username" class="form-control" autofocus="autofocus">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">密码</label>
+                            <input type="password" placeholder="请输入密码" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="site" id="chooseSite">
+                                <option value="0">选择平台</option>
+                                <option value="1">Ahrefs</option>
+                                <option value="2">Mangools</option>
+                            </select>
+
+                        </div>
+                        <!--<div class="checkbox m-l m-r-xs">-->
+                        <!--<label class="i-checks">-->
+                        <!--<input type="checkbox"><i></i> 自动登录</label>-->
+                        <!--</div>-->
+                        <button class="btn btn-success" type="button" onclick="login()">登录</button>
+                    </form>
+                </div>
             </div>
-            <div class="ibox-content">
-                <form role="form" class="form-inline">
-                    <div class="form-group">
-                        <label for="username" class="sr-only">账号</label>
-                        <input type="text" placeholder="请输入账号" id="username" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="sr-only">密码</label>
-                        <input type="password" placeholder="请输入密码" id="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="site" id="chooseSite">
-                            <option value="0">选择平台</option>
-                            <option value="1">Ahrefs</option>
-                            <option value="2">Mangools</option>
-                        </select>
 
-                    </div>
-                    <!--<div class="checkbox m-l m-r-xs">-->
-                    <!--<label class="i-checks">-->
-                    <!--<input type="checkbox"><i></i> 自动登录</label>-->
-                    <!--</div>-->
-                    <button class="btn btn-success" type="button" onclick="login()">登录</button>
-                </form>
+
+            <div class="logout ibox float-e-margins">
+
+                <div class="ibox-title">
+                    <h5>用户中心</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        欢迎你: <span class="username"></span> &nbsp;<a class="badge badge-warning" href="javascript:logout()">退出</a>
+                    </p>
+                    <p>
+                        权限剩余：<span class="left_day">30</span>天
+                    </p>
+                </div>
             </div>
         </div>
 
-
-        <div class="logout ibox float-e-margins">
-
-            <div class="ibox-title">
-                <h5>用户中心</h5>
-            </div>
-            <div class="ibox-content">
-                <p>
-                    欢迎你: <span class="username"></span> &nbsp;<a class="badge badge-warning" href="javascript:logout()">退出</a>
-                </p>
-                <p>
-                    权限剩余：<span class="left_day">30</span>天
-                </p>
+        <div class="main col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>选择账号</h5>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group account-list">
+                        <li class="list-group-item">
+                            <span class="badge badge-primary">切换</span> vip账号1
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+
     </div>
-
-    <div class="main col-sm-4">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>选择账号</h5>
-            </div>
-            <div class="ibox-content no-padding">
-                <ul class="list-group account-list">
-                    <li class="list-group-item">
-                        <span class="badge badge-primary">切换</span> vip账号1
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <button id="btn-hide">隐藏</button>
 </div>
-<button id="btn-hide">隐藏</button>
 
 <div class="browser">
     <div class="etabs-tabgroup">
@@ -108,6 +109,7 @@
 
 <script>window.$ = window.jQuery = require("./js/jquery.min");</script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/layer-v3.1.1/layer.js"></script>
 <script src="js/common.js"></script>
 <script src="main.js"></script>
 

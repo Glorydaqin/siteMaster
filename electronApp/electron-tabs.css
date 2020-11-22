@@ -123,6 +123,7 @@
   background: none;
   border: none;
   width: 20px;
+  vertical-align: bottom;
   text-align: center;
   border-radius: 2px;
 }

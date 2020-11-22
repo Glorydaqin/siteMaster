@@ -29,12 +29,12 @@ let tabGroup = new TabGroup({
 //   visible: true,
 //   active: true
 // });
-tabGroup.addTab({
-  title: "ahrefs",
-  src: "https://ahrefs.com/user/login/",
-  visible: true,
-  active: true
-});
+// tabGroup.addTab({
+//   title: "ahrefs",
+//   src: "https://ahrefs.com/user/login/",
+//   visible: true,
+//   active: true
+// });
 
 let btnFanhui = document.getElementById('btn-fanhui');
 let btnShuaxin = document.getElementById('btn-shuaxin');
@@ -75,7 +75,6 @@ setInterval(function () {
 
 }, 1000 * 60 * 3);
 
-
 /**
  * 更新账号服务器列表
  */
@@ -107,7 +106,7 @@ function changeInnerAccount(index = 0) {
       tab.close(true)
     })
 
-    var url = 'https://app.kwfinder.com/?login_token=9CRYzQY7wytkTZPwSsFF&sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e';
+    var url = 'https://app.kwfinder.com/?' + currentAccount.encodeToken;
     //打开新的标签页
     tabGroup.addTab({
       title: "开启中,请稍候..",
@@ -159,11 +158,17 @@ function login() {
   }
   let data = {username: username, password: password, site_id: siteId, v: 3.3};
 
+  layer.load(1, {
+    shade: [0.2,'#fff'] //0.1透明度的白色背景
+  });
+
   $.post('https://vipfor.me/api/login_v2/', data, function (response) {
     let jsonObj = JSON.parse(response);
     console.log(jsonObj)
-    if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+    layer.closeAll('loading');
 
+    if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+      isLogin = true;
       // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
       $(".login").hide();
       $(".logout .username").text(username);
@@ -182,6 +187,7 @@ function login() {
 }
 
 function logout() {
+  isLogin = false;
   $(".login").show();
   $('.browser .cover').show(); //萌版显示
   $(".logout").hide();
