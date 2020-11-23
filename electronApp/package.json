@@ -1,31 +1,62 @@
 {
-  "name": "electron-tabs",
+  "name": "vip-login",
   "version": "0.15.0",
-  "description": "Simple tabs for Electron applications",
+  "description": "私人分享vip登录",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/brrd/electron-tabs"
   },
-  "build": {
-    "appId": "com.vipshare.app",
-    "mac": {
-      "target": [
-        "dmg",
-        "zip"
+  "build":{
+    "productName":"vip-login",
+    "appId":"com.vip.login",
+    "asar":true,
+    "directories":{
+      "buildResources":"build",
+      "output":"dist"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
       ]
     },
-    "win": {
-      "target": [
-        "nsis",
-        "zip"
+    "mac": {
+      "icon": "build/icon.icns"
+    },
+    "win":{
+      "target": [{
+        "target":"nsis"
+      }],
+      "icon":"build/icon.ico",
+      "asarUnpack":[
+        "README.md"
       ]
+    },
+
+    "nsis":{
+      "oneClick":false,
+      "allowElevation":true,
+      "allowToChangeInstallationDirectory":true,
+      "installerIcon":"build/icon.ico",
+      "uninstallerIcon":"build/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   },
   "scripts": {
     "start": "electron main",
     "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\"",
-    "dist": "electron-builder --win --x64"
+    "dist": "electron-builder --win"
   },
   "keywords": [
     "electron",

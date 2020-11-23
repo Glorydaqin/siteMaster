@@ -23,7 +23,7 @@
 ## mangools token和ticket记录有效期 , 记录时间: 2020-10-29 11:20
 ## https://app.kwfinder.com/?login_token=9CRYzQY7wytkTZPwSsFF&sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e
 ## 退出链接: https://app.kwfinder.com/?login_token&sso_ticket
-## 这个方式点击mangools其他服务不会自动登陆
+## 这个方式点击mangools其他服务不会自动登陆, 需多个产品一并打开
 
 邮箱 | 邮箱密码 | ahrefs密码
 --------------------------------------------------------

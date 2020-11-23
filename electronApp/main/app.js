@@ -1,7 +1,8 @@
-const {BrowserWindow, app, ipcMain, session} = require('electron');
+const {BrowserWindow, app, ipcMain, session,Menu} = require('electron');
 
 app.on('ready', function () {
   // let isLogin = false;
+  Menu.setApplicationMenu(Menu.buildFromTemplate([]))
 
   const mainWindow = new BrowserWindow({
     width: 800,
