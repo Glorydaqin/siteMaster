@@ -2,7 +2,7 @@
   "name": "vip-login",
   "version": "0.15.0",
   "description": "私人分享vip登录",
-  "main": "index.js",
+  "main": "main/app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/brrd/electron-tabs"
@@ -56,7 +56,7 @@
   "scripts": {
     "start": "electron main",
     "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\"",
-    "dist": "electron-builder --win"
+    "dist": "electron-builder --win --mac"
   },
   "keywords": [
     "electron",

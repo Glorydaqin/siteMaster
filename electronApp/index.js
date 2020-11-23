@@ -1,26 +1,26 @@
 const EventEmitter = require("events");
 
-if (!document) {
-  throw Error("electron-tabs module must be called in renderer process");
-}
-
-// Inject styles
-(function () {
-  const styles = `
-    webview {
-      position: absolute;
-      visibility: hidden;
-      width: 100%;
-      height: 100%;
-    }
-    webview.visible {
-      visibility: visible;
-    }
-  `;
-  let styleTag = document.createElement("style");
-  styleTag.innerHTML = styles;
-  document.getElementsByTagName("head")[0].appendChild(styleTag);
-})();
+// if (!document) {
+//   throw Error("electron-tabs module must be called in renderer process");
+// }
+//
+// // Inject styles
+// (function () {
+//   const styles = `
+//     webview {
+//       position: absolute;
+//       visibility: hidden;
+//       width: 100%;
+//       height: 100%;
+//     }
+//     webview.visible {
+//       visibility: visible;
+//     }
+//   `;
+//   let styleTag = document.createElement("style");
+//   styleTag.innerHTML = styles;
+//   document.getElementsByTagName("head")[0].appendChild(styleTag);
+// })();
 
 class TabGroup extends EventEmitter {
   constructor(args = {}) {
