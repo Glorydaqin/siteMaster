@@ -5,8 +5,8 @@ app.on('ready', function () {
   Menu.setApplicationMenu(Menu.buildFromTemplate([]))
 
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
     show: false,
     webPreferences: {
       nodeIntegration: true,

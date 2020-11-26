@@ -113,6 +113,7 @@ function changeInnerAccount(index = 0) {
             tabGroup.addTab({
                 title: "开启中,请稍候..",
                 src: "https://" + url + '/?' + currentAccount.encodeToken,
+                iconURL:'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
             });
@@ -137,6 +138,7 @@ function changeInnerAccount(index = 0) {
             tabGroup.addTab({
                 title: "开启中,请稍候..",
                 src: url,
+                iconURL:'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
             });

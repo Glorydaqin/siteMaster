@@ -96,6 +96,7 @@
 .etabs-tab-icon {
   display: inline-block;
   height: 16px;
+  vertical-align: top;
 }
 
 .etabs-tab-icon img {
@@ -106,7 +107,7 @@
 .etabs-tab-title {
   display: inline-block;
   margin-left: 10px;
-  max-width: 200px;
+  max-width: 120px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,6 +116,7 @@
 .etabs-tab-buttons {
   display: inline-block;
   margin-left: 10px;
+  vertical-align: top;
 }
 
 .etabs-tab-buttons button {

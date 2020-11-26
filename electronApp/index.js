@@ -472,6 +472,9 @@ const TabPrivate = {
       // console.log(info)
       that.setTitle(info.title);
     })
+    this.webview.addEventListener('page-favicon-updated', function (info) {
+      that.setIcon(info.favicons && info.favicons[0] ? info.favicons[0] : '')
+    })
 
     this.webview.classList.add(this.tabGroup.options.viewClass);
     if (this.webviewAttributes) {
