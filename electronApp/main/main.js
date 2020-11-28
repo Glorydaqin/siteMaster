@@ -45,6 +45,7 @@ btnFanhui.onclick = function () {
     }
 }
 btnShuaxin.onclick = function () {
+    tabGroup.getActiveTab().setIcon('js/layer-v3.1.1/theme/default/loading-2.gif')
     tabGroup.getActiveTab().webview.reload();
 }
 
