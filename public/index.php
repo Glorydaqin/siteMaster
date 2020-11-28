@@ -52,4 +52,4 @@ if ($server_domain == DOMAIN) {
 }
 
 
-die("错误的访问 | 请访问新的域名：" + DOMAIN);
+die("错误的访问 | 请访问新的域名：" . DOMAIN);
