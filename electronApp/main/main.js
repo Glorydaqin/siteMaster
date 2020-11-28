@@ -2,6 +2,8 @@
 const TabGroup = require("../index");
 const dragula = require("dragula");
 const {ipcRenderer} = require('electron')
+const Store = require('electron-store');
+const store = new Store();
 
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
@@ -22,19 +24,20 @@ let tabGroup = new TabGroup({
         });
     }
 });
-//
-// tabGroup.addTab({
-//   title: "Electron",
-//   src: "https://ie.icoa.cn/",
-//   visible: true,
-//   active: true
-// });
-// tabGroup.addTab({
-//   title: "ahrefs",
-//   src: "https://ahrefs.com/user/login/",
-//   visible: true,
-//   active: true
-// });
+
+// 恢复保存的账号
+function rewriteUserInfo() {
+    console.log(store.get('vipLoginUserInfo'));
+    var res = store.get('vipLoginUserInfo');
+    if (res) {
+        let username = res.split(',')[0];
+        let password = res.split(',')[1];
+        $("#username").val(username);
+        $("#password").val(password);
+    }
+}
+rewriteUserInfo();
+
 
 let btnFanhui = document.getElementById('btn-fanhui');
 let btnShuaxin = document.getElementById('btn-shuaxin');
@@ -114,7 +117,7 @@ function changeInnerAccount(index = 0) {
             tabGroup.addTab({
                 title: "开启中,请稍候..",
                 src: "https://" + url + '/?' + currentAccount.encodeToken,
-                iconURL:'js/layer-v3.1.1/theme/default/loading-2.gif',
+                iconURL: 'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
             });
@@ -139,7 +142,7 @@ function changeInnerAccount(index = 0) {
             tabGroup.addTab({
                 title: "开启中,请稍候..",
                 src: url,
-                iconURL:'js/layer-v3.1.1/theme/default/loading-2.gif',
+                iconURL: 'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
             });
@@ -175,6 +178,9 @@ function login() {
         layer.closeAll('loading');
 
         if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
+            //记录账号密码
+            store.set('vipLoginUserInfo',username + ',' + password)
+
             isLogin = true;
             // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
             $(".login").hide();

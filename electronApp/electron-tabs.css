@@ -33,6 +33,10 @@
   cursor: default;
 }
 
+.etabs-tab:hover{
+  cursor: pointer;
+}
+
 /* Dragula */
 .etabs-tab.gu-mirror {
   padding-bottom: 0;
