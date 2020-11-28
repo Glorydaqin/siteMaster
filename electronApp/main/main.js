@@ -173,7 +173,7 @@ function login() {
         shade: [0.2, '#fff'] //0.1透明度的白色背景
     });
 
-    $.post('https://vipfor.me/api/login_v2/', data, function (response) {
+    $.post('https://vipfor.me/api/login_v3/', data, function (response) {
         let jsonObj = JSON.parse(response);
         console.log(jsonObj)
         layer.closeAll('loading');
@@ -219,4 +219,8 @@ function logout() {
             active: true
         });
     }
+}
+
+function openWithBrowser(url) {
+  ipcRenderer.send('openUrlWithBrowser', url);
 }

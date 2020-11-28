@@ -1,4 +1,4 @@
-const {BrowserWindow, app, ipcMain, session,Menu} = require('electron');
+const {BrowserWindow, app, ipcMain,shell, session,Menu} = require('electron');
 
 app.on('ready', function () {
   // let isLogin = false;
@@ -51,6 +51,11 @@ app.on('ready', function () {
           console.error(error)
           event.returnValue = {code: 1, message:error}; // 同步回复
         })
+  });
+
+
+  ipcMain.on('openUrlWithBrowser', (event, url) => {
+    shell.openExternal(url);
   });
 
 });
