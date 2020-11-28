@@ -30,7 +30,7 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'api_login.php';
     } elseif ($script_uri == '/api/login_v2/') {
         include_once FRONT_DIR . 'api_login_v2.php';
-    }elseif ($script_uri == '/api/login_v3/') {
+    } elseif ($script_uri == '/api/login_v3/') {
         include_once FRONT_DIR . 'api_login_v3.php';
     } elseif ($script_uri == '/api/check/') {
         include_once FRONT_DIR . 'api_check.php';
@@ -52,4 +52,4 @@ if ($server_domain == DOMAIN) {
 }
 
 
-die("错误的访问 | error access");
+die("错误的访问 | 请访问新的域名：" + DOMAIN);
