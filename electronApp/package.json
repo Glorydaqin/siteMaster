@@ -7,13 +7,13 @@
     "type": "git",
     "url": "https://github.com/brrd/electron-tabs"
   },
-  "build":{
-    "productName":"vip-login",
-    "appId":"com.vip.login",
-    "asar":true,
-    "directories":{
-      "buildResources":"build",
-      "output":"dist"
+  "build": {
+    "productName": "vip-login",
+    "appId": "com.vip.login",
+    "asar": true,
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
     },
     "dmg": {
       "contents": [
@@ -33,22 +33,23 @@
     "mac": {
       "icon": "build/icon.icns"
     },
-    "win":{
-      "target": [{
-        "target":"nsis"
-      }],
-      "icon":"build/icon.ico",
-      "asarUnpack":[
+    "win": {
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ],
+      "icon": "build/icon.ico",
+      "asarUnpack": [
         "README.md"
       ]
     },
-
-    "nsis":{
-      "oneClick":false,
-      "allowElevation":true,
-      "allowToChangeInstallationDirectory":true,
-      "installerIcon":"build/icon.ico",
-      "uninstallerIcon":"build/icon.ico",
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
     }
@@ -67,13 +68,13 @@
   "author": "brrd",
   "license": "MIT",
   "devDependencies": {
-    "devtron": "^1.4.0",
     "electron": "^8.0.0",
     "electron-builder": "^22.9.1",
     "nodemon": "^2.0.6"
   },
   "dependencies": {
     "dragula": "^3.7.3",
+    "electron-store": "^6.0.1",
     "electron-tabs": "^0.15.0"
   }
 }

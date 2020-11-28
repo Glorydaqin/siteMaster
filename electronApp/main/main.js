@@ -60,6 +60,7 @@ btnHide.onclick = function () {
 
 setInterval(function () {
     //每5分钟检测一次是否是最新设备在线
+    //也会检查有效期是否到了
     if (lastPluginId && isLogin) {
 
         $.post('https://vipfor.me/api/check/', {

@@ -54,7 +54,7 @@ class Account
     /**
      * 获取账号列表
      * @param int $site_id
-     * @param int $type 1 普通类型 2 mock类型
+     * @param int $type 1 普通类型 2 cookie类型 3 跳转类型
      * @param boolean $is_expired 是否过期 默认否
      * @return mixed
      */
