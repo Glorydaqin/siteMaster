@@ -15,7 +15,7 @@ app.on('ready', function () {
     }
   });
   // 打开开发工具
-  mainWindow.openDevTools();
+  // mainWindow.openDevTools();
 
   mainWindow.loadURL('file://' + __dirname + '/main.html');
   mainWindow.on('ready-to-show', function () {
