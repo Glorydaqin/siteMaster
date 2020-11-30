@@ -63,7 +63,7 @@ setInterval(function () {
     //也会检查有效期是否到了
     if (lastPluginId && isLogin) {
 
-        $.post('https://vipfor.me/api/check/', {
+        $.post('https://vtool.club/api/check/', {
             'username': username,
             'password': password,
             'last_plugin_id': lastPluginId
@@ -173,7 +173,7 @@ function login() {
         shade: [0.2, '#fff'] //0.1透明度的白色背景
     });
 
-    $.post('https://vipfor.me/api/login_v3/', data, function (response) {
+    $.post('https://vtool.club/api/login_v3/', data, function (response) {
         let jsonObj = JSON.parse(response);
         console.log(jsonObj)
         layer.closeAll('loading');

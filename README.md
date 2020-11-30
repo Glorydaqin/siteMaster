@@ -28,4 +28,9 @@
 邮箱 | 邮箱密码 | ahrefs密码
 --------------------------------------------------------
 
+promosgo@foxmail.com    daqing888   sso_ticket=ee0e63afb7f56f6d5e2c68d2aa9b89b1b42f298c368e756e0b1f21eeb4cbec72&login_token=VWeaDZZyby9E8Szhbx9U
+
+邮箱 | 邮箱密码 | ahrefs密码
+--------------------------------------------------------
+
 ah1234t@outlook.com  | daqing666  | daqing666
