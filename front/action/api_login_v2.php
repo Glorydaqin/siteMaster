@@ -58,23 +58,26 @@ if ($row && strtotime($row['expired_at']) >= time()) {
 
     if ($site_expired_at && strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
+        //取账号
+        $account_list = Account::get_site_list($site_id, 2);
+
+        $accounts = [];
+        foreach ($account_list as $key => $item) {
+            //加密后的cookie
+            if ($site_info['name'] == 'mangools') {
+                $accounts[] = ['encodeToken' => $item['cookie']]; // mangools cookie加密后解密错误,暂不加密
+            } else {
+                $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
+            }
+        }
+
+        $data['data']['account_list'] = array_reverse($accounts);
     } else {
         $data['data']['is_active'] = false;
-    }
-    //取账号
-    $account_list = Account::get_site_list($site_id, 2);
-
-    $accounts = [];
-    foreach ($account_list as $key => $item) {
-        //加密后的cookie
-        if ($site_info['name'] == 'mangools') {
-            $accounts[] = ['encodeToken' => $item['cookie']]; // mangools cookie加密后解密错误,暂不加密
-        } else {
-            $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
-        }
+        $data['code'] = 4003;
+        $data['message'] = $site_info['name'] . '权限已到期';
     }
 
-    $data['data']['account_list'] = array_reverse($accounts);
 } elseif ($row && strtotime($row['expired_at']) < time()) {
     $data['code'] = 4001;
     $data['message'] = '账号已到期';
