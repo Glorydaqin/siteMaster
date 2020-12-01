@@ -56,10 +56,10 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     $data['data']['site_expired_at'] = $site_expired_at;
     $data['data']['left_day'] = round((strtotime($site_expired_at) - time()) / 86400, 1);
 
-    if (strtotime($site_expired_at) > time()) {
+    if ($site_expired_at && strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
     } else {
-        $data['data']['is_active'] = true;
+        $data['data']['is_active'] = false;
     }
     //取账号
     $account_list = Account::get_site_list($site_id, 2);

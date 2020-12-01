@@ -59,7 +59,7 @@ if ($row && strtotime($row['expired_at']) >= time()) {
     if ($site_expired_at && strtotime($site_expired_at) > time()) {
         $data['data']['is_active'] = true;
     } else {
-        $data['data']['is_active'] = true;
+        $data['data']['is_active'] = false;
     }
     //取账号
     $account_list = Account::get_site_list($site_id, $site_info['name'] === 'mangools' ? 3 : 2);
