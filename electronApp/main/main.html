@@ -4,7 +4,8 @@
 <head>
     <title>vip share</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
     <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -132,15 +133,15 @@
 <script src="main.js"></script>
 
 <script>
-  // 禁止页面刷新
-  window.onkeydown = function (e) {
-    var ev = window.event || e;
-    var code = ev.keyCode || ev.which;
-    if (code === 82 && (ev.metaKey || ev.ctrlKey)) {
-      console.log('flush def')
-      return false;
+    // 禁止页面刷新
+    window.onkeydown = function (e) {
+        var ev = window.event || e;
+        var code = ev.keyCode || ev.which;
+        if (code === 82 && (ev.metaKey || ev.ctrlKey)) {
+            console.log('flush def')
+            return false;
+        }
     }
-  }
 </script>
 </body>
 </html>
