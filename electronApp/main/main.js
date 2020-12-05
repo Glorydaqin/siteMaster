@@ -117,7 +117,7 @@ function changeInnerAccount(index = 0) {
             //打开新的标签页
             tabGroup.addTab({
                 title: "开启中,请稍候..",
-                src: "https://" + url + '/?' + currentAccount.encodeToken,
+                src: "https://" + url + '/?' + str_decrypt(currentAccount.encodeToken),
                 iconURL: 'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
