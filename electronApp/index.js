@@ -408,6 +408,27 @@ const TabPrivate = {
   initTabButtons: function () {
     let container = this.tabElements.buttons;
     let tabClass = this.tabGroup.options.tabClass;
+    //copy button
+
+    // let button = container.appendChild(document.createElement("button"));
+    // button.classList.add(`${tabClass}-button-copy`);
+    // button.innerHTML = 'copy';
+    // console.log(this)
+    // let that = this;
+    // button.addEventListener("click", function (event) {
+    //
+    //   console.log('taht')
+    //   console.log(that)
+    //
+    //   TabPrivate.initTab.bind(that,{
+    //     title: that.title,
+    //     src: that.webviewAttributes.src,
+    //     iconURL: that.iconURL,
+    //     visible: true,
+    //     active: false
+    //   })();
+    // }, false);
+
     if (this.closable) {
       let button = container.appendChild(document.createElement("button"));
       button.classList.add(`${tabClass}-button-close`);
@@ -438,8 +459,8 @@ const TabPrivate = {
 
   initWebview: function () {
     const webview = this.webview = document.createElement("webview");
-    this.webview.setAttribute('useragent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36');
-    this.webview.setAttribute('preload','js/webview_preload.js'); //植入js
+    this.webview.setAttribute('useragent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36');
+    this.webview.setAttribute('preload', 'js/webview_preload.js'); //植入js
 
     const tabWebviewDidFinishLoadHandler = function (e) {
       this.emit("webview-ready", this);

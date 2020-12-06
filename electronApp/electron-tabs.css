@@ -111,16 +111,25 @@
 .etabs-tab-title {
   display: inline-block;
   margin-left: 10px;
-  max-width: 120px;
+  max-width: 40px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: max-width .2s cubic-bezier(0.43,1.19,0.58,1);
+}
+
+.active .etabs-tab-title{
+  max-width: 120px !important;
 }
 
 .etabs-tab-buttons {
-  display: inline-block;
+  display: none;
   margin-left: 10px;
   vertical-align: top;
+}
+
+.active .etabs-tab-buttons{
+  display: inline-block !important;
 }
 
 .etabs-tab-buttons button {
