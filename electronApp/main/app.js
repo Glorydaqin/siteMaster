@@ -15,14 +15,13 @@ app.on('ready', function () {
     }
   });
   // 打开开发工具
-  // mainWindow.openDevTools();
+  mainWindow.openDevTools();
 
   mainWindow.loadURL('file://' + __dirname + '/main.html');
   mainWindow.on('ready-to-show', function () {
     mainWindow.show();
     mainWindow.focus();
   });
-
 
   ipcMain.on('insertCookie', function(event, cookie) {
     console.log(cookie);  // prints "ping"
@@ -57,5 +56,30 @@ app.on('ready', function () {
   ipcMain.on('openUrlWithBrowser', (event, url) => {
     shell.openExternal(url);
   });
+
+
+
+  // Modify the user agent for all requests to the following urls.
+  const filter = {
+    urls: ['*://app.kwfinder.com/*']
+  }
+  session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+    // 请求前拦截
+
+    console.log(details)
+
+    if(details.resourceType == 'image'){
+      callback({ cancel: true })
+    }else{
+      callback({ cancel: false })
+    }
+
+
+  })
+  session.defaultSession.webRequest.onResponseStarted(filter, (details) => {
+    // 接收响应时记录
+    console.log(details)
+
+  })
 
 });

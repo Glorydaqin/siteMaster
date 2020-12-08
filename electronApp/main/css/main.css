@@ -33,6 +33,11 @@
     bottom: -20px;
     border: 0;
     border-radius: 0 0 10px 10px;
+
+}
+
+#btn-hide.light{
+    color: #337ab7;
 }
 
 .browser {

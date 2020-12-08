@@ -55,7 +55,14 @@ btnShuaxin.onclick = function () {
 btnHide.onclick = function () {
     let uc = $("#user-center");
     uc.toggle();
-    btnHide.innerText = uc.css("display") === 'none' ? '显示' : '隐藏';
+    // btnHide.innerText = uc.css("display") === 'none' ? '显示' : '隐藏';
+    if(uc.css("display") === 'none'){
+        btnHide.innerText = '展开面板';
+        btnHide.classList.add("light");
+    }else{
+        btnHide.innerText = '隐藏面板';
+        btnHide.classList.remove("light");
+    }
 }
 
 setInterval(function () {
@@ -104,6 +111,11 @@ function changeInnerAccount(index = 0) {
 
     //去除蒙版
     $('.browser .cover').hide();
+    // 隐藏面板
+    let uc = $("#user-center");
+    uc.toggle();
+    btnHide.innerText = '展开面板';
+    btnHide.classList.add("light");
 
     if (type === 'mangools') {
         //清除浏览器标签
