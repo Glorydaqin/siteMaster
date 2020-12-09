@@ -36,6 +36,7 @@ function rewriteUserInfo() {
         $("#password").val(password);
     }
 }
+
 rewriteUserInfo();
 
 
@@ -56,10 +57,10 @@ btnHide.onclick = function () {
     let uc = $("#user-center");
     uc.toggle();
     // btnHide.innerText = uc.css("display") === 'none' ? '显示' : '隐藏';
-    if(uc.css("display") === 'none'){
+    if (uc.css("display") === 'none') {
         btnHide.innerText = '展开面板';
         btnHide.classList.add("light");
-    }else{
+    } else {
         btnHide.innerText = '隐藏面板';
         btnHide.classList.remove("light");
     }
@@ -129,7 +130,7 @@ function changeInnerAccount(index = 0) {
             //打开新的标签页
             tabGroup.addTab({
                 title: "开启中,请稍候..",
-                src: "https://" + url + '/?' + currentAccount.encodeToken,
+                src: "https://" + url + '/?' + str_decrypt(currentAccount.encodeToken),
                 iconURL: 'js/layer-v3.1.1/theme/default/loading-2.gif',
                 visible: true,
                 active: true
@@ -146,11 +147,13 @@ function changeInnerAccount(index = 0) {
         // 注入cookie
         let cookie = str_decrypt(currentAccount.encodeToken);
 
+        let clearResult = ipcRenderer.sendSync('clearCookie');
+
         let result = ipcRenderer.sendSync('insertCookie',
             {name: 'BSSESSID', value: cookie, url: 'https://ahrefs.com'}
         );
 
-        if (result.code === 0) {
+        if (clearResult.code === 0 && result.code === 0) {
             let url = 'https://ahrefs.com/dashboard';
             tabGroup.addTab({
                 title: "开启中,请稍候..",
@@ -179,7 +182,7 @@ function login() {
         alert("请选择平台");
         return;
     }
-    let data = {username: username, password: password, site_id: siteId, v: 3.3};
+    let data = {username: username, password: password, site_id: siteId, v: 3.4};
 
     layer.load(1, {
         shade: [0.2, '#fff'] //0.1透明度的白色背景
@@ -192,7 +195,7 @@ function login() {
 
         if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
             //记录账号密码
-            store.set('vipLoginUserInfo',username + ',' + password)
+            store.set('vipLoginUserInfo', username + ',' + password)
 
             isLogin = true;
             // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
@@ -234,5 +237,5 @@ function logout() {
 }
 
 function openWithBrowser(url) {
-  ipcRenderer.send('openUrlWithBrowser', url);
+    ipcRenderer.send('openUrlWithBrowser', url);
 }

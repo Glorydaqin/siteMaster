@@ -32,9 +32,9 @@ if (!$site_info) {
 }
 
 if ($site_info['name'] == 'ahrefs') {
-    $last_version = 3.2;
+    $last_version = 3.4;
 } elseif ($site_info['name'] == 'mangools') {
-    $last_version = 3;
+    $last_version = 3.4;
 } else {
     $last_version = 1;
 }
@@ -65,11 +65,11 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         $accounts = [];
         foreach ($account_list as $key => $item) {
             //加密后的cookie
-            if ($site_info['name'] == 'mangools') {
-                $accounts[] = ['encodeToken' => $item['cookie']]; // mangools cookie加密后解密错误,暂不加密
-            } else {
-                $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
-            }
+//            if ($site_info['name'] == 'mangools') {
+//                $accounts[] = ['encodeToken' => $item['cookie']]; // mangools cookie加密后解密错误,暂不加密
+//            } else {
+            $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
+//            }
         }
 
         $data['data']['account_list'] = array_reverse($accounts);
