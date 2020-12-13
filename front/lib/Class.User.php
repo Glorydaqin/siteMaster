@@ -18,6 +18,18 @@ class User
     }
 
     /**
+     * 通过last_plugin_id查找用户
+     * @param $last_plugin_id
+     * @return mixed
+     */
+    public static function get_user_by_plugin_id($last_plugin_id)
+    {
+        $check_sql = "select * from user where last_plugin_id = '{$last_plugin_id}'";
+        $row = $GLOBALS['db']->getFirstRow($check_sql);
+        return $row;
+    }
+
+    /**
      * 保存用户信息到redis
      * @param $user_id
      * @param $info
