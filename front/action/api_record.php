@@ -30,10 +30,24 @@ if (empty($last_plugin_id) || empty($url) || empty($account_id)) {
     exit();
 }
 
-$site_account_info = Account::get_site_account($account_id);
-$user_info = User::get_user_by_plugin_id($last_plugin_id);
+try {
 
+    $site_account_info = Account::get_site_account($account_id);
+    $user_info = User::get_user_by_plugin_id($last_plugin_id);
+    if (!$site_account_info || !$user_info) {
+        $data['code'] = 4002;
 
+        echo json_encode($data);
+        exit();
+    }
+    UserRecord::save($user_info['id'], $site_account_info['site_id'], $site_account_info['id'], $url, $data);
 
-echo json_encode($data);
-exit();
+    echo json_encode($data);
+    exit();
+} catch (\Exception $exception) {
+    $data['code'] = 4004;
+    $data['message'] = $exception->getMessage();
+
+    echo json_encode($data);
+    exit();
+}

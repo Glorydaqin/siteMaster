@@ -36,4 +36,17 @@ class UserRecord
 
     }
 
+    /**
+     * 记录操作的链接
+     * @param $user_id
+     * @param $site_id
+     * @param $account_id
+     * @param $url
+     * @param $data {}
+     */
+    public static function save($user_id, $site_id, $account_id, $url, $data)
+    {
+        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`,`data`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}','{$data}');";
+        $GLOBALS['db']->query($sql);
+    }
 }
