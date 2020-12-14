@@ -34,6 +34,8 @@ if ($server_domain == DOMAIN) {
         include_once FRONT_DIR . 'api_login_v3.php';
     } elseif ($script_uri == '/api/check/') {
         include_once FRONT_DIR . 'api_check.php';
+    }  elseif ($script_uri == '/api/record/') {
+        include_once FRONT_DIR . 'api_record.php';
     } elseif ($script_uri == '/api/re_cookie/') {
         include_once FRONT_DIR . 'api_re_cookie.php';    //重新生成cookie
     }
