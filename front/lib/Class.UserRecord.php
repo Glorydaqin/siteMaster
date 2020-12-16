@@ -44,9 +44,9 @@ class UserRecord
      * @param $url
      * @param $data {}
      */
-    public static function save($user_id, $site_id, $account_id, $url, $data)
+    public static function save($user_id, $site_id, $account_id, $url)
     {
-        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`,`data`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}','{$data}');";
+        $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}');";
         $GLOBALS['db']->query($sql);
     }
 }

@@ -68,7 +68,7 @@ if ($row && strtotime($row['expired_at']) >= time()) {
 //            if ($site_info['name'] == 'mangools') {
 //                $accounts[] = ['encodeToken' => $item['cookie']]; // mangools cookie加密后解密错误,暂不加密
 //            } else {
-            $accounts[] = ['encodeToken' => compileCode($item['cookie'])];
+            $accounts[] = ['id' => $item['id'], 'encodeToken' => compileCode($item['cookie'])];
 //            }
         }
 

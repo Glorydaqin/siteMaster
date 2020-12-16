@@ -18,7 +18,6 @@ $data = [
 $last_plugin_id = $_POST['last_plugin_id'] ?? '';
 $url = $_POST['url'] ?? '';
 $account_id = $_POST['account_id'] ?? '';
-$data = $_POST['data'] ?? '{}';
 $last_plugin_id = addslashes($last_plugin_id);
 $url = addslashes($url);
 $account_id = addslashes($account_id);
@@ -40,7 +39,7 @@ try {
         echo json_encode($data);
         exit();
     }
-    UserRecord::save($user_info['id'], $site_account_info['site_id'], $site_account_info['id'], $url, $data);
+    UserRecord::save($user_info['id'], $site_account_info['site_id'], $site_account_info['id'], $url);
 
     echo json_encode($data);
     exit();
