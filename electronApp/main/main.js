@@ -9,9 +9,13 @@ const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
 let siteId = 1;
 let innerAccountList = [];
+let innerAccountId = 1; // 选中的服务账号id
 let isLogin = false; // 是否登陆中状态
 let username = '';
 let password = '';
+
+//剩余量状态相关参数     //alias 别名 urlContain 链接包含 maxHit 最大可以使用次数  leftHit 剩余使用次数
+let limitMap = [{alias: '搜索量', urlContain: 'js/layer-v3.1.1/theme/default/loading-2.gif', maxHit: 10, leftHit: 5}];
 
 let tabGroup = new TabGroup({
     // 显示新加标签
@@ -38,7 +42,6 @@ function rewriteUserInfo() {
 }
 
 rewriteUserInfo();
-
 
 let btnFanhui = document.getElementById('btn-fanhui');
 let btnShuaxin = document.getElementById('btn-shuaxin');
@@ -109,6 +112,7 @@ function initInnerAccountList() {
 function changeInnerAccount(index = 0) {
     let currentAccount = innerAccountList[index];
     let type = siteMap[siteId];
+    innerAccountId = currentAccount['id'];
 
     //去除蒙版
     $('.browser .cover').hide();
@@ -239,3 +243,40 @@ function logout() {
 function openWithBrowser(url) {
     ipcRenderer.send('openUrlWithBrowser', url);
 }
+
+//根据url计算剩余量
+function doLimit(urls) {
+
+}
+
+function recordVisit(url) {
+    //对于剩余量实时计算
+
+
+    //上报服务器
+    $.post("https://vtool.club/api/record/",
+        {last_plugin_id: lastPluginId, url: url, account_id: innerAccountId},
+        function (response) {
+            console.log('post response')
+            console.log(JSON.parse(response))
+        });
+}
+
+ipcRenderer.on('recordVisit', (event, data) => {
+    console.log(data) // Prints 'whoooooooh!'
+    //{
+    //   id: 316,
+    //   url: 'https://cdn.ahrefs.com/app/tools/js/vendors~admin-support~content-explorer~dashboard~rank-tracker~site-explorer.ec1d3aa6.chunk.js',
+    //   method: 'GET',
+    //   timestamp: 1608130767846.8882,
+    //   resourceType: 'script',
+    //   ip: '127.0.0.1',
+    //   fromCache: false,
+    //   statusLine: 'HTTP/1.1 200',
+    //   statusCode: 200,
+    //   webContentsId: 3,
+    //   referrer: 'https://ahrefs.com/dashboard'
+    // }
+
+    recordVisit(data.url)
+})
