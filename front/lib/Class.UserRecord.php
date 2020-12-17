@@ -42,11 +42,11 @@ class UserRecord
      * @param $site_id
      * @param $account_id
      * @param $url
-     * @param $data {}
      */
     public static function save($user_id, $site_id, $account_id, $url)
     {
         $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}');";
+        echo ($sql);
         $GLOBALS['db']->query($sql);
     }
 }
