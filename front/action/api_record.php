@@ -21,7 +21,6 @@ $account_id = $_POST['account_id'] ?? '';
 $last_plugin_id = addslashes($last_plugin_id);
 $url = addslashes($url);
 $account_id = addslashes($account_id);
-$data = addslashes(json_encode($data));
 if (empty($last_plugin_id) || empty($url) || empty($account_id)) {
     $data['code'] = 4001;
 
