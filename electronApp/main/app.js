@@ -83,9 +83,11 @@ app.on('ready', function () {
 
     // // Modify the user agent for all requests to the following urls.
     const filter = {
-        urls: ['*://app.kwfinder.com/*',
+        urls: [
+            '*://app.kwfinder.com/*',
             '*://app.serpchecker.com/*',
-            '*://*.ahrefs.com/*']
+            '*://*.ahrefs.com/*'
+        ]
     }
     // session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
     //     // 请求前拦截
@@ -102,7 +104,7 @@ app.on('ready', function () {
     // })
     session.defaultSession.webRequest.onResponseStarted(filter, (details) => {
         // 接收响应时记录
-        console.log(details)
+        console.log(details.url)
         mainWindow.webContents.send('recordVisit', details)
     })
 

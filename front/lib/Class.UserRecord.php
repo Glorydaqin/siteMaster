@@ -46,7 +46,18 @@ class UserRecord
     public static function save($user_id, $site_id, $account_id, $url)
     {
         $sql = "insert into user_record (`user_id`,`site_id`,`account_id`,`url`) values ('{$user_id}','{$site_id}','{$account_id}','{$url}');";
-        echo ($sql);
         $GLOBALS['db']->query($sql);
+    }
+
+    /**
+     * @param $user_id
+     * @param $site_id
+     * @param $time_before
+     * @return mixed
+     */
+    public static function getList($user_id, $site_id, $time_before)
+    {
+        $sql = "select url from user_record where user_id = {$user_id} and site_id = {$site_id} created_at >= '{$time_before}';";
+        return $GLOBALS['db']->getRows($sql);
     }
 }

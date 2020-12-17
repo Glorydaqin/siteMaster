@@ -33,8 +33,6 @@ try {
     $site_account_info = Account::get_site_account($account_id);
     $user_info = User::get_user_by_plugin_id($last_plugin_id);
     if (!$site_account_info || !$user_info) {
-        echo(json_encode($site_account_info));
-        echo(json_encode($user_info));
         $data['code'] = 4002;
 
         echo json_encode($data);

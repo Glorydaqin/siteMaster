@@ -16,6 +16,7 @@ let password = '';
 
 //剩余量状态相关参数     //alias 别名 urlContain 链接包含 maxHit 最大可以使用次数  leftHit 剩余使用次数
 let limitMap = [{alias: '搜索量', urlContain: 'js/layer-v3.1.1/theme/default/loading-2.gif', maxHit: 10, leftHit: 5}];
+let filterExtension = ['.js', '.css', '.png', '.jpg', '.jpeg', '.bmp', '.ico']
 
 let tabGroup = new TabGroup({
     // 显示新加标签
@@ -211,6 +212,7 @@ function login() {
 
             //[ {encodeToken: "nebBkq61l5euxqS9r6Lc262Es6aLio7L1dKmobicoKKcoomjuqyWpA=="} ]
             innerAccountList = jsonObj.data.account_list;
+            lastPluginId = jsonObj.data.last_plugin_id;
             initInnerAccountList()
         } else {
             alert(jsonObj.message);
@@ -221,6 +223,7 @@ function login() {
 
 function logout() {
     isLogin = false;
+    lastPluginId = false;
     $(".login").show();
     $('.browser .cover').show(); //萌版显示
     $(".logout").hide();
@@ -251,6 +254,7 @@ function doLimit(urls) {
 
 
 function recordVisit(url) {
+    console.log(url)
     //对于剩余量实时计算
 
 
@@ -259,7 +263,7 @@ function recordVisit(url) {
         {last_plugin_id: lastPluginId, url: url, account_id: innerAccountId},
         function (response) {
             console.log('post response')
-            console.log(JSON.parse(response))
+            console.log((response))
         });
 }
 
@@ -278,6 +282,23 @@ ipcRenderer.on('recordVisit', (event, data) => {
     //   webContentsId: 3,
     //   referrer: 'https://ahrefs.com/dashboard'
     // }
+
+    var extension = null;
+    var url = data.url;
+    var search = url.indexOf("?"); //去除?后面的
+    if (search > 0) {
+        url = url.substr(0, search);
+    }
+    var extensionPosition = url.lastIndexOf('.');//拿到最后一个'.'
+    var filterPosition = url.lastIndexOf('/');//最后一个'/'位置
+    if (extensionPosition > 0 && filterPosition < extensionPosition) {
+        extension = url.substr(extensionPosition);
+    }
+
+    if (filterExtension.includes(extension)) {
+        //包含在需要过滤的数组中
+        return;
+    }
 
     recordVisit(data.url)
 })
