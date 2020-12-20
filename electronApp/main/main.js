@@ -5,6 +5,7 @@ const {ipcRenderer} = require('electron')
 const Store = require('electron-store');
 const store = new Store();
 
+const apiHost = 'http://sitemaster.com';
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
 let siteId = 1;
@@ -15,8 +16,14 @@ let username = '';
 let password = '';
 
 //剩余量状态相关参数     //alias 别名 urlContain 链接包含 maxHit 最大可以使用次数  leftHit 剩余使用次数
-let limitMap = [{alias: '搜索量', urlContain: 'js/layer-v3.1.1/theme/default/loading-2.gif', maxHit: 10, leftHit: 5}];
-let filterExtension = ['.js', '.css', '.png', '.jpg', '.jpeg', '.bmp', '.ico']
+let limitMap = [{
+    'alias': '搜索量',
+    'urlContain': 'js/layer-v3.1.1/theme/default/loading-2.gif',
+    'maxHit': 10,
+    'leftHit': 5
+}];
+let filterExtension = ['.js', '.css', '.png', '.jpg', '.jpeg', '.bmp',
+    '.ico', '.svg', '.woff2']
 
 let tabGroup = new TabGroup({
     // 显示新加标签
@@ -70,24 +77,29 @@ btnHide.onclick = function () {
     }
 }
 
+function getPostCheck() {
+    $.post(apiHost + '/api/check_v2/', {
+        'last_plugin_id': lastPluginId,
+        'site_id': siteId
+    }, function (response) {
+        console.log(response)
+        let jsonObj = JSON.parse(response);
+        limitMap = jsonObj.data;
+        let result = ipcRenderer.sendSync('saveLimitMap', limitMap);
+        console.log(result)
+
+        if (jsonObj.code !== 200) {
+            logout();
+            alert(jsonObj.message ? jsonObj.message : '账号在其他设备登陆')
+        }
+    });
+}
+
 setInterval(function () {
     //每5分钟检测一次是否是最新设备在线
     //也会检查有效期是否到了
     if (lastPluginId && isLogin) {
-
-        $.post('https://vtool.club/api/check/', {
-            'username': username,
-            'password': password,
-            'last_plugin_id': lastPluginId
-        }, function (response) {
-            let jsonObj = JSON.parse(response);
-            console.log(jsonObj);
-
-            if (jsonObj.code !== 200) {
-                logout();
-                alert('账号在其他设备登陆')
-            }
-        });
+        getPostCheck();
     }
 
 }, 1000 * 60 * 3);
@@ -193,7 +205,7 @@ function login() {
         shade: [0.2, '#fff'] //0.1透明度的白色背景
     });
 
-    $.post('https://vtool.club/api/login_v3/', data, function (response) {
+    $.post(apiHost + '/api/login_v3/', data, function (response) {
         let jsonObj = JSON.parse(response);
         console.log(jsonObj)
         layer.closeAll('loading');
@@ -214,6 +226,8 @@ function login() {
             innerAccountList = jsonObj.data.account_list;
             lastPluginId = jsonObj.data.last_plugin_id;
             initInnerAccountList()
+
+            getPostCheck();
         } else {
             alert(jsonObj.message);
         }
@@ -249,17 +263,27 @@ function openWithBrowser(url) {
 
 //根据url计算剩余量
 function doLimit(urls) {
-
+    let isChange = false;
+    limitMap.forEach(function (item, key) {
+        if (urls.lastIndexOf(item.urlContain) > 0) {
+            limitMap[key].leftHit = item.leftHit - 1;
+            isChange = true;
+        }
+    })
+    if (isChange) {
+        let result = ipcRenderer.sendSync('saveLimitMap', limitMap);
+        console.log(result)
+    }
 }
 
 
 function recordVisit(url) {
     console.log(url)
     //对于剩余量实时计算
-
+    doLimit(url)
 
     //上报服务器
-    $.post("https://vtool.club/api/record/",
+    $.post(apiHost + "/api/record/",
         {last_plugin_id: lastPluginId, url: url, account_id: innerAccountId},
         function (response) {
             console.log('post response')

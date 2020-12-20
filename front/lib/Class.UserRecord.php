@@ -57,7 +57,7 @@ class UserRecord
      */
     public static function getList($user_id, $site_id, $time_before)
     {
-        $sql = "select url from user_record where user_id = {$user_id} and site_id = {$site_id} created_at >= '{$time_before}';";
+        $sql = "select url from user_record where user_id = {$user_id} and site_id = {$site_id} and created_at >= '{$time_before}';";
         return $GLOBALS['db']->getRows($sql);
     }
 }

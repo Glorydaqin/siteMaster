@@ -40,9 +40,10 @@ if (!empty($row)) {
         //[
         //    ['alias' => '搜索量', 'urlContain' => 'v4/daProjects', 'maxHit' => 10, 'leftHit' => 10]
         //]
-        $limit_map = json_decode($site_info['limit_map']);
+        $limit_map = json_decode($site_info['limit_map'],true);
         $day_before = date("Y-m-d H:i:s", strtotime('-1 day'));
         $visitList = UserRecord::getList($row['id'], $site_id, $day_before);
+
         foreach ($limit_map as $key => $map) {
             foreach ($visitList as $visit) {
                 if (strripos($visit['url'], $map['urlContain']) > 0) {
