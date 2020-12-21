@@ -77,6 +77,21 @@ btnHide.onclick = function () {
     }
 }
 
+/**
+ * 更新limitMap面板dom信息
+ */
+function initLimitMapDom() {
+    $(".limit_map").empty();
+    if(limitMap.length === 0){
+        $(".limit_map").append('无限');
+    }else{
+        limitMap.forEach(function (item) {
+            var html = item.alias + "(" + item.leftHit + "/" + item.maxHit + ")&nbsp;"
+            $(".limit_map").append(html)
+        })
+    }
+}
+
 function getPostCheck() {
     $.post(apiHost + '/api/check_v2/', {
         'last_plugin_id': lastPluginId,
@@ -87,6 +102,7 @@ function getPostCheck() {
         limitMap = jsonObj.data;
         let result = ipcRenderer.sendSync('saveLimitMap', limitMap);
         console.log(result)
+        initLimitMapDom();
 
         if (jsonObj.code !== 200) {
             logout();
@@ -272,6 +288,7 @@ function doLimit(urls) {
     })
     if (isChange) {
         let result = ipcRenderer.sendSync('saveLimitMap', limitMap);
+        initLimitMapDom();
         console.log(result)
     }
 }
@@ -292,7 +309,6 @@ function recordVisit(url) {
 }
 
 ipcRenderer.on('recordVisit', (event, data) => {
-    console.log(data) // Prints 'whoooooooh!'
     //{
     //   id: 316,
     //   url: 'https://cdn.ahrefs.com/app/tools/js/vendors~admin-support~content-explorer~dashboard~rank-tracker~site-explorer.ec1d3aa6.chunk.js',
@@ -318,11 +334,12 @@ ipcRenderer.on('recordVisit', (event, data) => {
     if (extensionPosition > 0 && filterPosition < extensionPosition) {
         extension = url.substr(extensionPosition);
     }
-
-    if (filterExtension.includes(extension)) {
+    // 过滤OPTIONS请求 和 不相关后缀
+    if (filterExtension.includes(extension) || data.method === 'OPTIONS') {
         //包含在需要过滤的数组中
         return;
     }
 
+    console.log(data) // Prints 'whoooooooh!'
     recordVisit(data.url)
 })
