@@ -44,8 +44,10 @@ function rewriteUserInfo() {
     if (res) {
         let username = res.split(',')[0];
         let password = res.split(',')[1];
+        let siteId = res.split(',')[2];
         $("#username").val(username);
         $("#password").val(password);
+        $("#chooseSite").find("option[value=" + siteId + "]").attr("selected", true);
     }
 }
 
@@ -82,9 +84,9 @@ btnHide.onclick = function () {
  */
 function initLimitMapDom() {
     $(".limit_map").empty();
-    if(limitMap.length === 0){
+    if (limitMap.length === 0) {
         $(".limit_map").append('无限');
-    }else{
+    } else {
         limitMap.forEach(function (item) {
             var html = item.alias + "(" + item.leftHit + "/" + item.maxHit + ")&nbsp;"
             $(".limit_map").append(html)
@@ -228,7 +230,7 @@ function login() {
 
         if (jsonObj.code === 200 && jsonObj.data.is_active === true) {
             //记录账号密码
-            store.set('vipLoginUserInfo', username + ',' + password)
+            store.set('vipLoginUserInfo', username + ',' + password + ',' + siteId)
 
             isLogin = true;
             // layer.msg("账号剩余:" + jsonObj.data.left_day + '天');
