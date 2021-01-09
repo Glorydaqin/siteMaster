@@ -55,6 +55,7 @@ rewriteUserInfo();
 
 let btnFanhui = document.getElementById('btn-fanhui');
 let btnShuaxin = document.getElementById('btn-shuaxin');
+let btnCopy = document.getElementById("btn-copy");
 let btnHide = document.getElementById("btn-hide");
 btnFanhui.onclick = function () {
     if (tabGroup.getActiveTab().webview.canGoBack()) {
@@ -64,6 +65,20 @@ btnFanhui.onclick = function () {
 btnShuaxin.onclick = function () {
     tabGroup.getActiveTab().setIcon('js/layer-v3.1.1/theme/default/loading-2.gif')
     tabGroup.getActiveTab().webview.reload();
+}
+
+btnCopy.onclick = function () {
+    if (tabGroup.getTabs().length >= 10) {
+        alert('标签页不能超过10个');
+        return;
+    }
+    tabGroup.addTab({
+        title: tabGroup.getActiveTab().getTitle(),
+        src: tabGroup.getActiveTab().webview.src,
+        iconURL: tabGroup.getActiveTab().getIcon(),
+        visible: true,
+        active: true
+    });
 }
 
 btnHide.onclick = function () {
@@ -342,6 +357,6 @@ ipcRenderer.on('recordVisit', (event, data) => {
         return;
     }
 
-    console.log(data) // Prints 'whoooooooh!'
+    console.log(data)
     recordVisit(data.url)
 })

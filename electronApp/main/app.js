@@ -96,12 +96,14 @@ app.on('ready', function () {
             '*://*.mangools.com/*',
             '*://*.kwfinder.com/*',
             '*://*.serpchecker.com/*',
+            '*://*.serpwatcher.com/*',
+            '*://*.linkminer.com/*',
+            '*://*.siteprofiler.com/*',
             '*://*.ahrefs.com/*'
         ]
     }
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         // 请求前拦截
-        console.log(details)
 
         // if(details.url)
         let isLeft = true;
@@ -111,16 +113,16 @@ app.on('ready', function () {
             }
         }
         if (isLeft) {
-            console.log('access fail');
+            console.log('access true');
             callback({cancel: false})
         } else {
-            console.log('access');
+            console.log('access fail');
             callback({cancel: true})
         }
     })
     session.defaultSession.webRequest.onResponseStarted(filter, (details) => {
         // 接收响应时记录
-        console.log(details.url)
+        // console.log(details.url)
         mainWindow.webContents.send('recordVisit', details)
     })
 
