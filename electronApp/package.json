@@ -57,7 +57,7 @@
   "scripts": {
     "start": "electron main",
     "watch": "nodemon --watch main/* --exec \\\"electron ./main\\\"",
-    "dist": "electron-builder --win --mac"
+    "dist": "electron-builder --win --ia32 --mac"
   },
   "keywords": [
     "electron",
