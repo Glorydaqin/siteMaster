@@ -180,18 +180,13 @@
 
     <div class="upgrade">
         可升级到<span class="version">v1.0.0</span>
-        <a href="javascript:;">（新版功能）</a>
-        <button class="btn btn-danger" id="upgrade-btn">升级</button>
-        <button class="btn btn-default" id="upgrade-cancel-btn">取消</button>
+        <a href="javascript:openUpgradeInfo();">（新版功能）</a>
+        <button class="btn btn-danger" id="upgrade-btn" onclick="upgradeDownload();">升级</button>
+        <button class="btn btn-default" id="upgrade-cancel-btn" onclick="$('.upgrade-box').hide();">取消</button>
     </div>
 
 </div>
 
-<div class="upgrade-info">
-    <ul>
-        <li></li>
-    </ul>
-</div>
 
 <script>window.$ = window.jQuery = require("./js/jquery.min");</script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
@@ -213,6 +208,7 @@
 
     //检查更新
     // console.log(process)
+    var upgradeInfo = [];
     $.ajax({
         type: "GET",//使用get请求请求正确
         url: apiHost + "/app/version.json",
@@ -224,6 +220,8 @@
             if (version !== data.version) {
                 // 版号不一致. 弹出更新弹框
                 $(".version").text('v' + data.version)
+                upgradeInfo = data['version-list'][0].info;
+
                 $(".upgrade-box .loading").hide();
                 $(".upgrade-box .upgrade").show();
             } else {
@@ -241,7 +239,18 @@
         }
     })
 
+    function openUpgradeInfo() {
+        parent.layer.alert(upgradeInfo.join("</br>"), {
+            skin: 'layui-layer-molv', //样式类名
+            // anim: 5,
+            // closeBtn:1,
+            // title:'信息',
+        });
+    }
 
+    function upgradeDownload(url) {
+
+    }
 </script>
 </body>
 </html>
