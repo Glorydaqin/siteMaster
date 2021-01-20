@@ -143,23 +143,55 @@
         z-index: 100;
     }
 
-    .upgrade-box > P {
+    .upgrade-box > div {
         float: right;
         vertical-align: middle;
-        margin: 5px;
+        margin: 5px !important;
+    }
+
+    .upgrade-box .loading {
+
+    }
+
+
+    .upgrade-box .upgrade {
+        display: none;
     }
 </style>
 
 <div class="upgrade-box">
 
-    <p>
+    <div class="loading">
+        <div class="sk-spinner sk-spinner-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+
+    <div class="upgrade">
         可升级到<span class="version">v1.0.0</span>
-        <a href="#">（新版功能）</a>
-        <button class="btn btn-danger">升级</button>
-    </p>
+        <a href="javascript:;">（新版功能）</a>
+        <button class="btn btn-danger" id="upgrade-btn">升级</button>
+        <button class="btn btn-default" id="upgrade-cancel-btn">取消</button>
+    </div>
 
 </div>
 
+<div class="upgrade-info">
+    <ul>
+        <li></li>
+    </ul>
+</div>
 
 <script>window.$ = window.jQuery = require("./js/jquery.min");</script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
@@ -192,12 +224,20 @@
             if (version !== data.version) {
                 // 版号不一致. 弹出更新弹框
                 $(".version").text('v' + data.version)
+                $(".upgrade-box .loading").hide();
+                $(".upgrade-box .upgrade").show();
             } else {
-
+                $(".upgrade-box .loading").text('已是最新版本');
+                setTimeout(function () {
+                    $(".upgrade-box").hide();
+                }, 1500)
             }
         },
         error: function () {
-            alert("检查更新失败")
+            $(".upgrade-box .loading").text('检查更新失败');
+            setTimeout(function () {
+                $(".upgrade-box").hide();
+            }, 1500)
         }
     })
 
