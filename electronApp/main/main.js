@@ -5,6 +5,8 @@ const {ipcRenderer} = require('electron')
 const Store = require('electron-store');
 const store = new Store();
 
+const version = '0.15.0';
+
 const apiHost = 'http://sitemaster.com';
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;

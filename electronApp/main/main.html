@@ -97,12 +97,12 @@
                         </li>
                     </ul>
                     <!--<p class="text-center">-->
-                        <!--<a class="btn btn-sm btn-success btn-outline">-->
-                            <!--<i class="fa fa-exchange"></i>翻译中文-->
-                        <!--</a>-->
-                        <!--<a class="btn btn-sm btn-warning">-->
-                            <!--<i class="fa fa-qq"></i>seo交流群-->
-                        <!--</a>-->
+                    <!--<a class="btn btn-sm btn-success btn-outline">-->
+                    <!--<i class="fa fa-exchange"></i>翻译中文-->
+                    <!--</a>-->
+                    <!--<a class="btn btn-sm btn-warning">-->
+                    <!--<i class="fa fa-qq"></i>seo交流群-->
+                    <!--</a>-->
                     <!--</p>-->
                 </div>
             </div>
@@ -133,14 +133,42 @@
     </div>
 </div>
 
+<style type="text/css">
+    .upgrade-box {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        background: #ffffff;
+        z-index: 100;
+    }
+
+    .upgrade-box > P {
+        float: right;
+        vertical-align: middle;
+        margin: 5px;
+    }
+</style>
+
+<div class="upgrade-box">
+
+    <p>
+        可升级到<span class="version">v1.0.0</span>
+        <a href="#">（新版功能）</a>
+        <button class="btn btn-danger">升级</button>
+    </p>
+
+</div>
+
 
 <script>window.$ = window.jQuery = require("./js/jquery.min");</script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
 <script src="js/layer-v3.1.1/layer.js"></script>
 <script src="js/common.js"></script>
 <script src="main.js"></script>
-
 <script>
+
+    // console.log(versionObj)
     // 禁止页面刷新
     window.onkeydown = function (e) {
         var ev = window.event || e;
@@ -150,6 +178,30 @@
             return false;
         }
     }
+
+    //检查更新
+    // console.log(process)
+    $.ajax({
+        type: "GET",//使用get请求请求正确
+        url: apiHost + "/app/version.json",
+        dataType: "json",
+        //data:
+        success: function (data) {
+            console.log("data: " + JSON.stringify(data))
+
+            if (version !== data.version) {
+                // 版号不一致. 弹出更新弹框
+                $(".version").text('v' + data.version)
+            } else {
+
+            }
+        },
+        error: function () {
+            alert("检查更新失败")
+        }
+    })
+
+
 </script>
 </body>
 </html>

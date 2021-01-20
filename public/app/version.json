@@ -1,0 +1,22 @@
+{
+  "version": "0.16.0",
+  "version-list": [
+    {
+      "version": "0.16.0",
+      "file-win": "http://vtool.club/app/vip-login.0.16.exe",
+      "file-mac": "http://vtool.club/app/vip-login.0.16.dmg",
+      "info": [
+        "增加页面复制功能",
+        "win32系统安装问题修复"
+      ]
+    },
+    {
+      "version": "0.15.0",
+      "file-win": "http://vtool.club/app/vip-login.0.15.exe",
+      "file-mac": "http://vtool.club/app/vip-login.0.15.dmg",
+      "info": [
+        "初始版本"
+      ]
+    }
+  ]
+}
