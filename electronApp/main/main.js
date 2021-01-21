@@ -6,8 +6,9 @@ const Store = require('electron-store');
 const store = new Store();
 
 const version = '0.15.0';
+const loginVersion = 3.5;
 
-const apiHost = 'http://sitemaster.com';
+const apiHost = 'https://vtool.club';
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
 let siteId = 1;
@@ -234,7 +235,7 @@ function login() {
         alert("请选择平台");
         return;
     }
-    let data = {username: username, password: password, site_id: siteId, v: 3.4};
+    let data = {username: username, password: password, site_id: siteId, v: 3.5};
 
     layer.load(1, {
         shade: [0.2, '#fff'] //0.1透明度的白色背景

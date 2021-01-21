@@ -13,7 +13,7 @@
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
 
     <link rel="stylesheet" href="../electron-tabs.css">
-    <link rel="stylesheet" href="font/iconfont.css">
+    <!--<link rel="stylesheet" href="font/iconfont.css">-->
     <link rel="stylesheet" href="css/main.css">
 
     <style>
@@ -135,6 +135,7 @@
 
 <style type="text/css">
     .upgrade-box {
+        display: none;
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -194,9 +195,9 @@
 <script src="js/common.js"></script>
 <script src="main.js"></script>
 <script>
-    const https = require('https');
-    const os = require("os");
-    const fs = require('fs');
+    // const https = require('https');
+    // const os = require("os");
+    // const fs = require('fs');
 
     // console.log(versionObj)
     // 禁止页面刷新
@@ -212,118 +213,118 @@
     //检查更新
     // console.log(process)
     // var upgradeInfo = [];
-    var latestVersion = [];
-    $.ajax({
-        type: "GET",//使用get请求请求正确
-        url: apiHost + "/app/version.json",
-        dataType: "json",
-        cache: false,
-        //data:
-        success: function (data) {
-            console.log("data: " + JSON.stringify(data))
-
-            if (version !== data.version) {
-                // 版号不一致. 弹出更新弹框
-                $(".version").text('v' + data.version)
-                latestVersion = data['version-list'][0];
-                // upgradeInfo = data['version-list'][0].info;
-
-                $(".upgrade-box .loading").hide();
-                $(".upgrade-box .upgrade").show();
-            } else {
-                $(".upgrade-box .loading").text('已是最新版本');
-                setTimeout(function () {
-                    $(".upgrade-box").hide();
-                }, 1500)
-            }
-        },
-        error: function () {
-            $(".upgrade-box .loading").text('检查更新失败');
-            setTimeout(function () {
-                $(".upgrade-box").hide();
-            }, 1500)
-        }
-    })
-
-    function openUpgradeInfo() {
-        parent.layer.alert(latestVersion.info.join("</br>"), {
-            skin: 'layui-layer-molv', //样式类名
-            // anim: 5,
-            // closeBtn:1,
-            // title:'信息',
-        });
-    }
-
-    function calculate_percent(now, all) {
-        console.log(now / all * 100 + '%');
-    }
-
-    var allBytes = 0;
-    var nowBytes = 0;
-    var getHttpsData = function (url, success, error) {
-        // 回调缺省时候的处理
-        success = success || function () {
-        };
-        error = error || function () {
-        };
-
-        https.get(url, function (res) {
-            console.log(res)
-            allBytes = res.headers['content-length'];
-            var statusCode = res.statusCode;
-
-            if (statusCode !== 200) {
-                // 出错回调
-                error();
-                // 消耗响应数据以释放内存
-                res.resume();
-                return;
-            }
-
-            res.setEncoding('utf8');
-            var rawData = '';
-            res.on('data', function (chunk) {
-                rawData += chunk;
-                nowBytes = rawData.length;
-                calculate_percent(nowBytes, allBytes);
-            });
-
-            // 请求结束
-            res.on('end', function () {
-                // 成功回调
-                success(rawData);
-            }).on('error', function (e) {
-                // 出错回调
-                error();
-            });
-        });
-    };
-
-    $('#upgrade-btn').click(function () {
-
-
-        console.log(os.tmpdir());
-        console.log(os.type());
-        console.log(latestVersion)
-        var fileUrl = (os.type() === 'Darwin') ? latestVersion['file-mac'] : latestVersion['file-win'];
-        var tmpFile = fileUrl.split("/")[fileUrl.split("/").length - 1];
-
-        // os.type(); // Linux, Darwin or Window_NT
-        // os.platform(); // 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
-
-        console.log(tmpFile)
-        getHttpsData(fileUrl, function (data) {
-            // 写入文件
-
-            console.log(tmpFile);
-            fs.writeFileSync(os.tmpdir() + '/' + tmpFile, data);
-            // 然后下一个文件获取并写入...
-            console.log('write success')
-        }, function () {
-            console.log('文件下载异常，请检查网络')
-        });
-
-    })
+    // var latestVersion = [];
+    // $.ajax({
+    //     type: "GET",//使用get请求请求正确
+    //     url: apiHost + "/app/version.json",
+    //     dataType: "json",
+    //     cache: false,
+    //     //data:
+    //     success: function (data) {
+    //         console.log("data: " + JSON.stringify(data))
+    //
+    //         if (version !== data.version) {
+    //             // 版号不一致. 弹出更新弹框
+    //             $(".version").text('v' + data.version)
+    //             latestVersion = data['version-list'][0];
+    //             // upgradeInfo = data['version-list'][0].info;
+    //
+    //             $(".upgrade-box .loading").hide();
+    //             $(".upgrade-box .upgrade").show();
+    //         } else {
+    //             $(".upgrade-box .loading").text('已是最新版本');
+    //             setTimeout(function () {
+    //                 $(".upgrade-box").hide();
+    //             }, 1500)
+    //         }
+    //     },
+    //     error: function () {
+    //         $(".upgrade-box .loading").text('检查更新失败');
+    //         setTimeout(function () {
+    //             $(".upgrade-box").hide();
+    //         }, 1500)
+    //     }
+    // })
+    //
+    // function openUpgradeInfo() {
+    //     parent.layer.alert(latestVersion.info.join("</br>"), {
+    //         skin: 'layui-layer-molv', //样式类名
+    //         // anim: 5,
+    //         // closeBtn:1,
+    //         // title:'信息',
+    //     });
+    // }
+    //
+    // function calculate_percent(now, all) {
+    //     console.log(now / all * 100 + '%');
+    // }
+    //
+    // var allBytes = 0;
+    // var nowBytes = 0;
+    // var getHttpsData = function (url, success, error) {
+    //     // 回调缺省时候的处理
+    //     success = success || function () {
+    //     };
+    //     error = error || function () {
+    //     };
+    //
+    //     https.get(url, function (res) {
+    //         console.log(res)
+    //         allBytes = res.headers['content-length'];
+    //         var statusCode = res.statusCode;
+    //
+    //         if (statusCode !== 200) {
+    //             // 出错回调
+    //             error();
+    //             // 消耗响应数据以释放内存
+    //             res.resume();
+    //             return;
+    //         }
+    //
+    //         res.setEncoding('utf8');
+    //         var rawData = '';
+    //         res.on('data', function (chunk) {
+    //             rawData += chunk;
+    //             nowBytes = rawData.length;
+    //             calculate_percent(nowBytes, allBytes);
+    //         });
+    //
+    //         // 请求结束
+    //         res.on('end', function () {
+    //             // 成功回调
+    //             success(rawData);
+    //         }).on('error', function (e) {
+    //             // 出错回调
+    //             error();
+    //         });
+    //     });
+    // };
+    //
+    // $('#upgrade-btn').click(function () {
+    //
+    //
+    //     console.log(os.tmpdir());
+    //     console.log(os.type());
+    //     console.log(latestVersion)
+    //     var fileUrl = (os.type() === 'Darwin') ? latestVersion['file-mac'] : latestVersion['file-win'];
+    //     var tmpFile = fileUrl.split("/")[fileUrl.split("/").length - 1];
+    //
+    //     // os.type(); // Linux, Darwin or Window_NT
+    //     // os.platform(); // 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
+    //
+    //     console.log(tmpFile)
+    //     getHttpsData(fileUrl, function (data) {
+    //         // 写入文件
+    //
+    //         console.log(tmpFile);
+    //         fs.writeFileSync(os.tmpdir() + '/' + tmpFile, data);
+    //         // 然后下一个文件获取并写入...
+    //         console.log('write success')
+    //     }, function () {
+    //         console.log('文件下载异常，请检查网络')
+    //     });
+    //
+    // })
 
 
 </script>
