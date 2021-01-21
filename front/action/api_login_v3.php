@@ -32,9 +32,9 @@ if (!$site_info) {
 }
 
 if ($site_info['name'] == 'ahrefs') {
-    $last_version = 3.5;
+    $last_version = 3.4;
 } elseif ($site_info['name'] == 'mangools') {
-    $last_version = 3.5;
+    $last_version = 3.4;
 } else {
     $last_version = 1;
 }
