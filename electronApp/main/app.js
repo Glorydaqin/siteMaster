@@ -1,4 +1,10 @@
 const {BrowserWindow, app, ipcMain, shell, session, Menu} = require('electron');
+const os = require("os");
+const isWin7 = os.release().startsWith('6.1')
+// win7 下关闭硬件加速 || 解决win7白屏问题 || 待验证
+if (isWin7) {
+    app.disableHardwareAcceleration()
+}
 
 app.on('ready', function () {
     // let isLogin = false;
