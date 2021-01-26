@@ -8,7 +8,7 @@ const store = new Store();
 const version = '0.15.0';
 const loginVersion = 3.5;
 
-const apiHost = 'https://vtool.club';
+const apiHost = 'http://sitemaster.com';
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
 let siteId = 1;
