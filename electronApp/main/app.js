@@ -7,8 +7,6 @@ if (isWin7) {
 }
 
 app.on('ready', function () {
-    // let isLogin = false;
-    Menu.setApplicationMenu(Menu.buildFromTemplate([]))
 
     const mainWindow = new BrowserWindow({
         width: 1200,
@@ -20,6 +18,33 @@ app.on('ready', function () {
             webSecurity: false
         }
     });
+
+    if (process.platform === 'darwin') {
+        const template = [
+            {
+                label: "Application",
+                submenu: [
+                    {
+                        label: "Quit", accelerator: "Command+Q", click: function () {
+                            app.quit();
+                        }
+                    }
+                ]
+            },
+            {
+                label: "Edit",
+                submenu: [
+                    {label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:"},
+                    {label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:"},
+                ]
+            }
+        ];
+        Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+    } else {
+        Menu.setApplicationMenu(Menu.buildFromTemplate([]))
+    }
+
+
     let limitMap = [];
 
     // 打开开发工具
