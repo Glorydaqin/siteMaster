@@ -157,60 +157,60 @@ app.on('ready', function () {
         mainWindow.webContents.send('recordVisit', details)
     })
 
-
-    /**
-     * 下载部分开始
-     */
-    //监听升级自主提交的下载请求
-    ipcMain.on('openDownloadUrl', (event, url) => {
-        mainWindow.webContents.downloadURL(url)
-    });
+    //
     // /**
-    //  * 打开文件选择框
-    //  * @param oldPath - 上一次打开的路径
+    //  * 下载部分开始
     //  */
-    // const openFileDialog = async (oldPath = app.getPath('downloads')) => {
-    //     // if (!mainWindow) return oldPath;
+    // //监听升级自主提交的下载请求
+    // ipcMain.on('openDownloadUrl', (event, url) => {
+    //     mainWindow.webContents.downloadURL(url)
+    // });
+    // // /**
+    // //  * 打开文件选择框
+    // //  * @param oldPath - 上一次打开的路径
+    // //  */
+    // // const openFileDialog = async (oldPath = app.getPath('downloads')) => {
+    // //     // if (!mainWindow) return oldPath;
+    // //
+    // //     const {canceled, filePaths} = await dialog.showOpenDialog(win, {
+    // //         title: '选择保存位置',
+    // //         properties: ['openDirectory', 'createDirectory'],
+    // //         defaultPath: oldPath,
+    // //     })
+    // //
+    // //     return !canceled ? filePaths[0] : oldPath
+    // // }
+    // // ipcMain.handle('openFileDialog', (event, oldPath) => openFileDialog(oldPath))
+    // //监听触发下载
+    // session.defaultSession.on('will-download', (event, item, webContents) => {
+    //     //
+    //     //
+    //     // item.setSavePath("/Users/qinwei/Code/siteMaster/electronApp/test.app")
     //
-    //     const {canceled, filePaths} = await dialog.showOpenDialog(win, {
-    //         title: '选择保存位置',
-    //         properties: ['openDirectory', 'createDirectory'],
-    //         defaultPath: oldPath,
-    //     })
     //
-    //     return !canceled ? filePaths[0] : oldPath
-    // }
-    // ipcMain.handle('openFileDialog', (event, oldPath) => openFileDialog(oldPath))
-    //监听触发下载
-    session.defaultSession.on('will-download', (event, item, webContents) => {
-        //
-        //
-        // item.setSavePath("/Users/qinwei/Code/siteMaster/electronApp/test.app")
-
-
-        // console.log(event, item)
-        // console.log(webContents)
-        //
-        // var downloadItem = {speed: 0, receivedBytes: 0, allBytes: 100}
-        // // 记录上一次下载的字节数据
-        // let prevReceivedBytes = 0;
-        //
-        // item.on('updated', (e, state) => {
-        //     const receivedBytes = item.getReceivedBytes()
-        //     // 计算每秒下载的速度
-        //     downloadItem.speed = receivedBytes - prevReceivedBytes
-        //     prevReceivedBytes = receivedBytes
-        // })
-        //
-        // item.on('done', (e, state) => {
-        //     // downloadItem.state = state
-        //     // downloadItem.receivedBytes = item.getReceivedBytes()
-        //     // downloadItem.lastModifiedTime = item.getLastModifiedTime()
-        //     //
-        //     // // 通知渲染进程，更新下载状态
-        //     // webContents.send('downloadItemDone', downloadItem)
-        // })
-
-    })
+    //     // console.log(event, item)
+    //     // console.log(webContents)
+    //     //
+    //     // var downloadItem = {speed: 0, receivedBytes: 0, allBytes: 100}
+    //     // // 记录上一次下载的字节数据
+    //     // let prevReceivedBytes = 0;
+    //     //
+    //     // item.on('updated', (e, state) => {
+    //     //     const receivedBytes = item.getReceivedBytes()
+    //     //     // 计算每秒下载的速度
+    //     //     downloadItem.speed = receivedBytes - prevReceivedBytes
+    //     //     prevReceivedBytes = receivedBytes
+    //     // })
+    //     //
+    //     // item.on('done', (e, state) => {
+    //     //     // downloadItem.state = state
+    //     //     // downloadItem.receivedBytes = item.getReceivedBytes()
+    //     //     // downloadItem.lastModifiedTime = item.getLastModifiedTime()
+    //     //     //
+    //     //     // // 通知渲染进程，更新下载状态
+    //     //     // webContents.send('downloadItemDone', downloadItem)
+    //     // })
+    //
+    // })
 
 });
