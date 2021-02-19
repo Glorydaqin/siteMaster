@@ -36,7 +36,7 @@
 
 }
 
-#btn-hide.light{
+#btn-hide.light {
     color: #337ab7;
 }
 
@@ -66,4 +66,39 @@
 
 .cursor_none {
     cursor: none;
+}
+
+
+.upgrade-box {
+    /*display: none;*/
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    z-index: 100;
+    align-items: center
+}
+
+.upgrade-box > div {
+    float: right;
+    vertical-align: middle;
+    margin: 5px !important;
+}
+
+.upgrade-box .loading {
+
+}
+
+.upgrade-box .upgrade {
+    display: none;
+}
+
+.upgrade-box .process {
+    position: absolute;
+    width: 0;
+    height: 44px;
+    background: rgba(0, 159, 149, 0.8);
+    margin: 0 !important;
+    z-index: 10;
 }

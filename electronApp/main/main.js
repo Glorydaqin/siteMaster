@@ -2,13 +2,15 @@
 const TabGroup = require("../index");
 const dragula = require("dragula");
 const {ipcRenderer} = require('electron')
-const Store = require('electron-store');
-const store = new Store();
+const electronStore = require('electron-store');
+const store = new electronStore();
+var packageInfo = require(".././package.json");
 
-const version = '0.15.0';
-const loginVersion = 3.5;
+const appName = packageInfo.build.productName;
+const appVersion = packageInfo.version;
+const apiVersion = 3.5; //登陆的接口版本
 
-const apiHost = 'http://sitemaster.com';
+const apiHost = 'https://vtool.club';
 const siteMap = {1: 'ahrefs', 2: 'mangools'}
 let lastPluginId = false;
 let siteId = 1;
@@ -235,7 +237,7 @@ function login() {
         alert("请选择平台");
         return;
     }
-    let data = {username: username, password: password, site_id: siteId, v: 3.5};
+    let data = {username: username, password: password, site_id: siteId, v: apiVersion};
 
     layer.load(1, {
         shade: [0.2, '#fff'] //0.1透明度的白色背景

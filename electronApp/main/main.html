@@ -133,33 +133,6 @@
     </div>
 </div>
 
-<style type="text/css">
-    .upgrade-box {
-        /*display: none;*/
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: auto;
-        background: #ffffff;
-        z-index: 100;
-    }
-
-    .upgrade-box > div {
-        float: right;
-        vertical-align: middle;
-        margin: 5px !important;
-    }
-
-    .upgrade-box .loading {
-
-    }
-
-
-    .upgrade-box .upgrade {
-        display: none;
-    }
-</style>
-
 <div class="upgrade-box">
 
     <div class="loading">
@@ -183,9 +156,10 @@
         可升级到<span class="version">v1.0.0</span>
         <a href="javascript:openUpgradeInfo();">（新版功能）</a>
         <button class="btn btn-danger" id="upgrade-btn">升级</button>
-        <button class="btn btn-default" id="upgrade-cancel-btn" onclick="$('.upgrade-box').hide();">取消</button>
+        <button class="btn btn-default" id="upgrade-cancel-btn" onclick="upgradeCancel()">取消</button>
     </div>
 
+    <div class="process"></div>
 </div>
 
 

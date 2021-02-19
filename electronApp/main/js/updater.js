@@ -1,12 +1,20 @@
 const os = require("os");
 const cp = window.cp;
-const electron = window.electron;
-const {app, shell} = require('electron');
+var https = require('https');
+var fs = require('fs');
+console.log(packageInfo)
+const {shell} = require('electron');
 
 // 检查更新
-
-var latestVersion = [];
 var isDownload = false;
+var latestVersion = [];
+var downloadInfo = {
+    percent: 0,
+    downloadBytes: 0,
+    totalBytes: 1,
+};
+var percent = 0;
+
 $.ajax({
     type: "GET",//使用get请求请求正确
     url: apiHost + "/app/version.json",
@@ -16,7 +24,7 @@ $.ajax({
     success: function (data) {
         console.log("data: " + JSON.stringify(data))
 
-        if (version !== data.version) {
+        if (appVersion !== data.version) {
             // 版号不一致. 弹出更新弹框
             $(".version").text('v' + data.version)
             latestVersion = data['version-list'][0];
@@ -82,17 +90,31 @@ function openUpgradeInfo() {
 //     console.log(percentage + "% | " + received + " bytes out of " + total + " bytes.");
 // }
 
-var https = require('https');
-var fs = require('fs');
-var url = 'https://vtool.club/app/vip-login.exe';
-
 var download = function (url, dest, cb) {
     var file = fs.createWriteStream(dest);
     var request = https.get(url, function (response) {
+        downloadInfo.totalBytes = response.headers['content-length'];
+
         response.pipe(file);
         file.on('finish', function () {
             file.close(cb);  // close() is async, call cb after close completes.
         });
+
+        let rawData = '';
+        response.on('data', (chunk) => {
+            rawData += chunk;
+
+            downloadInfo.downloadBytes = rawData.length;
+            console.log('total percent:' + downloadInfo.downloadBytes / downloadInfo.totalBytes)
+            $(".upgrade-box .process").width(Math.floor(downloadInfo.downloadBytes / downloadInfo.totalBytes * 100).toFixed(2) + '%')
+        });
+        response.on('end', () => {
+            percent = 1;
+            downloadInfo.downloadBytes = downloadInfo.totalBytes;
+            console.log('total percent:1', dest)
+            $(".upgrade-box .process").width('100%')
+        });
+
     }).on('error', function (err) { // Handle errors
         fs.unlink(dest); // Delete the file async. (But we don't check the result)
         if (cb) cb(err.message);
@@ -103,24 +125,23 @@ $('#upgrade-btn').click(function () {
     if (isDownload) {
         return;
     }
-    var fileUrl = (os.type() === 'Darwin') ? latestVersion['file-mac'] : latestVersion['file-win'];
+    isDownload = true;
+
+    var fileUrl = (os.platform() === 'darwin') ? latestVersion['file-mac'] : latestVersion['file-win'];
     var tmpFile = fileUrl.split("/")[fileUrl.split("/").length - 1];
-    var localFile = os.tmpdir() + '/' + tmpFile;
+    var savePath = os.tmpdir() + '/' + Math.random() + tmpFile;
     console.log(fileUrl);
-    console.log(localFile);
+    console.log(savePath);
 
-    var url = 'https://vtool.club/app/vip-login.exe';
-    var path = 'C:\\Users\\Administrator\\Downloads\\新建文件夹\\app-' + Math.random() +
-        '.exe';
+    // var url = 'https://vtool.club/app/vip-login.exe';
+    console.info(appName, appVersion);
 
-    download(url,localFile,function (result) {
+    download(fileUrl, savePath, function (result) {
 
         //下载完成或者异常
         setTimeout(function () {
-            if (platform === 'darwin'){
-                const appName = pjson.build.productName;
-                const appVersion = app.getVersion();
-                console.info(appName,appVersion);
+            if (os.platform() === 'darwin') {
+                console.info(appName, appVersion);
                 // 挂载
                 cp.execSync(`hdiutil attach '${savePath}' -nobrowse`, {
                     stdio: ['ignore', 'ignore', 'ignore']
@@ -135,20 +156,23 @@ $('#upgrade-btn').click(function () {
                 });
 
                 // 重启
-                app.relaunch();
-                app.quit();
+                let result = ipcRenderer.sendSync('appAction', 'relaunch');
+                result = ipcRenderer.sendSync('appAction', 'quit');
             }
 
-            if (platform === 'win32') {
+            if (os.platform() === 'win32') {
                 shell.openItem(savePath);
                 setTimeout(function () {
-                    app.quit();
-                },1500)
+                    result = ipcRenderer.sendSync('appAction', 'quit');
+                }, 1500)
             }
-        },2000)
+        }, 2000)
 
     });
 
-
-    isDownload = true;
 })
+
+function upgradeCancel() {
+    // $('.upgrade-box').hide();
+    var result = ipcRenderer.sendSync('appAction', 'quit');
+}
