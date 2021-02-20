@@ -101,4 +101,6 @@
     background: rgba(0, 159, 149, 0.8);
     margin: 0 !important;
     z-index: 10;
+    transition:width 1s;
 }
+
