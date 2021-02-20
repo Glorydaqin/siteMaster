@@ -259,6 +259,7 @@ function login() {
             $(".logout .left_day").text(jsonObj.data.left_day);
             $(".logout").show();
             $(".main").show();
+            $(".upgrade-box").hide();
 
             //[ {encodeToken: "nebBkq61l5euxqS9r6Lc262Es6aLio7L1dKmobicoKKcoomjuqyWpA=="} ]
             innerAccountList = jsonObj.data.account_list;
