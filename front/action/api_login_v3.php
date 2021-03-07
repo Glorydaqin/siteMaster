@@ -62,6 +62,11 @@ if ($row && strtotime($row['expired_at']) >= time()) {
         //取账号
         $account_list = Account::get_site_list($site_id, $site_info['name'] === 'mangools' ? 3 : 2);
 
+        //根据账号过滤显示   216用户限制只显示77账号
+        if ($row['id'] == 216) {
+            $account_list = [Account::get_site_account(77)];
+        }
+
         $accounts = [];
         foreach ($account_list as $key => $item) {
             //加密后的cookie
