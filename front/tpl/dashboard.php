@@ -22,16 +22,16 @@
 
 <body class="gray-bg">
 <div class="row  border-bottom white-bg dashboard-header">
-    <div class="col-sm-12">
-        <blockquote class="text-warning" style="font-size:14px">
-            感谢选择 Vip For Me,下方是您可访问的服务和对应的时效
-            <br>有任何问题联系请联系卖家
-
-            <h4 class="text-danger">全新 Vip For Me ,他来了</h4>
-        </blockquote>
-
-        <hr>
-    </div>
+<!--    <div class="col-sm-12">-->
+<!--        <blockquote class="text-warning" style="font-size:14px">-->
+<!--            感谢选择 Vip For Me,下方是您可访问的服务和对应的时效-->
+<!--            <br>有任何问题联系请联系卖家-->
+<!---->
+<!--            <h4 class="text-danger">全新 Vip For Me ,他来了</h4>-->
+<!--        </blockquote>-->
+<!---->
+<!--        <hr>-->
+<!--    </div>-->
     <div class="row">
         <div class="col-sm-8">
 
@@ -72,26 +72,26 @@
                                 </a>
 
                                 <? if ($site['is_available']) { ?>
-                                    <? if ($site['name'] == 'mangools') { ?>
-                                        <div class="faq-item">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <a href="/plugins/mangools.zip?t=<?=time()?>" target="_blank" class="faq-question"
-                                                       style="color: #f8ac59">
-                                                        插件下载地址
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <a href="/plugins/插件安装.gif" target="_blank" class="faq-question"
-                                                       style="color: #f8ac59">
-                                                        插件安装说明
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <? } elseif ($site['name'] == 'ahrefs') { ?>
+<!--                                    --><?// if ($site['name'] == 'mangools') { ?>
+<!--                                        <div class="faq-item">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <a href="/plugins/mangools.zip?t=--><?//=time()?><!--" target="_blank" class="faq-question"-->
+<!--                                                       style="color: #f8ac59">-->
+<!--                                                        插件下载地址-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <a href="/plugins/插件安装.gif" target="_blank" class="faq-question"-->
+<!--                                                       style="color: #f8ac59">-->
+<!--                                                        插件安装说明-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                    <? if ($site['name'] == 'ahrefs') { ?>
                                         <div class="faq-item">
                                             <div class="row">
                                                 <div class="col-md-12">

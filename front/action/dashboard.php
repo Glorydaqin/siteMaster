@@ -17,7 +17,7 @@ $site_list = Site::get_list_with_access($_SESSION['user_id']);
 //dd($site_list);
 
 foreach ($site_list as &$site) {
-    $account_list = Account::get_site_list($site['id']);
+    $account_list = Account::get_site_list($site['id'], 2);
 
     foreach ($account_list as &$account) {
         if ($site['name'] == 'ahrefs') {

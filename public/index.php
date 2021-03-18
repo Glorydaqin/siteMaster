@@ -17,7 +17,8 @@ if ($server_domain == DOMAIN) {
         //首页
         include_once FRONT_DIR . 'login.php';
     } elseif ($script_uri == '/index/') {
-        include_once FRONT_DIR . 'layout.php';
+//        include_once FRONT_DIR . 'layout.php';
+        include_once FRONT_DIR . 'dashboard.php';
     } elseif ($script_uri == '/dashboard/') {
         include_once FRONT_DIR . 'dashboard.php';
     } elseif ($script_uri == '/choose/') {

@@ -23,6 +23,8 @@ if ($last_session_id != $session_id) {
 if ($_SERVER['HTTP_HOST'] != DOMAIN) {
     $key = substr($_SERVER['HTTP_HOST'], 0, stripos($_SERVER['HTTP_HOST'], DOMAIN) - 1);
 
+    dd($_SESSION);
+
     $choose_session = $_SESSION[$key] ?? [];
     //site_id
     if (!isset($choose_session['site_id'])) {
