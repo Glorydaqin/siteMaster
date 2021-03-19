@@ -16,18 +16,22 @@ try {
     $in_domain = $_SERVER['HTTP_HOST'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     $choose_session = $_SESSION['mangools'] ?? [];
-    $account_id = $_COOKIE['account_id'];
+    $account_id = $choose_session['account_id'] ?? '';
+    $site_id = $choose_session['site_id'] ?? '';
+
+//转发页面
+    $url = trim($url, '/');
+    $first_sub = explode('/', $url)[0];
 
 //检查账号存在
-    $account = Account::get_account($account_id, $_SESSION['site_id']);
+    $account = Account::get_account($account_id, $site_id);
     if (empty($account)) {
         die('account error | 账号错误');
     }
 
-    if (
-        stripos($url, '/account') !== false ||
-        stripos($url, '/billing') !== false
-    ) {
+    if (in_array($first_sub, [
+        'account', 'user' , 'logout'
+    ])) {
         die('folder limit ｜ 目录访问限制');
     }
 
@@ -53,6 +57,7 @@ try {
     }
 
     $response = $transfer->get($real_url, $post_data, $url_is_cdn);
+//    dd($response);
     $html = $response['body'];
 
     if (stripos($real_url, '.js') || stripos($real_url, '.css') || stripos($real_url, '.svg')) {
@@ -68,7 +73,7 @@ try {
     }
     //http://kwfinder.vipfor.me/mangools_api_domain/v3/kwfinder/serps?kw=ss&location_id=0&page=0 实际搜索的链接
     //记录操作
-    UserRecord::record($_SESSION['user_id'], $_COOKIE['site_id'], $account_id, $url);
+//    UserRecord::record($_SESSION['user_id'], $_COOKIE['site_id'], $account_id, $url);
 
 // 替换内容
     if (isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html') {
@@ -113,6 +118,6 @@ try {
     header('Content-Type: ' . $response['info']['content_type']);
     echo $html;
 } catch (\Exception $exception) {
-    Log::info($exception);
+    dd($exception);
 }
 exit();
