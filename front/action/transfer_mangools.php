@@ -30,7 +30,7 @@ try {
     }
 
     if (in_array($first_sub, [
-        'account', 'user' , 'logout'
+        'account', 'user', 'logout'
     ])) {
         die('folder limit ｜ 目录访问限制');
     }
@@ -46,7 +46,7 @@ try {
 //    if ($keywordLimit >= UserRecord::keywordsLimit) {
 //        die('Reach the keywords limit | 达到关键词限制');
 //    }
-    $transfer = new Mangools($account['username'], $account['password'], $in_domain);
+    $transfer = new Mangools($account, $in_domain);
     $real_url = $transfer->revoke_url($url);
 
     $raw_data = file_get_contents('php://input');

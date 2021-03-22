@@ -4,25 +4,23 @@ class Mangools
 {
     public static $domain = "https://app.kwfinder.com/";
     public static $mangools_domain = "https://mangools.com/";
-    public static $mangools_api_domain = "https://api2.mangools.com/";
+    public static $mangools_api_domain = "https://api.mangools.com/";
 
 //    public static $login_url = 'https://mangools.com/users/sign_in';
-    public static $cookie_url = 'https://app.kwfinder.com/?sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e&login_token=rn8CE9VPGmZMyzhK_fyy';
+//    public static $cookie_url = 'https://app.kwfinder.com/?sso_ticket=420629489d99646c3c7332a1f08844b1930bf308e6b38f045765713b84aa469e&login_token=rn8CE9VPGmZMyzhK_fyy';
 
 
     public static $user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36';
 
-    private $user_name = '';
-    private $password = '';
+    private $sso_ticket = '';
+    private $login_token = '';
     public $cookie_key = '';
     public $in_domain = ''; // 用户访问的域名
 
 //    public $ticket_key = '';
 
-    public function __construct($user_name, $password, $in_domain)
+    public function __construct($account_info, $in_domain)
     {
-        $this->user_name = $user_name;
-        $this->password = $password;
         $this->in_domain = $in_domain;
 
         if ($in_domain == DOMAIN_SITEPROFILER) {
@@ -37,7 +35,18 @@ class Mangools
             self::$domain = 'https://app.kwfinder.com/';
         }
 
-        $this->cookie_key = "siteMaster_mangools_" . $user_name;
+        $tmp = explode('&', $account_info['cookie']);
+        foreach ($tmp as $tmpKey) {
+            $tmpItem = explode('=', $tmpKey);
+            if ($tmpItem[0] == 'sso_ticket') {
+                $this->sso_ticket = $tmpItem[1];
+            }
+            if ($tmpItem[0] == 'login_token') {
+                $this->login_token = $tmpItem[1];
+            }
+        }
+
+        $this->cookie_key = "siteMaster_mangools_" . $account_info['username'] ?? '';
     }
 
     /**
@@ -162,12 +171,9 @@ class Mangools
             }
         }
 
-        if (!$this->check_is_login()) {
-            return $this->login();
-        }
-
         $result = $this->curl($url, $data);
 
+//        dd($result);
         if ($is_cdn && !empty($result['body'])) {
             $result_str = json_encode($result);
             $cache->set_cache($url, $result_str);
@@ -191,23 +197,23 @@ class Mangools
     }
 
 
-    public function login()
-    {
-        $result = $this->curl(self::$cookie_url);
-        return $result;
-//        dd($result);
-
-////        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
-//        if ($result['code'] == 200) {
-//            //记录当前这个sso ticket
-////            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
-////            $ticket = $match_ticket[1][0] ?? '';
-////            (new Cache())->set_cache($this->cookie_key, $ticket);
-////            echo $result['body'];exit();
-//            return true;
-//        }
-//        return false;
-    }
+//    public function login()
+//    {
+//        $result = $this->curl(self::$cookie_url);
+//        return $result;
+////        dd($result);
+//
+//////        if ($result['code'] == 200 && stripos($result['url'], '/apps?sso_ticket=')) {
+////        if ($result['code'] == 200) {
+////            //记录当前这个sso ticket
+//////            preg_match_all("/sso\_ticket=([\d\w]+)/", $result['url'], $match_ticket);
+//////            $ticket = $match_ticket[1][0] ?? '';
+//////            (new Cache())->set_cache($this->cookie_key, $ticket);
+//////            echo $result['body'];exit();
+////            return true;
+////        }
+////        return false;
+//    }
 
     /**
      * 域名替换
@@ -233,6 +239,13 @@ class Mangools
 //        if (stripos($real_url, 'users/current_user') !== false) {
 //            $real_url .= '=' . (new Cache())->get_cache($this->cookie_key);
 //        }
+
+        $real_url = urldecode($real_url);
+        //替换 {{sso}} 和 {{token}}
+        $real_url = str_replace("{{sso_ticket}}", $this->sso_ticket, $real_url);
+        $real_url = str_replace("{{login_token}}", $this->login_token, $real_url);
+
+//        dd($real_url);
         return $real_url;
     }
 
@@ -247,7 +260,8 @@ class Mangools
             $html = str_replace("https://app.serpwatcher.com", PROTOCOL . DOMAIN_SERPWATCHER, $html);
             $html = str_replace("https://app.serpchecker.com", PROTOCOL . DOMAIN_SERPCHECKER, $html);
             //替换    https://api2.mangools.com => /mangools_api_domain
-            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
+            $html = str_replace('https://api.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
+//            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
             //替换 https://mangools.com => /mangools_domain
             $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
 

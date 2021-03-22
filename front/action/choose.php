@@ -34,15 +34,15 @@ if ($account_info['site_name'] == 'ahrefs') {
     $url = PROTOCOL . DOMAIN_AHREFS . '/dashboard';
 } elseif ($account_info['site_name'] == 'mangools') {
     if ($site_name == 'serpchecker') {
-        $url = PROTOCOL . DOMAIN_SERPCHECKER . '/dashboard';
+        $url = PROTOCOL . DOMAIN_SERPCHECKER . '/?sso_ticket={{sso_ticket}}&login_token={{login_token}}';
     } elseif ($site_name == 'serpwatcher') {
-        $url = PROTOCOL . DOMAIN_SERPWATCHER . '/dashboard';
+        $url = PROTOCOL . DOMAIN_SERPWATCHER . '/?sso_ticket={{sso_ticket}}&login_token={{login_token}}';
     } elseif ($site_name == 'linkminer') {
-        $url = PROTOCOL . DOMAIN_LINKMINER . '/dashboard';
+        $url = PROTOCOL . DOMAIN_LINKMINER . '/?sso_ticket={{sso_ticket}}&login_token={{login_token}}';
     } elseif ($site_name == 'siteprofiler') {
-        $url = PROTOCOL . DOMAIN_SITEPROFILER . '/dashboard';
+        $url = PROTOCOL . DOMAIN_SITEPROFILER . '/?sso_ticket={{sso_ticket}}&login_token={{login_token}}';
     } else {
-        $url = PROTOCOL . DOMAIN_KWFINDER . '/dashboard';
+        $url = PROTOCOL . DOMAIN_KWFINDER . '/?sso_ticket={{sso_ticket}}&login_token={{login_token}}';
     }
 } elseif ($account_info['site_name'] == 'majestic') {
     $url = PROTOCOL . DOMAIN_MAJESTIC . '/account';
