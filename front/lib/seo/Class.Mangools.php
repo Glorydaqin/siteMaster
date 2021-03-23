@@ -24,8 +24,8 @@ class Mangools
         $this->account_info = $account_info;
         $this->in_domain = $_SERVER['HTTP_HOST'] ?? '';
 
-        if ($this->in_domain == DOMAIN_MANGOOLS) {
-            $this->domain = 'https://mangools.com/';
+        if ($this->in_domain == DOMAIN_KWFINDER) {
+            $this->domain = 'https://app.kwfinder.com/';
         } elseif ($this->in_domain == DOMAIN_SITEPROFILER) {
             $this->domain = 'https://app.siteprofiler.com/';
         } elseif ($this->in_domain == DOMAIN_SERPWATCHER) {
@@ -35,7 +35,7 @@ class Mangools
         } elseif ($this->in_domain == DOMAIN_LINKMINER) {
             $this->domain = 'https://app.linkminer.com/';
         } else {
-            $this->domain = 'https://app.kwfinder.com/';
+            $this->domain = 'https://mangools.com/';
         }
 
         $tmp = explode('&', $account_info['cookie']);
@@ -234,6 +234,10 @@ class Mangools
     public function revoke_url($url)
     {
         $real_url = $this->domain . $url;
+
+        if (stripos($url, 'mangools_domain/') !== false) {
+            $real_url = str_replace("mangools_domain/", self::$mangools_domain, $url);
+        }
         if (stripos($url, 'mangools_api_domain/') !== false) {
             $real_url = str_replace("mangools_api_domain/", self::$mangools_api_domain, $url);
         }
@@ -254,14 +258,15 @@ class Mangools
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
 
             //替换工具相关域名
-            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_MANGOOLS, $html);
+//            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_MANGOOLS, $html);
             $html = str_replace("https://app.kwfinder.com", PROTOCOL . DOMAIN_KWFINDER, $html);
             $html = str_replace("https://app.siteprofiler.com", PROTOCOL . DOMAIN_SITEPROFILER, $html);
             $html = str_replace("https://app.linkminer.com", PROTOCOL . DOMAIN_LINKMINER, $html);
             $html = str_replace("https://app.serpwatcher.com", PROTOCOL . DOMAIN_SERPWATCHER, $html);
             $html = str_replace("https://app.serpchecker.com", PROTOCOL . DOMAIN_SERPCHECKER, $html);
             //替换    https://api2.mangools.com => /mangools_api_domain
-            $html = str_replace('https://api.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
+            $html = str_replace('https://api.mangools.com', $this->domain . 'mangools_api_domain', $html);
+            $html = str_replace('https://mangools.com', $this->domain . 'mangools_domain', $html);
 //            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
 
 //            if ($this->in_domain == DOMAIN_SITEPROFILER) {
@@ -290,7 +295,7 @@ class Mangools
                 // 非主站域名
                 if (stripos($matches[1], $this->in_domain) === false) {
                     if (stripos($matches[1], 'mangools.com')) {
-                        return 'href="' . PROTOCOL . DOMAIN_MANGOOLS . '/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+                        return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
                     }
 
                 } else {
@@ -304,7 +309,7 @@ class Mangools
             // 明确的当前域名 开头
             if (stripos($matches[1], $this->in_domain) === false) {
                 if (stripos($matches[1], 'mangools.com')) {
-                    return 'href="' . PROTOCOL . DOMAIN_MANGOOLS . '/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+                    return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
                 }
 
             } else {
