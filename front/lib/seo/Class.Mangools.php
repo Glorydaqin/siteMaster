@@ -265,8 +265,8 @@ class Mangools
             $html = str_replace("https://app.serpwatcher.com", PROTOCOL . DOMAIN_SERPWATCHER, $html);
             $html = str_replace("https://app.serpchecker.com", PROTOCOL . DOMAIN_SERPCHECKER, $html);
             //替换    https://api2.mangools.com => /mangools_api_domain
-            $html = str_replace('https://api.mangools.com', $this->domain . 'mangools_api_domain', $html);
-            $html = str_replace('https://mangools.com', $this->domain . 'mangools_domain', $html);
+            $html = str_replace('https://api.mangools.com', PROTOCOL . $this->in_domain . '/mangools_api_domain', $html);
+            $html = str_replace('https://mangools.com', PROTOCOL . $this->in_domain . '/mangools_domain', $html);
 //            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
 
 //            if ($this->in_domain == DOMAIN_SITEPROFILER) {
@@ -299,7 +299,7 @@ class Mangools
                     }
 
                 } else {
-                    return 'href="' . $this->domain . substr($matches[1], stripos($matches[1], $this->domain) + strlen($this->domain) + 1) . '"';
+                    return 'href="' . PROTOCOL . $this->in_domain . '/' . substr($matches[1], stripos($matches[1], $this->in_domain) + strlen($this->in_domain) + 1) . '"';
                 }
             }
             return $matches[0];
@@ -309,11 +309,11 @@ class Mangools
             // 明确的当前域名 开头
             if (stripos($matches[1], $this->in_domain) === false) {
                 if (stripos($matches[1], 'mangools.com')) {
-                    return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
+                    return 'src="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
                 }
-
             } else {
-                return 'href="' . $this->domain . substr($matches[1], stripos($matches[1], $this->domain) + strlen($this->domain) + 1) . '"';
+
+                return 'src="' . PROTOCOL . $this->in_domain . '/' . substr($matches[1], stripos($matches[1], $this->in_domain) + strlen($this->in_domain) + 1) . '"';
             }
             return $matches[0];
         }, $html);
