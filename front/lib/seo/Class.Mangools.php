@@ -24,7 +24,9 @@ class Mangools
         $this->account_info = $account_info;
         $this->in_domain = $_SERVER['HTTP_HOST'] ?? '';
 
-        if ($this->in_domain == DOMAIN_SITEPROFILER) {
+        if ($this->in_domain == DOMAIN_MANGOOLS) {
+            $this->domain = 'https://mangools.com/';
+        } elseif ($this->in_domain == DOMAIN_SITEPROFILER) {
             $this->domain = 'https://app.siteprofiler.com/';
         } elseif ($this->in_domain == DOMAIN_SERPWATCHER) {
             $this->domain = 'https://app.serpwatcher.com/';
