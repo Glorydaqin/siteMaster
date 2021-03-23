@@ -22,7 +22,6 @@ class Mangools
     public function __construct($account_info)
     {
         $this->in_domain = $_SERVER['HTTP_HOST'] ?? '';
-        dd($this->in_domain);
 
         if ($this->in_domain == DOMAIN_SITEPROFILER) {
             self::$domain = 'https://app.siteprofiler.com/';
@@ -254,6 +253,8 @@ class Mangools
     {
         if (preg_match("/app\.[a-z\d]+\.js/", $url)) {
 
+            dd(self::$domain);
+
             //替换工具相关域名
             $html = str_replace("https://app.kwfinder.com", PROTOCOL . DOMAIN_KWFINDER, $html);
             $html = str_replace("https://app.siteprofiler.com", PROTOCOL . DOMAIN_SITEPROFILER, $html);
@@ -264,7 +265,7 @@ class Mangools
             $html = str_replace('https://api.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
 //            $html = str_replace('https://api2.mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_api_domain', $html);
             //替换 https://mangools.com => /mangools_domain
-            $html = str_replace('https://mangools.com', PROTOCOL . DOMAIN_KWFINDER . '/mangools_domain', $html);
+            $html = str_replace('https://mangools.com', self::$domain . '/mangools_domain', $html);
 
             if ($this->in_domain == DOMAIN_SITEPROFILER) {
                 //替换    app.siteprofiler.com =>
