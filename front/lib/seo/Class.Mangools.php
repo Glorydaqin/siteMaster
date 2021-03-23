@@ -19,17 +19,18 @@ class Mangools
 
 //    public $ticket_key = '';
 
-    public function __construct($account_info, $in_domain)
+    public function __construct($account_info)
     {
-        $this->in_domain = $in_domain;
+        $this->in_domain = $_SERVER['HTTP_HOST'] ?? '';
+        dd($this->in_domain);
 
-        if ($in_domain == DOMAIN_SITEPROFILER) {
+        if ($this->in_domain == DOMAIN_SITEPROFILER) {
             self::$domain = 'https://app.siteprofiler.com/';
-        } elseif ($in_domain == DOMAIN_SERPWATCHER) {
+        } elseif ($this->in_domain == DOMAIN_SERPWATCHER) {
             self::$domain = 'https://app.serpwatcher.com/';
-        } elseif ($in_domain == DOMAIN_SERPCHECKER) {
+        } elseif ($this->in_domain == DOMAIN_SERPCHECKER) {
             self::$domain = 'https://app.serpchecker.com/';
-        } elseif ($in_domain == DOMAIN_LINKMINER) {
+        } elseif ($this->in_domain == DOMAIN_LINKMINER) {
             self::$domain = 'https://app.linkminer.com/';
         } else {
             self::$domain = 'https://app.kwfinder.com/';

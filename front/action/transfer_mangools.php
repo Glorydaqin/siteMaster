@@ -13,7 +13,6 @@ if (!defined('IN_DS')) {
 include_once 'common.php';
 
 try {
-    $in_domain = $_SERVER['HTTP_HOST'] ?? '';
     $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     $choose_session = $_SESSION['mangools'] ?? [];
     $account_id = $choose_session['account_id'] ?? '';
@@ -46,7 +45,7 @@ try {
 //    if ($keywordLimit >= UserRecord::keywordsLimit) {
 //        die('Reach the keywords limit | 达到关键词限制');
 //    }
-    $transfer = new Mangools($account, $in_domain);
+    $transfer = new Mangools($account);
     $real_url = $transfer->revoke_url($url);
 
     $raw_data = file_get_contents('php://input');
