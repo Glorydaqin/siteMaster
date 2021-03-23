@@ -14,9 +14,9 @@ class Cache
     function set_cache($key, $content)
     {
         // kwfinder 必须存 sso ticket
-//        if (DEBUG_MODE) {
-//            return $content;
-//        }
+        if (DEBUG_MODE) {
+            return $content;
+        }
 
         $this->set($key, $content);
         return $content;
@@ -25,6 +25,9 @@ class Cache
     //获取缓存
     function get_cache($key, $time = 864000)
     {
+        if (DEBUG_MODE) {
+            return false;
+        }
         $path = $this->getPath($key);
 
         if (!is_file($path)) return false;
