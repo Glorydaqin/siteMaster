@@ -56,7 +56,6 @@ try {
     }
 
     $response = $transfer->get($real_url, $post_data, $url_is_cdn);
-//    dd($response);
     $html = $response['body'];
 
     if (stripos($real_url, '.js') || stripos($real_url, '.css') || stripos($real_url, '.svg')) {
@@ -65,10 +64,8 @@ try {
         $offset = 60 * 60 * 24; // cache 1 day
         $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
         header($ExpStr);
-        header('Content-Type: ' . $response['info']['content_type']);
 
-        echo $transfer->replace_main_js($real_url, $html);
-        die;
+        $html = $transfer->replace_main_js($real_url, $html);
     }
     //http://kwfinder.vipfor.me/mangools_api_domain/v3/kwfinder/serps?kw=ss&location_id=0&page=0 实际搜索的链接
     //记录操作
@@ -76,42 +73,7 @@ try {
 
 // 替换内容
     if (isset($response['info']['content_type']) && isset($response['info']['content_type']) == 'text/html') {
-
-//链接
-        $html = preg_replace_callback("/href=[\'\"](.*?)[\'\"]/", function ($matches) {
-            // 明确的当前域名 开头
-            if (substr($matches[1], 0, 1) != '/') {
-                // 非主站域名
-                if (stripos($matches[1], 'app.kwfinder.com') === false) {
-                    if (stripos($matches[1], 'mangools.com')) {
-                        return 'href="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
-                    }
-
-                } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                    return 'href="' . PROTOCOL . DOMAIN_KWFINDER . '/' . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
-                }
-            }
-            return $matches[0];
-        }, $html);
-//    //资源
-        $html = preg_replace_callback("/src=[\'\"](.*?)[\'\"]/", function ($matches) {
-            // 明确的当前域名 开头
-            if (substr($matches[1], 0, 1) != '/') {
-                // 非主站域名
-                if (stripos($matches[1], 'app.kwfinder.com') === false) {
-                    if (stripos($matches[1], 'mangools.com')) {
-                        return 'src="' . '/mangools_domain/' . substr($matches[1], stripos($matches[1], 'mangools.com') + strlen('mangools.com') + 1) . '"';
-                    }
-
-                } elseif (stripos($matches[1], 'app.kwfinder.com')) {
-                    return 'src="' . PROTOCOL . DOMAIN_KWFINDER . '/' . substr($matches[1], stripos($matches[1], 'app.kwfinder.com') + strlen('app.kwfinder.com') + 1) . '"';
-                }
-            }
-            return $matches[0];
-        }, $html);
-
-        //替换用户信息
-        $html = str_replace($account['username'], 'account_' . $account_id, $html);
+        $html = $transfer->replace_html($real_url, $html);
     }
 
     header('Content-Type: ' . $response['info']['content_type']);

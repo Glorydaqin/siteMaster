@@ -18,13 +18,3 @@ define('REDIS_PRE', 'rent:');   //redis 缓存前缀
 
 define("PROTOCOL", 'http://');
 define('DOMAIN', 'test.com');
-define('DOMAIN_AHREFS', 'ahrefs.' . DOMAIN);
-define('DOMAIN_SEMRUSH', 'semrush.' . DOMAIN);
-define('DOMAIN_MAJESTIC', 'majestic.' . DOMAIN);
-define('DOMAIN_SPYFU', 'spyfu.' . DOMAIN);
-//mangools 系列
-define('DOMAIN_KWFINDER', 'kwfinder.' . DOMAIN);
-define('DOMAIN_SERPCHECKER', 'serpchecker.' . DOMAIN);
-define('DOMAIN_SERPWATCHER', 'serpwatcher.' . DOMAIN);
-define('DOMAIN_LINKMINER', 'linkminer.' . DOMAIN);
-define('DOMAIN_SITEPROFILER', 'siteprofiler.' . DOMAIN);
