@@ -176,7 +176,6 @@ class Mangools
 
         $result = $this->curl($url, $data);
 
-//        dd($result);
         if ($is_cdn && !empty($result['body'])) {
             $result_str = json_encode($result);
             $cache->set_cache($url, $result_str);
@@ -219,23 +218,13 @@ class Mangools
 //    }
 
     /**
-     * 域名替换
-     */
-    public function replace_url()
-    {
-
-    }
-
-    /**
      * 域名恢复
      * @param $url
      * @return string|string[]
      */
     public function revoke_url($url)
     {
-        dump($url);
         $real_url = $this->domain . $url;
-        dump($real_url);
 
         if (stripos($url, 'mangools_domain/') !== false) {
             $real_url = str_replace("mangools_domain/", self::$mangools_domain, $url);
@@ -252,9 +241,6 @@ class Mangools
         $real_url = str_replace("{{sso_ticket}}", $this->sso_ticket, $real_url);
         $real_url = str_replace("{{login_token}}", $this->login_token, $real_url);
 
-        preg_replace("/set_cookie\?referrer=([^&]+?)&/",'',$real_url);
-
-        dd($real_url);
         return $real_url;
     }
 
@@ -325,6 +311,34 @@ class Mangools
 
         //替换用户信息
         $html = str_replace($this->account_info['username'] ?? '', 'account_' . $this->account_info['id'], $html);
+
+        //增加js
+        $bodyPoint = stripos($html, '</body>');
+        if ($bodyPoint > 0) {
+            $html = mb_substr($html, 0, $bodyPoint) . $this->inner_html() . mb_substr($html, $bodyPoint);
+        }
+
+        return $html;
+    }
+
+
+    private function inner_html()
+    {
+        $html = '
+        <script>
+        var rent_timer = setInterval(function () {
+            var rent_list = document.getElementsByClassName("mg-apps-list")
+            if(rent_list.length>0){
+                rent_list = rent_list[0].getElementsByTagName("a");   
+            }
+            for (var i = 0;i < rent_list.length;i++){
+                if(rent_list[i].href.search(/http\:\/\/[^\.]+\.' . DOMAIN . '\/?\?ref/) > -1){
+                    rent_list[i].href = rent_list[i].href.replace(/\/?\?ref=.*/,"?sso_ticket={{sso_ticket}}&login_token={{login_token}}");
+                }
+            }
+        }, 500);
+        </script>';
+
         return $html;
     }
 }
