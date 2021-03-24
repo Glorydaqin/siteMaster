@@ -252,6 +252,8 @@ class Mangools
         $real_url = str_replace("{{sso_ticket}}", $this->sso_ticket, $real_url);
         $real_url = str_replace("{{login_token}}", $this->login_token, $real_url);
 
+        preg_replace("/set_cookie\?referrer=([^&]+?)&/",'',$real_url);
+
         dd($real_url);
         return $real_url;
     }
