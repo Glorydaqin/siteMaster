@@ -233,7 +233,9 @@ class Mangools
      */
     public function revoke_url($url)
     {
+        dump($url);
         $real_url = $this->domain . $url;
+        dump($real_url);
 
         if (stripos($url, 'mangools_domain/') !== false) {
             $real_url = str_replace("mangools_domain/", self::$mangools_domain, $url);
@@ -250,6 +252,7 @@ class Mangools
         $real_url = str_replace("{{sso_ticket}}", $this->sso_ticket, $real_url);
         $real_url = str_replace("{{login_token}}", $this->login_token, $real_url);
 
+        dd($real_url);
         return $real_url;
     }
 
