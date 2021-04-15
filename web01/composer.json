@@ -1,0 +1,10 @@
+{
+    "require": {
+        "filp/whoops": "^2.5",
+        "larapack/dd": "^1.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-redis": "*",
+        "paypal/paypal-checkout-sdk": "^1.0"
+    }
+}
