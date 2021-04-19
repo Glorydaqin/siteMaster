@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <form role="form" method="POST" action="https://supremseo.com/register">
+                        <form role="form" method="POST" action="/register/">
                             <input type="hidden" name="_token" value="1ZsXhWUzGcV7KHqo8x7KK3F2W1zRLjdIsrUbSqCv">                            <h3 class="mb-3">Register</h3>
                             <div class="input-group mb-3">
                                 <input type="text" placeholder="Your Name" name="name" class="form-control " value="" required autocomplete="name">
@@ -36,7 +36,7 @@
                                 <input name="password_confirmation" class="form-control " placeholder="Confirm password" type="password" required autocomplete="current-password">
                             </div>
                             <button class="btn btn-block btn-primary mb-4 rounded">Register</button>
-                            <p class="mb-0 text-muted">Already have an account? <a href="https://supremseo.com/login" class="f-w-400">Login</a></p>
+                            <p class="mb-0 text-muted">Already have an account? <a href="/login/" class="f-w-400">Login</a></p>
                         </form>
                     </div>
                 </div>

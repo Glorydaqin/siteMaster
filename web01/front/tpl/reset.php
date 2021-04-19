@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="card-body">
                         <h3 class="mb-4">Recover account</h3>
-                        <form role="form" method="POST" action="https://supremseo.com/password/email">
+                        <form role="form" method="POST" action="/password/email">
                             <input type="hidden" name="_token" value="0Bwkq7s7hDBjLJ4byR6EC2TW80lo3IbWtKpSJ7HB">                            <div class="input-group mb-3">
                                 <input type="email" placeholder="Email address" name="email" class="form-control " value="" required autocomplete="email">
                             </div>

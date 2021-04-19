@@ -12,7 +12,7 @@ class User
 
     public static function check_user($username, $password)
     {
-        $check_sql = "select * from user where username = '{$username}' and password = '{$password}'";
+        $check_sql = "select * from user where email = '{$username}' and password = '{$password}'";
         $row = $GLOBALS['db']->getFirstRow($check_sql);
         return $row;
     }

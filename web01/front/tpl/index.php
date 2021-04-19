@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> Group Buy Seo Tools - Buy A*h*f Moz,Semrush ,Kwfinder,Wordai Etc</title>
+    <title>Group Buy Seo Tools - Group Buy Arefs Moz,Semrush ,Kwfinder,Wordai Etc</title>
     <meta name="description" content="Group Buy Of A*h*f Moz , Semrush , Kwfinder , Moz , WordAi, Grammarly etc. Get All these Group Buy SEO Tool at Cheap Rate. Best Support Team." />
     <meta name="robots" content="Index, Follow">
     <link rel="stylesheet" href="/home/css/bootstrap.min.css">
@@ -30,15 +30,13 @@
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/privacy">Privacy</a>
+                    <a class="nav-link" href="/privacy/">Privacy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/terms">Terms</a>
-                </li>
+                    <a class="nav-link" href="/terms/">Terms</a>
                 </li>
                 <li class="nav-item log-in">
-
-                    <a class="nav-link flex-center bg-orange radius-5px transition-3" href="https://supremseo.com/dash">Dashboard</a>
+                    <a class="nav-link flex-center bg-orange radius-5px transition-3" href="/dash/">Dashboard</a>
                 </li>
             </ul>
         </div>
@@ -50,8 +48,8 @@
             <div class="col-md-6 mb-50px z-index-1">
                 <h1 class="mb-20px">Best Group Buy Seo Tools Services</h1>
                 <p>We offer a wide variety of SEO tools for reasonable prices. Our tools have an uptime of 90% and 100 % Privacy Protection.</p>
-                <a class="main-btn btn-3 mt-40px mr-10px before-gray" href="https://supremseo.com/login">Login</a>
-                <a class="main-btn btn-3 btn-orange mt-10px before-gray" href="https://supremseo.com/register"></i>Register</a>
+                <a class="main-btn btn-3 mt-40px mr-10px before-gray" href="/login/">Login</a>
+                <a class="main-btn btn-3 btn-orange mt-10px before-gray" href="/register/"></i>Register</a>
             </div>
             <div class="col-md-6 text-center">
                 <img alt="img" src="/home/images/main.png">
@@ -84,7 +82,7 @@
                     <p class="mb-10px"><i class="fa fa-check color-blue mr-5px"></i>That's why We have Blocked some features like adding projects in SEO tools, site audit feature etc.</p>
                     <p><i class="fa fa-check color-blue mr-5px"></i>With the Help of Advance Extension, we hide history and other data's like Keyword and site Url's searched by our users.</p>
                     <p><i class="fa fa-check color-blue mr-5px"></i>Our chat support would help you in every means if something went wrong!</p>
-                    <a class="main-btn btn-3 mt-25px" href="https://supremseo.com/register">Register Now</a>
+                    <a class="main-btn btn-3 mt-25px" href="/register/">Register Now</a>
                 </div>
             </div>
         </div>
@@ -97,7 +95,7 @@
                     <p><i class="fa fa-check color-blue mr-5px"></i>If you pick the super-cheap ones, you'll likely find that you get viruses and other malware from them.</p>
                     <p><i class="fa fa-check color-blue mr-5px"></i>We never had any trouble from Our Group Buy SEO Tools</p>
                     <p class="bg-green-lh rounded p-15px mb-10px">Remember this, "You get what you pay for". If you pay less, you get something of less quality. </p>
-                    <a class="main-btn btn-3 mt-30px" href="https://supremseo.com/register">Register</a>
+                    <a class="main-btn btn-3 mt-30px" href="/register/">Register</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -119,7 +117,7 @@
                     <p><i class="fa fa-check color-blue mr-5px"></i>The Mega Combo ($16.99) basically gives you everything you could possibly need. You won't have to buy any other tools as it comes with every tool we provide.</p>
                     <p><i class="fa fa-check color-blue mr-5px"></i>As I said Our site is secure so all the tools that you will receive have been vetted. You won't even need to worry about malware or poor quality as these are all quite popular tools that we offer.</p>
                     <p><i class="fa fa-check color-blue mr-5px"></i>Still, you should consider which tools you really need before making a choice. The price is well worth it regardless of the pack you choose!</p>
-                    <a class="main-btn btn-3 mt-25px" href="https://supremseo.com/register">Register</a>
+                    <a class="main-btn btn-3 mt-25px" href="/register/">Register</a>
                 </div>
             </div>
         </div>

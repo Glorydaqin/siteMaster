@@ -21,7 +21,7 @@
     <div class="content-main  container">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-            <a href="https://supremseo.com/dash" class="b-brand">
+            <a href="/dash/" class="b-brand">
                 <img src="/assets/images/logo.png" class="logo">
             </a>
             <a href="#!" class="mob-toggler">
@@ -36,31 +36,31 @@
             <div class="navbar-content scroll-div ">
                 <ul class="nav pcoded-inner-navbar ">
                     <li class="nav-item pcoded-menu-caption">
-                        <a href="https://supremseo.com/dash" class="b-brand">
+                        <a href="/dash/" class="b-brand">
                             <img src="/assets/images/logo.png" class="logo">
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://supremseo.com/dash" class="nav-link ">
+                        <a href="/dash/" class="nav-link ">
                             <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                             <span class="pcoded-mtext">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://supremseo.com/dash/orders" class="nav-link ">
+                        <a href="/dash/orders" class="nav-link ">
                             <span class="pcoded-micon"><i class="feather icon-shopping-cart"></i></span>
                             <span class="pcoded-mtext">Orders</span>
                         </a>
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <a href="https://supremseo.com/dash/settings" class="nav-link ">
+                        <a href="/dash/settings" class="nav-link ">
                             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
                             <span class="pcoded-mtext">Settings</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://supremseo.com/logout" class="nav-link ">
+                        <a href="/logout/" class="nav-link ">
                             <span class="pcoded-micon"><i class="feather icon-power"></i></span>
                             <span class="pcoded-mtext">Logout</span>
                         </a>
@@ -182,17 +182,17 @@
                                 <div class="form-group text-left">
                                     <div class="checkbox checkbox-primary d-inline">
                                         <input id="remember" type="checkbox" onclick="$('.agree').trigger('click');">
-                                        <label for="remember" class="cr"> I Agree <a href="https://supremseo.com/terms" target="_blank">Terms</a></label>
+                                        <label for="remember" class="cr"> I Agree <a href="/terms/" target="_blank">Terms</a></label>
                                     </div>
                                 </div>
-                                <form action="https://supremseo.com/dash/checkout/paypal" method="POST">
+                                <form action="/dash/checkout/paypal" method="POST">
                                     <input type="hidden" name="_token" value="reHTnvCzfZSK4lKzhSLWmyzYVksIfIz9G5Bf6eyi"> <input type="checkbox" hidden name="agree" class="agree">
                                     <input type="hidden" name="plan" class="plan">
                                     <input type="hidden" name="token" value="Mg==">
                                     <button class="btn f-16 btn-primary w-100" type="submit">Pay <strong>$<span class="total">3.00</span></strong> via PayPal</button>
                                 </form>
                                 <br>
-                                <form action="https://supremseo.com/dash/checkout/paytm" method="POST">
+                                <form action="/dash/checkout/paytm" method="POST">
                                     <input type="hidden" name="_token" value="reHTnvCzfZSK4lKzhSLWmyzYVksIfIz9G5Bf6eyi"> <input type="checkbox" hidden name="agree" class="agree">
                                     <input type="hidden" name="plan" class="plan">
                                     <input type="hidden" name="token" value="Mg==">

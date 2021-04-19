@@ -10,11 +10,10 @@ if (!defined('IN_DS')) {
     die('Hacking attempt');
 }
 //判断登陆
-include_once 'common.php';
+include_once 'common_logined.php';
 
 //获取站点
 $site_list = Site::get_list_with_access($_SESSION['user_id']);
-//dd($site_list);
 
 foreach ($site_list as &$site) {
     $account_list = Account::get_site_list($site['id'], 2);
@@ -50,10 +49,8 @@ foreach ($site_list as &$site) {
     }
     $site['account_list'] = $account_list;
 }
-//dd($site_list);
 
 $tpl->assign('site_list', $site_list);
-
 
 echo $tpl->render('dashboard.php');
 exit();
